@@ -1,0 +1,17 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten"
+  },
+  "name": "vista-workspace",
+  "private": true,
+  "workspaces": [
+    "flakes/vista/agent-timeline",
+    "flakes/vista/blocks",
+    "flakes/vista/cli",
+    "flakes/vista/island",
+    "flakes/vista/service",
+    "packages/ui"
+  ],
+  "packageManager": "pnpm@12.7.0"
+}

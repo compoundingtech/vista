@@ -1,0 +1,18 @@
+/repos/
+# Local generator lock state.
+/tmp/genie-locks/
+
+# Vista local development state.
+.devenv
+.devenv.flake.nix
+result
+node_modules
+test-results/
+buck-out/
+devenv.local.*
+tmp*
+/.vista-cache/
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+dist/

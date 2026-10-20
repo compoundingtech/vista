@@ -1,0 +1,2562 @@
+{
+  "jobs": [
+    {
+      "id": 106428988890,
+      "name": "hy/admission (workflow preflight)",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:35Z",
+      "startedAt": "2026-09-21T16:54:39Z",
+      "completedAt": "2026-09-21T16:54:44Z",
+      "runner": "mbp2021-41024bd6",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106428988890",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:40Z",
+          "completedAt": "2026-09-21T16:54:40Z"
+        },
+        {
+          "number": 2,
+          "name": "Check Hypermerge admission",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:40Z",
+          "completedAt": "2026-09-21T16:54:40Z"
+        },
+        {
+          "number": 3,
+          "name": "Assert private Cachix read auth",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:40Z",
+          "completedAt": "2026-09-21T16:54:40Z"
+        },
+        {
+          "number": 4,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:40Z",
+          "completedAt": "2026-09-21T16:54:40Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046269,
+      "name": "main/quality/${{ matrix.package.name }}",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046269",
+      "steps": []
+    },
+    {
+      "id": 106429046293,
+      "name": "main/freshness",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046293",
+      "steps": []
+    },
+    {
+      "id": 106429046576,
+      "name": "nix-mbp2025-config",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:56Z",
+      "completedAt": "2026-09-21T17:00:07Z",
+      "runner": "mbp2021-b7c3cbd6",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046576",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:57Z",
+          "completedAt": "2026-09-21T16:55:01Z"
+        },
+        {
+          "number": 2,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:01Z",
+          "completedAt": "2026-09-21T16:55:12Z"
+        },
+        {
+          "number": 3,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-21T16:55:12Z",
+          "completedAt": "2026-09-21T16:55:12Z"
+        },
+        {
+          "number": 4,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:12Z",
+          "completedAt": "2026-09-21T16:55:12Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:12Z",
+          "completedAt": "2026-09-21T16:55:13Z"
+        },
+        {
+          "number": 6,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:13Z",
+          "completedAt": "2026-09-21T16:55:13Z"
+        },
+        {
+          "number": 7,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:13Z",
+          "completedAt": "2026-09-21T16:55:15Z"
+        },
+        {
+          "number": 8,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:15Z",
+          "completedAt": "2026-09-21T16:55:15Z"
+        },
+        {
+          "number": 9,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:15Z",
+          "completedAt": "2026-09-21T16:55:27Z"
+        },
+        {
+          "number": 10,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:55:27Z",
+          "completedAt": "2026-09-21T16:55:28Z"
+        },
+        {
+          "number": 11,
+          "name": "Build mbp2025 home-manager activation package",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-21T16:55:28Z",
+          "completedAt": "2026-09-21T17:00:00Z"
+        },
+        {
+          "number": 18,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:00Z",
+          "completedAt": "2026-09-21T17:00:00Z"
+        },
+        {
+          "number": 19,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:00Z",
+          "completedAt": "2026-09-21T17:00:02Z"
+        },
+        {
+          "number": 20,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:02Z",
+          "completedAt": "2026-09-21T17:00:02Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:02Z",
+          "completedAt": "2026-09-21T17:00:03Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:03Z",
+          "completedAt": "2026-09-21T17:00:03Z"
+        },
+        {
+          "number": 23,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T17:00:03Z",
+          "completedAt": "2026-09-21T17:00:03Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046698,
+      "name": "main/pnpm-fod-cross-darwin",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046698",
+      "steps": []
+    },
+    {
+      "id": 106429046727,
+      "name": "nix-dev3-config",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:26:58Z",
+      "completedAt": "2026-09-22T05:28:50Z",
+      "runner": "dev3-56866fb2",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046727",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:59Z",
+          "completedAt": "2026-09-22T05:27:02Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:02Z",
+          "completedAt": "2026-09-22T05:27:02Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:02Z",
+          "completedAt": "2026-09-22T05:27:08Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:27:08Z",
+          "completedAt": "2026-09-22T05:27:08Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:08Z",
+          "completedAt": "2026-09-22T05:27:08Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:08Z",
+          "completedAt": "2026-09-22T05:27:09Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:09Z",
+          "completedAt": "2026-09-22T05:27:09Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:09Z",
+          "completedAt": "2026-09-22T05:27:10Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:10Z",
+          "completedAt": "2026-09-22T05:27:10Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:10Z",
+          "completedAt": "2026-09-22T05:27:12Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:27:12Z",
+          "completedAt": "2026-09-22T05:27:12Z"
+        },
+        {
+          "number": 12,
+          "name": "Build dev3 home-manager activation package",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T05:27:12Z",
+          "completedAt": "2026-09-22T05:28:40Z"
+        },
+        {
+          "number": 13,
+          "name": "Build dev3 NixOS config",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:28:40Z",
+          "completedAt": "2026-09-22T05:28:40Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:40Z",
+          "completedAt": "2026-09-22T05:28:40Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:40Z",
+          "completedAt": "2026-09-22T05:28:44Z"
+        },
+        {
+          "number": 23,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:44Z",
+          "completedAt": "2026-09-22T05:28:44Z"
+        },
+        {
+          "number": 24,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:44Z",
+          "completedAt": "2026-09-22T05:28:45Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:45Z",
+          "completedAt": "2026-09-22T05:28:45Z"
+        },
+        {
+          "number": 26,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:45Z",
+          "completedAt": "2026-09-22T05:28:46Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:28:46Z",
+          "completedAt": "2026-09-22T05:28:47Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046832,
+      "name": "pnpm-fod-canary",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:26:08Z",
+      "completedAt": "2026-09-22T05:26:51Z",
+      "runner": "dev3-df4d6468",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046832",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:09Z",
+          "completedAt": "2026-09-22T05:26:11Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:11Z",
+          "completedAt": "2026-09-22T05:26:11Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:11Z",
+          "completedAt": "2026-09-22T05:26:17Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:26:17Z",
+          "completedAt": "2026-09-22T05:26:17Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:17Z",
+          "completedAt": "2026-09-22T05:26:17Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:17Z",
+          "completedAt": "2026-09-22T05:26:18Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:18Z",
+          "completedAt": "2026-09-22T05:26:18Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:18Z",
+          "completedAt": "2026-09-22T05:26:19Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:19Z",
+          "completedAt": "2026-09-22T05:26:19Z"
+        },
+        {
+          "number": 10,
+          "name": "Cold-build representative pnpm deps artifacts",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T05:26:19Z",
+          "completedAt": "2026-09-22T05:26:41Z"
+        },
+        {
+          "number": 16,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:41Z",
+          "completedAt": "2026-09-22T05:26:44Z"
+        },
+        {
+          "number": 17,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:44Z",
+          "completedAt": "2026-09-22T05:26:45Z"
+        },
+        {
+          "number": 18,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:45Z",
+          "completedAt": "2026-09-22T05:26:45Z"
+        },
+        {
+          "number": 19,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:45Z",
+          "completedAt": "2026-09-22T05:26:45Z"
+        },
+        {
+          "number": 20,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:45Z",
+          "completedAt": "2026-09-22T05:26:47Z"
+        },
+        {
+          "number": 21,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:26:47Z",
+          "completedAt": "2026-09-22T05:26:48Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046844,
+      "name": "nix-child-flakes",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:17:37Z",
+      "completedAt": "2026-09-22T05:18:21Z",
+      "runner": "dev3-714b05fd",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046844",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:38Z",
+          "completedAt": "2026-09-22T05:17:40Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:40Z",
+          "completedAt": "2026-09-22T05:17:40Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:40Z",
+          "completedAt": "2026-09-22T05:17:49Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:17:49Z",
+          "completedAt": "2026-09-22T05:17:49Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:49Z",
+          "completedAt": "2026-09-22T05:17:50Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:50Z",
+          "completedAt": "2026-09-22T05:17:50Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:50Z",
+          "completedAt": "2026-09-22T05:17:50Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:50Z",
+          "completedAt": "2026-09-22T05:17:52Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:52Z",
+          "completedAt": "2026-09-22T05:17:52Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:52Z",
+          "completedAt": "2026-09-22T05:17:54Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:17:54Z",
+          "completedAt": "2026-09-22T05:17:54Z"
+        },
+        {
+          "number": 12,
+          "name": "Build standalone child flakes",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T05:17:54Z",
+          "completedAt": "2026-09-22T05:18:13Z"
+        },
+        {
+          "number": 19,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:13Z",
+          "completedAt": "2026-09-22T05:18:13Z"
+        },
+        {
+          "number": 20,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:13Z",
+          "completedAt": "2026-09-22T05:18:16Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:16Z",
+          "completedAt": "2026-09-22T05:18:16Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:16Z",
+          "completedAt": "2026-09-22T05:18:17Z"
+        },
+        {
+          "number": 23,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:17Z",
+          "completedAt": "2026-09-22T05:18:17Z"
+        },
+        {
+          "number": 24,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:17Z",
+          "completedAt": "2026-09-22T05:18:19Z"
+        },
+        {
+          "number": 25,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:19Z",
+          "completedAt": "2026-09-22T05:18:19Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046856,
+      "name": "nix-dev4-config",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T01:27:04Z",
+      "completedAt": "2026-09-22T01:41:18Z",
+      "runner": "dev4-881439e5",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046856",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:05Z",
+          "completedAt": "2026-09-22T01:27:08Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:08Z",
+          "completedAt": "2026-09-22T01:27:08Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:08Z",
+          "completedAt": "2026-09-22T01:27:16Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T01:27:16Z",
+          "completedAt": "2026-09-22T01:27:16Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:16Z",
+          "completedAt": "2026-09-22T01:27:16Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:16Z",
+          "completedAt": "2026-09-22T01:27:17Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:17Z",
+          "completedAt": "2026-09-22T01:27:17Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:17Z",
+          "completedAt": "2026-09-22T01:27:19Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:19Z",
+          "completedAt": "2026-09-22T01:27:19Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:19Z",
+          "completedAt": "2026-09-22T01:27:23Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:27:23Z",
+          "completedAt": "2026-09-22T01:27:25Z"
+        },
+        {
+          "number": 12,
+          "name": "Build dev4 NixOS config (catches openclaw patch breakage)",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "startedAt": "2026-09-22T01:27:25Z",
+          "completedAt": "2026-09-22T01:46:01Z"
+        },
+        {
+          "number": 19,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:01Z",
+          "completedAt": "2026-09-22T01:46:02Z"
+        },
+        {
+          "number": 20,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:02Z",
+          "completedAt": "2026-09-22T01:46:08Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:08Z",
+          "completedAt": "2026-09-22T01:46:13Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:13Z",
+          "completedAt": "2026-09-22T01:46:19Z"
+        },
+        {
+          "number": 23,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:19Z",
+          "completedAt": "2026-09-22T01:46:24Z"
+        },
+        {
+          "number": 24,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:24Z",
+          "completedAt": "2026-09-22T01:46:25Z"
+        },
+        {
+          "number": 25,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T01:46:25Z",
+          "completedAt": "2026-09-22T01:46:26Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046866,
+      "name": "lint",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:33:54Z",
+      "completedAt": "2026-09-22T05:36:50Z",
+      "runner": "dev3-fcc709d8",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046866",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:33:55Z",
+          "completedAt": "2026-09-22T05:33:59Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:33:59Z",
+          "completedAt": "2026-09-22T05:33:59Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:33:59Z",
+          "completedAt": "2026-09-22T05:34:05Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:34:05Z",
+          "completedAt": "2026-09-22T05:34:05Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:05Z",
+          "completedAt": "2026-09-22T05:34:05Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:05Z",
+          "completedAt": "2026-09-22T05:34:06Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:06Z",
+          "completedAt": "2026-09-22T05:34:06Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:06Z",
+          "completedAt": "2026-09-22T05:34:07Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:07Z",
+          "completedAt": "2026-09-22T05:34:07Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:07Z",
+          "completedAt": "2026-09-22T05:34:09Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:09Z",
+          "completedAt": "2026-09-22T05:34:09Z"
+        },
+        {
+          "number": 12,
+          "name": "Use pinned devenv from lock",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:09Z",
+          "completedAt": "2026-09-22T05:34:09Z"
+        },
+        {
+          "number": 13,
+          "name": "Resolve devenv",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:34:09Z",
+          "completedAt": "2026-09-22T05:35:14Z"
+        },
+        {
+          "number": 14,
+          "name": "Sync megarepo dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:35:14Z",
+          "completedAt": "2026-09-22T05:35:30Z"
+        },
+        {
+          "number": 15,
+          "name": "Isolate pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:35:30Z",
+          "completedAt": "2026-09-22T05:35:30Z"
+        },
+        {
+          "number": 16,
+          "name": "Restore pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:35:30Z",
+          "completedAt": "2026-09-22T05:35:31Z"
+        },
+        {
+          "number": 17,
+          "name": "Assert live workflows use self-hosted runners",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:35:31Z",
+          "completedAt": "2026-09-22T05:35:31Z"
+        },
+        {
+          "number": 18,
+          "name": "Format + lint",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T05:35:31Z",
+          "completedAt": "2026-09-22T05:36:37Z"
+        },
+        {
+          "number": 19,
+          "name": "Save pnpm state",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:36:37Z",
+          "completedAt": "2026-09-22T05:36:37Z"
+        },
+        {
+          "number": 33,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:37Z",
+          "completedAt": "2026-09-22T05:36:39Z"
+        },
+        {
+          "number": 34,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:39Z",
+          "completedAt": "2026-09-22T05:36:42Z"
+        },
+        {
+          "number": 35,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:42Z",
+          "completedAt": "2026-09-22T05:36:43Z"
+        },
+        {
+          "number": 36,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:43Z",
+          "completedAt": "2026-09-22T05:36:43Z"
+        },
+        {
+          "number": 37,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:43Z",
+          "completedAt": "2026-09-22T05:36:43Z"
+        },
+        {
+          "number": 38,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:43Z",
+          "completedAt": "2026-09-22T05:36:45Z"
+        },
+        {
+          "number": 39,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:36:45Z",
+          "completedAt": "2026-09-22T05:36:46Z"
+        }
+      ]
+    },
+    {
+      "id": 106429046908,
+      "name": "nix-external-flakes",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:18:27Z",
+      "completedAt": "2026-09-22T05:19:08Z",
+      "runner": "dev3-d206d3f6",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429046908",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:28Z",
+          "completedAt": "2026-09-22T05:18:31Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:31Z",
+          "completedAt": "2026-09-22T05:18:31Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:31Z",
+          "completedAt": "2026-09-22T05:18:36Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:18:36Z",
+          "completedAt": "2026-09-22T05:18:36Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:36Z",
+          "completedAt": "2026-09-22T05:18:37Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:37Z",
+          "completedAt": "2026-09-22T05:18:38Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:38Z",
+          "completedAt": "2026-09-22T05:18:38Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:38Z",
+          "completedAt": "2026-09-22T05:18:39Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:39Z",
+          "completedAt": "2026-09-22T05:18:39Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:39Z",
+          "completedAt": "2026-09-22T05:18:41Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:41Z",
+          "completedAt": "2026-09-22T05:18:41Z"
+        },
+        {
+          "number": 12,
+          "name": "Build and check all external tool flakes",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:41Z",
+          "completedAt": "2026-09-22T05:18:59Z"
+        },
+        {
+          "number": 19,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:59Z",
+          "completedAt": "2026-09-22T05:18:59Z"
+        },
+        {
+          "number": 20,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:18:59Z",
+          "completedAt": "2026-09-22T05:19:02Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:19:02Z",
+          "completedAt": "2026-09-22T05:19:02Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:19:02Z",
+          "completedAt": "2026-09-22T05:19:03Z"
+        },
+        {
+          "number": 23,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:19:03Z",
+          "completedAt": "2026-09-22T05:19:03Z"
+        },
+        {
+          "number": 24,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:19:03Z",
+          "completedAt": "2026-09-22T05:19:05Z"
+        },
+        {
+          "number": 25,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:19:05Z",
+          "completedAt": "2026-09-22T05:19:06Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047011,
+      "name": "nix-root-build",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:38:05Z",
+      "completedAt": "2026-09-22T05:38:46Z",
+      "runner": "dev3-454b99db",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047011",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:06Z",
+          "completedAt": "2026-09-22T05:38:08Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:08Z",
+          "completedAt": "2026-09-22T05:38:08Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:09Z",
+          "completedAt": "2026-09-22T05:38:15Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:38:15Z",
+          "completedAt": "2026-09-22T05:38:15Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:15Z",
+          "completedAt": "2026-09-22T05:38:15Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:15Z",
+          "completedAt": "2026-09-22T05:38:16Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:16Z",
+          "completedAt": "2026-09-22T05:38:16Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:16Z",
+          "completedAt": "2026-09-22T05:38:17Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:17Z",
+          "completedAt": "2026-09-22T05:38:17Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:17Z",
+          "completedAt": "2026-09-22T05:38:21Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:21Z",
+          "completedAt": "2026-09-22T05:38:21Z"
+        },
+        {
+          "number": 12,
+          "name": "Build op-proxy",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T05:38:21Z",
+          "completedAt": "2026-09-22T05:38:37Z"
+        },
+        {
+          "number": 13,
+          "name": "Build factory",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:38:37Z",
+          "completedAt": "2026-09-22T05:38:37Z"
+        },
+        {
+          "number": 21,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:37Z",
+          "completedAt": "2026-09-22T05:38:37Z"
+        },
+        {
+          "number": 22,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:37Z",
+          "completedAt": "2026-09-22T05:38:41Z"
+        },
+        {
+          "number": 23,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:41Z",
+          "completedAt": "2026-09-22T05:38:41Z"
+        },
+        {
+          "number": 24,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:41Z",
+          "completedAt": "2026-09-22T05:38:42Z"
+        },
+        {
+          "number": 25,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:42Z",
+          "completedAt": "2026-09-22T05:38:42Z"
+        },
+        {
+          "number": 26,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:42Z",
+          "completedAt": "2026-09-22T05:38:43Z"
+        },
+        {
+          "number": 27,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:38:43Z",
+          "completedAt": "2026-09-22T05:38:43Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047069,
+      "name": "observability/provision-gap-nightly",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047069",
+      "steps": []
+    },
+    {
+      "id": 106429047122,
+      "name": "devenv-perf",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047122",
+      "steps": []
+    },
+    {
+      "id": 106429047138,
+      "name": "nix/closure-sizes",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047138",
+      "steps": []
+    },
+    {
+      "id": 106429047155,
+      "name": "source/shape",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047155",
+      "steps": []
+    },
+    {
+      "id": 106429047184,
+      "name": "storybook-deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T05:43:37Z",
+      "completedAt": "2026-09-22T05:48:56Z",
+      "runner": "dev3-b849346f",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047184",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:38Z",
+          "completedAt": "2026-09-22T05:43:41Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:41Z",
+          "completedAt": "2026-09-22T05:43:41Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:41Z",
+          "completedAt": "2026-09-22T05:43:48Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:43:48Z",
+          "completedAt": "2026-09-22T05:43:48Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:48Z",
+          "completedAt": "2026-09-22T05:43:48Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:48Z",
+          "completedAt": "2026-09-22T05:43:49Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:49Z",
+          "completedAt": "2026-09-22T05:43:49Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:49Z",
+          "completedAt": "2026-09-22T05:43:53Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:53Z",
+          "completedAt": "2026-09-22T05:43:53Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:53Z",
+          "completedAt": "2026-09-22T05:43:57Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:57Z",
+          "completedAt": "2026-09-22T05:43:58Z"
+        },
+        {
+          "number": 12,
+          "name": "Use pinned devenv from lock",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:58Z",
+          "completedAt": "2026-09-22T05:43:58Z"
+        },
+        {
+          "number": 13,
+          "name": "Resolve devenv",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:43:58Z",
+          "completedAt": "2026-09-22T05:45:03Z"
+        },
+        {
+          "number": 14,
+          "name": "Sync megarepo dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:45:03Z",
+          "completedAt": "2026-09-22T05:45:21Z"
+        },
+        {
+          "number": 15,
+          "name": "Isolate pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:45:21Z",
+          "completedAt": "2026-09-22T05:45:21Z"
+        },
+        {
+          "number": 16,
+          "name": "Restore pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:45:21Z",
+          "completedAt": "2026-09-22T05:45:21Z"
+        },
+        {
+          "number": 17,
+          "name": "Build all storybooks",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:45:21Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 18,
+          "name": "Preflight Storybook Netlify contract",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 19,
+          "name": "Deploy storybooks to Netlify",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 20,
+          "name": "Collect workflow report bundle",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 21,
+          "name": "Render workflow report comment",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 22,
+          "name": "Publish workflow report",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:47:37Z"
+        },
+        {
+          "number": 23,
+          "name": "Save pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:47:37Z",
+          "completedAt": "2026-09-22T05:48:38Z"
+        },
+        {
+          "number": 41,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:38Z",
+          "completedAt": "2026-09-22T05:48:39Z"
+        },
+        {
+          "number": 42,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:39Z",
+          "completedAt": "2026-09-22T05:48:43Z"
+        },
+        {
+          "number": 43,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:43Z",
+          "completedAt": "2026-09-22T05:48:44Z"
+        },
+        {
+          "number": 44,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:44Z",
+          "completedAt": "2026-09-22T05:48:44Z"
+        },
+        {
+          "number": 45,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:44Z",
+          "completedAt": "2026-09-22T05:48:45Z"
+        },
+        {
+          "number": 46,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:45Z",
+          "completedAt": "2026-09-22T05:48:45Z"
+        },
+        {
+          "number": 47,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T05:48:45Z",
+          "completedAt": "2026-09-22T05:48:47Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047194,
+      "name": "observability/pure-eval",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047194",
+      "steps": []
+    },
+    {
+      "id": 106429047207,
+      "name": "pnpm-builder-contract",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047207",
+      "steps": []
+    },
+    {
+      "id": 106429047249,
+      "name": "observability/provision-gap",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T06:47:09Z",
+      "completedAt": "2026-09-22T06:50:51Z",
+      "runner": "dev3-eb3ca474",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047249",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:11Z",
+          "completedAt": "2026-09-22T06:47:14Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:14Z",
+          "completedAt": "2026-09-22T06:47:14Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:14Z",
+          "completedAt": "2026-09-22T06:47:20Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:47:20Z",
+          "completedAt": "2026-09-22T06:47:20Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:20Z",
+          "completedAt": "2026-09-22T06:47:21Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:21Z",
+          "completedAt": "2026-09-22T06:47:21Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:21Z",
+          "completedAt": "2026-09-22T06:47:21Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:21Z",
+          "completedAt": "2026-09-22T06:47:23Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:23Z",
+          "completedAt": "2026-09-22T06:47:23Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:23Z",
+          "completedAt": "2026-09-22T06:47:25Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:25Z",
+          "completedAt": "2026-09-22T06:47:25Z"
+        },
+        {
+          "number": 12,
+          "name": "Use pinned devenv from lock",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:25Z",
+          "completedAt": "2026-09-22T06:47:25Z"
+        },
+        {
+          "number": 13,
+          "name": "Resolve devenv",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:47:25Z",
+          "completedAt": "2026-09-22T06:48:31Z"
+        },
+        {
+          "number": 14,
+          "name": "Sync megarepo dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:48:31Z",
+          "completedAt": "2026-09-22T06:48:49Z"
+        },
+        {
+          "number": 15,
+          "name": "Isolate pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:48:49Z",
+          "completedAt": "2026-09-22T06:48:49Z"
+        },
+        {
+          "number": 16,
+          "name": "Restore pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:48:49Z",
+          "completedAt": "2026-09-22T06:48:49Z"
+        },
+        {
+          "number": 17,
+          "name": "Enforce dashboard provision-gap against real host trees",
+          "status": "completed",
+          "conclusion": "failure",
+          "startedAt": "2026-09-22T06:48:49Z",
+          "completedAt": "2026-09-22T06:50:35Z"
+        },
+        {
+          "number": 18,
+          "name": "Save pnpm state",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:50:35Z",
+          "completedAt": "2026-09-22T06:50:35Z"
+        },
+        {
+          "number": 31,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:35Z",
+          "completedAt": "2026-09-22T06:50:36Z"
+        },
+        {
+          "number": 32,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:36Z",
+          "completedAt": "2026-09-22T06:50:42Z"
+        },
+        {
+          "number": 33,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:42Z",
+          "completedAt": "2026-09-22T06:50:42Z"
+        },
+        {
+          "number": 34,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:42Z",
+          "completedAt": "2026-09-22T06:50:43Z"
+        },
+        {
+          "number": 35,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:43Z",
+          "completedAt": "2026-09-22T06:50:43Z"
+        },
+        {
+          "number": 36,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:43Z",
+          "completedAt": "2026-09-22T06:50:45Z"
+        },
+        {
+          "number": 37,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:50:45Z",
+          "completedAt": "2026-09-22T06:50:46Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047284,
+      "name": "pnpm-fod-cross-linux",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047284",
+      "steps": []
+    },
+    {
+      "id": 106429047366,
+      "name": "test/scg-runtime-host",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T06:03:59Z",
+      "completedAt": "2026-09-22T06:07:44Z",
+      "runner": "dev3-4975f466",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047366",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:00Z",
+          "completedAt": "2026-09-22T06:04:04Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:04Z",
+          "completedAt": "2026-09-22T06:04:04Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:04Z",
+          "completedAt": "2026-09-22T06:04:09Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:04:09Z",
+          "completedAt": "2026-09-22T06:04:09Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:09Z",
+          "completedAt": "2026-09-22T06:04:10Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:10Z",
+          "completedAt": "2026-09-22T06:04:11Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:11Z",
+          "completedAt": "2026-09-22T06:04:11Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:11Z",
+          "completedAt": "2026-09-22T06:04:12Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:12Z",
+          "completedAt": "2026-09-22T06:04:12Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:12Z",
+          "completedAt": "2026-09-22T06:04:14Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:14Z",
+          "completedAt": "2026-09-22T06:04:14Z"
+        },
+        {
+          "number": 12,
+          "name": "Use pinned devenv from lock",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:14Z",
+          "completedAt": "2026-09-22T06:04:14Z"
+        },
+        {
+          "number": 13,
+          "name": "Resolve devenv",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:04:14Z",
+          "completedAt": "2026-09-22T06:05:20Z"
+        },
+        {
+          "number": 14,
+          "name": "Sync megarepo dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:05:20Z",
+          "completedAt": "2026-09-22T06:05:39Z"
+        },
+        {
+          "number": 15,
+          "name": "Isolate pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:05:39Z",
+          "completedAt": "2026-09-22T06:05:39Z"
+        },
+        {
+          "number": 16,
+          "name": "Restore pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:05:39Z",
+          "completedAt": "2026-09-22T06:05:40Z"
+        },
+        {
+          "number": 17,
+          "name": "Run package test",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:05:40Z",
+          "completedAt": "2026-09-22T06:06:48Z"
+        },
+        {
+          "number": 18,
+          "name": "Retain PTY tag structural coverage",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:06:48Z",
+          "completedAt": "2026-09-22T06:06:48Z"
+        },
+        {
+          "number": 19,
+          "name": "Save pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:06:48Z",
+          "completedAt": "2026-09-22T06:07:32Z"
+        },
+        {
+          "number": 33,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:32Z",
+          "completedAt": "2026-09-22T06:07:32Z"
+        },
+        {
+          "number": 34,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:32Z",
+          "completedAt": "2026-09-22T06:07:36Z"
+        },
+        {
+          "number": 35,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:36Z",
+          "completedAt": "2026-09-22T06:07:36Z"
+        },
+        {
+          "number": 36,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:36Z",
+          "completedAt": "2026-09-22T06:07:37Z"
+        },
+        {
+          "number": 37,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:37Z",
+          "completedAt": "2026-09-22T06:07:37Z"
+        },
+        {
+          "number": 38,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:37Z",
+          "completedAt": "2026-09-22T06:07:39Z"
+        },
+        {
+          "number": 39,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:07:39Z",
+          "completedAt": "2026-09-22T06:07:40Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047378,
+      "name": "test/scg-policy",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-22T06:22:33Z",
+      "completedAt": "2026-09-22T06:26:46Z",
+      "runner": "dev3-a5ffc84c",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047378",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:34Z",
+          "completedAt": "2026-09-22T06:22:38Z"
+        },
+        {
+          "number": 2,
+          "name": "Set up runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:38Z",
+          "completedAt": "2026-09-22T06:22:38Z"
+        },
+        {
+          "number": 3,
+          "name": "Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:38Z",
+          "completedAt": "2026-09-22T06:22:44Z"
+        },
+        {
+          "number": 4,
+          "name": "Checkout CI measurement baseline ref",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:22:44Z",
+          "completedAt": "2026-09-22T06:22:44Z"
+        },
+        {
+          "number": 5,
+          "name": "Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:44Z",
+          "completedAt": "2026-09-22T06:22:44Z"
+        },
+        {
+          "number": 6,
+          "name": "Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:44Z",
+          "completedAt": "2026-09-22T06:22:45Z"
+        },
+        {
+          "number": 7,
+          "name": "Export GitHub access tokens for Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:45Z",
+          "completedAt": "2026-09-22T06:22:45Z"
+        },
+        {
+          "number": 8,
+          "name": "Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:45Z",
+          "completedAt": "2026-09-22T06:22:46Z"
+        },
+        {
+          "number": 9,
+          "name": "Prepare CI helper scripts",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:46Z",
+          "completedAt": "2026-09-22T06:22:46Z"
+        },
+        {
+          "number": 10,
+          "name": "Provide cachix CLI from nixpkgs",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:46Z",
+          "completedAt": "2026-09-22T06:22:48Z"
+        },
+        {
+          "number": 11,
+          "name": "Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:48Z",
+          "completedAt": "2026-09-22T06:22:48Z"
+        },
+        {
+          "number": 12,
+          "name": "Use pinned devenv from lock",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:48Z",
+          "completedAt": "2026-09-22T06:22:48Z"
+        },
+        {
+          "number": 13,
+          "name": "Resolve devenv",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:22:48Z",
+          "completedAt": "2026-09-22T06:23:53Z"
+        },
+        {
+          "number": 14,
+          "name": "Sync megarepo dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:23:53Z",
+          "completedAt": "2026-09-22T06:24:11Z"
+        },
+        {
+          "number": 15,
+          "name": "Isolate pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:24:11Z",
+          "completedAt": "2026-09-22T06:24:11Z"
+        },
+        {
+          "number": 16,
+          "name": "Restore pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:24:11Z",
+          "completedAt": "2026-09-22T06:24:12Z"
+        },
+        {
+          "number": 17,
+          "name": "Run package test",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:24:12Z",
+          "completedAt": "2026-09-22T06:25:47Z"
+        },
+        {
+          "number": 18,
+          "name": "Retain PTY tag structural coverage",
+          "status": "completed",
+          "conclusion": "skipped",
+          "startedAt": "2026-09-22T06:25:47Z",
+          "completedAt": "2026-09-22T06:25:47Z"
+        },
+        {
+          "number": 19,
+          "name": "Save pnpm state",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:25:47Z",
+          "completedAt": "2026-09-22T06:26:35Z"
+        },
+        {
+          "number": 33,
+          "name": "Post Enable Cachix cache",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:35Z",
+          "completedAt": "2026-09-22T06:26:35Z"
+        },
+        {
+          "number": 34,
+          "name": "Post Install Nix",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:35Z",
+          "completedAt": "2026-09-22T06:26:39Z"
+        },
+        {
+          "number": 35,
+          "name": "Post Mint overengineeringstudio GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:39Z",
+          "completedAt": "2026-09-22T06:26:39Z"
+        },
+        {
+          "number": 36,
+          "name": "Post Mint schickling GitHub App token",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:39Z",
+          "completedAt": "2026-09-22T06:26:39Z"
+        },
+        {
+          "number": 37,
+          "name": "Post Run actions/checkout@v6",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:39Z",
+          "completedAt": "2026-09-22T06:26:40Z"
+        },
+        {
+          "number": 38,
+          "name": "Complete runner",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:40Z",
+          "completedAt": "2026-09-22T06:26:41Z"
+        },
+        {
+          "number": 39,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-22T06:26:41Z",
+          "completedAt": "2026-09-22T06:26:41Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047383,
+      "name": "pr-reviews-resolved",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:57Z",
+      "completedAt": "2026-09-21T16:55:02Z",
+      "runner": "mbp2021-43c9d93d",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047383",
+      "steps": [
+        {
+          "number": 1,
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:58Z",
+          "completedAt": "2026-09-21T16:54:58Z"
+        },
+        {
+          "number": 2,
+          "name": "Check unresolved review threads",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:58Z",
+          "completedAt": "2026-09-21T16:54:58Z"
+        },
+        {
+          "number": 3,
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "startedAt": "2026-09-21T16:54:58Z",
+          "completedAt": "2026-09-21T16:54:59Z"
+        }
+      ]
+    },
+    {
+      "id": 106429047628,
+      "name": "test/scg-cli-schema-fleet-fresh",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047628",
+      "steps": []
+    },
+    {
+      "id": 106429047637,
+      "name": "test/op-proxy",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047637",
+      "steps": []
+    },
+    {
+      "id": 106429047665,
+      "name": "test/scg-gh-cli-schema-fresh",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047665",
+      "steps": []
+    },
+    {
+      "id": 106429047680,
+      "name": "test/gh-ci-exporter",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-21T16:54:45Z",
+      "startedAt": "2026-09-21T16:54:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429047680",
+      "steps": []
+    },
+    {
+      "id": 106429049415,
+      "name": "ci/measurements-report",
+      "status": "completed",
+      "conclusion": "skipped",
+      "createdAt": "2026-09-21T16:54:46Z",
+      "startedAt": "2026-09-21T16:54:46Z",
+      "completedAt": "2026-09-21T16:54:45Z",
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106429049415",
+      "steps": []
+    },
+    {
+      "id": 106625326346,
+      "name": "pr/topology",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-22T05:18:22Z",
+      "startedAt": "2026-09-22T05:18:22Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106625326346",
+      "steps": []
+    },
+    {
+      "id": 106635175054,
+      "name": "test/observability-contract",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-22T06:07:45Z",
+      "startedAt": "2026-09-22T06:07:45Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106635175054",
+      "steps": []
+    },
+    {
+      "id": 106639389311,
+      "name": "test/tokenlens",
+      "status": "queued",
+      "conclusion": null,
+      "createdAt": "2026-09-22T06:26:47Z",
+      "startedAt": "2026-09-22T06:26:47Z",
+      "completedAt": null,
+      "runner": "",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35628602056/job/106639389311",
+      "steps": []
+    }
+  ]
+}

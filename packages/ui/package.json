@@ -1,0 +1,82 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "packages/ui"
+    ]
+  },
+  "name": "@vista/ui",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./components": "./src/components/mod.ts",
+    "./document.css": "./src/foundations/document.css",
+    "./foundations": "./src/foundations/mod.ts",
+    "./styles.css": "./src/foundations/styles.css",
+    "./tokens.stylex": "./src/foundations/tokens.stylex.ts"
+  },
+  "scripts": {
+    "prepare": "effect-language-service patch",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "clsx": "2.1.1"
+  },
+  "devDependencies": {
+    "@effect/language-service": "0.69.2",
+    "@internationalized/date": "3.12.1",
+    "@overeng/otel-contract": "https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz",
+    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz",
+    "@overeng/utils-storybook": "https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz",
+    "@storybook/addon-a11y": "10.6.0",
+    "@storybook/react": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "@stylexjs/stylex": "0.19.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "@vitest/browser": "5.0.3",
+    "@vitest/browser-playwright": "5.0.3",
+    "playwright": "1.63.0",
+    "react": "19.2.8",
+    "react-aria-components": "1.21.1",
+    "react-dom": "19.2.8",
+    "storybook": "10.6.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "peerDependencies": {
+    "@stylexjs/stylex": "^0.19.0",
+    "react": "^19.2.8",
+    "react-aria-components": "^1.21.1",
+    "react-dom": "^19.2.8"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/src/mod.d.ts",
+        "default": "./dist/src/mod.js"
+      },
+      "./components": {
+        "types": "./dist/src/components/mod.d.ts",
+        "default": "./dist/src/components/mod.js"
+      },
+      "./foundations": {
+        "types": "./dist/src/foundations/mod.d.ts",
+        "default": "./dist/src/foundations/mod.js"
+      },
+      "./styles.css": "./src/foundations/styles.css",
+      "./document.css": "./src/foundations/document.css",
+      "./tokens.stylex": {
+        "types": "./dist/src/foundations/tokens.stylex.d.ts",
+        "default": "./dist/src/foundations/tokens.stylex.js"
+      }
+    }
+  }
+}

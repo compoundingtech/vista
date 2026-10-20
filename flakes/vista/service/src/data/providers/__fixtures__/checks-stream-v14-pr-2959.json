@@ -1,0 +1,280 @@
+{
+  "_tag": "Synced",
+  "state": {
+    "pullRequest": {
+      "number": 2959,
+      "title": "feat(vista): rich providers (T3) — PR review/checks, metric ranges, usage, disk treemap, Operation.map/flatMap",
+      "url": "https://github.com/schickling/dotfiles/pull/2959",
+      "state": "open",
+      "isDraft": false,
+      "mergeable": "mergeable",
+      "reviewDecision": null,
+      "headRef": "schickling/2026-09-19-vista-t3-providers",
+      "headSha": "7efbace853f88904b9c99857e4b3cdacef3e6de4"
+    },
+    "checks": {
+      "hy/admission (workflow preflight)": {
+        "source": "check-run",
+        "name": "hy/admission (workflow preflight)",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "startedAt": "2026-09-22T11:37:27Z",
+        "completedAt": "2026-09-22T11:37:29Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722482305/job/106728334859"
+      },
+      "lint": {
+        "source": "check-run",
+        "name": "lint",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729017971"
+      },
+      "test/${{ matrix.package.name }}": {
+        "source": "check-run",
+        "name": "test/${{ matrix.package.name }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729017718"
+      },
+      "main/quality/${{ matrix.package.name }}": {
+        "source": "check-run",
+        "name": "main/quality/${{ matrix.package.name }}",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018111"
+      },
+      "nix-dev3-config": {
+        "source": "check-run",
+        "name": "nix-dev3-config",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018175"
+      },
+      "nix-mbp2025-config": {
+        "source": "check-run",
+        "name": "nix-mbp2025-config",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729017935"
+      },
+      "main/freshness": {
+        "source": "check-run",
+        "name": "main/freshness",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018116"
+      },
+      "nix-dev4-config": {
+        "source": "check-run",
+        "name": "nix-dev4-config",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018627"
+      },
+      "nix-external-flakes": {
+        "source": "check-run",
+        "name": "nix-external-flakes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018263"
+      },
+      "pnpm-fod-canary": {
+        "source": "check-run",
+        "name": "pnpm-fod-canary",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018666"
+      },
+      "nix-child-flakes": {
+        "source": "check-run",
+        "name": "nix-child-flakes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018048"
+      },
+      "pnpm-builder-contract": {
+        "source": "check-run",
+        "name": "pnpm-builder-contract",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018052"
+      },
+      "observability/pure-eval": {
+        "source": "check-run",
+        "name": "observability/pure-eval",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018092"
+      },
+      "observability/provision-gap": {
+        "source": "check-run",
+        "name": "observability/provision-gap",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729017917"
+      },
+      "observability/provision-gap-nightly": {
+        "source": "check-run",
+        "name": "observability/provision-gap-nightly",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018192"
+      },
+      "nix/closure-sizes": {
+        "source": "check-run",
+        "name": "nix/closure-sizes",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018229"
+      },
+      "source/shape": {
+        "source": "check-run",
+        "name": "source/shape",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018412"
+      },
+      "nix-root-build": {
+        "source": "check-run",
+        "name": "nix-root-build",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018047"
+      },
+      "pnpm-fod-cross-linux": {
+        "source": "check-run",
+        "name": "pnpm-fod-cross-linux",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018696"
+      },
+      "main/pnpm-fod-cross-darwin": {
+        "source": "check-run",
+        "name": "main/pnpm-fod-cross-darwin",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729019026"
+      },
+      "storybook-deploy": {
+        "source": "check-run",
+        "name": "storybook-deploy",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018633"
+      },
+      "devenv-perf": {
+        "source": "check-run",
+        "name": "devenv-perf",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018737"
+      },
+      "pr-reviews-resolved": {
+        "source": "check-run",
+        "name": "pr-reviews-resolved",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:45Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018253"
+      },
+      "pr/topology (control event)": {
+        "source": "check-run",
+        "name": "pr/topology (control event)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-09-22T11:42:49Z",
+        "completedAt": "2026-09-22T11:42:55Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018593"
+      },
+      "pr/contract (control event)": {
+        "source": "check-run",
+        "name": "pr/contract (control event)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-09-22T11:42:47Z",
+        "completedAt": "2026-09-22T11:42:53Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729019441"
+      },
+      "pr/freshness (control event)": {
+        "source": "check-run",
+        "name": "pr/freshness (control event)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-09-22T11:43:16Z",
+        "completedAt": "2026-09-22T11:43:22Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729020060"
+      },
+      "ci/measurements-report": {
+        "source": "check-run",
+        "name": "ci/measurements-report",
+        "status": "completed",
+        "conclusion": "skipped",
+        "startedAt": "2026-09-22T11:39:46Z",
+        "completedAt": "2026-09-22T11:39:45Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729019313"
+      },
+      "pr/quality (control event)": {
+        "source": "check-run",
+        "name": "pr/quality (control event)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-09-22T11:42:47Z",
+        "completedAt": "2026-09-22T11:42:53Z",
+        "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281/job/106729018380"
+      }
+    },
+    "workflowRunCount": 12,
+    "latestWorkflowRun": {
+      "name": "CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/schickling/dotfiles/actions/runs/35722484281",
+      "headSha": "7efbace853f88904b9c99857e4b3cdacef3e6de4",
+      "createdAt": "2026-09-22T11:37:27Z"
+    },
+    "cursor": "gh-checks:3afd4fee41a631e051ff3c04430b24bca0ae4737dbeb01a06db80328c70b43bf"
+  }
+}

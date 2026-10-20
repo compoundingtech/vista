@@ -1,0 +1,27 @@
+diff --git a/dist/shared/normalize-string-or-regex-Dm69lpQ-.mjs b/dist/shared/normalize-string-or-regex-Dm69lpQ-.mjs
+index 13a990dc16..42ea34f1cf 100644
+--- a/dist/shared/normalize-string-or-regex-Dm69lpQ-.mjs
++++ b/dist/shared/normalize-string-or-regex-Dm69lpQ-.mjs
+@@ -12,8 +12,21 @@ var BuiltinPlugin = class {
+ 		this._options = _options;
+ 	}
+ };
++function weakCallback(callback, pluginName, key) {
++	const reference = new WeakRef(callback);
++	return function(...args) {
++		const current = reference.deref();
++		if (!current) throw new Error(`Released callback owner: ${pluginName}.${key}`);
++		return current.apply(this, args);
++	};
++}
+ function makeBuiltinPluginCallable(plugin) {
+-	let callablePlugin = new import_binding.BindingCallableBuiltinPlugin(bindingifyBuiltInPlugin(plugin));
++	const binding = bindingifyBuiltInPlugin(plugin);
++	// Keep callbacks owned by the JS plugin, not by native global handles.
++	if (binding.options) binding.options = Object.fromEntries(
++		Object.entries(binding.options).map(([key, value]) =>
++			[key, typeof value === "function" ? weakCallback(value, plugin.name, key) : value]));
++	let callablePlugin = new import_binding.BindingCallableBuiltinPlugin(binding);
+ 	const wrappedPlugin = plugin;
+ 	for (const key in callablePlugin) {
+ 		const wrappedHook = async function(...args) {

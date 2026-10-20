@@ -1,0 +1,25 @@
+// Generated file - DO NOT EDIT
+// Source: tsconfig.check.json.genie.ts
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./flakes/vista/agent-timeline"
+    },
+    {
+      "path": "./flakes/vista/blocks"
+    },
+    {
+      "path": "./flakes/vista/cli"
+    },
+    {
+      "path": "./flakes/vista/island"
+    },
+    {
+      "path": "./flakes/vista/service"
+    },
+    {
+      "path": "./packages/ui"
+    }
+  ]
+}

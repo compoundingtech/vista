@@ -1,0 +1,50 @@
+{
+  "batches": [
+    {
+      "resource": {
+        "attributes": [
+          { "key": "service.namespace", "value": { "stringValue": "infra" } },
+          { "key": "service.name", "value": { "stringValue": "genie" } }
+        ]
+      },
+      "scopeSpans": [
+        {
+          "scope": { "name": "genie" },
+          "spans": [
+            {
+              "traceId": "p8wnLvfZRS7jYAQMXsJPDw==",
+              "spanId": "6tkZ4SG1w6E=",
+              "name": "genie/command",
+              "kind": "SPAN_KIND_INTERNAL",
+              "startTimeUnixNano": "1782564217845743000",
+              "endTimeUnixNano": "1782564217954787000",
+              "status": { "code": "STATUS_CODE_OK" },
+              "attributes": [
+                { "key": "span.label", "value": { "stringValue": "genie run" } },
+                { "key": "genie.files", "value": { "intValue": "12" } }
+              ],
+              "events": [
+                {
+                  "name": "discovery.start",
+                  "timeUnixNano": "1782564217845800000",
+                  "attributes": [{ "key": "phase", "value": { "stringValue": "discover" } }]
+                }
+              ]
+            },
+            {
+              "traceId": "p8wnLvfZRS7jYAQMXsJPDw==",
+              "spanId": "hBV+nYol1b8=",
+              "parentSpanId": "6tkZ4SG1w6E=",
+              "name": "genie/discoverAndValidate",
+              "kind": "SPAN_KIND_INTERNAL",
+              "startTimeUnixNano": "1782564217846000000",
+              "endTimeUnixNano": "1782564217900000000",
+              "status": { "code": "STATUS_CODE_OK" },
+              "attributes": [{ "key": "genie.valid", "value": { "boolValue": true } }]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

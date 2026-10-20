@@ -1,0 +1,49 @@
+{
+  "additions": 71,
+  "author": {
+    "id": "U_kgDOD5gBoA",
+    "is_bot": false,
+    "login": "schickling-assistant",
+    "name": "AI assistant of @schickling"
+  },
+  "baseRefName": "main",
+  "body": "## Problem\n\nTwo UI papercuts in the Vista blocks kit:\n\n1. **The split divider was not the drag target.** `ResizableSplit` rendered a 6px handle track containing a separate 1px `<span>` line. Visually that reads as two things — a line plus an invisible gutter around it — and the gutter widened every grid template by 6px per split.\n2. **Wasted space above the treemap canvas** in the PR viewer's `treemap=\"above\"` placement. The treemap's fill chain never actually stretched: `canvasFill` set `height: auto`, `rootFill` inherited the root's `0.6rem` flex gap, and `stageFill`'s basis resolved against content. The result was a dead strip between the controls row and the tiles.\n\n## Goal\n\nThe divider *is* the handle — one 1px line, directly draggable, React Aria owning the a11y semantics. The treemap fills its pane with no dead space.\n\n## Decisions\n\n- **Each seam draws exactly one hairline.** The file rail, the diff pane, and the filled treemap canvas each carried their own 1px frame, so a split seam stacked three lines (pane border + separator + pane border) and doubled rounded corners where they met. The surrounding surface now owns the edges: those three drop their frames and the separator is the only line. The viewer's own border still frames the whole block.\n- **Hit area via an overlaid `::after`, not transparent borders.** The first attempt used `borderInline: '4px solid transparent'` + negative margin. StyleX does not emit the `borderInline` shorthand, so only the margin landed — no grab tolerance, and the divider sat 4px off its track. An absolutely positioned `::after` inset `-4px` widens the pointer target with no layout cost.\n\n- **`useSeparator` for role/orientation only.** React Aria Components has no resizable-panel primitive (that's `react-resizable-panels`, a dependency we don't want). `useSeparator` from bare `react-aria` gives `role=\"separator\"` + orientation; the window-splitter value props (`aria-valuemin/max/now`, `aria-controls`) stay explicit because `filterDOMProps` strips them. `useMove`/`useHover`/`useFocusRing` keep owning drag and keyboard, unchanged.\n- **Hit area via transparent borders, not a wrapper element.** `borderInline: 4px solid transparent` + `marginInline: -4px` + `backgroundClip: padding-box` widens the pointer target over both panes while the painted divider stays 1px and the grid track stays 1px. No extra DOM, no layout shift.\n- **`react-aria` (bare) not a new dep.** Already imported by this same file and by `service-hub/console-resize.tsx`; resolved transitively via `react-aria-components`. No manifest change.\n\n## Verification\n\nStorybook snapshot of this branch: **https://vista-ui-2026-09.scratch.schickling.dev**\n\n- [Resizable Split](https://vista-ui-2026-09.scratch.schickling.dev/?path=/story/vista-blocks-layout-resizable-split--default) — drag the line itself; grab tolerance extends ~4px each side.\n- [PullRequestViewer](https://vista-ui-2026-09.scratch.schickling.dev/?path=/story/vista-blocks-code-pullrequestviewer--default) — treemap banner, no gap above the tiles.\n\nMeasured in a live browser (`playwright-cli`, `document.getBoundingClientRect`):\n\n```\n                        before            after\nseparator box           6 x 414 px        1 x 414 px\nseparator background    transparent       rgba(255,255,255,0.14)   (the line moved onto the separator itself)\nrole / orientation      manual attrs      separator | vertical  (useSeparator)\ntreemap figure 176px    controls 29 + stage 140  → 7px dead      controls 29 + stage 147, canvas 147, tiles 145  → 0\n```\n\nChecks:\n\n```\nvitest run          15 files / 126 tests passed\ntsc -p tsconfig     clean\ncheck:quick         passed (ts:check, lint, genie, lockfile)\n```\n\n`check:all` had one red lane, `test:crosstask:rust-nomad-client`, alongside a bare `execute command ... (failed)` after ~26 min of contended Rust builds. Re-run standalone on this exact tree it is green in 256s:\n\n```\n✓ Running test:crosstask:rust-nomad-client in 256s\n```\n\nThis diff touches three `.tsx` files in `flakes/vista/blocks` and nothing Rust or crosstask, so the lane failure is contention/flake, not this change.\n\n## Complexity\n\nNo new complexity — net −7 lines, one DOM node removed per split, one dependency import added from a package already in the closure.\n\n## Concerns\n\n- The transparent-border hit area is a CSS trick. It is self-contained in two style objects and commented, but a future change to `boxSizing` or `backgroundClip` on `separator` would silently break either the 1px look or the grab tolerance. The story exercises the drag; it does not assert the hit-area width.\n- `useSeparator` only contributes `role` + `aria-orientation` here. That is genuinely thin, and the explicit `aria-orientation` on the element is belt-and-braces (RA omits it for the horizontal default, which the existing test asserts on). Kept explicit so the rendered contract does not depend on RA's defaulting.\n\n## Friction & bottlenecks\n\n- The dev3 Devnet edge is down: `devnet doctor` reports `registryWritable: false`, `observationState: missing`, `transportProbe` fails TLS (`curl (35)`), and both live sessions sit `unrealized`. So `devnet publish` cannot hand out a `*.dev3.devnet.schickling.dev` URL at all right now — the existing `service-hub` route is equally dead. Worked around with a `deploy-scratch` static Storybook build. Not filed; reporting here first in case this is known/expected on dev3.\n- `devnet up` with a bare `node …` argv silently created a session that never appeared in `devnet list`/`status`; only the `bash -lc … corepack pnpm exec …` shape (copied from the existing service-hub session) registered. Two dead sessions were created before that landed.\n\n## Follow-ups\n\n- None blocking. If the hit-area tolerance is worth locking down, a Playwright assertion on `elementFromPoint` at ±4px would do it.\n\n## References\n\nFollows the Vista pull-request block work on this branch (#2879 lineage — `05841cc`, `f4745a8`).\n\n<!-- agent-footer:begin v=3 -->\n<details>\n<summary>Posted on behalf of @schickling</summary>\n\n| field | value |\n| --- | --- |\n| `agent_identity` | dev3.direct.omp.hmzne6nv |\n| `session` | unknown |\n| `agent_persona` | generalist |\n| `agent_supervisor` | unavailable |\n| `agent_tool` | OMP |\n| `agent_tool_version` | 18.2.0 |\n| `agent_runtime` | OMP 18.2.0 |\n| `agent_model` | openai-codex/gpt-5.6-sol |\n| `worktree` | 2026-09-18-vista-ui/2026-09-18-vista-ui |\n| `agent_effort` | medium |\n| `agent_model_provider` | unavailable |\n| `agent_model_id` | unavailable |\n| `tooling_profile` | dotfiles@c0633f8 |\n</details>\n<!-- agent-footer:end -->",
+  "commits": [
+    {
+      "authoredDate": "2026-09-18T17:38:16Z",
+      "authors": [
+        {
+          "email": "261620128+schickling-assistant@users.noreply.github.com",
+          "id": "U_kgDOD5gBoA",
+          "login": "schickling-assistant",
+          "name": "schickling-assistant"
+        }
+      ],
+      "committedDate": "2026-09-18T18:33:04Z",
+      "messageBody": "ResizableSplit drops the 6px handle track + inner line span. The 1px\ndivider is the resize target (useSeparator owns role/orientation);\ntransparent 4px borders + negative margins keep it grabbable without\nlayout cost. Treemap fill chain (figure grid, root gap 0, stage 0%\nbasis, canvas 100%) removes the dead space above the canvas in the\nPR viewer above-placement.",
+      "messageHeadline": "feat(vista): border-draggable split divider, treemap fills pane",
+      "oid": "3a8b32791c85125b6aedc045bf1f093116c6a08a"
+    },
+    {
+      "authoredDate": "2026-09-18T20:04:37Z",
+      "authors": [
+        {
+          "email": "261620128+schickling-assistant@users.noreply.github.com",
+          "id": "U_kgDOD5gBoA",
+          "login": "schickling-assistant",
+          "name": "schickling-assistant"
+        }
+      ],
+      "committedDate": "2026-09-18T20:04:37Z",
+      "messageBody": "The rail, diff pane and filled treemap canvas each drew their own 1px\nframe, so a split seam stacked three lines (pane border + separator +\npane border). The surrounding surface owns the edges now: panes and the\nfilled canvas drop their frames, leaving the separator as the only line.\n\nThe grab tolerance also never applied — StyleX does not emit the\n`borderInline` shorthand, so the transparent 4px borders were absent and\nonly the negative margin landed, offsetting the divider. Replaced with an\noverlaid ::after, which widens the pointer target without touching\nlayout.",
+      "messageHeadline": "fix(vista): one hairline per seam, and a hit area that actually applies",
+      "oid": "eb45a2a6ec4785c599ccef3e60ee1f3cec416afb"
+    }
+  ],
+  "deletions": 70,
+  "headRefName": "schickling/2026-09-18-vista-ui",
+  "number": 2910,
+  "state": "MERGED",
+  "title": "feat(vista): border-draggable split divider, treemap fills its pane",
+  "url": "https://github.com/schickling/dotfiles/pull/2910"
+}

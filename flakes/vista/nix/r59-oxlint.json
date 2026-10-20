@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "jsPlugins": ["./r59-oxc-plugin.js"],
+  "plugins": [],
+  "categories": {
+    "correctness": "off",
+    "suspicious": "off",
+    "perf": "off",
+    "style": "off"
+  },
+  "rules": {
+    "vista/no-module-scope-browser-globals": "error"
+  }
+}

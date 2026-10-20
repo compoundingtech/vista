@@ -1,0 +1,197 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "flakes/vista/agent-timeline",
+      "flakes/vista/blocks",
+      "flakes/vista/service",
+      "packages/ui",
+      "repos/effect-utils/packages/@overeng/content-address",
+      "repos/effect-utils/packages/@overeng/devbar",
+      "repos/effect-utils/packages/@overeng/effect-distributed-lock",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+      "repos/effect-utils/packages/@overeng/effect-rpc-observer",
+      "repos/effect-utils/packages/@overeng/effect-rust",
+      "repos/effect-utils/packages/@overeng/meters",
+      "repos/effect-utils/packages/@overeng/otel-browser",
+      "repos/effect-utils/packages/@overeng/otel-contract",
+      "repos/effect-utils/packages/@overeng/rpc-devtools",
+      "repos/effect-utils/packages/@overeng/stylex-tokens",
+      "repos/effect-utils/packages/@overeng/utils",
+      "repos/effect-utils/packages/@overeng/utils-dev",
+      "repos/effect-utils/packages/@overeng/utils-storybook"
+    ]
+  },
+  "name": "@vista/service",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Vista service for live AppSource drafts, static AppVersions, AppIndex, and schema-backed Providers.",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./control": "./src/control.ts",
+    "./interview/contract": "./src/interview/contract.ts",
+    "./native-build": "./src/native-build.ts",
+    "./package.json": "./package.json",
+    "./preflight": "./src/preflight.ts",
+    "./preflight-contract": "./src/preflight-contract.ts",
+    "./publish": "./src/publish.ts",
+    "./read": "./src/read.ts",
+    "./registry": "./src/registry.ts",
+    "./runtime-policy": "./src/runtime-policy/index.ts",
+    "./wire": "./src/wire.ts"
+  },
+  "bin": {
+    "vista-service": "./src/main.ts"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types src/main.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/parser": "7.29.8",
+    "@babel/preset-typescript": "7.29.7",
+    "@effect/atom-react": "4.0.3",
+    "@effect/opentelemetry": "4.0.3",
+    "@effect/platform-node": "4.0.3",
+    "@effect/vitest": "4.0.3",
+    "@overeng/agent-timeline": "workspace:^",
+    "@overeng/devbar": "link:../../../repos/effect-utils/packages/@overeng/devbar",
+    "@overeng/effect-rpc-explorer": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+    "@overeng/effect-rpc-explorer-react": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+    "@overeng/effect-rpc-observer": "https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz",
+    "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz",
+    "@overeng/utils": "link:../../../repos/effect-utils/packages/@overeng/utils",
+    "@pierre/diffs": "1.4.1",
+    "@pierre/theme": "1.1.0",
+    "@pierre/trees": "1.0.0-beta.6",
+    "@playwright/test": "1.63.0",
+    "@storybook/react-vite": "10.6.0",
+    "@stylexjs/stylex": "0.19.0",
+    "@vista/blocks": "workspace:^",
+    "@vista/ui": "workspace:^",
+    "@vitejs/plugin-react": "6.1.1",
+    "@vitest/browser-playwright": "5.0.3",
+    "@xterm/headless": "6.0.0",
+    "@xterm/xterm": "6.0.0",
+    "@xyflow/react": "12.11.0",
+    "agentation": "3.1.1",
+    "clsx": "2.1.1",
+    "d3-hierarchy": "3.1.2",
+    "effect": "4.0.3",
+    "elkjs": "0.11.1",
+    "lightningcss": "1.33.0",
+    "lru_map": "0.4.1",
+    "mermaid": "11.15.0",
+    "react": "19.2.8",
+    "react-aria": "3.52.1",
+    "react-aria-components": "1.21.1",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "recharts": "3.8.1",
+    "remark-gfm": "4.0.1",
+    "storybook": "10.6.0",
+    "svg-pan-zoom": "3.6.2",
+    "use-sync-external-store": "1.6.0",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "dependenciesMeta": {
+    "@vista/ui": {
+      "injected": true
+    }
+  },
+  "devDependencies": {
+    "@effect/vitest": "4.0.3",
+    "@overeng/utils-dev": "link:../../../repos/effect-utils/packages/@overeng/utils-dev",
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "fast-check": "4.9.0",
+    "oxc-parser": "0.149.0",
+    "oxlint": "1.82.0",
+    "typescript": "7.0.2",
+    "vitest": "5.0.3"
+  },
+  "$vista": {
+    "runtimePolicy": {
+      "publicImportRoots": [
+        "effect"
+      ],
+      "optimizeInclude": [
+        "effect"
+      ],
+      "remoteImports": [
+        {
+          "name": "esm.sh pinned package URL",
+          "pattern": "^https://esm\\.sh/(?:@[^/@]+/[^@/?#]+|[^@/?#]+)@[^/?#]+",
+          "description": "App code may use pinned esm.sh package URLs as an escape hatch."
+        }
+      ],
+      "ssrExternal": [
+        "@effect/platform-node",
+        "@xterm/headless",
+        "effect"
+      ],
+      "dedupe": [
+        "react",
+        "react-dom"
+      ],
+      "slices": [
+        {
+          "name": "effect-control-client",
+          "optimizeInclude": [
+            "effect/rpc/RpcClient",
+            "effect/rpc/RpcSerialization"
+          ]
+        },
+        {
+          "name": "app-service-owned-imports",
+          "serviceOwnedImportRoots": [
+            "@vista/data",
+            "@vista/interview",
+            "@vista/telemetry-island"
+          ],
+          "aliases": [
+            {
+              "specifier": "@vista/data",
+              "target": {
+                "kind": "service-src",
+                "path": "data"
+              },
+              "public": false
+            },
+            {
+              "specifier": "@vista/interview",
+              "target": {
+                "kind": "service-src",
+                "path": "interview"
+              },
+              "public": false
+            },
+            {
+              "specifier": "@vista/telemetry-island",
+              "target": {
+                "kind": "island",
+                "path": "dist/island.js"
+              },
+              "public": false
+            }
+          ]
+        },
+        {
+          "name": "vite-review-runtime",
+          "optimizeInclude": [
+            "lru_map",
+            "use-sync-external-store/shim",
+            "use-sync-external-store/shim/with-selector"
+          ]
+        }
+      ]
+    }
+  }
+}

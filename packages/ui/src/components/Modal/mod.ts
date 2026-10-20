@@ -1,0 +1,18 @@
+export {
+  Modal,
+  ModalTrigger,
+  ModalDialog,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalContent,
+  ModalFooter,
+  type ModalProps,
+  type ModalTriggerProps,
+  type ModalDialogProps,
+  type ModalHeaderProps,
+  type ModalTitleProps,
+  type ModalDescriptionProps,
+  type ModalContentProps,
+  type ModalFooterProps,
+} from './Modal.tsx'

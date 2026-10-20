@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -11 80 80" role="img" aria-labelledby="title desc">
+  <title id="title">Vista Mountain Sun icon</title><desc id="desc">Two overlapping navy mountain peaks, a blue-grey foreground ridge, and an orange sun.</desc>
+  <defs><linearGradient id="m" x1="0" y1="1" x2="0.82" y2="0.12"><stop offset="0" stop-color="#0F1E32"/><stop offset="1" stop-color="#21354B"/></linearGradient></defs>
+  <circle cx="58" cy="11" r="8.5" fill="#FF9638"/>
+  <path d="M4.8 51.2 27.8 16.4c1.2-1.9 3.8-1.9 5 0l22.8 34.8c1 1.5-.1 3.5-1.9 3.5H6.8c-1.9 0-3-2-2-3.5Z" fill="url(#m)"/>
+  <path d="m43.7 51.4 13.7-20.7c1.2-1.8 3.8-1.8 5 0L76 51.4c1 1.5-.1 3.3-1.9 3.3H45.6c-1.8 0-2.9-1.8-1.9-3.3Z" fill="url(#m)"/>
+  <path d="m37.6 54.7 11.2-16.9c.9-1.4 3-1.4 3.9 0l11.2 16.9Z" fill="#789CAD"/>
+</svg>

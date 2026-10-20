@@ -1,0 +1,8 @@
+# Generated file - DO NOT EDIT
+# Source: BUCK.genie.ts
+
+export_file(
+    name = "patches/rolldown@1.2.7.patch",
+    src = "patches/rolldown@1.2.7.patch",
+    visibility = ["PUBLIC"],
+)

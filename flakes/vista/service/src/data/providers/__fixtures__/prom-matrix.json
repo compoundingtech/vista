@@ -1,0 +1,34 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "matrix",
+    "result": [
+      {
+        "metric": {
+          "__name__": "alloy_build_info",
+          "instance": "127.0.0.1:42037",
+          "job": "infra/observability-gateway",
+          "version": "v1.16.0"
+        },
+        "values": [
+          [1782564344, "1"],
+          [1782564404, "1"],
+          [1782564464, "1"]
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "alloy_build_info",
+          "instance": "127.0.0.1:42042",
+          "job": "infra/observability-scrape-alloy",
+          "version": "v1.16.0"
+        },
+        "values": [
+          [1782564344, "1"],
+          [1782564404, "1"],
+          [1782564464, "1"]
+        ]
+      }
+    ]
+  }
+}

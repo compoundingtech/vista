@@ -1,0 +1,97 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "flakes/vista/agent-timeline",
+      "flakes/vista/blocks",
+      "flakes/vista/cli",
+      "flakes/vista/service",
+      "packages/ui",
+      "repos/effect-utils/packages/@overeng/content-address",
+      "repos/effect-utils/packages/@overeng/devbar",
+      "repos/effect-utils/packages/@overeng/effect-distributed-lock",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+      "repos/effect-utils/packages/@overeng/effect-rpc-observer",
+      "repos/effect-utils/packages/@overeng/effect-rust",
+      "repos/effect-utils/packages/@overeng/meters",
+      "repos/effect-utils/packages/@overeng/otel-browser",
+      "repos/effect-utils/packages/@overeng/otel-contract",
+      "repos/effect-utils/packages/@overeng/rpc-devtools",
+      "repos/effect-utils/packages/@overeng/stylex-tokens",
+      "repos/effect-utils/packages/@overeng/utils",
+      "repos/effect-utils/packages/@overeng/utils-dev",
+      "repos/effect-utils/packages/@overeng/utils-storybook"
+    ]
+  },
+  "name": "@vista/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "The `vista` CLI: check/publish/list/open/retire — the agent operational surface (decisions 0002, 0028).",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "vista": "./src/cli.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@babel/preset-typescript": "7.29.7",
+    "@effect/opentelemetry": "4.0.3",
+    "@effect/platform-node": "4.0.3",
+    "@effect/vitest": "4.0.3",
+    "@overeng/tui-core": "https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz",
+    "@overeng/tui-react": "https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz",
+    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz",
+    "@playwright/test": "1.63.0",
+    "@storybook/react-vite": "10.6.0",
+    "@stylexjs/stylex": "0.19.0",
+    "@vista/service": "workspace:^",
+    "@vitest/browser-playwright": "5.0.3",
+    "effect": "4.0.3",
+    "lightningcss": "1.33.0",
+    "react": "19.2.8",
+    "react-aria-components": "1.21.1",
+    "react-dom": "19.2.8",
+    "storybook": "10.6.0",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "devDependencies": {
+    "@effect/atom-react": "4.0.3",
+    "@effect/platform-node": "4.0.3",
+    "@effect/vitest": "4.0.3",
+    "@opentui/core": "0.5.11",
+    "@opentui/react": "0.5.11",
+    "@storybook/react": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-reconciler": "0.33.0",
+    "@vitejs/plugin-react": "6.1.1",
+    "oxlint": "1.82.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-reconciler": "0.33.0",
+    "storybook": "10.6.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "peerDependencies": {
+    "@effect/atom-react": "^4.0.3",
+    "@effect/platform-node": "^4.0.3",
+    "@opentui/core": "^0.5.11",
+    "@opentui/react": "^0.5.11",
+    "effect": "^4.0.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-reconciler": "^0.33.0"
+  }
+}

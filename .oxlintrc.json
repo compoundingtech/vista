@@ -1,0 +1,270 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "plugins": ["import", "typescript", "unicorn", "oxc", "react"],
+  "jsPlugins": [
+    "./repos/effect-utils/packages/@overeng/oxc-config/src/mod.ts",
+    "./repos/effect-utils/packages/@overeng/oxc-config/src/stylex-upstream-plugin.ts"
+  ],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/.pnpm/**",
+    "**/.pnpm-store/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/out/**",
+    "**/.wrangler/**",
+    "**/.vercel/**",
+    "**/.netlify/**",
+    "**/.astro/**",
+    "**/.nitro/**",
+    "**/.tanstack/**",
+    "**/.devenv/**",
+    "**/tmp/**",
+    "**/playwright-report/**",
+    "**/test-results/**",
+    "**/nix/**",
+    "**/wip/**",
+    "**/.vite/**",
+    "**/patches/**",
+    "**/.cache/**",
+    "**/.turbo/**"
+  ],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "off",
+    "perf": "warn",
+    "style": "off",
+    "restriction": "off"
+  },
+  "rules": {
+    "import/no-dynamic-require": [
+      "warn",
+      {
+        "esmodule": true
+      }
+    ],
+    "oxc/no-barrel-file": [
+      "warn",
+      {
+        "threshold": 0
+      }
+    ],
+    "overeng/named-args": "error",
+    "import/no-commonjs": "error",
+    "import/no-cycle": "warn",
+    "no-await-in-loop": "off",
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": [
+          "_tag",
+          "_page_id",
+          "_nds_outbox",
+          "_idleTimeout",
+          "_getActiveHandles",
+          "_getActiveRequests",
+          "__stylexCollectCss",
+          "try_",
+          "expect_",
+          "PtySpec_",
+          "_meta",
+          "_raw",
+          "__typename",
+          "__name__",
+          "__legacyStringValue",
+          "__dirname",
+          "require_",
+          "__webUtils_domSettleState",
+          "__webUtils_Readability",
+          "__webUtils_TurndownService",
+          "__testing"
+        ]
+      }
+    ],
+    "func-style": [
+      "error",
+      "expression",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "overeng/exports-first": "error",
+    "overeng/jsdoc-require-exports": "error",
+    "typescript/consistent-type-imports": "warn",
+    "typescript/consistent-return": "off",
+    "typescript/no-unnecessary-type-parameters": "off",
+    "overeng/no-raw-otel-primitives": "off",
+    "overeng/otel-contract-in-seam-file": "off",
+    "typescript/consistent-type-definitions": "off",
+    "typescript/no-deprecated": "error",
+    "typescript/no-unsafe-type-assertion": "off",
+    "typescript/no-unnecessary-type-arguments": "off",
+    "typescript/no-unnecessary-type-assertion": "off",
+    "typescript/no-unnecessary-boolean-literal-compare": "off",
+    "typescript/no-misused-spread": "off",
+    "typescript/no-redundant-type-constituents": "off",
+    "typescript/no-floating-promises": "off",
+    "typescript/no-base-to-string": "off",
+    "typescript/no-unsafe-enum-comparison": "off",
+    "typescript/unbound-method": "off",
+    "typescript/restrict-template-expressions": "off",
+    "typescript/no-duplicate-type-constituents": "off",
+    "typescript/no-unsafe-unary-minus": "off",
+    "typescript/no-unnecessary-template-expression": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/rules-of-hooks": "error",
+    "react/globals": "off",
+    "react/immutability": "off",
+    "react/purity": "off",
+    "react/refs": "off",
+    "react/set-state-in-effect": "off",
+    "react/hooks": "off",
+    "react/exhaustive-effect-dependencies": "off",
+    "react/memo-dependencies": "off",
+    "react/capitalized-calls": "off",
+    "react/exhaustive-deps": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/mod.ts"],
+      "rules": {
+        "oxc/no-barrel-file": "off"
+      }
+    },
+    {
+      "files": ["**/*.stories.tsx", "**/*.stories.ts", "**/*.stories.jsx"],
+      "rules": {
+        "overeng/exports-first": "off",
+        "overeng/jsdoc-require-exports": "off",
+        "overeng/storybook/meta-satisfies-type": "error",
+        "overeng/storybook/default-exports": "error",
+        "overeng/storybook/story-exports": "warn",
+        "overeng/storybook/csf-component": "warn",
+        "overeng/storybook/hierarchy-separator": "warn",
+        "overeng/storybook/no-redundant-story-name": "warn",
+        "overeng/storybook/prefer-pascal-case": "warn"
+      }
+    },
+    {
+      "files": ["**/stories/_*.ts", "**/stories/_*.tsx"],
+      "rules": {
+        "overeng/exports-first": "off",
+        "overeng/jsdoc-require-exports": "off",
+        "no-underscore-dangle": "off"
+      }
+    },
+    {
+      "files": ["**/.storybook/**"],
+      "rules": {
+        "overeng/exports-first": "off",
+        "overeng/jsdoc-require-exports": "off",
+        "import/no-unassigned-import": "off"
+      }
+    },
+    {
+      "files": ["**/vitest.config.ts", "**/vite.config.ts", "**/playwright.config.ts"],
+      "rules": {
+        "overeng/jsdoc-require-exports": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx", "**/test/**"],
+      "rules": {
+        "overeng/named-args": "off",
+        "overeng/no-raw-otel-primitives": "off",
+        "unicorn/no-array-sort": "off",
+        "unicorn/consistent-function-scoping": "off",
+        "require-yield": "off",
+        "no-await-in-loop": "off",
+        "no-underscore-dangle": "off",
+        "no-shadow": "off"
+      }
+    },
+    {
+      "files": ["**/*.d.ts"],
+      "rules": {
+        "typescript/consistent-type-imports": "off"
+      }
+    },
+    {
+      "files": ["**/*.gen.*"],
+      "rules": {
+        "func-style": "off",
+        "import/no-commonjs": "off",
+        "import/no-named-as-default": "off",
+        "import/no-unassigned-import": "off",
+        "oxc/no-barrel-file": "off",
+        "oxc/no-map-spread": "off",
+        "overeng/exports-first": "off",
+        "overeng/jsdoc-require-exports": "off",
+        "overeng/named-args": "off",
+        "overeng/no-raw-otel-primitives": "off",
+        "unicorn/consistent-function-scoping": "off"
+      }
+    },
+    {
+      "files": [
+        "**/flakes/vista/blocks/src/index.ts",
+        "**/flakes/vista/agent-timeline/src/index.ts",
+        "**/flakes/vista/agent-timeline/src/compact.ts"
+      ],
+      "rules": {
+        "oxc/no-barrel-file": "off"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/**"],
+      "rules": {
+        "overeng/named-args": "off",
+        "overeng/jsdoc-require-exports": "off",
+        "overeng/exports-first": "off"
+      }
+    },
+    {
+      "files": [
+        "**/flakes/vista/blocks/src/**",
+        "**/flakes/vista/agent-timeline/src/**",
+        "**/flakes/vista/service/src/**",
+        "**/flakes/vista/service/samples/**",
+        "**/flakes/vista/cli/src/**"
+      ],
+      "rules": {
+        "overeng/jsdoc-require-exports": "error"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/service/samples/**"],
+      "rules": {
+        "react/no-array-index-key": "off",
+        "import/no-unassigned-import": "off",
+        "import/no-dynamic-require": "off",
+        "typescript/consistent-type-imports": "off"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/blocks/.storybook/**"],
+      "rules": {
+        "react/rules-of-hooks": "off"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/blocks/src/blocks/ChartBlock.tsx"],
+      "rules": {
+        "react/no-unstable-nested-components": "off"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/blocks/src/blocks/markdown.tsx"],
+      "rules": {
+        "react/no-array-index-key": "off"
+      }
+    },
+    {
+      "files": ["**/flakes/vista/service/src/interview/roundtrip.browser.test.ts"],
+      "rules": {
+        "eslint/no-unmodified-loop-condition": "off"
+      }
+    }
+  ]
+}

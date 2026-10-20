@@ -1,0 +1,9 @@
+# Vista build artifacts — additive, never checked in.
+node_modules/
+dist/
+storybook-static/
+.proof/
+# Standalone-package lockfiles must never touch the shared root pnpm-lock.yaml.
+pnpm-lock.yaml
+*.tsbuildinfo
+.vite-cache/

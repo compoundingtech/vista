@@ -1,0 +1,49 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "flakes/vista/agent-timeline",
+      "packages/ui"
+    ]
+  },
+  "name": "@overeng/agent-timeline",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "private": true,
+  "description": "Shared agent timeline model, projection, span and compact/detail renderers.",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./compact": "./src/compact.ts",
+    "./detail": "./src/SpanDetails.tsx",
+    "./encodings": "./src/encodings.ts",
+    "./icons": "./src/icons.tsx",
+    "./labels": "./src/labels.ts",
+    "./model": "./src/model.ts",
+    "./package.json": "./package.json",
+    "./projection": "./src/projection.ts",
+    "./span": "./src/Span.tsx",
+    "./spend": "./src/SpendPanel.tsx",
+    "./types": "./src/types.ts"
+  },
+  "dependencies": {
+    "@vista/ui": "workspace:^"
+  },
+  "devDependencies": {
+    "@stylexjs/stylex": "0.19.0",
+    "@types/react": "19.2.18",
+    "effect": "4.0.3",
+    "react": "19.2.8",
+    "react-aria-components": "1.21.1",
+    "react-dom": "19.2.8",
+    "typescript": "7.0.2"
+  },
+  "peerDependencies": {
+    "@stylexjs/stylex": "^0.19.0",
+    "effect": "^4.0.3",
+    "react": "^19.2.8",
+    "react-aria-components": "^1.21.1"
+  }
+}

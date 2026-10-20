@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "types": ["react", "react-dom"],
+    // composite makes this a first-class referenced project of tsconfig.check.json.
+    "composite": true,
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
+    // Mirror the Vite aliases (vite.config.ts) for the type-checker.
+    "paths": {
+      "@vista/grafana-timeseries": [
+        "../../../node_modules/@grafana/ui/dist/types/graveyard/TimeSeries/TimeSeries.d.ts"
+      ],
+      "@grafana/o11y-ds-frontend": ["./vendor/traceview/o11y-ds-frontend.stub.ts"],
+      "@grafana/assistant": ["./vendor/assistant.stub.ts"]
+    }
+  },
+  "include": ["src", "vendor", "vite.config.ts"],
+  // Unreachable upstream app wrappers (vendor/traceview/PROVENANCE.md): they import
+  // Grafana app internals and never enter the bundle.
+  "exclude": [
+    "vendor/traceview/TraceView.tsx",
+    "vendor/traceview/TraceViewContainer.tsx",
+    "vendor/traceview/useSearch.ts",
+    "vendor/traceview/components/TracePageHeader"
+  ]
+}

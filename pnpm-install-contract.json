@@ -1,0 +1,186 @@
+{
+  "contract": "effect-utils/pnpm-install-contract",
+  "dependencyGraphContract": {
+    "allowBuilds": {
+      "@myobie/pty": false,
+      "esbuild": false,
+      "fsevents": false,
+      "msgpackr-extract": false,
+      "node-pty": false,
+      "sharp": false,
+      "unix-dgram": false
+    },
+    "overrides": {
+      "@effect/atom-react": "4.0.3",
+      "@effect/opentelemetry": "4.0.3",
+      "@effect/platform-node": "4.0.3",
+      "@effect/platform-node-shared": "4.0.3",
+      "@effect/vitest": "4.0.3",
+      "@opentelemetry/sdk-logs": "0.222.0",
+      "@opentelemetry/sdk-trace-node": "2.11.0",
+      "@opentelemetry/semantic-conventions": "1.43.0",
+      "@opentui/core": "0.5.11",
+      "@opentui/react": "0.5.11",
+      "@overeng/agent-session-ingest": "https://overeng-effect-utils.cachix.org/serve/pg8c17qb3nbal9if5xxgm30id8vswcak/overeng-agent-session-ingest.tgz",
+      "@overeng/ai-gateway-conformance": "https://overeng-effect-utils.cachix.org/serve/pd1fj4ybp9i0kf36iimrsidyc5vm8p62/overeng-ai-gateway-conformance.tgz",
+      "@overeng/ai-gateway-edge": "https://overeng-effect-utils.cachix.org/serve/s0kdlpdzw7rwcahc0pn47bw1161rrd66/overeng-ai-gateway-edge.tgz",
+      "@overeng/content-address": "https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz",
+      "@overeng/data-graph": "https://overeng-effect-utils.cachix.org/serve/lj9rdgw4fqr41xi2qp2hs5lm6aqgjwcd/overeng-data-graph.tgz",
+      "@overeng/devbar": "https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz",
+      "@overeng/effect-ai-claude-cli": "https://overeng-effect-utils.cachix.org/serve/67jz7b4l20cz10bmfg0jjzdv5inmb0n6/overeng-effect-ai-claude-cli.tgz",
+      "@overeng/effect-ai-gateway": "https://overeng-effect-utils.cachix.org/serve/f1lyjm5b11pkmh21sbvwn7nvysydlz8j/overeng-effect-ai-gateway.tgz",
+      "@overeng/effect-distributed-lock": "https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz",
+      "@overeng/effect-react": "https://overeng-effect-utils.cachix.org/serve/ahvlv90ikrf83b76bm8fyjzw6r6m8bnr/overeng-effect-react.tgz",
+      "@overeng/effect-rpc-explorer": "https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz",
+      "@overeng/effect-rpc-explorer-react": "https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz",
+      "@overeng/effect-rpc-observer": "https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz",
+      "@overeng/effect-rust": "https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz",
+      "@overeng/genie": "https://overeng-effect-utils.cachix.org/serve/7dp8c9x7zrm1pg7nakjyxb3hdfdna38r/overeng-genie.tgz",
+      "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz",
+      "@overeng/notion-core": "https://overeng-effect-utils.cachix.org/serve/6hs7zwgk8iljpiy06zsyldagscy6vxc6/overeng-notion-core.tgz",
+      "@overeng/notion-effect-client": "https://overeng-effect-utils.cachix.org/serve/3s96avlc3f331yy8vfg74y00cnz8mgjs/overeng-notion-effect-client.tgz",
+      "@overeng/notion-effect-schema": "https://overeng-effect-utils.cachix.org/serve/3aklr3hclfyh508a5hhr8i3f8lr9g31n/overeng-notion-effect-schema.tgz",
+      "@overeng/notion-md": "https://overeng-effect-utils.cachix.org/serve/gdf5650vk9kyyakbbj7dc2cpdgm2k3v6/overeng-notion-md.tgz",
+      "@overeng/notion-property-write": "https://overeng-effect-utils.cachix.org/serve/9yvb6q6fzsh35hsjv4p62gghmffylaxw/overeng-notion-property-write.tgz",
+      "@overeng/notion-react": "https://overeng-effect-utils.cachix.org/serve/z67iixqqy7246rq1lq3k5a52h4519b9z/overeng-notion-react.tgz",
+      "@overeng/otel-browser": "file:.devenv/pnpm-source-inputs/current/repos/effect-utils/packages/@overeng/otel-browser",
+      "@overeng/otel-contract": "https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz",
+      "@overeng/outline": "https://overeng-effect-utils.cachix.org/serve/jlhlhg2cggm3agvnkvnmnl7apsdmkkxy/overeng-outline.tgz",
+      "@overeng/restate-effect": "https://overeng-effect-utils.cachix.org/serve/99yzph5a3z4v9v2ax72jjpcgh9n7g1fk/overeng-restate-effect.tgz",
+      "@overeng/rpc-devtools": "https://overeng-effect-utils.cachix.org/serve/sp27fhdg9m3gvrjydr2k39wd3d19crwh/overeng-rpc-devtools.tgz",
+      "@overeng/stylex-tokens": "https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz",
+      "@overeng/tui-core": "https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz",
+      "@overeng/tui-react": "https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz",
+      "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz",
+      "@overeng/utils-dev": "https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz",
+      "@overeng/utils-storybook": "https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz",
+      "@playwright/test": "1.63.0",
+      "@storybook/react": "10.6.0",
+      "@storybook/react-vite": "10.6.0",
+      "@types/bun": "1.4.2",
+      "@types/hast": "3.0.5",
+      "@types/unist": "3.0.3",
+      "effect": "4.0.3",
+      "playwright": "1.63.0",
+      "react": "19.2.8",
+      "react-dom": "19.2.8",
+      "storybook": "10.6.0",
+      "storybook@10.6.0>esbuild": "0.27.1",
+      "typescript": "7.0.2",
+      "vitest": "5.0.3"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.7.0"
+    }
+  },
+  "installPolicy": {
+    "dedupePeerDependents": true,
+    "ignoreScripts": true,
+    "minimumReleaseAgeExclude": ["@types/node"],
+    "optimisticRepeatInstall": false,
+    "packageImportMethod": {
+      "live": {
+        "linuxSameDeviceRequired": true,
+        "method": "auto",
+        "owner": "pnpm"
+      },
+      "nixPreparedDependencies": {
+        "scope": "independent-builder-policy"
+      }
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "@overeng/devbar>@overeng/utils": "file:.devenv/pnpm-source-inputs/current/repos/effect-utils/packages/@overeng/utils",
+        "typescript": ">=6.0.0",
+        "unplugin": ">=3.0.0",
+        "vitest": ">=4.0.0"
+      }
+    },
+    "pmOnFail": "ignore",
+    "sideEffectsCache": false,
+    "strictPeerDependencies": true,
+    "strictStorePkgContentCheck": true,
+    "supportedArchitectures": {
+      "cpu": ["x64", "arm64"],
+      "libc": ["glibc", "musl"],
+      "os": ["linux", "darwin"]
+    },
+    "verifyDepsBeforeRun": false,
+    "verifyStoreIntegrity": true
+  },
+  "metadata": {
+    "buck2Integration": {
+      "avoidNodeModulesLayoutAsApi": true,
+      "consumeContractArtifact": true
+    },
+    "nixIntegration": {
+      "fixedOutputDependencyPrepUsesSameVirtualStoreScope": true,
+      "liveVirtualStoreScope": "materialization-root"
+    },
+    "pnpmStoreOwnership": {
+      "cacheLifecycle": "pnpm-owned disposable Store Cache",
+      "derivedIndexLifecycle": "shared only inside one same-user trust boundary",
+      "virtualStoreLifecycle": "Materialization-Root-owned rebuildable dependency graph"
+    }
+  },
+  "packageManager": {
+    "name": "pnpm",
+    "version": "12.7.0"
+  },
+  "schemaVersion": 2,
+  "storeContract": {
+    "ci": {
+      "scope": "job"
+    },
+    "layoutVersion": "v11",
+    "localDevelopment": {
+      "contentAddressedFiles": "shared",
+      "defaultPath": "~/.local/share/pnpm/store-shared-v1",
+      "derivedIndex": "shared-pnpm-owned",
+      "pathOverrideEnvironmentVariable": "PNPM_SHARED_STORE_DIR",
+      "scope": "host-user",
+      "trustBoundary": "same-os-user"
+    },
+    "owner": "pnpm",
+    "virtualStore": {
+      "global": false,
+      "path": "node_modules/.pnpm",
+      "scope": "materialization-root"
+    }
+  },
+  "workspaceManifestContract": {
+    "allowUnusedPatches": true,
+    "injectWorkspacePackages": false,
+    "packages": [
+      "flakes/vista/agent-timeline",
+      "flakes/vista/blocks",
+      "flakes/vista/cli",
+      "flakes/vista/island",
+      "flakes/vista/service",
+      "packages/ui"
+    ],
+    "patchedDependencies": {
+      "@storybook/builder-vite@10.6.0": "repos/effect-utils/packages/@overeng/utils-storybook/patches/@storybook__builder-vite@10.6.0.patch",
+      "@stylexjs/babel-plugin@0.19.0": "repos/effect-utils/packages/@overeng/utils/patches/@stylexjs__babel-plugin@0.19.0.patch",
+      "rolldown@1.2.7": "pnpm/patches/rolldown@1.2.7.patch"
+    },
+    "sourceInputPaths": [
+      "repos/effect-utils/packages/@overeng/content-address",
+      "repos/effect-utils/packages/@overeng/devbar",
+      "repos/effect-utils/packages/@overeng/effect-distributed-lock",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+      "repos/effect-utils/packages/@overeng/effect-rpc-observer",
+      "repos/effect-utils/packages/@overeng/effect-rust",
+      "repos/effect-utils/packages/@overeng/meters",
+      "repos/effect-utils/packages/@overeng/otel-browser",
+      "repos/effect-utils/packages/@overeng/otel-contract",
+      "repos/effect-utils/packages/@overeng/rpc-devtools",
+      "repos/effect-utils/packages/@overeng/stylex-tokens",
+      "repos/effect-utils/packages/@overeng/utils",
+      "repos/effect-utils/packages/@overeng/utils-dev",
+      "repos/effect-utils/packages/@overeng/utils-storybook"
+    ]
+  }
+}

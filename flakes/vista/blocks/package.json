@@ -1,0 +1,285 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "flakes/vista/agent-timeline",
+      "flakes/vista/blocks",
+      "packages/ui",
+      "repos/effect-utils/packages/@overeng/content-address",
+      "repos/effect-utils/packages/@overeng/devbar",
+      "repos/effect-utils/packages/@overeng/effect-distributed-lock",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+      "repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+      "repos/effect-utils/packages/@overeng/effect-rpc-observer",
+      "repos/effect-utils/packages/@overeng/effect-rust",
+      "repos/effect-utils/packages/@overeng/meters",
+      "repos/effect-utils/packages/@overeng/otel-browser",
+      "repos/effect-utils/packages/@overeng/otel-contract",
+      "repos/effect-utils/packages/@overeng/rpc-devtools",
+      "repos/effect-utils/packages/@overeng/stylex-tokens",
+      "repos/effect-utils/packages/@overeng/utils",
+      "repos/effect-utils/packages/@overeng/utils-dev",
+      "repos/effect-utils/packages/@overeng/utils-storybook"
+    ]
+  },
+  "name": "@vista/blocks",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Vista’s typed semantic blocks for ordinary TSX app sources.",
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/index.ts",
+    "./contract": "./src/contract.ts",
+    "./explore": "./src/explore.tsx",
+    "./internal/authoring": "./src/internal-authoring.ts",
+    "./internal/data-contract": "./src/data-contract.ts",
+    "./internal/owner-identity": "./src/owner-identity.ts",
+    "./internal/provider-contracts": "./src/provider-contracts.ts",
+    "./package.json": "./package.json",
+    "./query": "./src/query.ts",
+    "./shell": "./src/shell.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json",
+    "storybook": "storybook dev -p ${PORT:-6016} --host ${HOST:-127.0.0.1} --no-open --ci",
+    "storybook:build": "storybook build",
+    "storybook:e2e": "playwright test --config playwright.config.ts",
+    "storybook:visual-parity": "playwright test --config playwright.visual.config.ts"
+  },
+  "dependencies": {
+    "@effect/atom-react": "4.0.3",
+    "@effect/opentelemetry": "4.0.3",
+    "@effect/platform-node": "4.0.3",
+    "@effect/vitest": "4.0.3",
+    "@overeng/agent-timeline": "workspace:^",
+    "@overeng/devbar": "link:../../../repos/effect-utils/packages/@overeng/devbar",
+    "@overeng/effect-rpc-explorer": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer",
+    "@overeng/effect-rpc-explorer-react": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+    "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz",
+    "@pierre/diffs": "1.4.1",
+    "@pierre/theme": "1.1.0",
+    "@pierre/trees": "1.0.0-beta.6",
+    "@playwright/test": "1.63.0",
+    "@storybook/react-vite": "10.6.0",
+    "@stylexjs/stylex": "0.19.0",
+    "@vista/ui": "workspace:^",
+    "@vitest/browser-playwright": "5.0.3",
+    "@xterm/xterm": "6.0.0",
+    "@xyflow/react": "12.11.0",
+    "agentation": "3.1.1",
+    "clsx": "2.1.1",
+    "d3-hierarchy": "3.1.2",
+    "effect": "4.0.3",
+    "elkjs": "0.11.1",
+    "mermaid": "11.15.0",
+    "react": "19.2.8",
+    "react-aria": "3.52.1",
+    "react-aria-components": "1.21.1",
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "recharts": "3.8.1",
+    "remark-gfm": "4.0.1",
+    "storybook": "10.6.0",
+    "svg-pan-zoom": "3.6.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "dependenciesMeta": {
+    "@vista/ui": {
+      "injected": true
+    },
+    "@overeng/devbar": {
+      "injected": true
+    }
+  },
+  "devDependencies": {
+    "@effect/vitest": "4.0.3",
+    "@overeng/utils": "link:../../../repos/effect-utils/packages/@overeng/utils",
+    "@overeng/utils-dev": "link:../../../repos/effect-utils/packages/@overeng/utils-dev",
+    "@overeng/utils-storybook": "link:../../../repos/effect-utils/packages/@overeng/utils-storybook",
+    "@storybook/react": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "@types/d3-hierarchy": "3.1.7",
+    "@types/node": "26.5.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.7",
+    "@vitejs/plugin-react": "6.1.1",
+    "oxlint": "1.82.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "storybook": "10.6.0",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "5.0.3"
+  },
+  "peerDependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "$vista": {
+    "runtimePolicy": {
+      "publicImportRoots": [
+        "@vista/blocks"
+      ],
+      "optimizeInclude": [],
+      "aliases": [
+        {
+          "specifier": "@vista/blocks/internal/authoring",
+          "target": {
+            "kind": "blocks",
+            "path": "src/internal-authoring.ts"
+          },
+          "public": false
+        },
+        {
+          "specifier": "@vista/blocks/internal/provider-contracts",
+          "target": {
+            "kind": "blocks",
+            "path": "src/provider-contracts.ts"
+          },
+          "public": false
+        },
+        {
+          "specifier": "@vista/blocks/internal/data-contract",
+          "target": {
+            "kind": "blocks",
+            "path": "src/data-contract.ts"
+          },
+          "public": false
+        },
+        {
+          "specifier": "@vista/blocks/query",
+          "target": {
+            "kind": "blocks",
+            "path": "src/query.ts"
+          },
+          "public": true
+        },
+        {
+          "specifier": "@vista/blocks/shell",
+          "target": {
+            "kind": "blocks",
+            "path": "src/shell.ts"
+          },
+          "public": true
+        },
+        {
+          "specifier": "@vista/blocks",
+          "target": {
+            "kind": "blocks",
+            "path": "src/index.ts"
+          },
+          "public": true
+        }
+      ],
+      "slices": [
+        {
+          "name": "ui-shell",
+          "publicImportRoots": [
+            "@vista/ui",
+            "@overeng/utils",
+            "@effect/atom-react",
+            "@stylexjs/stylex",
+            "agentation",
+            "react",
+            "react-aria-components",
+            "react-aria",
+            "react-dom"
+          ],
+          "optimizeInclude": [
+            "@effect/atom-react",
+            "@overeng/utils",
+            "@stylexjs/stylex",
+            "react-aria",
+            "react-dom/client",
+            "react-dom/server",
+            "react/jsx-dev-runtime",
+            "react/jsx-runtime"
+          ],
+          "cssImports": [
+            "@vista/ui/document.css"
+          ]
+        },
+        {
+          "name": "doctrine-blocks",
+          "publicImportRoots": [
+            "effect",
+            "mermaid",
+            "react-markdown",
+            "recharts",
+            "remark-gfm",
+            "svg-pan-zoom"
+          ]
+        },
+        {
+          "name": "system-explorer-blocks",
+          "publicImportRoots": [
+            "@pierre/diffs",
+            "@pierre/trees",
+            "@xyflow/react",
+            "elkjs",
+            "@overeng/effect-rpc-explorer",
+            "@overeng/devbar",
+            "@overeng/effect-rpc-explorer-react",
+            "@overeng/agent-timeline"
+          ],
+          "optimizeInclude": [
+            "@pierre/diffs/react",
+            "@pierre/trees/react",
+            "elkjs/lib/elk.bundled.js",
+            "@overeng/agent-timeline/encodings",
+            "@overeng/agent-timeline/labels",
+            "@overeng/agent-timeline/model",
+            "@overeng/agent-timeline/projection",
+            "@overeng/agent-timeline/types"
+          ]
+        },
+        {
+          "name": "data-runtime",
+          "publicImportRoots": [
+            "effect",
+            "@effect/atom-react"
+          ],
+          "optimizeInclude": [
+            "effect/http",
+            "effect/reactivity",
+            "effect/reactivity/AsyncResult",
+            "effect/reactivity/Atom",
+            "effect/reactivity/AtomRegistry",
+            "effect/reactivity/AtomRpc",
+            "effect/reactivity/Reactivity",
+            "effect/rpc/Rpc",
+            "effect/rpc/RpcClient",
+            "effect/rpc/RpcClientError",
+            "effect/rpc/RpcGroup",
+            "effect/rpc/RpcSerialization",
+            "effect/rpc/RpcSchema"
+          ]
+        },
+        {
+          "name": "treemap-blocks",
+          "publicImportRoots": [
+            "d3-hierarchy",
+            "react",
+            "react-aria-components"
+          ]
+        },
+        {
+          "name": "live-pty-block",
+          "publicImportRoots": [
+            "@xterm/xterm"
+          ],
+          "optimizeInclude": [
+            "@xterm/xterm"
+          ],
+          "cssImports": [
+            "@xterm/xterm/css/xterm.css?inline"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "purpose": "Real retained slash-owner publication for the owner-filter regression lane; compiled output is ephemeral, not checked into Git.",
+  "repository": "https://github.com/schickling/dotfiles",
+  "revision": "945d48458b10fe5dd95c3fd0a12586ae40ae27be",
+  "revisionSelection": "First parent of merge #5413 (21a8040b5f43702fe38a9573c9069f1d91e85457)",
+  "source": "git archive of flakes/vista at the pinned revision, including publisher, bootstrap, AppShell and telemetry island",
+  "generator": "generate.ts",
+  "command": "CI=1 devenv tasks run test:vista-owner-filter",
+  "owner": "agent/retained/fixture",
+  "slug": "retained-shell",
+  "dependencies": "Lane-provisioned external dependency closure; the archived publisher has a private node_modules overlay whose @vista/blocks resolves to the pinned archived blocks package, including AppShell. The pinned telemetry island is rebuilt.",
+  "integrity": "Original legacy receipt, inventory, publication trust root and all immutable bytes are copied unchanged into the test service state. The generator asserts archived @vista/blocks/shell resolution; the browser regression asserts the emitted JavaScript contains the pre-cutover AppShell's owner:decodeURIComponent(...) parser marker before mounting it."
+}

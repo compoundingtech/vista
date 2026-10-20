@@ -1,0 +1,18 @@
+{
+  "traces": [
+    {
+      "traceID": "a7ccc272f7d9452ee360040c5ec24f0f",
+      "rootServiceName": "genie",
+      "rootTraceName": "genie/command",
+      "startTimeUnixNano": "1782564217845743000",
+      "durationMs": 109
+    },
+    {
+      "traceID": "87b65aee95c4c44d595dc2b3a0f2db",
+      "rootServiceName": "evergreen",
+      "rootTraceName": "evergreen.run",
+      "startTimeUnixNano": "1782564151695216542"
+    }
+  ],
+  "metrics": { "inspectedTraces": 1420 }
+}
