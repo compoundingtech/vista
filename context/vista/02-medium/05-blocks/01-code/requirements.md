@@ -25,7 +25,7 @@ data), 0088 (pull-request review composes parts; zoom is scope).
   description, stack navigation, treemap, file rail, diff pane) under shared
   provider state over a captured, serializable payload; it never fetches, comments,
   or edits (decisions 0087 and 0088). Their Shiki themes must be reconciled with the
-  library's Geist-native `data-theme` tokens (MED.BLK-R07; decisions 0024 and 0036).
+  library's Vista UI-native `data-theme` tokens (MED.BLK-R07; decisions 0024 and 0036).
   `refines: MED.REND-R04`
 
 - **MED.BLK.CODE-R80 Snapshot-first pull-request review and checks:** The library
@@ -43,7 +43,7 @@ data), 0088 (pull-request review composes parts; zoom is scope).
 
 A `diff` renders unified/split with word-level and collapsible hunks; a `file-tree`
 renders a path-first tree with per-path `gitStatus`; both resolve their content by
-string key; both match the library's Geist-native theme in dark and light. A
+string key; both match the library's Vista UI-native theme in dark and light. A
 `pull-request` renders a captured request or stack whose header, description, stack
 navigation, treemap, file rail, and diff pane share the active request, directory
 scope, hidden set, commit focus, and diff layout: pinning a directory in the treemap

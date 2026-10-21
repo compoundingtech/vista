@@ -79,6 +79,6 @@ A `treemap` block renders a value hierarchy resolved by key; no node is silently
 dropped under aggregation; a focus interaction is distinct from drill; an optional
 caller detail-preview component renders; both treemap and partition layouts render
 over the same model with layout as view-state; a lens-hidden facet value is hidden by
-default yet counted and revealable; Geist-native theming holds. `DiskTreemap`
+default yet counted and revealable; Vista UI-native theming holds. `DiskTreemap`
 renders ready and degraded models through the same Treemap, exposes every degraded
 reason, and renders a typed failure without inventing an empty model.

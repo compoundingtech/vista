@@ -8,7 +8,7 @@ and hosts the heavy blocks that earn their own subsystem (code, mermaid,
 system-explorer, treemap, telemetry, fork).
 
 The requirements here are the cross-cutting concerns that span **all** blocks:
-one importable versioned package, one shared Storybook, Geist-native theming, and
+one importable versioned package, one shared Storybook, Vista UI-native theming, and
 incremental reviewed delivery. Block-specific requirements live in the child nodes
 and `refines:` the contract each specializes (render, data, or doctrine) — a block
 node may carry requirements refining different contracts, which is what makes a
@@ -83,22 +83,22 @@ their data: `PullRequestChecks` to `01-code`, `SpendByProject` and
   artifacts.
   `refines: VST-R41`
 
-### The block library is Geist-native
+### The block library is Vista UI-native
 
-- **MED.BLK-R07 Geist-native theming:** All blocks theme via
-  `@overeng/geist-design-system` styles, components, and tokens. `@pierre/diffs` /
+- **MED.BLK-R07 Vista UI-native theming:** All blocks theme via
+  `@vista/ui` styles, components, and tokens. `@pierre/diffs` /
   `@pierre/trees` (Shiki + Shadow DOM), Mermaid, and React Flow MUST be reconciled
-  with Geist tokens so the whole library matches in dark/light — an acceptance gate
+  with Vista UI tokens so the whole library matches in dark/light — an acceptance gate
   (decisions 0024 and 0036).
   `refines: VST-R40`
-- **MED.BLK-R10 Geist primitives first:** Shell controls, statuses, badges, tables,
-  tabs, menus, inputs, and buttons use Geist components when available.
-  Vista-specific blocks stay semantic but consume Geist tokens/classes and avoid a
+- **MED.BLK-R10 Vista UI primitives first:** Shell controls, statuses, badges, tables,
+  tabs, menus, inputs, and buttons use Vista UI components when available.
+  Vista-specific blocks stay semantic but consume Vista UI tokens/classes and avoid a
   separate Vista brand accent.
   `refines: VST-R40`
-- **MED.BLK-R48 Geist-native visual language:** Vista shell chrome and common UI
-  primitives must use `@overeng/geist-design-system` components when available.
-  Domain-specific blocks remain Vista components, but must use Geist tokens/classes,
+- **MED.BLK-R48 Vista UI-native visual language:** Vista shell chrome and common UI
+  primitives must use `@vista/ui` components when available.
+  Domain-specific blocks remain Vista components, but must use Vista UI tokens/classes,
   dark-first density, restrained borders/radii, and semantic color only. Vista must
   not define a separate brand accent (decision 0036).
   `refines: VST-R40`
@@ -111,7 +111,7 @@ their data: `PullRequestChecks` to `01-code`, `SpendByProject` and
   `refines: MED.REND-R02`
 - **MED.BLK-R09 Incremental, reviewed delivery:** The block library is delivered
   incrementally per block family; each family passes a sub-agent
-  review/verify/visual-critique/refine pass against the Geist/Vercel target before
+  review/verify/visual-critique/refine pass against the Vista UI/Vercel target before
   it is accepted (decision 0036).
   `refines: VST-R41`
 
@@ -129,6 +129,6 @@ their data: `PullRequestChecks` to `01-code`, `SpendByProject` and
 
 An app can be authored using any block, rendered through the service, and
 catalogued in Storybook with passing stories; the default dark theme is
-Geist-native; light mode remains correct; diffs/trees match the library's
-Geist-native theme; `tsc` and the Storybook build are green. Each heavy block's own
+Vista UI-native; light mode remains correct; diffs/trees match the library's
+Vista UI-native theme; `tsc` and the Storybook build are green. Each heavy block's own
 acceptance lives in its child node.
