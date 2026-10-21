@@ -111,7 +111,7 @@ their data: `PullRequestChecks` to `01-code`, `SpendByProject` and
   `refines: MED.REND-R02`
 - **MED.BLK-R09 Incremental, reviewed delivery:** The block library is delivered
   incrementally per block family; each family passes a sub-agent
-  review/verify/visual-critique/refine pass against the Vista UI/Vercel target before
+  review/verify/visual-critique/refine pass against the Geist/Vercel target before
   it is accepted (decision 0036).
   `refines: VST-R41`
 
