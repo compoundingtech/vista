@@ -80,9 +80,6 @@ in
   effectUtils.genie.package = effectUtilsPackages.genie;
   packages = lib.mkBefore [ pnpmNoManagedVersions pkgs.bun pkgs.flock pkgs.nodejs_24 effectTsgo oxlintWithPlugins pkgs.oxfmt effectUtilsPackages.genie effectUtilsPackages.otelite ];
   env.NODE_PRESERVE_SYMLINKS = "1";
-  env.PNPM_JOB_LOCAL_STORE = "1";
-  # The lockfile check must reuse pnpm:install's job-local store instead of reimporting node_modules.
-  env.PNPM_STORE_DIR = "${config.devenv.root}/.devenv/pnpm-store-pure-v1";
   env.PNPM_HOME = "${config.devenv.root}/.devenv/pnpm-home";
   tasks.${rootNodeModulesReadyTask} = {
     description = "Require the materialized root package graph";
@@ -92,6 +89,17 @@ in
   tasks."test:run".exec = lib.mkForce null;
   tasks."test:run".after = lib.mkForce [ "test:vista-blocks" "test:vista-service" ];
   tasks."lint:check:oxlint".after = lib.mkAfter [ rootNodeModulesReadyTask "lint:check:genie" ];
+  tasks."lint:check:lockfile".exec = lib.mkBefore ''
+    set -euo pipefail
+    # Task-local install exports do not reach this check; reuse its store selector.
+    source ${lib.escapeShellArg pnpmTaskHelpersScript}
+    configure_pnpm_storage \
+      ${lib.escapeShellArg "${pkgs.nodejs}/bin/node"} \
+      ${lib.escapeShellArg config.devenv.root} \
+      ${lib.escapeShellArg "${config.devenv.root}/.devenv/pnpm-store-pure-v1"} \
+      ${lib.boolToString pkgs.stdenv.hostPlatform.isLinux} \
+      false
+  '';
   tasks."lint:check:format".after = lib.mkForce [ "lint:check:genie" ];
   tasks."lint:check:genie:coverage".after = lib.mkForce [ "lint:check:genie" ];
 }
