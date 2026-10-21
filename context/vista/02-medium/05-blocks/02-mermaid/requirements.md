@@ -19,7 +19,7 @@ OQ-MERMAID-THEME.
   (MED.REND-R04). Mermaid's global `mermaid.initialize` singleton and SSR-unsafe
   render path must be contained behind the block boundary (a lazy client-only render
   with the render-spike fixes), and its theme must be reconciled with the library's
-  Geist-native tokens (MED.BLK-R07; decision 0036, OQ-MERMAID-THEME).
+  Vista UI-native tokens (MED.BLK-R07; decision 0036, OQ-MERMAID-THEME).
   `refines: MED.REND-R02`
 
 > New requirement (no source ID): Mermaid was previously a roster entry in the kit
@@ -30,4 +30,4 @@ OQ-MERMAID-THEME.
 
 A `mermaid-diagram` block renders valid Mermaid source with zoom/pan, resolves its
 source by key, does not break SSR/projection (client-only lazy render), and matches
-the library's Geist-native theme in dark and light.
+the library's Vista UI-native theme in dark and light.
