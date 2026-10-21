@@ -89,17 +89,6 @@ in
   tasks."test:run".exec = lib.mkForce null;
   tasks."test:run".after = lib.mkForce [ "test:vista-blocks" "test:vista-service" ];
   tasks."lint:check:oxlint".after = lib.mkAfter [ rootNodeModulesReadyTask "lint:check:genie" ];
-  tasks."lint:check:lockfile".exec = lib.mkBefore ''
-    set -euo pipefail
-    # Task-local install exports do not reach this check; reuse its store selector.
-    source ${lib.escapeShellArg pnpmTaskHelpersScript}
-    configure_pnpm_storage \
-      ${lib.escapeShellArg "${pkgs.nodejs}/bin/node"} \
-      ${lib.escapeShellArg config.devenv.root} \
-      ${lib.escapeShellArg "${config.devenv.root}/.devenv/pnpm-store-pure-v1"} \
-      ${lib.boolToString pkgs.stdenv.hostPlatform.isLinux} \
-      false
-  '';
   tasks."lint:check:format".after = lib.mkForce [ "lint:check:genie" ];
   tasks."lint:check:genie:coverage".after = lib.mkForce [ "lint:check:genie" ];
 }
