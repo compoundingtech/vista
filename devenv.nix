@@ -80,9 +80,6 @@ in
   effectUtils.genie.package = effectUtilsPackages.genie;
   packages = lib.mkBefore [ pnpmNoManagedVersions pkgs.bun pkgs.flock pkgs.nodejs_24 effectTsgo oxlintWithPlugins pkgs.oxfmt effectUtilsPackages.genie effectUtilsPackages.otelite ];
   env.NODE_PRESERVE_SYMLINKS = "1";
-  env.PNPM_JOB_LOCAL_STORE = "1";
-  # The lockfile check must reuse pnpm:install's job-local store instead of reimporting node_modules.
-  env.PNPM_STORE_DIR = "${config.devenv.root}/.devenv/pnpm-store-pure-v1";
   env.PNPM_HOME = "${config.devenv.root}/.devenv/pnpm-home";
   tasks.${rootNodeModulesReadyTask} = {
     description = "Require the materialized root package graph";
