@@ -207,6 +207,8 @@ pkgs.stdenv.mkDerivation {
       "$out/share/fish/vendor_completions.d" \
       "$out/share/bash-completion/completions" "$out/share/zsh/site-functions"
     cp -R runtime/. "$out/libexec/workspace/"
+    cp ${root + "/LICENSE"} "$out/libexec/workspace/LICENSE"
+    cp ${root + "/THIRD_PARTY_NOTICES.md"} "$out/libexec/workspace/THIRD_PARTY_NOTICES.md"
     cp ${serviceProduct}/vista-service.mjs "$out/libexec/workspace/flakes/vista/service/vista-service.mjs"
     cp ${root + "/nixpkgs/ai/skills/vista.md"} "$out/share/vista/review-taste.md"
     # Expose the wrapper's exact interpreter for process identity checks.
