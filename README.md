@@ -10,10 +10,12 @@ nix build .#vista
 
 ## Development checks
 
-Bootstrap the megarepo before installing JavaScript dependencies. `megarepo.kdl`
-declares effect-utils, and `megarepo.lock` pins the checkout materialized at
-`repos/effect-utils`. The fresh-clone check found that `pnpm install` fails
-without this member because the workspace references its packages.
+`nix build .#vista` and `nix flake check --no-build` work from a plain clone.
+Development commands `pnpm install` and Genie (`genie:run` / `genie:check`)
+require the materialized `repos/effect-utils` member; run
+`mr apply --worktree-mode auto` first. `megarepo.kdl` declares the member,
+and `megarepo.lock` pins its checkout. See the
+[fresh-clone bootstrap issue](https://github.com/compoundingtech/vista/issues/6).
 
 ```sh
 # Materialize megarepo.lock.
