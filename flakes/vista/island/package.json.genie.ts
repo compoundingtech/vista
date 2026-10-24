@@ -46,13 +46,17 @@ const composition = catalog.compose({
     },
   },
   devDependencies: {
-    external: catalog.pick(
-      '@types/react',
-      '@types/react-dom',
-      '@vitejs/plugin-react',
-      'typescript',
-      'vite',
-    ),
+    external: {
+      ...catalog.pick(
+        '@types/node',
+        '@types/react',
+        '@types/react-dom',
+        '@vitejs/plugin-react',
+        'typescript',
+        'vite',
+      ),
+      '@types/lodash': '4.17.20',
+    },
   },
 })
 
