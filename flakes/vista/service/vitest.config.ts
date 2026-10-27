@@ -72,7 +72,7 @@ export default defineConfig({
         // relative import. Inlining routes them through Vite's resolver (which
         // normalizes the path), so the kit barrel is node-importable in the test
         // runner — the premise `sample-projection-drift` depends on.
-        inline: ['mermaid', 'khroma'],
+        inline: ['mermaid', 'khroma', '@effect/vitest'],
       },
     },
   },
