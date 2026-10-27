@@ -35,3 +35,7 @@ Current `mr` calls this bootstrap `apply`; `mr sync` is not a supported command.
 The tasks are defined by `devenv.nix`, `nix/devenv/vista-tasks.nix`, and the
 shared effect-utils task modules. `test:run` runs the blocks and non-browser
 service suites; browser proofs are separate tasks.
+
+The standing service uses an HTTP/1 listener. Its imperative Vite middleware
+bridge requires Node HTTP/1 request and response objects and returns HTTP 505
+for HTTP/2 transports, including when platform adapters expose both types.
