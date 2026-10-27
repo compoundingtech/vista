@@ -208,6 +208,12 @@ export default packageJson(
               '@pierre/diffs/react',
               '@pierre/trees/react',
               'elkjs/lib/elk.bundled.js',
+              // The lazy RPC diagnostics panel uses compiled, StyleX-free meters.
+              '@overeng/meters',
+              '@overeng/meters/canvas',
+              '@overeng/meters/platform/browser',
+              '@overeng/meters/react',
+              '@overeng/meters/sources/frame',
               // Only pure helpers may bypass the StyleX compiler. The .ts compact
               // barrel re-exports TSX components, so it must stay source-transformed.
               '@overeng/agent-timeline/encodings',
