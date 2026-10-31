@@ -13,5 +13,5 @@
     "flakes/vista/service",
     "packages/ui"
   ],
-  "packageManager": "pnpm@12.7.0"
+  "packageManager": "pnpm@12.15.0"
 }
