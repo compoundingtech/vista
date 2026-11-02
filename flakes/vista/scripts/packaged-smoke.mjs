@@ -91,6 +91,8 @@ const step = async (name, fn) => {
   return await fn()
 }
 
+const redactQueries = (text) => text.replace(/\?[^\s"'<>\\]*/g, '?<redacted>')
+
 const tailFile = (path, lines = 80) => {
   if (!existsSync(path)) return '<missing>'
   const body = readFileSync(path, 'utf8')
@@ -551,13 +553,33 @@ export default function VistaApp() {
       const requireFromWorkspace = createRequire(join(workspace, 'package.json'))
       const { chromium } = requireFromWorkspace('@playwright/test')
       browser = await chromium.launch({ headless: true })
+      let page
+      let diagnosticContainer = '#root'
+      const browserDiagnostics = []
+      let diagnosticIndex = 0
+      const recordDiagnostic = (text) => {
+        browserDiagnostics[diagnosticIndex] = redactQueries(text).slice(0, 500)
+        diagnosticIndex = (diagnosticIndex + 1) % 200
+      }
       try {
-        const page = await browser.newPage()
+        page = await browser.newPage()
         const browserErrors = []
         page.on('console', (message) => {
+          recordDiagnostic(`console ${message.type()}: ${message.text()}`)
           if (message.type() === 'error') browserErrors.push(`console: ${message.text()}`)
         })
         page.on('pageerror', (error) => browserErrors.push(`pageerror: ${String(error)}`))
+        page.on('pageerror', (error) => recordDiagnostic(`pageerror: ${String(error)}`))
+        page.on('requestfailed', (request) =>
+          recordDiagnostic(
+            `requestfailed: ${request.url()} ${request.failure()?.errorText ?? '<unknown>'}`,
+          ),
+        )
+        page.on('response', (response) => {
+          if (response.status() >= 400) {
+            recordDiagnostic(`response: ${response.status()} ${response.url()}`)
+          }
+        })
         await step('browser: immutable semantic publication survives source removal', async () => {
           browserErrors.length = 0
           const initial = await page.goto(immutableProof.url, { waitUntil: 'networkidle' })
@@ -659,6 +681,12 @@ export default function VistaApp() {
         const reactError =
           /Invalid hook call|does not provide an export named|Failed to resolve import|Failed to fetch dynamically imported|Cannot read properties of null \(reading 'use|dispatcher is null|Should have a queue/
         const assertTelemetryRoute = async ({ kind, slug, mode }) => {
+          diagnosticContainer =
+            kind === 'metric'
+              ? '[data-testid="telemetry-island"]'
+              : kind === 'trace'
+                ? '[data-testid="telemetry-island-trace"]'
+                : '[data-testid="telemetry-island-flamegraph"]'
           const errors = []
           const onConsole = (message) => {
             if (message.type() === 'error' && reactError.test(message.text())) {
@@ -753,11 +781,60 @@ export default function VistaApp() {
         }
 
         await step('browser: pinned esm.sh runtime import', async () => {
+          diagnosticContainer = '#root'
           await page.goto(`${env.VISTA_URL}/r/${encodedSmokeOwner}/esm-sh-smoke/v1/`, {
             waitUntil: 'networkidle',
           })
           await page.getByText('esm.sh pinned ok').waitFor({ timeout: 45_000 })
         })
+      } catch (error) {
+        let remainingDiagnosticBytes = 32_768
+        const dumpDiagnostic = (text) => {
+          const output = Buffer.from(text)
+            .subarray(0, Math.max(0, remainingDiagnosticBytes - 1))
+            .toString('utf8')
+            .replace(/\uFFFD$/, '')
+          if (output.length > 0) {
+            console.error(output)
+            remainingDiagnosticBytes -= Buffer.byteLength(output) + 1
+          }
+        }
+        const diagnostics = [
+          ...browserDiagnostics.slice(diagnosticIndex),
+          ...browserDiagnostics.slice(0, diagnosticIndex),
+        ].join('\n')
+        dumpDiagnostic(
+          `[vista packaged smoke] browser diagnostics (${currentStep}):\n${diagnostics.slice(-20_000) || '<none>'}`,
+        )
+        let diagnosticTimer
+        const domTimeout = new Error('diagnostics: DOM evaluate timed out')
+        try {
+          const dom = await Promise.race([
+            page.evaluate(
+              (selector) => ({
+                readyState: document.readyState,
+                location: location.href,
+                container: selector,
+                outerHTML:
+                  document.querySelector(selector)?.outerHTML.slice(0, 4096) ?? '<missing>',
+              }),
+              diagnosticContainer,
+            ),
+            new Promise((_, reject) => {
+              diagnosticTimer = setTimeout(() => reject(domTimeout), 5_000)
+            }),
+          ])
+          dumpDiagnostic(`[vista packaged smoke] final DOM: ${redactQueries(JSON.stringify(dom))}`)
+        } catch (diagnosticError) {
+          dumpDiagnostic(
+            diagnosticError === domTimeout
+              ? domTimeout.message
+              : `[vista packaged smoke] final DOM unavailable: ${redactQueries(String(diagnosticError))}`,
+          )
+        } finally {
+          clearTimeout(diagnosticTimer)
+        }
+        throw error
       } finally {
         await browser.close()
         browser = undefined
