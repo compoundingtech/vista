@@ -7,7 +7,7 @@ export const entry = {
   contributors: [
     {
       agentId: 'agent/compoundingtech/vista',
-      worktree: 'vista/schickling-assistant/2026-11-02-fix-23-optimizer-anchor',
+      worktree: 'vista/schickling-assistant-2026-11-02-fix-23-optimizer-anchor',
     },
   ],
 } satisfies ChangelogEntrySource
