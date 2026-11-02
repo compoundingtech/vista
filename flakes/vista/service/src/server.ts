@@ -222,9 +222,54 @@ const isLoopbackRequest = (req: IncomingMessage): boolean =>
   req.socket.remoteAddress === '::ffff:127.0.0.1'
 
 const send = (res: ServerResponse, code: number, body: string, type = 'text/plain'): void => {
+  if (res.headersSent || res.writableEnded || res.destroyed) return
   res.statusCode = code
   res.setHeader('content-type', type)
   res.end(body)
+}
+
+/** Keep Connect's deferred terminal callback inside the route's error boundary. */
+export const serveDraftMiddleware = async (
+  middleware: (
+    req: IncomingMessage,
+    res: ServerResponse,
+    next: (error?: unknown) => void,
+  ) => void,
+  req: IncomingMessage,
+  res: ServerResponse,
+): Promise<void> => {
+  const { promise, resolve, reject } = Promise.withResolvers<boolean>()
+  const responseFinished = (): void => resolve(false)
+  res.once('finish', responseFinished)
+  res.once('close', responseFinished)
+  let fellThrough: boolean
+  try {
+    if (res.writableEnded || res.destroyed) {
+      console.warn('draft middleware skipped for completed or closed response', req.url)
+      return
+    }
+    middleware(req, res, (error) => {
+      if (error != null) reject(error)
+      else resolve(true)
+    })
+    fellThrough = await promise
+  } finally {
+    res.off('finish', responseFinished)
+    res.off('close', responseFinished)
+  }
+  if (!fellThrough) {
+    if (res.destroyed && !res.writableEnded) {
+      console.warn('draft middleware response closed before completion', req.url)
+    }
+    return
+  }
+  if (!res.headersSent && !res.writableEnded && !res.destroyed) {
+    send(res, 404, 'not found (draft)')
+  } else {
+    console.warn('draft middleware fell through after response committed or closed', req.url)
+    // Finish an existing response without writing another header or body.
+    if (!res.writableEnded && !res.destroyed) res.end()
+  }
 }
 
 const sendPublicationFailure = (
@@ -1173,7 +1218,7 @@ const serveReview = async (
     if (isBootstrapPath(rest)) establishViewerIdentity(req, res)
     if (path === `${routeBase}/draft`) return redirect(res, `${routeBase}/draft/`)
     const draft = await ensureDraft(state, owner, slug, appSource, httpServer)
-    return draft.middlewares(req, res, () => send(res, 404, 'not found (draft)'))
+    return serveDraftMiddleware(draft.middlewares, req, res)
   }
 
   if (!st) return send(res, 404, `unknown app: ${key}`)
@@ -1309,7 +1354,7 @@ const serveReview = async (
  * double-writes. The error mapping mirrors the pre-migration `createServer`
  * callback (`Vista.RuntimePolicyError` → 400, else 500), guarded by `headersSent`.
  */
-const nodeRoute = (
+export const nodeRoute = (
   span: string,
   fn: (req: IncomingMessage, res: ServerResponse) => void | Promise<void>,
 ) =>

@@ -39,3 +39,8 @@ service suites; browser proofs are separate tasks.
 The standing service uses an HTTP/1 listener. Its imperative Vite middleware
 bridge requires Node HTTP/1 request and response objects and returns HTTP 505
 for HTTP/2 transports, including when platform adapters expose both types.
+Draft middleware completion and deferred errors stay inside the route's Promise
+boundary. A draft 404 is emitted only for uncommitted fallthrough; a committed
+response is finished without another header/body write, and a disconnected
+response is left alone. The response-lifecycle regression tests run in
+`devenv tasks run test:vista-service`.
