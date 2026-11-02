@@ -1,10 +1,11 @@
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 
+import { createIdResolver } from 'vite'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-import { appSourcePath, depsNodeModules } from './paths.ts'
+import { appSourcePath, blocksDir, depsNodeModules } from './paths.ts'
 import { encodeRouteOwner } from './control.ts'
 import type { ServiceState } from './server.ts'
 import { freePort } from './test-support.ts'
@@ -129,9 +130,73 @@ describe('Vista runtime import policy Vite enforcement', () => {
     expect(react).not.toBeNull()
     expect(subpath).not.toBeNull()
 
-    const reactId = react!.id.split('?', 1)[0]!
+    // The public resolver API can inspect the source entry without depending on
+    // an optimizer output that may still be bundling after the cold request.
+    const resolveSource = createIdResolver(draft!.config, { asSrc: false, scan: true })
+    const reactSource = await resolveSource(draft!.environments.client!, 'react', importer)
+    expect(reactSource).toBeDefined()
+    const reactId = reactSource!.split('?', 1)[0]!
     expect(realpathSync(reactId)).toBe(realpathSync(join(depsNodeModules(), 'react', 'index.js')))
     expect(subpath!.id).not.toContain(allowedSource)
+  })
+
+  it('anchors only public seeds while preserving all declared includes and successful draft initialization', async () => {
+    const response = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/allowed-imports/draft/app.tsx`,
+    )
+    expect(response.status).toBe(200)
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)!
+    // Load after beforeAll sets the isolated source/cache environment.
+    const { classifyVistaClientImport, vistaRuntimePolicy } = await import('./runtime-policy/index.ts')
+    expect(draft.config.root).toBe(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
+    )
+    // Vite and the React plugin append duplicate includes during startup.
+    expect(new Set(draft.config.optimizeDeps.include)).toEqual(
+      new Set(vistaRuntimePolicy().optimizeInclude),
+    )
+    // This is the same built-in resolver Vite uses for manual seeds: it does
+    // not run the draft's runtime-policy/dependency-anchor resolveId plugins.
+    const resolveSeed = createIdResolver(draft.config, { asSrc: false, scan: true })
+    const seeds = [...new Set(draft.config.optimizeDeps.include)]
+    const publicSeeds = seeds.filter((seed) => classifyVistaClientImport(seed)._tag === 'provided')
+    const seedAliases = draft.config.resolve.alias.filter(
+      (entry) => entry.customResolver !== undefined,
+    )
+    expect(seedAliases).toHaveLength(publicSeeds.length)
+    for (const seed of seeds) {
+      const matchingAliases = draft.config.resolve.alias.filter((entry) =>
+        entry.find instanceof RegExp
+          ? entry.find.test(seed)
+          : entry.find === seed || seed.startsWith(`${entry.find}/`),
+      )
+      if (!publicSeeds.includes(seed)) {
+        expect(matchingAliases, seed).toEqual([])
+        continue
+      }
+      const alias = matchingAliases.find((entry) => entry.find instanceof RegExp)
+      expect(alias, seed).toBeDefined()
+      expect(alias!.find instanceof RegExp && alias!.find.test(`${seed}/unseeded`)).toBe(false)
+      const resolved = await resolveSeed(draft.environments.client!, seed)
+      expect(resolved, seed).toBeDefined()
+      expect(resolved, seed).not.toContain(dir)
+    }
+  })
+
+  it('rejects an authored private import after kit-origin optimizer discovery', async () => {
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)!
+    const source = '@overeng/meters'
+    // The kit may discover private dependencies without making them public.
+    const kitImporter = join(blocksDir(), 'src/RpcExplorerPanel.tsx')
+    expect(await draft.pluginContainer.resolveId(source, kitImporter)).not.toBeNull()
+    const importer = join(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
+      'app.tsx',
+    )
+    await expect(draft.pluginContainer.resolveId(source, importer)).rejects.toMatchObject({
+      _tag: 'Vista.RuntimePolicyError',
+      importProblems: [expect.objectContaining({ source })],
+    })
   })
 
   it('rejects app-authored imports outside the projected runtime policy', async () => {

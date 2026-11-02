@@ -791,7 +791,10 @@ const createDraft = async (
         resolveVistaGrafanaConfig(),
       ),
       vistaRuntimeImportPolicy(appRoot),
-      vistaDependencyAnchorResolver(dirname(depsNodeModules())),
+      vistaDependencyAnchorResolver(dirname(depsNodeModules()), {
+        root: appRoot,
+        include: optimizeInclude(),
+      }),
       ...draftStylexVitePlugins(appRoot, base),
       react(),
     ],
