@@ -14,50 +14,50 @@ overrides:
   '@opentelemetry/sdk-logs': 0.222.0
   '@opentelemetry/sdk-trace-node': 2.11.0
   '@opentelemetry/semantic-conventions': 1.43.0
-  '@playwright/test': 1.63.0
+  '@playwright/test': 1.64.1
   '@storybook/react': 10.6.0
   '@storybook/react-vite': 10.6.0
   effect: 4.0.3
-  playwright: 1.63.0
+  playwright: 1.64.1
   react: 19.2.8
   react-dom: 19.2.8
   storybook: 10.6.0
   typescript: 7.0.2
   vitest: 5.0.3
   '@effect/platform-node-shared': 4.0.3
-  '@overeng/content-address': https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz
-  '@overeng/devbar': https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz
+  '@overeng/content-address': https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz
+  '@overeng/devbar': https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz
   '@overeng/effect-distributed-lock': https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz
-  '@overeng/effect-rpc-explorer': https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz
-  '@overeng/effect-rpc-explorer-react': https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz
-  '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz
-  '@overeng/effect-rust': https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz
-  '@overeng/meters': https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz
+  '@overeng/effect-rpc-explorer': https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz
+  '@overeng/effect-rpc-explorer-react': https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz
+  '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz
+  '@overeng/effect-rust': https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz
+  '@overeng/meters': https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz
   '@overeng/otel-browser': file:.devenv/pnpm-source-inputs/current/repos/effect-utils/packages/@overeng/otel-browser
-  '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz
-  '@overeng/rpc-devtools': https://overeng-effect-utils.cachix.org/serve/sp27fhdg9m3gvrjydr2k39wd3d19crwh/overeng-rpc-devtools.tgz
-  '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz
-  '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz
-  '@overeng/utils-dev': https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz
-  '@overeng/utils-storybook': https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz
-  '@overeng/agent-session-ingest': https://overeng-effect-utils.cachix.org/serve/pg8c17qb3nbal9if5xxgm30id8vswcak/overeng-agent-session-ingest.tgz
-  '@overeng/ai-gateway-conformance': https://overeng-effect-utils.cachix.org/serve/pd1fj4ybp9i0kf36iimrsidyc5vm8p62/overeng-ai-gateway-conformance.tgz
-  '@overeng/ai-gateway-edge': https://overeng-effect-utils.cachix.org/serve/s0kdlpdzw7rwcahc0pn47bw1161rrd66/overeng-ai-gateway-edge.tgz
-  '@overeng/data-graph': https://overeng-effect-utils.cachix.org/serve/lj9rdgw4fqr41xi2qp2hs5lm6aqgjwcd/overeng-data-graph.tgz
-  '@overeng/effect-ai-claude-cli': https://overeng-effect-utils.cachix.org/serve/67jz7b4l20cz10bmfg0jjzdv5inmb0n6/overeng-effect-ai-claude-cli.tgz
-  '@overeng/effect-ai-gateway': https://overeng-effect-utils.cachix.org/serve/f1lyjm5b11pkmh21sbvwn7nvysydlz8j/overeng-effect-ai-gateway.tgz
-  '@overeng/effect-react': https://overeng-effect-utils.cachix.org/serve/ahvlv90ikrf83b76bm8fyjzw6r6m8bnr/overeng-effect-react.tgz
-  '@overeng/genie': https://overeng-effect-utils.cachix.org/serve/7dp8c9x7zrm1pg7nakjyxb3hdfdna38r/overeng-genie.tgz
-  '@overeng/notion-core': https://overeng-effect-utils.cachix.org/serve/6hs7zwgk8iljpiy06zsyldagscy6vxc6/overeng-notion-core.tgz
-  '@overeng/notion-effect-client': https://overeng-effect-utils.cachix.org/serve/3s96avlc3f331yy8vfg74y00cnz8mgjs/overeng-notion-effect-client.tgz
-  '@overeng/notion-effect-schema': https://overeng-effect-utils.cachix.org/serve/3aklr3hclfyh508a5hhr8i3f8lr9g31n/overeng-notion-effect-schema.tgz
-  '@overeng/notion-md': https://overeng-effect-utils.cachix.org/serve/gdf5650vk9kyyakbbj7dc2cpdgm2k3v6/overeng-notion-md.tgz
-  '@overeng/notion-property-write': https://overeng-effect-utils.cachix.org/serve/9yvb6q6fzsh35hsjv4p62gghmffylaxw/overeng-notion-property-write.tgz
-  '@overeng/notion-react': https://overeng-effect-utils.cachix.org/serve/z67iixqqy7246rq1lq3k5a52h4519b9z/overeng-notion-react.tgz
-  '@overeng/outline': https://overeng-effect-utils.cachix.org/serve/jlhlhg2cggm3agvnkvnmnl7apsdmkkxy/overeng-outline.tgz
-  '@overeng/restate-effect': https://overeng-effect-utils.cachix.org/serve/99yzph5a3z4v9v2ax72jjpcgh9n7g1fk/overeng-restate-effect.tgz
-  '@overeng/tui-core': https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz
-  '@overeng/tui-react': https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz
+  '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz
+  '@overeng/rpc-devtools': https://overeng-effect-utils.cachix.org/serve/z3cyc2ggxa2m9ki54xg0ypharrnw027h/overeng-rpc-devtools.tgz
+  '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz
+  '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz
+  '@overeng/utils-dev': https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz
+  '@overeng/utils-storybook': https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz
+  '@overeng/agent-session-ingest': https://overeng-effect-utils.cachix.org/serve/kh8qrslqfgvwr0xgywmlc6qriqfrmz4h/overeng-agent-session-ingest.tgz
+  '@overeng/ai-gateway-conformance': https://overeng-effect-utils.cachix.org/serve/n1h8q8kj2x1ncqmg34xy5dxginyqz2yn/overeng-ai-gateway-conformance.tgz
+  '@overeng/ai-gateway-edge': https://overeng-effect-utils.cachix.org/serve/bgwdnwrg2f2fn3mg1vs4hvsgj4bx041b/overeng-ai-gateway-edge.tgz
+  '@overeng/data-graph': https://overeng-effect-utils.cachix.org/serve/zs6r7j2nhq3qh2bmr8l6adkckna2b6zq/overeng-data-graph.tgz
+  '@overeng/effect-ai-claude-cli': https://overeng-effect-utils.cachix.org/serve/6ajqql5bawmcg587d6j5idhswcz4k1vb/overeng-effect-ai-claude-cli.tgz
+  '@overeng/effect-ai-gateway': https://overeng-effect-utils.cachix.org/serve/8h5gwh7dmk5jk1r2dp8a6skink44g3fz/overeng-effect-ai-gateway.tgz
+  '@overeng/effect-react': https://overeng-effect-utils.cachix.org/serve/v7x84r8b157aav5r2wn9avi1jlb7fimp/overeng-effect-react.tgz
+  '@overeng/genie': https://overeng-effect-utils.cachix.org/serve/p7qb5m6kfm58bkgk0krpbwcprvxlr97k/overeng-genie.tgz
+  '@overeng/notion-core': https://overeng-effect-utils.cachix.org/serve/fmns755r1jki6gfq3l9lw1y51v1x18ks/overeng-notion-core.tgz
+  '@overeng/notion-effect-client': https://overeng-effect-utils.cachix.org/serve/dpb0gmi4g3dflcxg6m49ci9fniv9ssk7/overeng-notion-effect-client.tgz
+  '@overeng/notion-effect-schema': https://overeng-effect-utils.cachix.org/serve/hzln0jlqvhl7fci253a0j53dn6ra2scs/overeng-notion-effect-schema.tgz
+  '@overeng/notion-md': https://overeng-effect-utils.cachix.org/serve/qy8svxjwkcgsydysyiblg1wzkfmq1qap/overeng-notion-md.tgz
+  '@overeng/notion-property-write': https://overeng-effect-utils.cachix.org/serve/z29f9gs94wpc8a590fbn4yzvd9xk13nb/overeng-notion-property-write.tgz
+  '@overeng/notion-react': https://overeng-effect-utils.cachix.org/serve/bynj5gjfbyinqn10j0c85v3q516kkng8/overeng-notion-react.tgz
+  '@overeng/outline': https://overeng-effect-utils.cachix.org/serve/5hcph1irbza96gkbkv8c707rknn1xv68/overeng-outline.tgz
+  '@overeng/restate-effect': https://overeng-effect-utils.cachix.org/serve/lrfdp96737bskhd5xga789f65jcjxcdx/overeng-restate-effect.tgz
+  '@overeng/tui-core': https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
+  '@overeng/tui-react': https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz
   '@types/bun': 1.4.2
   '@types/hast': 3.0.5
   '@types/unist': 3.0.3
@@ -107,7 +107,7 @@ importers:
         version: 4.0.3(effect@4.0.3)(react@19.2.8)(scheduler@0.27.0)
       '@effect/opentelemetry':
         specifier: 4.0.3
-        version: 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+        version: 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node':
         specifier: 4.0.3
         version: 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
@@ -118,17 +118,17 @@ importers:
         specifier: workspace:^
         version: link:../agent-timeline
       '@overeng/devbar':
-        specifier: https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz(c366d61e99f7f80bdb904ee4b0251e4c)
+        specifier: https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz(842a0b40dc16d7a250104f18f7f8d98b)
       '@overeng/effect-rpc-explorer':
-        specifier: https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+        specifier: https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@overeng/effect-rpc-explorer-react':
-        specifier: https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))
+        specifier: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@overeng/meters':
-        specifier: https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@pierre/diffs':
         specifier: 1.4.1
         version: 1.4.1(@shikijs/themes@4.4.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -139,20 +139,17 @@ importers:
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6(@pierre/theme@1.1.0)(@shikijs/themes@4.4.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(shiki@4.4.3)
       '@playwright/test':
-        specifier: 1.63.0
-        version: 1.63.0
+        specifier: 1.64.1
+        version: 1.64.1
       '@storybook/react-vite':
         specifier: 10.6.0
-        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@stylexjs/stylex':
         specifier: 0.19.0
         version: 0.19.0
       '@vista/ui':
         specifier: workspace:^
         version: link:../../../packages/ui
-      '@vitest/browser-playwright':
-        specifier: 5.0.3
-        version: 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       '@xterm/xterm':
         specifier: 6.0.0
         version: 6.0.0
@@ -206,10 +203,10 @@ importers:
         version: 3.6.2
       vite:
         specifier: 8.2.2
-        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
       vitest:
         specifier: 5.0.3
-        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     dependenciesMeta:
       '@overeng/devbar':
         injected: true
@@ -217,14 +214,14 @@ importers:
         injected: true
     devDependencies:
       '@overeng/utils':
-        specifier: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        specifier: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@overeng/utils-dev':
-        specifier: https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)
+        specifier: https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)
       '@overeng/utils-storybook':
-        specifier: https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+        specifier: https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       '@storybook/react':
         specifier: 10.6.0
         version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)
@@ -242,7 +239,7 @@ importers:
         version: 19.2.7(@types/react@19.2.18)
       '@vitejs/plugin-react':
         specifier: 6.1.1
-        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       oxlint:
         specifier: 1.82.0
         version: 1.82.0
@@ -257,7 +254,7 @@ importers:
         version: 7.29.7(@babel/core@7.29.0)
       '@effect/opentelemetry':
         specifier: 4.0.3
-        version: 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+        version: 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node':
         specifier: 4.0.3
         version: 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
@@ -265,29 +262,26 @@ importers:
         specifier: 4.0.3
         version: 4.0.3(effect@4.0.3)(vitest@5.0.3)
       '@overeng/tui-core':
-        specifier: https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz
+        specifier: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
       '@overeng/tui-react':
-        specifier: https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz(2bec1e814c7e49d8af481bb756cff936)
+        specifier: https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz(1064832ed1acb0f9f9c137d278b22db1)
       '@overeng/utils':
-        specifier: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        specifier: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@playwright/test':
-        specifier: 1.63.0
-        version: 1.63.0
+        specifier: 1.64.1
+        version: 1.64.1
       '@storybook/react-vite':
         specifier: 10.6.0
-        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@stylexjs/stylex':
         specifier: 0.19.0
         version: 0.19.0
       '@vista/service':
         specifier: workspace:^
         version: link:../service
-      '@vitest/browser-playwright':
-        specifier: 5.0.3
-        version: 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       effect:
         specifier: 4.0.3
         version: 4.0.3
@@ -308,10 +302,10 @@ importers:
         version: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       vite:
         specifier: 8.2.2
-        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
       vitest:
         specifier: 5.0.3
-        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     devDependencies:
       '@effect/atom-react':
         specifier: 4.0.3
@@ -336,7 +330,7 @@ importers:
         version: 0.33.0(@types/react@19.2.18)
       '@vitejs/plugin-react':
         specifier: 6.1.1
-        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       oxlint:
         specifier: 1.82.0
         version: 1.82.0
@@ -421,13 +415,13 @@ importers:
         version: 19.2.7(@types/react@19.2.18)
       '@vitejs/plugin-react':
         specifier: 6.1.1
-        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       typescript:
         specifier: 7.0.2
         version: 7.0.2
       vite:
         specifier: 8.2.2
-        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
 
   flakes/vista/service:
     dependencies:
@@ -442,7 +436,7 @@ importers:
         version: 4.0.3(effect@4.0.3)(react@19.2.8)(scheduler@0.27.0)
       '@effect/opentelemetry':
         specifier: 4.0.3
-        version: 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+        version: 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node':
         specifier: 4.0.3
         version: 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
@@ -453,23 +447,23 @@ importers:
         specifier: workspace:^
         version: link:../agent-timeline
       '@overeng/devbar':
-        specifier: https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz(c366d61e99f7f80bdb904ee4b0251e4c)
+        specifier: https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz(842a0b40dc16d7a250104f18f7f8d98b)
       '@overeng/effect-rpc-explorer':
-        specifier: https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+        specifier: https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@overeng/effect-rpc-explorer-react':
-        specifier: https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))
+        specifier: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@overeng/effect-rpc-observer':
-        specifier: https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz(effect@4.0.3)
+        specifier: https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz(effect@4.0.3)
       '@overeng/meters':
-        specifier: https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+        specifier: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@overeng/utils':
-        specifier: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        specifier: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@pierre/diffs':
         specifier: 1.4.1
         version: 1.4.1(@shikijs/themes@4.4.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -480,11 +474,11 @@ importers:
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6(@pierre/theme@1.1.0)(@shikijs/themes@4.4.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(shiki@4.4.3)
       '@playwright/test':
-        specifier: 1.63.0
-        version: 1.63.0
+        specifier: 1.64.1
+        version: 1.64.1
       '@storybook/react-vite':
         specifier: 10.6.0
-        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@stylexjs/stylex':
         specifier: 0.19.0
         version: 0.19.0
@@ -496,10 +490,7 @@ importers:
         version: link:../../../packages/ui
       '@vitejs/plugin-react':
         specifier: 6.1.1
-        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
-      '@vitest/browser-playwright':
-        specifier: 5.0.3
-        version: 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@xterm/headless':
         specifier: 6.0.0
         version: 6.0.0
@@ -565,17 +556,17 @@ importers:
         version: 1.6.0(react@19.2.8)
       vite:
         specifier: 8.2.2
-        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
       vitest:
         specifier: 5.0.3
-        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     dependenciesMeta:
       '@vista/ui':
         injected: true
     devDependencies:
       '@overeng/utils-dev':
-        specifier: https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)
+        specifier: https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)
       '@types/node':
         specifier: 26.5.0
         version: 26.5.0
@@ -611,14 +602,14 @@ importers:
         specifier: 3.12.1
         version: 3.12.1
       '@overeng/otel-contract':
-        specifier: https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+        specifier: https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@overeng/utils':
-        specifier: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        specifier: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@overeng/utils-storybook':
-        specifier: https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+        specifier: https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       '@storybook/addon-a11y':
         specifier: 10.6.0
         version: 10.6.0(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))
@@ -627,7 +618,7 @@ importers:
         version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)
       '@storybook/react-vite':
         specifier: 10.6.0
-        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@stylexjs/stylex':
         specifier: 0.19.0
         version: 0.19.0
@@ -639,16 +630,16 @@ importers:
         version: 19.2.7(@types/react@19.2.18)
       '@vitejs/plugin-react':
         specifier: 6.1.1
-        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@vitest/browser':
         specifier: 5.0.3
-        version: 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+        version: 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       '@vitest/browser-playwright':
         specifier: 5.0.3
-        version: 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+        version: 5.0.3(playwright@1.64.1)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       playwright:
-        specifier: 1.63.0
-        version: 1.63.0
+        specifier: 1.64.1
+        version: 1.64.1
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -666,10 +657,10 @@ importers:
         version: 7.0.2
       vite:
         specifier: 8.2.2
-        version: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+        version: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
       vitest:
         specifier: 5.0.3
-        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+        version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
 packages:
 
@@ -1020,20 +1011,8 @@ packages:
     cpu: [ppc64]
     os: [aix]
 
-  '@esbuild/aix-ppc64@0.28.1':
-    resolution: {integrity: sha512-Svl7tq8k/08+p6CXPpRjQ1fKX+1odH/BQbb48fV6fj3CWHhsoIOoY87w1oHXm0qEpkIK3ZfVgp0hed3XBXzXMQ==}
-    engines: {node: '>=18'}
-    cpu: [ppc64]
-    os: [aix]
-
   '@esbuild/android-arm64@0.27.1':
     resolution: {integrity: sha512-45fuKmAJpxnQWixOGCrS+ro4Uvb4Re9+UTieUY2f8AEc+t7d4AaZ6eUJ3Hva7dtrxAAWHtlEFsXFMAgNnGU9uQ==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [android]
-
-  '@esbuild/android-arm64@0.28.1':
-    resolution: {integrity: sha512-34EGEbCIAgosYz6goLcopX6Mo7NyGv9tfwEM2/7Ce2VcVRk568iSvniGWcUXIy7wEDR1wzolcxcriFVrWYcwBg==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [android]
@@ -1044,20 +1023,8 @@ packages:
     cpu: [arm]
     os: [android]
 
-  '@esbuild/android-arm@0.28.1':
-    resolution: {integrity: sha512-0k2F129Xdio1TdJfzJ8sy1Q47vUD2NnwdhiAf7drUN1EBTfPf4hsFCtmMgu/6m8JSzsBrlmVjudMBQqOfG8usQ==}
-    engines: {node: '>=18'}
-    cpu: [arm]
-    os: [android]
-
   '@esbuild/android-x64@0.27.1':
     resolution: {integrity: sha512-LBEpOz0BsgMEeHgenf5aqmn/lLNTFXVfoWMUox8CtWWYK9X4jmQzWjoGoNb8lmAYml/tQ/Ysvm8q7szu7BoxRQ==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [android]
-
-  '@esbuild/android-x64@0.28.1':
-    resolution: {integrity: sha512-dbwY7ltSMDWsRatcRpCnES4F+im88OCUgGZjy52shC7GqHRE/cYlxNbB4Z4UpJswpcc4Qxd2oE/ufM0p61IKng==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [android]
@@ -1068,20 +1035,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@esbuild/darwin-arm64@0.28.1':
-    resolution: {integrity: sha512-TZbWkQY7kvTAXbXUT7uVACR5cMHsDiSz9z7ZKAX/RTq/WJEk3QyRr0wZpNhBDX+/0CtdqUIJlOiodQcta6tY3Q==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [darwin]
-
   '@esbuild/darwin-x64@0.27.1':
     resolution: {integrity: sha512-+3ELd+nTzhfWb07Vol7EZ+5PTbJ/u74nC6iv4/lwIU99Ip5uuY6QoIf0Hn4m2HoV0qcnRivN3KSqc+FyCHjoVQ==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [darwin]
-
-  '@esbuild/darwin-x64@0.28.1':
-    resolution: {integrity: sha512-zfdzgK9ACBNZLI/CyHTOx81SyNbM6YXn7rxSgX97VjyiPl9W1i4Ka4fgKECEoFCKGpvBj5qArWIGgQjOwkgskQ==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [darwin]
@@ -1092,20 +1047,8 @@ packages:
     cpu: [arm64]
     os: [freebsd]
 
-  '@esbuild/freebsd-arm64@0.28.1':
-    resolution: {integrity: sha512-wG2EA8ENdEI0qhkSZMjfqrdY+ziCYCPMmtZjjIwOmXFjmyzEHn+UUxk5of+SYsjtfs3VpnlC7QLzSI5hY/rOAw==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [freebsd]
-
   '@esbuild/freebsd-x64@0.27.1':
     resolution: {integrity: sha512-GITpD8dK9C+r+5yRT/UKVT36h/DQLOHdwGVwwoHidlnA168oD3uxA878XloXebK4Ul3gDBBIvEdL7go9gCUFzQ==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [freebsd]
-
-  '@esbuild/freebsd-x64@0.28.1':
-    resolution: {integrity: sha512-i7dZ9vQgnvSCzi/rYCXNgtF/U+eKZNJBzu3eTQbRgHnM7tNSizLOkRFAl3qzVc/Op/u5YkHHa4pf/3DOYHthLQ==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [freebsd]
@@ -1116,20 +1059,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@esbuild/linux-arm64@0.28.1':
-    resolution: {integrity: sha512-yHs+0uc8+nvEAfAfxrWQKK5peSNzBc4PegcMO0EJ2hT71uA7vB8Ihg2e77R2P7SG5uYjPbHlLLmve4LLLRCf0g==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [linux]
-
   '@esbuild/linux-arm@0.27.1':
     resolution: {integrity: sha512-ieMID0JRZY/ZeCrsFQ3Y3NlHNCqIhTprJfDgSB3/lv5jJZ8FX3hqPyXWhe+gvS5ARMBJ242PM+VNz/ctNj//eA==}
-    engines: {node: '>=18'}
-    cpu: [arm]
-    os: [linux]
-
-  '@esbuild/linux-arm@0.28.1':
-    resolution: {integrity: sha512-qVXBOHQS+d5Y722GwJzJUtOLlX7km3CraOaGormF1pDtPd2C/l1SHRPgjLunLGe51Sh5YYWKMFDyV4SxgMQYTQ==}
     engines: {node: '>=18'}
     cpu: [arm]
     os: [linux]
@@ -1140,20 +1071,8 @@ packages:
     cpu: [ia32]
     os: [linux]
 
-  '@esbuild/linux-ia32@0.28.1':
-    resolution: {integrity: sha512-d1z4ZuP0ajrfz/FhGT4vv278rX8KnPPJx8i5+AtK7TYbx9Le9F1hyzurZpkEyjkGa9dUGhQow4C1NmeGvqxN2w==}
-    engines: {node: '>=18'}
-    cpu: [ia32]
-    os: [linux]
-
   '@esbuild/linux-loong64@0.27.1':
     resolution: {integrity: sha512-l4rfiiJRN7sTNI//ff65zJ9z8U+k6zcCg0LALU5iEWzY+a1mVZ8iWC1k5EsNKThZ7XCQ6YWtsZ8EWYm7r1UEsg==}
-    engines: {node: '>=18'}
-    cpu: [loong64]
-    os: [linux]
-
-  '@esbuild/linux-loong64@0.28.1':
-    resolution: {integrity: sha512-M5sRjUVZrkm1OAPR3dlOYzNmN+loZKGVi1VUQGrwuqLcbR6qeAz+famMhjASeH3YVKvZz+zT1jlh/keC3Rj/lg==}
     engines: {node: '>=18'}
     cpu: [loong64]
     os: [linux]
@@ -1164,20 +1083,8 @@ packages:
     cpu: [mips64el]
     os: [linux]
 
-  '@esbuild/linux-mips64el@0.28.1':
-    resolution: {integrity: sha512-mRObBZeHh2OxcBFPWE/FjylkRgZdYuiTR3vaTozquCGOH14iP9oN4x4Ge81CoIDYQrXmIxpFumJBu5MtZpnQJQ==}
-    engines: {node: '>=18'}
-    cpu: [mips64el]
-    os: [linux]
-
   '@esbuild/linux-ppc64@0.27.1':
     resolution: {integrity: sha512-NzdQ/Xwu6vPSf/GkdmRNsOfIeSGnh7muundsWItmBsVpMoNPVpM61qNzAVY3pZ1glzzAxLR40UyYM23eaDDbYQ==}
-    engines: {node: '>=18'}
-    cpu: [ppc64]
-    os: [linux]
-
-  '@esbuild/linux-ppc64@0.28.1':
-    resolution: {integrity: sha512-slScBsMAb3GFDcdrCgLwZtPYRoH2H/youv10QiZyRjmsP48fznoveWytSgCI/R0ZcUgpc0ZhIUEx6LHts8yrfQ==}
     engines: {node: '>=18'}
     cpu: [ppc64]
     os: [linux]
@@ -1188,20 +1095,8 @@ packages:
     cpu: [riscv64]
     os: [linux]
 
-  '@esbuild/linux-riscv64@0.28.1':
-    resolution: {integrity: sha512-kw0owk1o0GFETUJyW0jc0G4Yzs0BHZn0JDZ8JRT088vjJYX777BAs1fDGxAC+q831qOs2DTC96mNsG2opdfyyQ==}
-    engines: {node: '>=18'}
-    cpu: [riscv64]
-    os: [linux]
-
   '@esbuild/linux-s390x@0.27.1':
     resolution: {integrity: sha512-cGj5wli+G+nkVQdZo3+7FDKC25Uh4ZVwOAK6A06Hsvgr8WqBBuOy/1s+PUEd/6Je+vjfm6stX0kmib5b/O2Ykw==}
-    engines: {node: '>=18'}
-    cpu: [s390x]
-    os: [linux]
-
-  '@esbuild/linux-s390x@0.28.1':
-    resolution: {integrity: sha512-/lAIjX8aYFRByhh6L5rYtPEDRqa9de/4V/juOXcta5frjvzXO4/sqEtyytse0g3zZFuWu5cDN0MkLz2qRDD2Ag==}
     engines: {node: '>=18'}
     cpu: [s390x]
     os: [linux]
@@ -1212,20 +1107,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@esbuild/linux-x64@0.28.1':
-    resolution: {integrity: sha512-u/anNYF2mmVOEDwLtnQ1wOr3EZ9sTNGLWrsYGYwHWzGA3Si84IOkHXlbWTD1NB+9/1lcnweYKO54uhxZydNzfA==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [linux]
-
   '@esbuild/netbsd-arm64@0.27.1':
     resolution: {integrity: sha512-wzC24DxAvk8Em01YmVXyjl96Mr+ecTPyOuADAvjGg+fyBpGmxmcr2E5ttf7Im8D0sXZihpxzO1isus8MdjMCXQ==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [netbsd]
-
-  '@esbuild/netbsd-arm64@0.28.1':
-    resolution: {integrity: sha512-oks0DYbLwWMmaakTsCb+zL4E+aHRVLom9IJZOAthMQEPiQmydXHkziYEsGYRx0uNV/IjEKGAV941JzH02pflqw==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [netbsd]
@@ -1236,20 +1119,8 @@ packages:
     cpu: [x64]
     os: [netbsd]
 
-  '@esbuild/netbsd-x64@0.28.1':
-    resolution: {integrity: sha512-aeL6lAnN89Hz43Mlh1G8ARasbuoYvSITDEx0tHh5b7jJnHcssqgjy9Yx430GDpmCa6OyrKoS0aNRjKundRizGg==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [netbsd]
-
   '@esbuild/openbsd-arm64@0.27.1':
     resolution: {integrity: sha512-5Z+DzLCrq5wmU7RDaMDe2DVXMRm2tTDvX2KU14JJVBN2CT/qov7XVix85QoJqHltpvAOZUAc3ndU56HSMWrv8g==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [openbsd]
-
-  '@esbuild/openbsd-arm64@0.28.1':
-    resolution: {integrity: sha512-MEFJe5C3R8pwXdZ5Y21oo6m7ePiS0d9pWucn99O/wvyJZChoIQKrQDxKrGeW8F5+T0okTHesAmDeiHDTIq0V/Q==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [openbsd]
@@ -1260,20 +1131,8 @@ packages:
     cpu: [x64]
     os: [openbsd]
 
-  '@esbuild/openbsd-x64@0.28.1':
-    resolution: {integrity: sha512-i/ZLIOafE0Z8cI/XANJAixoJL/uRAoS2xOA3rb0xN+KK0K177cMAsQYkzHtBrtMXAKuAc7HGgcWiZ/sRC1Nxgw==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [openbsd]
-
   '@esbuild/openharmony-arm64@0.27.1':
     resolution: {integrity: sha512-ajbHrGM/XiK+sXM0JzEbJAen+0E+JMQZ2l4RR4VFwvV9JEERx+oxtgkpoKv1SevhjavK2z2ReHk32pjzktWbGg==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [openharmony]
-
-  '@esbuild/openharmony-arm64@0.28.1':
-    resolution: {integrity: sha512-ge+Z7EXFNt2BO1oAMsVpiQ8EwndV9i1xXerAeTIK7AtPs3bKFXQM7nlRxDSIUIMeueR1CNXxqztLzdNeReKBJg==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [openharmony]
@@ -1284,20 +1143,8 @@ packages:
     cpu: [x64]
     os: [sunos]
 
-  '@esbuild/sunos-x64@0.28.1':
-    resolution: {integrity: sha512-BEjgtECkL3vY+SaSQ6nzVfiALUeFxpawyp8Jmf5PtYhf1Ug40N1h/hxlhts+f1FvSvarEigdxS3BlSMI2PJLcQ==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [sunos]
-
   '@esbuild/win32-arm64@0.27.1':
     resolution: {integrity: sha512-RIVRWiljWA6CdVu8zkWcRmGP7iRRIIwvhDKem8UMBjPql2TXM5PkDVvvrzMtj1V+WFPB4K7zkIGM7VzRtFkjdg==}
-    engines: {node: '>=18'}
-    cpu: [arm64]
-    os: [win32]
-
-  '@esbuild/win32-arm64@0.28.1':
-    resolution: {integrity: sha512-lCv9eK/H6ZJWbE7bh2nw54CZ9M2nupBxJcTsdk/QQnWkdSjKGuxmmH8/GWrlT1eMmZfn4dGcCjRte397WqfQXA==}
     engines: {node: '>=18'}
     cpu: [arm64]
     os: [win32]
@@ -1308,20 +1155,8 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@esbuild/win32-ia32@0.28.1':
-    resolution: {integrity: sha512-zvb/mB2bSCoJOpoCBgYKKpX6YM6mJBlBUVUtVj41DlZJVEB6/0CKlRYxP5wWl1C1ILiCoAU5wZZ4q1P3qeS6Eg==}
-    engines: {node: '>=18'}
-    cpu: [ia32]
-    os: [win32]
-
   '@esbuild/win32-x64@0.27.1':
     resolution: {integrity: sha512-d5X6RMYv6taIymSk8JBP+nxv8DQAMY6A51GPgusqLdK9wBz5wWIXy1KjTck6HnjE9hqJzJRdk+1p/t5soSbCtw==}
-    engines: {node: '>=18'}
-    cpu: [x64]
-    os: [win32]
-
-  '@esbuild/win32-x64@0.28.1':
-    resolution: {integrity: sha512-bm4Mowrv+GXMlpWX++EcXw/iLyd1o3+bJkC2DkWXYVvgZCqD/bSj9ctZeAMC3cIxgjRVR2Dufaiu4YPxr5gW1A==}
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
@@ -1618,10 +1453,6 @@ packages:
     peerDependencies:
       '@openfeature/core': ^1.12.0
 
-  '@opentelemetry/api-logs@0.216.0':
-    resolution: {integrity: sha512-KmGTgvxTJ0J01d4mOeX1wMV5NUTNf9HebIuOOGDfIn0a/IrnXIQbOnlylDyl9tkDv4h0DUpdI/GqCdLzfTkUXg==}
-    engines: {node: '>=8.0.0'}
-
   '@opentelemetry/api-logs@0.222.0':
     resolution: {integrity: sha512-9mb1If+IF6u0ZVXkHQ6ogEae5HwA6ajIVUgpSDQyRASxft6BSXHvBvPooRle3yFN/fKnCdSOnuu0OC3PLcF6+g==}
     engines: {node: '>=8.0.0'}
@@ -1693,30 +1524,35 @@ packages:
   '@opentelemetry/sdk-trace-base@2.11.0':
     resolution: {integrity: sha512-H19x/TX/LZdqiYOjM7fqtSxwlplC5pgelavqbQdHbhdq0q/AI/TGkM2dfGuuynTXmJPeF2HoZVoPDu+TGoW78A==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-base@2.6.1':
     resolution: {integrity: sha512-r86ut4T1e8vNwB35CqCcKd45yzqH6/6Wzvpk2/cZB8PsPLlZFTvrh8yfOS3CYZYcUmAx4hHTZJ8AO8Dj8nrdhw==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-base@2.7.1':
     resolution: {integrity: sha512-NAYIlsF8MPUsKqJMiDQJTMPOmlbawC1Iz/omMLygZ1C9am8fTKYjTaI+OZM+WTY3t3Glo0wnOg/6/pac6RGPPw==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-node@2.11.0':
     resolution: {integrity: sha512-CuvCMJmZxswhNLlM2LfuLOW3h3fZujA4hsG4B+Sz4dX2zvaXO8Ng74cnDHWD64gLszTlhiG3c0iNUjj4g+0/sA==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
   '@opentelemetry/sdk-trace-web@2.6.1':
     resolution: {integrity: sha512-JQevIjBlWGcKBfuwe7tdxGR/75RERsf1OOIvUzPKq86J8qhzkyjnLTTuPNPLRQF1xxEe65W5aI1Uwl6yWUGPQQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
+    deprecated: Use @opentelemetry/sdk-trace package
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
@@ -1785,12 +1621,12 @@ packages:
       react-devtools-core: ^7.0.1
       ws: ^8.18.0
 
-  '@overeng/content-address@https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz':
-    resolution: {integrity: sha512-i4TRd2Bv54iv64rcnrcV++t/+JPVi0FDUHNEzNR+Sppl5/IMFSbMXwjeShMZ8e/3cB33rCJdtwYg0qm6/ECCkg==, tarball: https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz}
+  '@overeng/content-address@https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz':
+    resolution: {integrity: sha512-TLexwSXx8TSSPSCDL0QAORRFDiJ/glvZzjcJ/u64hthtebMO9qTT7mLF4c3PJNPlH7s4IWMqC56kKy9nc8uHcA==, tarball: https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz}
     version: 0.1.0
 
-  '@overeng/devbar@https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz':
-    resolution: {integrity: sha512-gmZSJiyrFcXMmpy81iz+1jKAPSgR3NhHqmDF/rxwHNwfEj91NoWJZXT1HCxrlcjtogRkEA8bz874kN18/UlGGg==, tarball: https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz}
+  '@overeng/devbar@https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz':
+    resolution: {integrity: sha512-WMrRa/vJA0oIK+vsSWMj3zp2oI7XnTLPSgZVtYBko7R5JqzRv4EP9TCpX+sUL1MMpRTr5RLhKMfCGlMj+YOknQ==, tarball: https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz}
     version: 0.1.0
     peerDependencies:
       '@overeng/utils': ^0.1.0
@@ -1807,8 +1643,8 @@ packages:
     peerDependencies:
       effect: 4.0.3
 
-  '@overeng/effect-rpc-explorer-react@https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz':
-    resolution: {integrity: sha512-BJdv/UGAqM58Px7vEsoH5oOL6Xf+8LcuK1EWKdH9eRGsBwb9uC522i6647ukL1pGvOo+jPRkmklAn6AOPA/iiw==, tarball: https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz}
+  '@overeng/effect-rpc-explorer-react@https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz':
+    resolution: {integrity: sha512-mv6aCoibjVj572N6XmGpJJFcIcUH0YygBe0cSNOc3sHp5WJoLcZ+hKU4NiKmmr+asnAC79Yn7GY+g5lDU9gO/Q==, tarball: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz}
     version: 0.1.0
     peerDependencies:
       '@stylexjs/stylex': ^0.19.0
@@ -1817,48 +1653,48 @@ packages:
       react-aria-components: ^1.21.1
       react-dom: 19.2.8
 
-  '@overeng/effect-rpc-explorer@https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz':
-    resolution: {integrity: sha512-Pvb81R7IrWlzMQOjBF8cTn7FiDONYWfOeMuBUhoHvAQN9XtkiNYDlbDPziCBiPdHTihGGgeaRiPAqJaouWmhww==, tarball: https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz}
+  '@overeng/effect-rpc-explorer@https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz':
+    resolution: {integrity: sha512-6AZG05/16yVPca/frUzTXLTryXrTnOO4S9LM2mv4uZUYQI0/Se+bh2+TOHtpW937hkaNPfmvaaD4ULX78vT8GQ==, tarball: https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz}
     version: 0.1.0
     peerDependencies:
       effect: 4.0.3
 
-  '@overeng/effect-rpc-observer@https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz':
-    resolution: {integrity: sha512-LolwvBpZZXYDaravGAAuTEK9U9i9OoD1OkTTXZqbA2iKkXUyQlgjDYqr9IvZOJlcEgf5LQ5ApWrLRULBHi7CMA==, tarball: https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz}
+  '@overeng/effect-rpc-observer@https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz':
+    resolution: {integrity: sha512-Bu73oRHdUsurUKCKqqhldjymYHy/GHNQaIogbrvLpl8o1njLH4aUXzwoppe0JdN6RtLkvBfgSaG0yK8vDJ9h/w==, tarball: https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz}
     version: 0.1.0
     peerDependencies:
       effect: 4.0.3
 
-  '@overeng/effect-rust@https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz':
-    resolution: {integrity: sha512-0w91Te80vzpmnfc4wWRHBw2o/YDvn2t08zcbc8xxS/1luiStreuyXkb1k0pcicQhciOnXmnYOT9LF6BbJb0Spg==, tarball: https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz}
+  '@overeng/effect-rust@https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz':
+    resolution: {integrity: sha512-60udIK6zixUXRnjYGFbxgfqIAghD2GM3Bz7TEuBviRcniZ6kwAuLvY2w6/SkfrsZaics7RLQHocGJk7eZt7Bbw==, tarball: https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz}
     version: 0.1.0
 
-  '@overeng/meters@https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz':
-    resolution: {integrity: sha512-dM5BpujCXwBLZrtWeu5zLjRYKLjqiIk5jvrbyOvB96OqQIdQJPO6q66XL9W9JPgE8ZRy3IUyjOodAzoy4gU7KA==, tarball: https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz}
+  '@overeng/meters@https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz':
+    resolution: {integrity: sha512-yd9ARMkpDTdJyNK2sSiJwwLAtjRkWO3Q9sQKMNKRZO/usza3ZAwpNm/cgNtM0n032fGsrEEFhF6J8tQgyWFuxw==, tarball: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz}
     version: 0.1.0
     peerDependencies:
       effect: 4.0.3
       react: 19.2.8
       react-dom: 19.2.8
 
-  '@overeng/otel-contract@https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz':
-    resolution: {integrity: sha512-3J01u3sTjXbyBukDWpwzl8ewDau94Gp7lH7oFp+f3ZQU4AgWT8XMK5fWEqbBlGhAZWWMbc8PTxZgBpOPpdzOLw==, tarball: https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz}
+  '@overeng/otel-contract@https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz':
+    resolution: {integrity: sha512-0u/nB9SM7TrRcAeBChJCx/6m79AzhrmHHuFzUTDzcMpzIm8Q9ghNGlTtsB9c029jGl2ETp+BAP3JVC/eq7sLPQ==, tarball: https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz}
     version: 0.1.0
     peerDependencies:
       effect: 4.0.3
 
-  '@overeng/stylex-tokens@https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz':
-    resolution: {integrity: sha512-VpqhJw3sEgT5PUD3W7we3M9fEjQtNyuAM3virZ3rX75JjotRqahOWYBbKGFOFX46VAdbpriiaY+Banmc/09m6g==, tarball: https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz}
+  '@overeng/stylex-tokens@https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz':
+    resolution: {integrity: sha512-4bidSgjdAeKsvJPJoryL8l6d3O9aJA99+eCXt+WW/Ew9NJWX4ieNvz1wC6ktnjkUX9VLBK9BOiy8sL1loitGIA==, tarball: https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz}
     version: 0.1.0
     peerDependencies:
       '@stylexjs/stylex': ^0.19.0
 
-  '@overeng/tui-core@https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz':
-    resolution: {integrity: sha512-Xp2jB7GufRTFPmyJt1C4g8ZQp2XS6bxC9crlORZ72O6QX0CzJmjuMEHZpM0v8+hOd7opFFBdIZD/U1iFMB9avA==, tarball: https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz}
+  '@overeng/tui-core@https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz':
+    resolution: {integrity: sha512-+aAHj9r9HVf0EK3E6UFqlDv5WiDQLNxPQ/86iOJG6Db3aFZbrS1G8UsWUfER4yUytpSIUiRnvA2DSCC2kNPrpg==, tarball: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz}
     version: 0.1.0
 
-  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz':
-    resolution: {integrity: sha512-r7JC5YSG6dFYh64vCcI4SvzvdHvOJKz/AS59G6z52WgR1JW+fAv7v5GgRBymM0IYabeDE6Pogi8TE24pd38qJw==, tarball: https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz}
+  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz':
+    resolution: {integrity: sha512-TfplCKL/n99kQ9UqOZsRioVXRKWLmXcSBuXgQzvaakfNuqAkxjqWoNAqkieZFG5OjTiQqKOR5Pjh84KV0BAE9A==, tarball: https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz}
     version: 0.1.0
     peerDependencies:
       '@effect/atom-react': 4.0.3
@@ -1873,8 +1709,8 @@ packages:
       react-dom: 19.2.8
       react-reconciler: ^0.33.0
 
-  '@overeng/utils-dev@https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz':
-    resolution: {integrity: sha512-ukOVF61TWSB/DMVy2XQF3DgaGzwITEhyoaYyrH7K6/2PC/PJ3Ze84ZygS/OOX+A70geqR4+VBnL9ZXcBJKau/A==, tarball: https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz}
+  '@overeng/utils-dev@https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz':
+    resolution: {integrity: sha512-xPga953lxg3b1lNRldUbi51QmJ08YDjis2B0ExfxRKg17y6PxzMJVxflWgbglYX805QxGBq9xvQ7357a90471A==, tarball: https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz}
     version: 0.1.0
     peerDependencies:
       '@effect/opentelemetry': 4.0.3
@@ -1883,8 +1719,8 @@ packages:
       effect: 4.0.3
       vitest: 5.0.3
 
-  '@overeng/utils-storybook@https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz':
-    resolution: {integrity: sha512-vV4h4R6DdK+4VAX8SmumMlavAB6mdvFZO3RURK/zUvjuI9RTsg3hkZnNyLos9P9F1MqRShtyuCJARm6culwXHA==, tarball: https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz}
+  '@overeng/utils-storybook@https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz':
+    resolution: {integrity: sha512-sDDRM5psEPdGNwBVQAw8z3tMNh/Dqg9vZy2nSLfikhBe2kMalv2TwQUFue387LuZtmL/TjkZm23TpxnjCrFnpw==, tarball: https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz}
     version: 0.1.0
     peerDependencies:
       '@storybook/react-vite': 10.6.0
@@ -1898,13 +1734,13 @@ packages:
       vitest:
         optional: true
 
-  '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz':
-    resolution: {integrity: sha512-qPYYT7dOFgONUbV1aL300JsqC8HVMcKgzAnJHv9HmYVTreZzlU/c+5M+CDcjy0bS1w9Ta4viDTZCQDL8M4TghQ==, tarball: https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz}
+  '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz':
+    resolution: {integrity: sha512-L9+Pk6jpsMWLoHA7rREZe5bVS5p614XlIjTBbrJOUh9PsCaV1PXgQd1y1epuBGUgELvW5CkRQqn73OeshyvumQ==, tarball: https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz}
     version: 0.1.0
     peerDependencies:
       '@effect/opentelemetry': 4.0.3
       '@effect/platform-node': 4.0.3
-      '@playwright/test': 1.63.0
+      '@playwright/test': 1.64.1
       effect: 4.0.3
 
   '@oxc-parser/binding-android-arm-eabi@0.127.0':
@@ -2458,8 +2294,8 @@ packages:
       react: 19.2.8
       react-dom: 19.2.8
 
-  '@playwright/test@1.63.0':
-    resolution: {integrity: sha512-oxMK4vllB9RK5NQ2l1pq1IfOf2AvnEuj/vYGDj0H2nMtmtZpKtCwt/l00GEO6xjGfpBNAvjovvYdCm50dRQkpQ==}
+  '@playwright/test@1.64.1':
+    resolution: {integrity: sha512-IaYGml/nSOiZWROfPtuIL7neuu9qDOZ3TNvNljUIrhDMxiGTgPjzj/g9p9RxpS2tSepPDRY+UwAaEeiKtUvIAg==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -3332,7 +3168,7 @@ packages:
   '@vitest/browser-playwright@5.0.3':
     resolution: {integrity: sha512-rYBHwIFL/ZtI6dl0rbrAatScXCrvX+TL2BX2AGOigkC1Y6u3rIWw8KMQJJMS4drSa1ksMCmZU2wpgwdE7kqu3g==}
     peerDependencies:
-      playwright: 1.63.0
+      playwright: 1.64.1
       vitest: 5.0.3
 
   '@vitest/browser@5.0.3':
@@ -3940,11 +3776,6 @@ packages:
 
   esbuild@0.27.1:
     resolution: {integrity: sha512-yY35KZckJJuVVPXpvjgxiCuVEJT67F6zDeVTv4rizyPrfGBUpZQsvmxnN+C371c2esD/hNMjj4tpBhuueLN7aA==}
-    engines: {node: '>=18'}
-    hasBin: true
-
-  esbuild@0.28.1:
-    resolution: {integrity: sha512-HrJrvZv5ayxBzPfwphOoNzkzOIIlifzk0KJrGK2c8R4+LKpMtpYLQeUdjnwjWv/LZlkH2laZk+4w78pi99D4Vw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4837,13 +4668,13 @@ packages:
     resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
     engines: {node: '>=12'}
 
-  playwright-core@1.63.0:
-    resolution: {integrity: sha512-rYCsBF/M5HjUch52bbtVONEFjv6Xu8sm8h72dNlR5bzIE1fvC/bxgspzkjSfU+MweEMmPM8KJebG6nnyxo5mCg==}
+  playwright-core@1.64.1:
+    resolution: {integrity: sha512-BC4s8y6SEVA6Q1rSxZTto8hI1KUI3xXlHGZgvGqP4IqPdI/a6FX9H29IDNz7vKo9l21b6LfYosScPL6M3xxyDQ==}
     engines: {node: '>=20'}
     hasBin: true
 
-  playwright@1.63.0:
-    resolution: {integrity: sha512-+7ziBLidS4NaNCdt57SUDT+wYmmd5fmiQejUic/kb+YsYSCPyOOE9sebzMjNmQrsnNpDJqd4WHvV/8lfKfUDUg==}
+  playwright@1.64.1:
+    resolution: {integrity: sha512-HCrVhHr5QQuwYoswEUGTb7gGp522yflbv/ST8nF4sFWGuLjQCt17Q/EubpGGSNKYn1tsTCPZxqHhHCfVURu7UA==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -6220,20 +6051,6 @@ snapshots:
 
   '@effect/language-service@0.69.2': {}
 
-  '@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)':
-    dependencies:
-      '@opentelemetry/semantic-conventions': 1.43.0
-      effect: 4.0.3
-    optionalDependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/api-logs': 0.216.0
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-base': 2.7.1(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-node': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-web': 2.6.1(@opentelemetry/api@1.9.1)
-
   '@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)':
     dependencies:
       '@opentelemetry/semantic-conventions': 1.43.0
@@ -6245,6 +6062,20 @@ snapshots:
       '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-node': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-web': 2.6.1(@opentelemetry/api@1.9.1)
+
+  '@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)':
+    dependencies:
+      '@opentelemetry/semantic-conventions': 1.43.0
+      effect: 4.0.3
+    optionalDependencies:
+      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api-logs': 0.222.0
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/sdk-trace-base': 2.7.1(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-node': 2.11.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/sdk-trace-web': 2.6.1(@opentelemetry/api@1.9.1)
 
@@ -6270,7 +6101,7 @@ snapshots:
   '@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3)':
     dependencies:
       effect: 4.0.3
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
   '@emnapi/core@1.11.0':
     dependencies:
@@ -6381,157 +6212,79 @@ snapshots:
   '@esbuild/aix-ppc64@0.27.1':
     optional: true
 
-  '@esbuild/aix-ppc64@0.28.1':
-    optional: true
-
   '@esbuild/android-arm64@0.27.1':
-    optional: true
-
-  '@esbuild/android-arm64@0.28.1':
     optional: true
 
   '@esbuild/android-arm@0.27.1':
     optional: true
 
-  '@esbuild/android-arm@0.28.1':
-    optional: true
-
   '@esbuild/android-x64@0.27.1':
-    optional: true
-
-  '@esbuild/android-x64@0.28.1':
     optional: true
 
   '@esbuild/darwin-arm64@0.27.1':
     optional: true
 
-  '@esbuild/darwin-arm64@0.28.1':
-    optional: true
-
   '@esbuild/darwin-x64@0.27.1':
-    optional: true
-
-  '@esbuild/darwin-x64@0.28.1':
     optional: true
 
   '@esbuild/freebsd-arm64@0.27.1':
     optional: true
 
-  '@esbuild/freebsd-arm64@0.28.1':
-    optional: true
-
   '@esbuild/freebsd-x64@0.27.1':
-    optional: true
-
-  '@esbuild/freebsd-x64@0.28.1':
     optional: true
 
   '@esbuild/linux-arm64@0.27.1':
     optional: true
 
-  '@esbuild/linux-arm64@0.28.1':
-    optional: true
-
   '@esbuild/linux-arm@0.27.1':
-    optional: true
-
-  '@esbuild/linux-arm@0.28.1':
     optional: true
 
   '@esbuild/linux-ia32@0.27.1':
     optional: true
 
-  '@esbuild/linux-ia32@0.28.1':
-    optional: true
-
   '@esbuild/linux-loong64@0.27.1':
-    optional: true
-
-  '@esbuild/linux-loong64@0.28.1':
     optional: true
 
   '@esbuild/linux-mips64el@0.27.1':
     optional: true
 
-  '@esbuild/linux-mips64el@0.28.1':
-    optional: true
-
   '@esbuild/linux-ppc64@0.27.1':
-    optional: true
-
-  '@esbuild/linux-ppc64@0.28.1':
     optional: true
 
   '@esbuild/linux-riscv64@0.27.1':
     optional: true
 
-  '@esbuild/linux-riscv64@0.28.1':
-    optional: true
-
   '@esbuild/linux-s390x@0.27.1':
-    optional: true
-
-  '@esbuild/linux-s390x@0.28.1':
     optional: true
 
   '@esbuild/linux-x64@0.27.1':
     optional: true
 
-  '@esbuild/linux-x64@0.28.1':
-    optional: true
-
   '@esbuild/netbsd-arm64@0.27.1':
-    optional: true
-
-  '@esbuild/netbsd-arm64@0.28.1':
     optional: true
 
   '@esbuild/netbsd-x64@0.27.1':
     optional: true
 
-  '@esbuild/netbsd-x64@0.28.1':
-    optional: true
-
   '@esbuild/openbsd-arm64@0.27.1':
-    optional: true
-
-  '@esbuild/openbsd-arm64@0.28.1':
     optional: true
 
   '@esbuild/openbsd-x64@0.27.1':
     optional: true
 
-  '@esbuild/openbsd-x64@0.28.1':
-    optional: true
-
   '@esbuild/openharmony-arm64@0.27.1':
-    optional: true
-
-  '@esbuild/openharmony-arm64@0.28.1':
     optional: true
 
   '@esbuild/sunos-x64@0.27.1':
     optional: true
 
-  '@esbuild/sunos-x64@0.28.1':
-    optional: true
-
   '@esbuild/win32-arm64@0.27.1':
-    optional: true
-
-  '@esbuild/win32-arm64@0.28.1':
     optional: true
 
   '@esbuild/win32-ia32@0.27.1':
     optional: true
 
-  '@esbuild/win32-ia32@0.28.1':
-    optional: true
-
   '@esbuild/win32-x64@0.27.1':
-    optional: true
-
-  '@esbuild/win32-x64@0.28.1':
     optional: true
 
   '@eslint-community/eslint-utils@4.10.1(eslint@10.11.0(jiti@2.7.0))':
@@ -6907,11 +6660,11 @@ snapshots:
     dependencies:
       '@swc/helpers': 0.5.21
 
-  '@joshwooding/vite-plugin-react-docgen-typescript@0.7.0(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))':
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.7.0(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))':
     dependencies:
       glob: 13.0.6
       react-docgen-typescript: 2.4.0(typescript@7.0.2)
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
     optionalDependencies:
       typescript: 7.0.2
 
@@ -7060,11 +6813,6 @@ snapshots:
   '@openfeature/web-sdk@1.10.0(@openfeature/core@1.12.0)':
     dependencies:
       '@openfeature/core': 1.12.0
-
-  '@opentelemetry/api-logs@0.216.0':
-    dependencies:
-      '@opentelemetry/api': 1.9.1
-    optional: true
 
   '@opentelemetry/api-logs@0.222.0':
     dependencies:
@@ -7242,35 +6990,35 @@ snapshots:
       - typescript
       - web-tree-sitter
 
-  '@overeng/content-address@https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz(redis@6.2.1(@opentelemetry/api@1.9.1))':
+  '@overeng/content-address@https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz(redis@6.2.1(@opentelemetry/api@1.9.1))':
     dependencies:
       '@effect/platform-node': 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@noble/hashes': 2.4.0
-      '@overeng/effect-rust': https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz
+      '@overeng/effect-rust': https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz
       effect: 4.0.3
     transitivePeerDependencies:
       - bufferutil
       - redis
       - utf-8-validate
 
-  '@overeng/devbar@https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz(c366d61e99f7f80bdb904ee4b0251e4c)':
+  '@overeng/devbar@https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz(842a0b40dc16d7a250104f18f7f8d98b)':
     dependencies:
-      '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)
+      '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)
       '@stylexjs/stylex': 0.19.0
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
     optionalDependencies:
-      '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
   '@overeng/effect-distributed-lock@https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz(effect@4.0.3)':
     dependencies:
       effect: 4.0.3
 
-  '@overeng/effect-rpc-explorer-react@https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))':
+  '@overeng/effect-rpc-explorer-react@https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))':
     dependencies:
-      '@overeng/effect-rpc-explorer': https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
-      '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz(effect@4.0.3)
-      '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)
+      '@overeng/effect-rpc-explorer': https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz(effect@4.0.3)
+      '@overeng/stylex-tokens': https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)
       '@stylexjs/stylex': 0.19.0
       effect: 4.0.3
       react: 19.2.8
@@ -7281,56 +7029,56 @@ snapshots:
       - redis
       - utf-8-validate
 
-  '@overeng/effect-rpc-explorer@https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))':
+  '@overeng/effect-rpc-explorer@https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))':
     dependencies:
-      '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz(effect@4.0.3)
-      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@overeng/effect-rpc-observer': https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz(effect@4.0.3)
+      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       effect: 4.0.3
     transitivePeerDependencies:
       - bufferutil
       - redis
       - utf-8-validate
 
-  '@overeng/effect-rpc-observer@https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz(effect@4.0.3)':
+  '@overeng/effect-rpc-observer@https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz(effect@4.0.3)':
     dependencies:
       effect: 4.0.3
 
-  '@overeng/effect-rust@https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz':
+  '@overeng/effect-rust@https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz':
     dependencies:
       effect: 4.0.3
 
-  '@overeng/meters@https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
+  '@overeng/meters@https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)':
     dependencies:
       effect: 4.0.3
       react: 19.2.8
       react-dom: 19.2.8(react@19.2.8)
 
-  '@overeng/otel-contract@https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))':
+  '@overeng/otel-contract@https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))':
     dependencies:
-      '@overeng/content-address': https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@overeng/content-address': https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz(redis@6.2.1(@opentelemetry/api@1.9.1))
       effect: 4.0.3
     transitivePeerDependencies:
       - bufferutil
       - redis
       - utf-8-validate
 
-  '@overeng/stylex-tokens@https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)':
+  '@overeng/stylex-tokens@https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz(@stylexjs/stylex@0.19.0)':
     dependencies:
       '@stylexjs/stylex': 0.19.0
 
-  '@overeng/tui-core@https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz': {}
+  '@overeng/tui-core@https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz': {}
 
-  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz(2bec1e814c7e49d8af481bb756cff936)':
+  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz(1064832ed1acb0f9f9c137d278b22db1)':
     dependencies:
       '@effect/atom-react': 4.0.3(effect@4.0.3)(react@19.2.8)(scheduler@0.27.0)
-      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node': 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@effect/vitest': 4.0.3(effect@4.0.3)(vitest@5.0.3)
       '@opentui/core': 0.5.11(typescript@7.0.2)(web-tree-sitter@0.25.10)
       '@opentui/react': 0.5.11(react-devtools-core@7.0.1)(react@19.2.8)(typescript@7.0.2)(web-tree-sitter@0.25.10)(ws@8.22.0)
-      '@overeng/tui-core': https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz
-      '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
-      '@playwright/test': 1.63.0
+      '@overeng/tui-core': https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
+      '@overeng/utils': https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@playwright/test': 1.64.1
       '@storybook/react': 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)
       '@types/react': 19.2.18
       '@types/react-reconciler': 0.33.0(@types/react@19.2.18)
@@ -7344,7 +7092,7 @@ snapshots:
       react-dom: 19.2.8(react@19.2.8)
       react-reconciler: 0.33.0(react@19.2.8)
       string-width: 8.2.2
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       yoga-layout: 3.2.1
     transitivePeerDependencies:
       - '@edge-runtime/vm'
@@ -7381,40 +7129,40 @@ snapshots:
       - vite
       - webpack
 
-  '@overeng/utils-dev@https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)':
+  '@overeng/utils-dev@https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@effect/vitest@4.0.3(effect@4.0.3)(vitest@5.0.3))(effect@4.0.3)(vitest@5.0.3)':
     dependencies:
-      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node': 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@effect/vitest': 4.0.3(effect@4.0.3)(vitest@5.0.3)
       effect: 4.0.3
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
-  '@overeng/utils-storybook@https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
+  '@overeng/utils-storybook@https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz(@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))(@vitest/browser-playwright@5.0.3)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
     dependencies:
       '@blazediff/core': 1.10.0
-      '@storybook/react-vite': 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@storybook/react-vite': 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       pngjs: 7.0.0
       storybook: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
     optionalDependencies:
-      '@vitest/browser-playwright': 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@vitest/browser-playwright': 5.0.3(playwright@1.64.1)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
-  ? '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))'
+  ? '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))'
   : dependencies:
-      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.216.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node': 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@effect/vitest': 4.0.3(effect@4.0.3)(vitest@5.0.3)
       '@noble/hashes': 2.4.0
       '@opentelemetry/api': 1.9.1
       '@overeng/effect-distributed-lock': https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz(effect@4.0.3)
-      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
-      '@playwright/test': 1.63.0
-      '@stylexjs/unplugin': 0.19.0(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))
+      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@playwright/test': 1.64.1
+      '@stylexjs/unplugin': 0.19.0(unplugin@3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))
       effect: 4.0.3
       postcss: 8.5.26
-      unplugin: 3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      unplugin: 3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@farmfe/core'
@@ -7441,21 +7189,21 @@ snapshots:
       - vite
       - webpack
 
-  ? '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.63.0)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.28.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))'
+  ? '@overeng/utils@https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz(@effect/opentelemetry@4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3))(@effect/platform-node@4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.0.3)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))'
   : dependencies:
-      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
+      '@effect/opentelemetry': 4.0.3(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.0.3)
       '@effect/platform-node': 4.0.3(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
       '@effect/vitest': 4.0.3(effect@4.0.3)(vitest@5.0.3)
       '@noble/hashes': 2.4.0
       '@opentelemetry/api': 1.9.1
       '@overeng/effect-distributed-lock': https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz(effect@4.0.3)
-      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
-      '@playwright/test': 1.63.0
-      '@stylexjs/unplugin': 0.19.0(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))
+      '@overeng/otel-contract': https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz(effect@4.0.3)(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@playwright/test': 1.64.1
+      '@stylexjs/unplugin': 0.19.0(unplugin@3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))
       effect: 4.0.3
       postcss: 8.5.26
-      unplugin: 3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      unplugin: 3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@farmfe/core'
@@ -7776,9 +7524,9 @@ snapshots:
       - '@shikijs/themes'
       - shiki
 
-  '@playwright/test@1.63.0':
+  '@playwright/test@1.64.1':
     dependencies:
-      playwright: 1.63.0
+      playwright: 1.64.1
 
   '@polka/url@1.0.0-next.29': {}
 
@@ -8106,11 +7854,11 @@ snapshots:
       axe-core: 4.13.0
       storybook: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
 
-  '@storybook/builder-vite@10.6.0(patch_hash=3ea63b6347343243dbebc21be698afb9635d47f3fd2a5c2bb7b10c002250dad5)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))':
+  '@storybook/builder-vite@10.6.0(patch_hash=3ea63b6347343243dbebc21be698afb9635d47f3fd2a5c2bb7b10c002250dad5)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))':
     dependencies:
       storybook: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       ts-dedent: 2.2.0
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
 
   '@storybook/global@5.0.0': {}
 
@@ -8128,11 +7876,11 @@ snapshots:
       '@types/react': 19.2.18
       '@types/react-dom': 19.2.7(@types/react@19.2.18)
 
-  '@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))':
+  '@storybook/react-vite@10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))':
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.7.0(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.7.0(typescript@7.0.2)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@rollup/pluginutils': 5.3.0
-      '@storybook/builder-vite': 10.6.0(patch_hash=3ea63b6347343243dbebc21be698afb9635d47f3fd2a5c2bb7b10c002250dad5)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@storybook/builder-vite': 10.6.0(patch_hash=3ea63b6347343243dbebc21be698afb9635d47f3fd2a5c2bb7b10c002250dad5)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@storybook/react': 10.6.0(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(storybook@10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(typescript@7.0.2)
       empathic: 2.0.0
       magic-string: 1.3.1
@@ -8142,7 +7890,7 @@ snapshots:
       resolve: 1.22.12
       storybook: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       tsconfig-paths: 4.2.0
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
     optionalDependencies:
       typescript: 7.0.2
     transitivePeerDependencies:
@@ -8188,7 +7936,7 @@ snapshots:
       invariant: 2.2.4
       styleq: 0.2.1
 
-  '@stylexjs/unplugin@0.19.0(unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))':
+  '@stylexjs/unplugin@0.19.0(unplugin@3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)))':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-syntax-flow': 7.29.7(@babel/core@7.29.0)
@@ -8197,7 +7945,7 @@ snapshots:
       '@stylexjs/babel-plugin': 0.19.0(patch_hash=f6a2b5a89698e9f14621ed294e9914bf5a007eefdd95c7b162d88f8264d41cca)
       browserslist: 4.28.2
       lightningcss: 1.33.0
-      unplugin: 3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      unplugin: 3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - supports-color
 
@@ -8619,35 +8367,35 @@ snapshots:
 
   '@ver0/deep-equal@2.0.1': {}
 
-  '@vitejs/plugin-react@6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))':
+  '@vitejs/plugin-react@6.1.1(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
 
-  '@vitest/browser-playwright@5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
+  '@vitest/browser-playwright@5.0.3(playwright@1.64.1)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
     dependencies:
-      '@vitest/browser': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
-      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
-      playwright: 1.63.0
+      '@vitest/browser': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
+      playwright: 1.64.1
       tinyrainbow: 3.2.0
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - bufferutil
       - msw
       - utf-8-validate
       - vite
 
-  '@vitest/browser@5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
+  '@vitest/browser@5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)':
     dependencies:
       '@blazediff/core': 1.10.0
-      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       '@vitest/ui': 5.0.3(vitest@5.0.3)
       '@vitest/utils': 5.0.3
       magic-string: 1.3.1
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       ws: 8.22.0
     transitivePeerDependencies:
       - bufferutil
@@ -8663,14 +8411,14 @@ snapshots:
       chai: 5.3.3
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))':
+  '@vitest/mocker@5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@vitest/spy': 5.0.3
       estree-walker: 3.0.3
       magic-string: 1.3.1
     optionalDependencies:
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
 
   '@vitest/pretty-format@3.2.4':
     dependencies:
@@ -8694,7 +8442,7 @@ snapshots:
       pathe: 2.0.3
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      vitest: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
 
   '@vitest/utils@3.2.4':
     dependencies:
@@ -9272,36 +9020,6 @@ snapshots:
       '@esbuild/win32-arm64': 0.27.1
       '@esbuild/win32-ia32': 0.27.1
       '@esbuild/win32-x64': 0.27.1
-
-  esbuild@0.28.1:
-    optionalDependencies:
-      '@esbuild/aix-ppc64': 0.28.1
-      '@esbuild/android-arm': 0.28.1
-      '@esbuild/android-arm64': 0.28.1
-      '@esbuild/android-x64': 0.28.1
-      '@esbuild/darwin-arm64': 0.28.1
-      '@esbuild/darwin-x64': 0.28.1
-      '@esbuild/freebsd-arm64': 0.28.1
-      '@esbuild/freebsd-x64': 0.28.1
-      '@esbuild/linux-arm': 0.28.1
-      '@esbuild/linux-arm64': 0.28.1
-      '@esbuild/linux-ia32': 0.28.1
-      '@esbuild/linux-loong64': 0.28.1
-      '@esbuild/linux-mips64el': 0.28.1
-      '@esbuild/linux-ppc64': 0.28.1
-      '@esbuild/linux-riscv64': 0.28.1
-      '@esbuild/linux-s390x': 0.28.1
-      '@esbuild/linux-x64': 0.28.1
-      '@esbuild/netbsd-arm64': 0.28.1
-      '@esbuild/netbsd-x64': 0.28.1
-      '@esbuild/openbsd-arm64': 0.28.1
-      '@esbuild/openbsd-x64': 0.28.1
-      '@esbuild/openharmony-arm64': 0.28.1
-      '@esbuild/sunos-x64': 0.28.1
-      '@esbuild/win32-arm64': 0.28.1
-      '@esbuild/win32-ia32': 0.28.1
-      '@esbuild/win32-x64': 0.28.1
-    optional: true
 
   escalade@3.2.0: {}
 
@@ -10431,11 +10149,11 @@ snapshots:
 
   picomatch@4.0.7: {}
 
-  playwright-core@1.63.0: {}
+  playwright-core@1.64.1: {}
 
-  playwright@1.63.0:
+  playwright@1.64.1:
     dependencies:
-      playwright-core: 1.63.0
+      playwright-core: 1.64.1
 
   pngjs@7.0.0: {}
 
@@ -11309,15 +11027,15 @@ snapshots:
       unist-util-is: 6.0.1
       unist-util-visit-parents: 6.0.2
 
-  unplugin@3.3.0(esbuild@0.28.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)):
+  unplugin@3.3.0(esbuild@0.27.1)(rolldown@1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98))(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       picomatch: 4.0.7
       webpack-virtual-modules: 0.6.2
     optionalDependencies:
-      esbuild: 0.28.1
+      esbuild: 0.27.1
       rolldown: 1.2.7(patch_hash=b166647c336eef0501fe44d8cb77f27eee31b3bcd15f3738d9b64693a8800a98)
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
 
   update-browserslist-db@1.2.3(browserslist@4.28.2):
     dependencies:
@@ -11374,7 +11092,7 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3):
+  vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3):
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
@@ -11383,15 +11101,15 @@ snapshots:
       tinyglobby: 0.2.17
     optionalDependencies:
       '@types/node': 26.5.0
-      esbuild: 0.28.1
+      esbuild: 0.27.1
       fsevents: 2.3.3
       jiti: 2.7.0
       yaml: 2.8.3
 
-  vitest@5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)):
+  vitest@5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)):
     dependencies:
       '@types/chai': 5.2.3
-      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))
+      '@vitest/mocker': 5.0.3(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
       chai: 6.2.2
       es-module-lexer: 2.3.2
       expect-type: 1.4.0
@@ -11402,12 +11120,12 @@ snapshots:
       tinybench: 6.2.0
       tinyexec: 1.3.1
       tinyglobby: 0.2.17
-      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)
+      vite: 8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3)
       why-is-node-running: 3.2.1
     optionalDependencies:
       '@opentelemetry/api': 1.9.1
       '@types/node': 26.5.0
-      '@vitest/browser-playwright': 5.0.3(playwright@1.63.0)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
+      '@vitest/browser-playwright': 5.0.3(playwright@1.64.1)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))(vitest@5.0.3)
       '@vitest/ui': 5.0.3(vitest@5.0.3)
     transitivePeerDependencies:
       - msw

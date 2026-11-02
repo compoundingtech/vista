@@ -32,7 +32,7 @@ export default defineConfig({
     exclude: ['**/node_modules/**', '**/dist/**', '**/*.pw.test.ts'],
     server: {
       deps: {
-        inline: ['@vista/ui', 'react-aria-components'],
+        inline: ['@vista/ui', 'react-aria-components', '@effect/vitest'],
       },
     },
   },
