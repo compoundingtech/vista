@@ -13,7 +13,7 @@ export default defineConfig({
     exclude: ['**/node_modules/**', '**/dist/**'],
     server: {
       deps: {
-        inline: ['@vista/ui'],
+        inline: ['@vista/ui', '@effect/vitest'],
       },
     },
   },
