@@ -3,7 +3,7 @@
 
 # Generated file - DO NOT EDIT
 # Source: pnpm-lock.yaml
-# Store fingerprint: sha256:6ca4c2ed7c24c8355332d3df474f9225b5354d382c0f0c7055d1c821c916b30e
+# Store fingerprint: sha256:3e49dda24951c174788851dc5ba3139dd21118117a702ad78f685f58a5024b3d
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs")
 
@@ -36600,6 +36600,8 @@ pnpm_store_view(
         "@grafana/schema": "@grafana+schema@13.2.3",
         "@grafana/ui": "@grafana+ui@13.2.3_@babel+runtime@8.0.5_@codemirror+lint@6.9.7_@codemirror+search@6.7.2_@codemirror+the_45aac44951e39fc2",
         "@opentelemetry/api": "@opentelemetry+api@1.9.1",
+        "@types/lodash": "@types+lodash@4.17.20",
+        "@types/node": "@types+node@26.5.0",
         "@types/react": "@types+react@19.2.18",
         "@types/react-dom": "@types+react-dom@19.2.7_@types+react@19.2.18",
         "@vitejs/plugin-react": "@vitejs+plugin-react@6.1.1_vite@8.2.2_@types+node@26.5.0_esbuild@0.27.1_jiti@2.7.0_yaml@2.8.3",
@@ -38549,6 +38551,8 @@ pnpm_store_view(
         "@grafana/schema": "@grafana+schema@13.2.3",
         "@grafana/ui": "@grafana+ui@13.2.3_@babel+runtime@8.0.5_@codemirror+lint@6.9.7_@codemirror+search@6.7.2_@codemirror+the_45aac44951e39fc2",
         "@opentelemetry/api": "@opentelemetry+api@1.9.1",
+        "@types/lodash": "@types+lodash@4.17.20",
+        "@types/node": "@types+node@26.5.0",
         "@types/react": "@types+react@19.2.18",
         "@types/react-dom": "@types+react-dom@19.2.7_@types+react@19.2.18",
         "@vitejs/plugin-react": "@vitejs+plugin-react@6.1.1_vite@8.2.2_@types+node@26.5.0_esbuild@0.27.1_jiti@2.7.0_yaml@2.8.3",
@@ -40498,6 +40502,8 @@ pnpm_store_view(
         "@grafana/schema": "@grafana+schema@13.2.3",
         "@grafana/ui": "@grafana+ui@13.2.3_@babel+runtime@8.0.5_@codemirror+lint@6.9.7_@codemirror+search@6.7.2_@codemirror+the_45aac44951e39fc2",
         "@opentelemetry/api": "@opentelemetry+api@1.9.1",
+        "@types/lodash": "@types+lodash@4.17.20",
+        "@types/node": "@types+node@26.5.0",
         "@types/react": "@types+react@19.2.18",
         "@types/react-dom": "@types+react-dom@19.2.7_@types+react@19.2.18",
         "@vitejs/plugin-react": "@vitejs+plugin-react@6.1.1_vite@8.2.2_@types+node@26.5.0_esbuild@0.27.1_jiti@2.7.0_yaml@2.8.3",
