@@ -125,8 +125,12 @@ describe('Vista runtime import policy Vite enforcement', () => {
     const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)
     expect(draft).toBeDefined()
     const importer = join(allowedSource, 'app.tsx')
-    const react = await draft!.pluginContainer.resolveId('react', importer)
-    const subpath = await draft!.pluginContainer.resolveId('@pierre/diffs/react', importer)
+    // Inspect source resolution rather than an optimizer output that may still
+    // be bundling after this now-successful cold request.
+    const react = await draft!.pluginContainer.resolveId('react', importer, { scan: true })
+    const subpath = await draft!.pluginContainer.resolveId('@pierre/diffs/react', importer, {
+      scan: true,
+    })
     expect(react).not.toBeNull()
     expect(subpath).not.toBeNull()
 
@@ -146,7 +150,10 @@ describe('Vista runtime import policy Vite enforcement', () => {
     expect(draft.config.root).toBe(
       appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
     )
-    expect(draft.config.optimizeDeps.include).toEqual([...vistaRuntimePolicy().optimizeInclude])
+    // Vite and the React plugin append duplicate includes during startup.
+    expect(new Set(draft.config.optimizeDeps.include)).toEqual(
+      new Set(vistaRuntimePolicy().optimizeInclude),
+    )
     // This is the same built-in resolver Vite uses for manual seeds: it does
     // not run the draft's runtime-policy/dependency-anchor resolveId plugins.
     const resolveSeed = createIdResolver(draft.config, { asSrc: false, scan: true })
