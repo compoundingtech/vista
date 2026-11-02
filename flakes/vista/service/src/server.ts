@@ -87,7 +87,6 @@ import {
   validateVistaAppSource,
 } from './runtime-policy/index.ts'
 import {
-  enforceVistaDraftRequestPolicy,
   vistaDependencyAnchorResolver,
   vistaRuntimeImportPolicy,
 } from './runtime-policy/vite-plugin.ts'
@@ -1221,7 +1220,6 @@ const serveReview = async (
     }
     if (isBootstrapPath(rest)) establishViewerIdentity(req, res)
     if (path === `${routeBase}/draft`) return redirect(res, `${routeBase}/draft/`)
-    enforceVistaDraftRequestPolicy(appSource, rest)
     const draft = await ensureDraft(state, owner, slug, appSource, httpServer)
     return serveDraftMiddleware(draft.middlewares, req, res)
   }

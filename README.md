@@ -45,11 +45,10 @@ response is finished without another header/body write, and a disconnected
 response is left alone. The response-lifecycle regression tests run in
 `devenv tasks run test:vista-service`.
 
-Draft Vite servers keep their owner-scoped source root. Optimizer seeds use
-exact-match, policy-checked aliases to the shared service dependency anchor:
-Vite's manual seed resolver does not run ordinary resolver plugins. Seeds and
-client imports therefore resolve against the same dependency closure without
-adding `node_modules` to authored sources or aliasing unrelated package subpaths.
-Private transitive seeds are allowed only by Vite's trusted internal scan resolver,
-not merely by a missing importer. Authored imports and raw browser seed requests
-remain policy-checked, including before Vite can reuse a cached optimized alias.
+Draft Vite servers keep their owner-scoped source root. Policy-public optimizer
+seeds use exact-match, policy-checked aliases to the shared service dependency
+anchor because Vite's manual seed resolver bypasses ordinary resolver plugins.
+Private seeds remain unchanged and unaliased: Vite's optimized pre-alias shortcut
+must not grant authored imports access to private dependencies. Their existing
+manual-resolution warnings and possible cold-discovery reloads remain a known
+limitation. No `node_modules` is added to authored sources.

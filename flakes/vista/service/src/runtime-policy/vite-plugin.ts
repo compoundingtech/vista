@@ -4,7 +4,7 @@ import { join, relative, resolve } from 'node:path'
 import { createIdResolver, type Environment, type Plugin, type ResolverFunction } from 'vite'
 
 import { appsDir } from '../paths.ts'
-import { isVistaProviderModuleSpecifier } from './import-classifier.ts'
+import { classifyVistaClientImport, isVistaProviderModuleSpecifier } from './import-classifier.ts'
 import { importPolicyProblem, runtimePolicyImportError } from './import-diagnostics.ts'
 import { importRoot, vistaRuntimePolicy } from './project.ts'
 
@@ -16,7 +16,12 @@ const isInsideDir = (dir: string, path: string): boolean => {
 const isAppAuthoredImporter = (root: string, importer: string | undefined): importer is string =>
   importer !== undefined && isInsideDir(root, importer)
 
-const isServiceGeneratedHtmlImporter = (root: string, importer: string | undefined): boolean =>
+const isServiceGeneratedStylexRuntime = (
+  root: string,
+  source: string,
+  importer: string | undefined,
+): boolean =>
+  source === 'virtual:stylex:runtime' &&
   importer !== undefined &&
   resolve(importer) === resolve(root, 'index.html') &&
   !existsSync(importer)
@@ -31,7 +36,7 @@ const enforceRuntimeImportPolicy = (
   source: string,
   importer: string | undefined,
 ): void => {
-  if (source === 'virtual:stylex:runtime' && isServiceGeneratedHtmlImporter(root, importer)) return
+  if (isServiceGeneratedStylexRuntime(root, source, importer)) return
   // Provider implementations are loaded by the SSR registry, never traversed
   // as client modules. Their own Node/service imports are valid.
   if (importer !== undefined && isVistaProviderModuleSpecifier(importer.split('?', 1)[0]!)) return
@@ -51,17 +56,6 @@ export const vistaRuntimeImportPolicy = (root = appsDir()): Plugin => ({
   },
 })
 
-/** Enforce raw browser seed requests before Vite can return a cached pre-alias result. */
-export const enforceVistaDraftRequestPolicy = (root: string, path: string): void => {
-  if (!path.startsWith('/@id/')) return
-  const source = decodeURIComponent(path.slice('/@id/'.length)).split('?', 1)[0]!
-  if (!vistaRuntimePolicy().optimizeInclude.includes(source)) return
-  const problem = importPolicyProblem({ root, importer: join(root, 'index.html'), source })
-  if (!problem.diagnostic.allowed) {
-    throw runtimePolicyImportError({ root, problems: [problem] })
-  }
-}
-
 type DependencyEnvironment = Pick<Environment, 'name' | 'getTopLevelConfig' | 'config' | 'logger'>
 type DependencyResolve = (
   environment: DependencyEnvironment,
@@ -80,6 +74,8 @@ export const vistaDependencyAnchorResolver = (
   draft?: { root: string; include: readonly string[] },
 ): Plugin => {
   let resolveFromAnchor: DependencyResolve | undefined
+  const publicSeeds =
+    draft?.include.filter((source) => classifyVistaClientImport(source)._tag === 'provided') ?? []
   const anchorEnvironments = new WeakMap<DependencyEnvironment, DependencyEnvironment>()
   const seedEntries = new Map<string, ReadonlyMap<string, string>>()
   const anchorImporter = join(dependencyAnchor, 'package.json')
@@ -105,14 +101,8 @@ export const vistaDependencyAnchorResolver = (
     }
     return resolveFromAnchor?.(anchored, source, anchorImporter)
   }
-  const resolveSeed: ResolverFunction = function (source, importer, options) {
-    // Only Vite's internal scan resolver grants seed-only dependency access.
-    // Browser transform requests never set scan, even without an importer.
-    const isOptimizerSeed =
-      'scan' in options &&
-      options.scan === true &&
-      isServiceGeneratedHtmlImporter(draft!.root, importer)
-    if (!isOptimizerSeed) enforceRuntimeImportPolicy(draft!.root, source, importer)
+  const resolveSeed: ResolverFunction = function (source, importer) {
+    enforceRuntimeImportPolicy(draft!.root, source, importer)
     return seedEntries.get(this.environment.name)?.get(source) ?? null
   }
 
@@ -126,7 +116,7 @@ export const vistaDependencyAnchorResolver = (
           // Vite's manual include resolver runs only aliases and its built-in
           // resolver, not resolveId plugins. Keep seed ids unchanged so imports
           // share optimizer metadata; match exactly, never alias package subpaths.
-          alias: draft.include.map((source) => ({
+          alias: publicSeeds.map((source) => ({
             find: new RegExp(`^${source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`),
             replacement: source,
             customResolver: resolveSeed,
@@ -142,7 +132,7 @@ export const vistaDependencyAnchorResolver = (
         // Vite's alias ResolverFunction is synchronous. Resolve asynchronously
         // during environment initialization, before optimizer/import resolution.
         const entries = new Map<string, string>()
-        for (const source of draft.include) {
+        for (const source of publicSeeds) {
           const resolved = await resolveAnchored(environment, source)
           if (resolved !== undefined) entries.set(source, resolved)
         }

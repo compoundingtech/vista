@@ -1,9 +1,9 @@
 import type { ChangelogEntrySource } from '../changelog/contract.ts'
 
 export const entry = {
-  title: 'Resolve draft optimizer seeds from the service dependency closure',
+  title: 'Resolve public draft optimizer seeds from the service dependency closure',
   summary:
-    'Keep owner-scoped draft roots while resolving dependency seeds and client imports through the same policy-checked service anchor, without modifying authored sources.',
+    'Anchor policy-public draft dependency seeds without changing owner-scoped sources or private-seed behavior. Private dependencies remain unaliased to preserve authored import policy.',
   contributors: [
     {
       agentId: 'agent/compoundingtech/vista',

@@ -1,11 +1,11 @@
 import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { dirname, join } from 'node:path'
+import { join } from 'node:path'
 
-import { createIdResolver, createServer } from 'vite'
+import { createIdResolver } from 'vite'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
-import { appSourcePath, depsNodeModules } from './paths.ts'
+import { appSourcePath, blocksDir, depsNodeModules } from './paths.ts'
 import { encodeRouteOwner } from './control.ts'
 import type { ServiceState } from './server.ts'
 import { freePort } from './test-support.ts'
@@ -77,7 +77,7 @@ describe('Vista runtime import policy Vite enforcement', () => {
     }
   })
 
-  it('allows the generated HTML runtime import but rejects it in authored modules', async () => {
+  it('allows only the service-generated StyleX runtime import', async () => {
     const { vistaRuntimeImportPolicy } = await import('./runtime-policy/vite-plugin.ts')
     const plugin = vistaRuntimeImportPolicy(appSource)
     const resolveId = plugin.resolveId
@@ -139,14 +139,14 @@ describe('Vista runtime import policy Vite enforcement', () => {
     expect(subpath!.id).not.toContain(allowedSource)
   })
 
-  it('resolves every declared seed through Vite’s alias-only manual include path', async () => {
+  it('anchors only public seeds while preserving all declared includes and successful draft initialization', async () => {
     const response = await fetch(
       `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/allowed-imports/draft/app.tsx`,
     )
     expect(response.status).toBe(200)
     const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)!
     // Load after beforeAll sets the isolated source/cache environment.
-    const { vistaRuntimePolicy } = await import('./runtime-policy/index.ts')
+    const { classifyVistaClientImport, vistaRuntimePolicy } = await import('./runtime-policy/index.ts')
     expect(draft.config.root).toBe(
       appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
     )
@@ -157,10 +157,23 @@ describe('Vista runtime import policy Vite enforcement', () => {
     // This is the same built-in resolver Vite uses for manual seeds: it does
     // not run the draft's runtime-policy/dependency-anchor resolveId plugins.
     const resolveSeed = createIdResolver(draft.config, { asSrc: false, scan: true })
-    for (const seed of draft.config.optimizeDeps.include!) {
-      const alias = draft.config.resolve.alias.find(
-        (entry) => entry.find instanceof RegExp && entry.find.test(seed),
+    const seeds = [...new Set(draft.config.optimizeDeps.include)]
+    const publicSeeds = seeds.filter((seed) => classifyVistaClientImport(seed)._tag === 'provided')
+    const seedAliases = draft.config.resolve.alias.filter(
+      (entry) => entry.customResolver !== undefined,
+    )
+    expect(seedAliases).toHaveLength(publicSeeds.length)
+    for (const seed of seeds) {
+      const matchingAliases = draft.config.resolve.alias.filter((entry) =>
+        entry.find instanceof RegExp
+          ? entry.find.test(seed)
+          : entry.find === seed || seed.startsWith(`${entry.find}/`),
       )
+      if (!publicSeeds.includes(seed)) {
+        expect(matchingAliases, seed).toEqual([])
+        continue
+      }
+      const alias = matchingAliases.find((entry) => entry.find instanceof RegExp)
       expect(alias, seed).toBeDefined()
       expect(alias!.find instanceof RegExp && alias!.find.test(`${seed}/unseeded`)).toBe(false)
       const resolved = await resolveSeed(draft.environments.client!, seed)
@@ -169,63 +182,20 @@ describe('Vista runtime import policy Vite enforcement', () => {
     }
   })
 
-  it('enforces the same policy even when a blocked import has a seed alias', async () => {
-    // Load after beforeAll sets the isolated source/cache environment.
-    const { vistaDependencyAnchorResolver } = await import('./runtime-policy/vite-plugin.ts')
-    const vite = await createServer({
-      configFile: false,
-      root: appSource,
-      appType: 'custom',
-      plugins: [
-        vistaDependencyAnchorResolver(dirname(depsNodeModules()), {
-          root: appSource,
-          include: ['lodash', '@overeng/meters'],
-        }),
-      ],
-      optimizeDeps: { noDiscovery: true },
-      server: { middlewareMode: true, watch: null },
+  it('rejects an authored private import after kit-origin optimizer discovery', async () => {
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)!
+    const source = '@overeng/meters'
+    // The kit may discover private dependencies without making them public.
+    const kitImporter = join(blocksDir(), 'src/RpcExplorerPanel.tsx')
+    expect(await draft.pluginContainer.resolveId(source, kitImporter)).not.toBeNull()
+    const importer = join(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
+      'app.tsx',
+    )
+    await expect(draft.pluginContainer.resolveId(source, importer)).rejects.toMatchObject({
+      _tag: 'Vista.RuntimePolicyError',
+      importProblems: [expect.objectContaining({ source })],
     })
-    const htmlImporter = join(appSource, 'index.html')
-    try {
-      // Only the trusted internal scan resolver may resolve private seeds.
-      const resolveSeed = createIdResolver(vite.config, { asSrc: false, scan: true })
-      expect(
-        await resolveSeed(vite.environments.client!, '@overeng/meters'),
-      ).toBeDefined()
-      await expect(
-        vite.pluginContainer.resolveId('@overeng/meters'),
-      ).rejects.toMatchObject({ _tag: 'Vista.RuntimePolicyError' })
-      for (const source of ['lodash', '@overeng/meters']) {
-        await expect(
-          vite.pluginContainer.resolveId(source, join(appSource, 'app.tsx')),
-        ).rejects.toMatchObject({
-          _tag: 'Vista.RuntimePolicyError',
-          importProblems: [expect.objectContaining({ source })],
-        })
-      }
-      // A real authored HTML document is not the service-generated importer.
-      writeFileSync(htmlImporter, '<!doctype html>')
-      await expect(
-        vite.pluginContainer.resolveId('@overeng/meters', htmlImporter),
-      ).rejects.toMatchObject({
-        _tag: 'Vista.RuntimePolicyError',
-        importProblems: [expect.objectContaining({ source: '@overeng/meters' })],
-      })
-    } finally {
-      rmSync(htmlImporter, { force: true })
-      await vite.close()
-    }
-  })
-
-  it('rejects browser requests for private seeds even without an importer or with a forged scan query', async () => {
-    const base = `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/allowed-imports/draft`
-    // Initialize the real draft/optimizer before probing the request boundary.
-    expect((await fetch(`${base}/app.tsx`)).status).toBe(200)
-    for (const query of ['?import', '?import&scan=true']) {
-      const response = await fetch(`${base}/@id/@overeng/meters${query}`)
-      expect(response.status).toBe(400)
-      expect(await response.text()).toContain('index.html imports @overeng/meters')
-    }
   })
 
   it('rejects app-authored imports outside the projected runtime policy', async () => {
