@@ -125,16 +125,17 @@ describe('Vista runtime import policy Vite enforcement', () => {
     const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)
     expect(draft).toBeDefined()
     const importer = join(allowedSource, 'app.tsx')
-    // Inspect source resolution rather than an optimizer output that may still
-    // be bundling after this now-successful cold request.
-    const react = await draft!.pluginContainer.resolveId('react', importer, { scan: true })
-    const subpath = await draft!.pluginContainer.resolveId('@pierre/diffs/react', importer, {
-      scan: true,
-    })
+    const react = await draft!.pluginContainer.resolveId('react', importer)
+    const subpath = await draft!.pluginContainer.resolveId('@pierre/diffs/react', importer)
     expect(react).not.toBeNull()
     expect(subpath).not.toBeNull()
 
-    const reactId = react!.id.split('?', 1)[0]!
+    // The public resolver API can inspect the source entry without depending on
+    // an optimizer output that may still be bundling after the cold request.
+    const resolveSource = createIdResolver(draft!.config, { asSrc: false, scan: true })
+    const reactSource = await resolveSource(draft!.environments.client!, 'react', importer)
+    expect(reactSource).toBeDefined()
+    const reactId = reactSource!.split('?', 1)[0]!
     expect(realpathSync(reactId)).toBe(realpathSync(join(depsNodeModules(), 'react', 'index.js')))
     expect(subpath!.id).not.toContain(allowedSource)
   })
