@@ -551,13 +551,28 @@ export default function VistaApp() {
       const requireFromWorkspace = createRequire(join(workspace, 'package.json'))
       const { chromium } = requireFromWorkspace('@playwright/test')
       browser = await chromium.launch({ headless: true })
+      let page
+      let diagnosticContainer = '#root'
+      const browserDiagnostics = []
       try {
-        const page = await browser.newPage()
+        page = await browser.newPage()
         const browserErrors = []
         page.on('console', (message) => {
+          browserDiagnostics.push(`console ${message.type()}: ${message.text()}`)
           if (message.type() === 'error') browserErrors.push(`console: ${message.text()}`)
         })
         page.on('pageerror', (error) => browserErrors.push(`pageerror: ${String(error)}`))
+        page.on('pageerror', (error) => browserDiagnostics.push(`pageerror: ${String(error)}`))
+        page.on('requestfailed', (request) =>
+          browserDiagnostics.push(
+            `requestfailed: ${request.url()} ${request.failure()?.errorText ?? '<unknown>'}`,
+          ),
+        )
+        page.on('response', (response) => {
+          if (response.status() >= 400) {
+            browserDiagnostics.push(`response: ${response.status()} ${response.url()}`)
+          }
+        })
         await step('browser: immutable semantic publication survives source removal', async () => {
           browserErrors.length = 0
           const initial = await page.goto(immutableProof.url, { waitUntil: 'networkidle' })
@@ -659,6 +674,12 @@ export default function VistaApp() {
         const reactError =
           /Invalid hook call|does not provide an export named|Failed to resolve import|Failed to fetch dynamically imported|Cannot read properties of null \(reading 'use|dispatcher is null|Should have a queue/
         const assertTelemetryRoute = async ({ kind, slug, mode }) => {
+          diagnosticContainer =
+            kind === 'metric'
+              ? '[data-testid="telemetry-island"]'
+              : kind === 'trace'
+                ? '[data-testid="telemetry-island-trace"]'
+                : '[data-testid="telemetry-island-flamegraph"]'
           const errors = []
           const onConsole = (message) => {
             if (message.type() === 'error' && reactError.test(message.text())) {
@@ -753,11 +774,31 @@ export default function VistaApp() {
         }
 
         await step('browser: pinned esm.sh runtime import', async () => {
+          diagnosticContainer = '#root'
           await page.goto(`${env.VISTA_URL}/r/${encodedSmokeOwner}/esm-sh-smoke/v1/`, {
             waitUntil: 'networkidle',
           })
           await page.getByText('esm.sh pinned ok').waitFor({ timeout: 45_000 })
         })
+      } catch (error) {
+        console.error(
+          `[vista packaged smoke] browser diagnostics (${currentStep}):\n${browserDiagnostics.join('\n') || '<none>'}`,
+        )
+        try {
+          const dom = await page.evaluate(
+            (selector) => ({
+              readyState: document.readyState,
+              location: location.href,
+              container: selector,
+              outerHTML: document.querySelector(selector)?.outerHTML.slice(0, 4096) ?? '<missing>',
+            }),
+            diagnosticContainer,
+          )
+          console.error(`[vista packaged smoke] final DOM: ${JSON.stringify(dom)}`)
+        } catch (diagnosticError) {
+          console.error(`[vista packaged smoke] final DOM unavailable: ${String(diagnosticError)}`)
+        }
+        throw error
       } finally {
         await browser.close()
         browser = undefined
