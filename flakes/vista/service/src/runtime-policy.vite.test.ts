@@ -187,9 +187,14 @@ describe('Vista runtime import policy Vite enforcement', () => {
     })
     const htmlImporter = join(appSource, 'index.html')
     try {
-      // Manual seeds have no authored importer. Vite supplies a synthetic
-      // index.html, so seed-only transitive packages must still resolve.
-      expect(await vite.pluginContainer.resolveId('@overeng/meters')).not.toBeNull()
+      // Only the trusted internal scan resolver may resolve private seeds.
+      const resolveSeed = createIdResolver(vite.config, { asSrc: false, scan: true })
+      expect(
+        await resolveSeed(vite.environments.client!, '@overeng/meters'),
+      ).toBeDefined()
+      await expect(
+        vite.pluginContainer.resolveId('@overeng/meters'),
+      ).rejects.toMatchObject({ _tag: 'Vista.RuntimePolicyError' })
       for (const source of ['lodash', '@overeng/meters']) {
         await expect(
           vite.pluginContainer.resolveId(source, join(appSource, 'app.tsx')),
@@ -209,6 +214,17 @@ describe('Vista runtime import policy Vite enforcement', () => {
     } finally {
       rmSync(htmlImporter, { force: true })
       await vite.close()
+    }
+  })
+
+  it('rejects browser requests for private seeds even without an importer or with a forged scan query', async () => {
+    const base = `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/allowed-imports/draft`
+    // Initialize the real draft/optimizer before probing the request boundary.
+    expect((await fetch(`${base}/app.tsx`)).status).toBe(200)
+    for (const query of ['?import', '?import&scan=true']) {
+      const response = await fetch(`${base}/@id/@overeng/meters${query}`)
+      expect(response.status).toBe(400)
+      expect(await response.text()).toContain('index.html imports @overeng/meters')
     }
   })
 

@@ -23,7 +23,7 @@ const isServiceGeneratedHtmlImporter = (root: string, importer: string | undefin
 
 /**
  * Enforces the runtime import policy at both ordinary and alias resolver boundaries.
- * Generated HTML imports, provider implementations, and non-authored importers
+ * Generated StyleX imports, provider implementations, and non-authored importers
  * retain the same exemptions at either boundary.
  */
 const enforceRuntimeImportPolicy = (
@@ -31,11 +31,7 @@ const enforceRuntimeImportPolicy = (
   source: string,
   importer: string | undefined,
 ): void => {
-  // Vite substitutes root/index.html when an internal resolver has no importer.
-  // This nonexistent document is service-generated, not authored AppSource:
-  // optimizer seeds may include private transitive dependencies. A real authored
-  // index.html is deliberately not exempt, nor is any app module.
-  if (isServiceGeneratedHtmlImporter(root, importer)) return
+  if (source === 'virtual:stylex:runtime' && isServiceGeneratedHtmlImporter(root, importer)) return
   // Provider implementations are loaded by the SSR registry, never traversed
   // as client modules. Their own Node/service imports are valid.
   if (importer !== undefined && isVistaProviderModuleSpecifier(importer.split('?', 1)[0]!)) return
@@ -54,6 +50,17 @@ export const vistaRuntimeImportPolicy = (root = appsDir()): Plugin => ({
     return null
   },
 })
+
+/** Enforce raw browser seed requests before Vite can return a cached pre-alias result. */
+export const enforceVistaDraftRequestPolicy = (root: string, path: string): void => {
+  if (!path.startsWith('/@id/')) return
+  const source = decodeURIComponent(path.slice('/@id/'.length)).split('?', 1)[0]!
+  if (!vistaRuntimePolicy().optimizeInclude.includes(source)) return
+  const problem = importPolicyProblem({ root, importer: join(root, 'index.html'), source })
+  if (!problem.diagnostic.allowed) {
+    throw runtimePolicyImportError({ root, problems: [problem] })
+  }
+}
 
 type DependencyEnvironment = Pick<Environment, 'name' | 'getTopLevelConfig' | 'config' | 'logger'>
 type DependencyResolve = (
@@ -98,8 +105,14 @@ export const vistaDependencyAnchorResolver = (
     }
     return resolveFromAnchor?.(anchored, source, anchorImporter)
   }
-  const resolveSeed: ResolverFunction = function (source, importer) {
-    enforceRuntimeImportPolicy(draft!.root, source, importer)
+  const resolveSeed: ResolverFunction = function (source, importer, options) {
+    // Only Vite's internal scan resolver grants seed-only dependency access.
+    // Browser transform requests never set scan, even without an importer.
+    const isOptimizerSeed =
+      'scan' in options &&
+      options.scan === true &&
+      isServiceGeneratedHtmlImporter(draft!.root, importer)
+    if (!isOptimizerSeed) enforceRuntimeImportPolicy(draft!.root, source, importer)
     return seedEntries.get(this.environment.name)?.get(source) ?? null
   }
 
