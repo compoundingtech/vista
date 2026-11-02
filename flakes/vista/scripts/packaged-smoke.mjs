@@ -592,7 +592,7 @@ export default function VistaApp() {
           browserErrors.length = 0
           await page.reload({ waitUntil: 'networkidle' })
           try {
-            await page.locator('.vista-shell').waitFor({ timeout: 45_000 })
+            await page.locator('[data-vista-shell-header]').waitFor({ timeout: 45_000 })
           } catch (error) {
             throw new Error(
               `AppShell did not render; browser errors:\n${browserErrors.join('\n') || '<none>'}`,
