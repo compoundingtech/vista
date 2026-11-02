@@ -44,3 +44,9 @@ boundary. A draft 404 is emitted only for uncommitted fallthrough; a committed
 response is finished without another header/body write, and a disconnected
 response is left alone. The response-lifecycle regression tests run in
 `devenv tasks run test:vista-service`.
+
+Draft Vite servers keep their owner-scoped source root. Optimizer seeds use
+exact-match, policy-checked aliases to the shared service dependency anchor:
+Vite's manual seed resolver does not run ordinary resolver plugins. Seeds and
+client imports therefore resolve against the same dependency closure without
+adding `node_modules` to authored sources or aliasing unrelated package subpaths.

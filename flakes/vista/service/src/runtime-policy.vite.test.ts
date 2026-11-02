@@ -2,6 +2,7 @@ import { mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 
+import { createIdResolver, createServer } from 'vite'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 import { appSourcePath, depsNodeModules } from './paths.ts'
@@ -132,6 +133,61 @@ describe('Vista runtime import policy Vite enforcement', () => {
     const reactId = react!.id.split('?', 1)[0]!
     expect(realpathSync(reactId)).toBe(realpathSync(join(depsNodeModules(), 'react', 'index.js')))
     expect(subpath!.id).not.toContain(allowedSource)
+  })
+
+  it('resolves every declared seed through Vite’s alias-only manual include path', async () => {
+    const response = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/allowed-imports/draft/app.tsx`,
+    )
+    expect(response.status).toBe(200)
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/allowed-imports`)!
+    // Load after beforeAll sets the isolated source/cache environment.
+    const { vistaRuntimePolicy } = await import('./runtime-policy/index.ts')
+    expect(draft.config.root).toBe(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'allowed-imports'),
+    )
+    expect(draft.config.optimizeDeps.include).toEqual([...vistaRuntimePolicy().optimizeInclude])
+    // This is the same built-in resolver Vite uses for manual seeds: it does
+    // not run the draft's runtime-policy/dependency-anchor resolveId plugins.
+    const resolveSeed = createIdResolver(draft.config, { asSrc: false, scan: true })
+    for (const seed of draft.config.optimizeDeps.include!) {
+      const alias = draft.config.resolve.alias.find(
+        (entry) => entry.find instanceof RegExp && entry.find.test(seed),
+      )
+      expect(alias, seed).toBeDefined()
+      expect(alias!.find instanceof RegExp && alias!.find.test(`${seed}/unseeded`)).toBe(false)
+      const resolved = await resolveSeed(draft.environments.client!, seed)
+      expect(resolved, seed).toBeDefined()
+      expect(resolved, seed).not.toContain(dir)
+    }
+  })
+
+  it('enforces the same policy even when a blocked import has a seed alias', async () => {
+    // Load after beforeAll sets the isolated source/cache environment.
+    const { vistaDependencyAnchorResolver } = await import('./runtime-policy/vite-plugin.ts')
+    const vite = await createServer({
+      configFile: false,
+      root: appSource,
+      appType: 'custom',
+      plugins: [
+        vistaDependencyAnchorResolver(dirname(depsNodeModules()), {
+          root: appSource,
+          include: ['lodash'],
+        }),
+      ],
+      optimizeDeps: { noDiscovery: true },
+      server: { middlewareMode: true, watch: null },
+    })
+    try {
+      await expect(
+        vite.pluginContainer.resolveId('lodash', join(appSource, 'app.tsx')),
+      ).rejects.toMatchObject({
+        _tag: 'Vista.RuntimePolicyError',
+        importProblems: [expect.objectContaining({ source: 'lodash' })],
+      })
+    } finally {
+      await vite.close()
+    }
   })
 
   it('rejects app-authored imports outside the projected runtime policy', async () => {

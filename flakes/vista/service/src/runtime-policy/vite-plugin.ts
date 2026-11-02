@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 
-import { createIdResolver, type Environment, type Plugin } from 'vite'
+import { createIdResolver, type Environment, type Plugin, type ResolverFunction } from 'vite'
 
 import { appsDir } from '../paths.ts'
 import { isVistaProviderModuleSpecifier } from './import-classifier.ts'
@@ -27,26 +27,32 @@ const isServiceGeneratedStylexRuntime = (
   !existsSync(importer)
 
 /**
- * Builds a Vite pre-enforcement plugin that enforces the runtime import policy during module
- * resolution, returning null (deferring to Vite) for generated Stylex runtime imports, provider
- * implementation modules, and non-app-authored importers while blocking policy-violating imports
- * elsewhere.
+ * Enforces the runtime import policy at both ordinary and alias resolver boundaries.
+ * Generated StyleX imports, provider implementations, and non-authored importers
+ * retain the same exemptions at either boundary.
  */
+const enforceRuntimeImportPolicy = (
+  root: string,
+  source: string,
+  importer: string | undefined,
+): void => {
+  if (isServiceGeneratedStylexRuntime(root, source, importer)) return
+  // Provider implementations are loaded by the SSR registry, never traversed
+  // as client modules. Their own Node/service imports are valid.
+  if (importer !== undefined && isVistaProviderModuleSpecifier(importer.split('?', 1)[0]!)) return
+  if (!isAppAuthoredImporter(root, importer)) return
+  const problem = importPolicyProblem({ root, importer, source })
+  if (!problem.diagnostic.allowed) {
+    throw runtimePolicyImportError({ root, problems: [problem] })
+  }
+}
+
 export const vistaRuntimeImportPolicy = (root = appsDir()): Plugin => ({
   name: 'vista-runtime-import-policy',
   enforce: 'pre',
   resolveId(source, importer) {
-    if (isServiceGeneratedStylexRuntime(root, source, importer)) return null
-    // Provider implementations are loaded by the SSR registry, never traversed
-    // as client modules. Their own Node/service imports are valid.
-    if (importer !== undefined && isVistaProviderModuleSpecifier(importer.split('?', 1)[0]!)) {
-      return null
-    }
-    if (!isAppAuthoredImporter(root, importer)) return null
-
-    const problem = importPolicyProblem({ root, importer, source })
-    if (problem.diagnostic.allowed) return null
-    throw runtimePolicyImportError({ root, problems: [problem] })
+    enforceRuntimeImportPolicy(root, source, importer)
+    return null
   },
 })
 
@@ -62,12 +68,58 @@ type DependencyResolve = (
  * at the dependency anchor directory, resolves dependency imports whose import root is listed
  * among the runtime policy's public import roots and defers all others.
  */
-export const vistaDependencyAnchorResolver = (dependencyAnchor: string): Plugin => {
+export const vistaDependencyAnchorResolver = (
+  dependencyAnchor: string,
+  draft?: { root: string; include: readonly string[] },
+): Plugin => {
   let resolveFromAnchor: DependencyResolve | undefined
+  const anchorEnvironments = new WeakMap<Environment, Environment>()
+  const anchorImporter = join(dependencyAnchor, 'package.json')
+  const resolveAnchored = (environment: Environment, source: string) => {
+    let anchored = anchorEnvironments.get(environment)
+    if (anchored === undefined) {
+      // The internal resolver must retain policy aliases but not recurse through
+      // the seed aliases that delegate back to it.
+      const config = {
+        ...environment.config,
+        resolve: {
+          ...environment.config.resolve,
+          alias: environment.config.resolve.alias.filter(
+            (alias) => alias.customResolver !== resolveSeed,
+          ),
+        },
+      }
+      anchored = new Proxy(environment, {
+        get: (target, property, receiver) =>
+          property === 'config' ? config : Reflect.get(target, property, receiver),
+      })
+      anchorEnvironments.set(environment, anchored)
+    }
+    return resolveFromAnchor?.(anchored, source, anchorImporter)
+  }
+  const resolveSeed: ResolverFunction = async function (source, importer) {
+    enforceRuntimeImportPolicy(draft!.root, source, importer)
+    return (await resolveAnchored(this.environment, source)) ?? null
+  }
 
   return {
     name: 'vista-dependency-anchor-resolver',
     enforce: 'pre',
+    config() {
+      if (draft === undefined) return
+      return {
+        resolve: {
+          // Vite's manual include resolver runs only aliases and its built-in
+          // resolver, not resolveId plugins. Keep seed ids unchanged so imports
+          // share optimizer metadata; match exactly, never alias package subpaths.
+          alias: draft.include.map((source) => ({
+            find: new RegExp(`^${source.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`),
+            replacement: source,
+            customResolver: resolveSeed,
+          })),
+        },
+      }
+    },
     configResolved(config) {
       resolveFromAnchor = createIdResolver(config, { root: dependencyAnchor })
     },
@@ -83,14 +135,14 @@ export const vistaDependencyAnchorResolver = (dependencyAnchor: string): Plugin 
       )
       if (isExactAlias) return null
 
-      const anchorImporter = join(dependencyAnchor, 'package.json')
+      // Prefer normal resolution, then the same dependency anchor used by seeds.
       const anchored = await this.resolve(source, anchorImporter, {
         ...options,
         skipSelf: true,
       })
       if (anchored !== null) return anchored
 
-      const anchorId = await resolveFromAnchor?.(this.environment, source, anchorImporter)
+      const anchorId = await resolveAnchored(this.environment, source)
       if (anchorId === undefined) return null
       return (
         (await this.resolve(anchorId, importer, { ...options, skipSelf: true })) ?? {
