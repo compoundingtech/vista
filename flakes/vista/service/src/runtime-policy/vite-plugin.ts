@@ -56,8 +56,9 @@ export const vistaRuntimeImportPolicy = (root = appsDir()): Plugin => ({
   },
 })
 
+type DependencyEnvironment = Pick<Environment, 'name' | 'getTopLevelConfig' | 'config' | 'logger'>
 type DependencyResolve = (
-  environment: Environment,
+  environment: DependencyEnvironment,
   id: string,
   importer?: string,
   aliasOnly?: boolean,
@@ -73,9 +74,10 @@ export const vistaDependencyAnchorResolver = (
   draft?: { root: string; include: readonly string[] },
 ): Plugin => {
   let resolveFromAnchor: DependencyResolve | undefined
-  const anchorEnvironments = new WeakMap<Environment, Environment>()
+  const anchorEnvironments = new WeakMap<DependencyEnvironment, DependencyEnvironment>()
+  const seedEntries = new Map<string, ReadonlyMap<string, string>>()
   const anchorImporter = join(dependencyAnchor, 'package.json')
-  const resolveAnchored = (environment: Environment, source: string) => {
+  const resolveAnchored = (environment: DependencyEnvironment, source: string) => {
     let anchored = anchorEnvironments.get(environment)
     if (anchored === undefined) {
       // The internal resolver must retain policy aliases but not recurse through
@@ -97,9 +99,9 @@ export const vistaDependencyAnchorResolver = (
     }
     return resolveFromAnchor?.(anchored, source, anchorImporter)
   }
-  const resolveSeed: ResolverFunction = async function (source, importer) {
+  const resolveSeed: ResolverFunction = function (source, importer) {
     enforceRuntimeImportPolicy(draft!.root, source, importer)
-    return (await resolveAnchored(this.environment, source)) ?? null
+    return seedEntries.get(this.environment.name)?.get(source) ?? null
   }
 
   return {
@@ -122,6 +124,19 @@ export const vistaDependencyAnchorResolver = (
     },
     configResolved(config) {
       resolveFromAnchor = createIdResolver(config, { root: dependencyAnchor })
+    },
+    async applyToEnvironment(environment) {
+      if (draft !== undefined) {
+        // Vite's alias ResolverFunction is synchronous. Resolve asynchronously
+        // during environment initialization, before optimizer/import resolution.
+        const entries = new Map<string, string>()
+        for (const source of draft.include) {
+          const resolved = await resolveAnchored(environment, source)
+          if (resolved !== undefined) entries.set(source, resolved)
+        }
+        seedEntries.set(environment.name, entries)
+      }
+      return true
     },
     async resolveId(source, importer, options) {
       const policy = vistaRuntimePolicy()
