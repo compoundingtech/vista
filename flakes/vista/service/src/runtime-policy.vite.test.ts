@@ -77,7 +77,7 @@ describe('Vista runtime import policy Vite enforcement', () => {
     }
   })
 
-  it('allows only the service-generated StyleX runtime import', async () => {
+  it('allows the generated HTML runtime import but rejects it in authored modules', async () => {
     const { vistaRuntimeImportPolicy } = await import('./runtime-policy/vite-plugin.ts')
     const plugin = vistaRuntimeImportPolicy(appSource)
     const resolveId = plugin.resolveId
@@ -172,20 +172,35 @@ describe('Vista runtime import policy Vite enforcement', () => {
       plugins: [
         vistaDependencyAnchorResolver(dirname(depsNodeModules()), {
           root: appSource,
-          include: ['lodash'],
+          include: ['lodash', '@overeng/meters'],
         }),
       ],
       optimizeDeps: { noDiscovery: true },
       server: { middlewareMode: true, watch: null },
     })
+    const htmlImporter = join(appSource, 'index.html')
     try {
+      // Manual seeds have no authored importer. Vite supplies a synthetic
+      // index.html, so seed-only transitive packages must still resolve.
+      expect(await vite.pluginContainer.resolveId('@overeng/meters')).not.toBeNull()
+      for (const source of ['lodash', '@overeng/meters']) {
+        await expect(
+          vite.pluginContainer.resolveId(source, join(appSource, 'app.tsx')),
+        ).rejects.toMatchObject({
+          _tag: 'Vista.RuntimePolicyError',
+          importProblems: [expect.objectContaining({ source })],
+        })
+      }
+      // A real authored HTML document is not the service-generated importer.
+      writeFileSync(htmlImporter, '<!doctype html>')
       await expect(
-        vite.pluginContainer.resolveId('lodash', join(appSource, 'app.tsx')),
+        vite.pluginContainer.resolveId('@overeng/meters', htmlImporter),
       ).rejects.toMatchObject({
         _tag: 'Vista.RuntimePolicyError',
-        importProblems: [expect.objectContaining({ source: 'lodash' })],
+        importProblems: [expect.objectContaining({ source: '@overeng/meters' })],
       })
     } finally {
+      rmSync(htmlImporter, { force: true })
       await vite.close()
     }
   })

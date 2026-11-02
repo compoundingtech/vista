@@ -16,19 +16,14 @@ const isInsideDir = (dir: string, path: string): boolean => {
 const isAppAuthoredImporter = (root: string, importer: string | undefined): importer is string =>
   importer !== undefined && isInsideDir(root, importer)
 
-const isServiceGeneratedStylexRuntime = (
-  root: string,
-  source: string,
-  importer: string | undefined,
-): boolean =>
-  source === 'virtual:stylex:runtime' &&
+const isServiceGeneratedHtmlImporter = (root: string, importer: string | undefined): boolean =>
   importer !== undefined &&
   resolve(importer) === resolve(root, 'index.html') &&
   !existsSync(importer)
 
 /**
  * Enforces the runtime import policy at both ordinary and alias resolver boundaries.
- * Generated StyleX imports, provider implementations, and non-authored importers
+ * Generated HTML imports, provider implementations, and non-authored importers
  * retain the same exemptions at either boundary.
  */
 const enforceRuntimeImportPolicy = (
@@ -36,7 +31,11 @@ const enforceRuntimeImportPolicy = (
   source: string,
   importer: string | undefined,
 ): void => {
-  if (isServiceGeneratedStylexRuntime(root, source, importer)) return
+  // Vite substitutes root/index.html when an internal resolver has no importer.
+  // This nonexistent document is service-generated, not authored AppSource:
+  // optimizer seeds may include private transitive dependencies. A real authored
+  // index.html is deliberately not exempt, nor is any app module.
+  if (isServiceGeneratedHtmlImporter(root, importer)) return
   // Provider implementations are loaded by the SSR registry, never traversed
   // as client modules. Their own Node/service imports are valid.
   if (importer !== undefined && isVistaProviderModuleSpecifier(importer.split('?', 1)[0]!)) return

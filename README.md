@@ -50,3 +50,6 @@ exact-match, policy-checked aliases to the shared service dependency anchor:
 Vite's manual seed resolver does not run ordinary resolver plugins. Seeds and
 client imports therefore resolve against the same dependency closure without
 adding `node_modules` to authored sources or aliasing unrelated package subpaths.
+The nonexistent `index.html` importer synthesized by Vite for internal resolution
+is service-owned; real authored modules and HTML remain subject to import policy,
+including for dependencies seeded only for the kit's private transitive closure.
