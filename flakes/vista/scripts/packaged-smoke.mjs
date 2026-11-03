@@ -587,8 +587,12 @@ export default function VistaApp() {
             throw new Error(`immutable publication initially returned ${initial?.status()}`)
           }
           await page
-            .getByText('Published apps served from immutable source')
-            .first()
+            .locator('[data-vista-id="app"]')
+            .getByRole('heading', {
+              name: 'Published apps served from immutable source',
+              exact: true,
+              level: 1,
+            })
             .waitFor({ timeout: 45_000 })
 
           rmSync(immutableProof.source, { recursive: true })
@@ -597,8 +601,12 @@ export default function VistaApp() {
             throw new Error(`immutable publication reload returned ${reloaded?.status()}`)
           }
           await page
-            .getByText('Published apps served from immutable source')
-            .first()
+            .locator('[data-vista-id="app"]')
+            .getByRole('heading', {
+              name: 'Published apps served from immutable source',
+              exact: true,
+              level: 1,
+            })
             .waitFor({ timeout: 45_000 })
           if (browserErrors.length > 0) {
             throw new Error(
@@ -785,7 +793,10 @@ export default function VistaApp() {
           await page.goto(`${env.VISTA_URL}/r/${encodedSmokeOwner}/esm-sh-smoke/v1/`, {
             waitUntil: 'networkidle',
           })
-          await page.getByText('esm.sh pinned ok').waitFor({ timeout: 45_000 })
+          await page
+            .locator('[data-vista-id="app"]')
+            .getByRole('heading', { name: 'esm.sh pinned ok', exact: true, level: 1 })
+            .waitFor({ timeout: 45_000 })
         })
       } catch (error) {
         let remainingDiagnosticBytes = 32_768
