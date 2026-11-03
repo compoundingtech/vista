@@ -60,6 +60,11 @@ export const rootPnpmSourceInputs = projectPnpmSourceInputs({
 
 export default pnpmWorkspaceYaml.root({
   ...commonPnpmPolicySettings,
+  // KDL support requires this same-day Highlights release.
+  minimumReleaseAgeExclude: [
+    ...commonPnpmPolicySettings.minimumReleaseAgeExclude,
+    '@pierre/highlights@0.4.0',
+  ],
   packages: rootWorkspacePackages,
   repoName: 'vista',
   blockExoticSubdeps: false,

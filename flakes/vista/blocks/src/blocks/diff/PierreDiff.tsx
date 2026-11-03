@@ -89,12 +89,13 @@ export const PierreDiff = ({
       themeType: theme,
       unsafeCSS: VISTA_DIFF_UNSAFE_CSS,
       lineDiffType: lineDiff,
-      expandUnchanged: context === 'full',
+      // A patch-only capture cannot hydrate context that was never captured.
+      expandUnchanged: context === 'full' && source._tag === 'files',
       overflow,
       disableLineNumbers: lineNumbers === 'hidden',
       disableFileHeader: fileHeader === 'hidden',
     }),
-    [context, fileHeader, lineDiff, lineNumbers, overflow, theme],
+    [context, fileHeader, lineDiff, lineNumbers, overflow, source._tag, theme],
   )
   const options = React.useMemo<FileDiffOptions<undefined, undefined>>(
     () => ({ ...baseOptions, diffStyle: arrangement }),

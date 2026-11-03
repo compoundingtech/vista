@@ -3,13 +3,15 @@
  * `@pierre/trees` blocks.
  *
  * Both libraries render into custom elements. `@pierre/diffs` derives its
- * chrome from a registered Shiki theme, while `@pierre/trees` accepts CSS
+ * chrome from a registered theme, while `@pierre/trees` accepts CSS
  * custom properties on its host. Keeping both mappings here prevents either
  * library's blue-tinted default surfaces from leaking into Vista.
  */
-import { registerCustomTheme, type ThemeRegistration } from '@pierre/diffs'
+import { canUseWASM, getSharedHighlighter, registerCustomTheme } from '@pierre/diffs'
+import type { Theme as ZedTheme } from '@pierre/highlights'
 import { themeToTreeStyles, type TreeThemeStyles } from '@pierre/trees'
 import { tokens } from '@vista/ui/tokens.stylex'
+import type { ThemeRegistration } from 'shiki'
 
 import type { Theme } from '../model.ts'
 
@@ -63,11 +65,11 @@ const PALETTE: Record<Theme, VistaPalette> = {
   },
 }
 
-/** The Shiki theme names the kit registers; passed to the diff `theme` prop. */
+/** Theme names shared by Highlights and the no-WASM Shiki fallback. */
 export const VISTA_DIFF_THEMES = { light: 'vista-light', dark: 'vista-dark' } as const
 
 /**
- * Chrome overrides that Pierre's Shiki adapter cannot express. Callers append
+ * Chrome overrides that the shared theme adapter cannot express. Callers append
  * their layout-specific unsafe CSS to this shared color layer.
  */
 export const VISTA_DIFF_UNSAFE_CSS = `
@@ -179,6 +181,31 @@ const buildDiffTheme = (theme: Theme): ThemeRegistration => {
   } satisfies ThemeRegistration
 }
 
+/** A CSS palette keeps Geist variables live across the shadow-DOM boundary. */
+const buildZedDiffTheme = (theme: Theme): ZedTheme => ({
+  name: VISTA_DIFF_THEMES[theme],
+  appearance: theme,
+  cssVariables: { prefix: '--ds-' },
+  style: {
+    'editor.background': 'background-100',
+    'editor.foreground': 'gray-1000',
+    'editor.line_number': 'gray-700',
+    'editor.active_line.background': 'gray-alpha-100',
+    border: 'gray-alpha-400',
+    created: 'green-700',
+    deleted: 'red-700',
+    modified: 'blue-700',
+    syntax: {
+      comment: { color: 'gray-900' },
+      keyword: { color: theme === 'light' ? 'blue-800' : 'blue-900' },
+      operator: { color: theme === 'light' ? 'blue-800' : 'blue-900' },
+      type: { color: theme === 'light' ? 'blue-800' : 'blue-900' },
+      string: { color: theme === 'light' ? 'green-500' : 'green-900' },
+      'property.json_key': { color: theme === 'light' ? 'green-500' : 'green-900' },
+    },
+  },
+})
+
 let registered = false
 
 /**
@@ -189,6 +216,15 @@ export const ensureVistaDiffThemes = (): void => {
   if (registered) return
   registerCustomTheme(VISTA_DIFF_THEMES.light, () => Promise.resolve(buildDiffTheme('light')))
   registerCustomTheme(VISTA_DIFF_THEMES.dark, () => Promise.resolve(buildDiffTheme('dark')))
+  registerCustomTheme(VISTA_DIFF_THEMES.light, () => Promise.resolve(buildZedDiffTheme('light')), 'zed')
+  registerCustomTheme(VISTA_DIFF_THEMES.dark, () => Promise.resolve(buildZedDiffTheme('dark')), 'zed')
+  // Prime the singleton before File, MultiFileDiff, or CodeView can create it.
+  // Both formats are registered because Shiki cannot consume a Zed theme.
+  void getSharedHighlighter({
+    themes: Object.values(VISTA_DIFF_THEMES),
+    langs: [],
+    preferredHighlighter: canUseWASM() ? 'highlights' : 'shiki-js',
+  })
   registered = true
 }
 

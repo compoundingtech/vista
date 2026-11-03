@@ -4,7 +4,7 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:21159c56cdbc3fa431b63421129dfc6c792d145ede608f720c6159ed55b337fb
+# Semantic fingerprint: sha256:e3088536783e1221fbeef68c422ebdc2e7d2ed932df1dd48640a2454cb53fbec
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -32,6 +32,7 @@ export_materialization_inputs([
     "src/blocks/ChartBlock.unit.test.tsx",
     "src/blocks/CodeBlock.test.tsx",
     "src/blocks/CodeBlock.tsx",
+    "src/blocks/Diff.test.tsx",
     "src/blocks/Diff.tsx",
     "src/blocks/FileTree.tsx",
     "src/blocks/FlamegraphBlock.tsx",
@@ -354,6 +355,7 @@ package_view(
         "src/blocks/ChartBlock.unit.test.tsx": "src/blocks/ChartBlock.unit.test.tsx",
         "src/blocks/CodeBlock.test.tsx": "src/blocks/CodeBlock.test.tsx",
         "src/blocks/CodeBlock.tsx": "src/blocks/CodeBlock.tsx",
+        "src/blocks/Diff.test.tsx": "src/blocks/Diff.test.tsx",
         "src/blocks/Diff.tsx": "src/blocks/Diff.tsx",
         "src/blocks/FileTree.tsx": "src/blocks/FileTree.tsx",
         "src/blocks/FlamegraphBlock.tsx": "src/blocks/FlamegraphBlock.tsx",
@@ -652,6 +654,7 @@ package_view(
         "src/blocks/ChartBlock.unit.test.tsx": "src/blocks/ChartBlock.unit.test.tsx",
         "src/blocks/CodeBlock.test.tsx": "src/blocks/CodeBlock.test.tsx",
         "src/blocks/CodeBlock.tsx": "src/blocks/CodeBlock.tsx",
+        "src/blocks/Diff.test.tsx": "src/blocks/Diff.test.tsx",
         "src/blocks/Diff.tsx": "src/blocks/Diff.tsx",
         "src/blocks/FileTree.tsx": "src/blocks/FileTree.tsx",
         "src/blocks/FlamegraphBlock.tsx": "src/blocks/FlamegraphBlock.tsx",

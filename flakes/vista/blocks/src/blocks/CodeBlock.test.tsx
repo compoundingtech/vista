@@ -107,7 +107,7 @@ test.each([
   })
   for (const theme of Object.values(VISTA_DIFF_THEMES)) {
     // Grammar correctness must not depend on the shared host's 500ms tokenize deadline.
-    const tokens = highlighter.codeToTokensBase(code, { lang, theme, tokenizeTimeLimit: 0 }).flat()
+    const tokens = highlighter.codeToTokens(code, { lang, theme, tokenizeTimeLimit: 0 }).tokens.flat()
     expect(tokens.map((token) => token.content).join('')).toBe(code)
     expect(
       new Set(tokens.map((token) => token.color)).size,

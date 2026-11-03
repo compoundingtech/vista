@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:78f20acbdaf0ccae0bad2fa4ee93dcb20f39a9af25e56440aafb2c1fb7dbaf63
+# Semantic fingerprint: sha256:b614abc7d6dc7c2e9357bb55fe2e23db62c9a55f1d6f3f8b94c3ab5bd25510c6
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -360,6 +360,7 @@ package_view(
         "node_modules/@vista/blocks/src/blocks/ChartBlock.unit.test.tsx": "//flakes/vista/blocks:src/blocks/ChartBlock.unit.test.tsx",
         "node_modules/@vista/blocks/src/blocks/CodeBlock.test.tsx": "//flakes/vista/blocks:src/blocks/CodeBlock.test.tsx",
         "node_modules/@vista/blocks/src/blocks/CodeBlock.tsx": "//flakes/vista/blocks:src/blocks/CodeBlock.tsx",
+        "node_modules/@vista/blocks/src/blocks/Diff.test.tsx": "//flakes/vista/blocks:src/blocks/Diff.test.tsx",
         "node_modules/@vista/blocks/src/blocks/Diff.tsx": "//flakes/vista/blocks:src/blocks/Diff.tsx",
         "node_modules/@vista/blocks/src/blocks/FileTree.tsx": "//flakes/vista/blocks:src/blocks/FileTree.tsx",
         "node_modules/@vista/blocks/src/blocks/FlamegraphBlock.tsx": "//flakes/vista/blocks:src/blocks/FlamegraphBlock.tsx",
@@ -799,6 +800,7 @@ package_view(
         "node_modules/@vista/blocks/src/blocks/ChartBlock.unit.test.tsx": "//flakes/vista/blocks:src/blocks/ChartBlock.unit.test.tsx",
         "node_modules/@vista/blocks/src/blocks/CodeBlock.test.tsx": "//flakes/vista/blocks:src/blocks/CodeBlock.test.tsx",
         "node_modules/@vista/blocks/src/blocks/CodeBlock.tsx": "//flakes/vista/blocks:src/blocks/CodeBlock.tsx",
+        "node_modules/@vista/blocks/src/blocks/Diff.test.tsx": "//flakes/vista/blocks:src/blocks/Diff.test.tsx",
         "node_modules/@vista/blocks/src/blocks/Diff.tsx": "//flakes/vista/blocks:src/blocks/Diff.tsx",
         "node_modules/@vista/blocks/src/blocks/FileTree.tsx": "//flakes/vista/blocks:src/blocks/FileTree.tsx",
         "node_modules/@vista/blocks/src/blocks/FlamegraphBlock.tsx": "//flakes/vista/blocks:src/blocks/FlamegraphBlock.tsx",
