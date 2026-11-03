@@ -93,6 +93,11 @@ const step = async (name, fn) => {
 
 const redactQueries = (text) => text.replace(/\?[^\s"'<>\\]*/g, '?<redacted>')
 
+const isDepError = (t) =>
+  /does not provide an export named|Failed to resolve import|Failed to fetch dynamically imported/.test(
+    t,
+  )
+
 const tailFile = (path, lines = 80) => {
   if (!existsSync(path)) return '<missing>'
   const body = readFileSync(path, 'utf8')
@@ -648,10 +653,6 @@ export default function VistaApp() {
         // `skipIf(!HAS_BROWSER)` browser vitest left open.
         await step('browser: chart interop (recharts -> es-toolkit)', async () => {
           const depErrors = []
-          const isDepError = (t) =>
-            /does not provide an export named|Failed to resolve import|Failed to fetch dynamically imported/.test(
-              t,
-            )
           const onConsole = (m) => {
             if (m.type() === 'error' && isDepError(m.text())) depErrors.push(m.text())
           }
@@ -754,7 +755,9 @@ export default function VistaApp() {
             }
 
             const versions = await page.evaluate(() => ({
+              // oxlint-disable-next-line no-underscore-dangle -- fixed React version probe set by blocks/src/LazyBlock.tsx
               host: globalThis.__VISTA_HOST_REACT__,
+              // oxlint-disable-next-line no-underscore-dangle -- fixed React version probe set by island/src/island.tsx
               island: globalThis.__VISTA_ISLAND_REACT__,
             }))
             if (
