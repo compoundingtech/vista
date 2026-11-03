@@ -137,6 +137,7 @@ in
         description = "Build/smoke the packaged Vista artifact with browser checks against isolated mutable roots";
         exec = ''
           set -euo pipefail
+          unset NODE_PRESERVE_SYMLINKS
           node "${config.devenv.root}/flakes/vista/scripts/packaged-smoke.mjs"
         '';
       };
@@ -144,6 +145,7 @@ in
         description = "Build/smoke packaged Vista with browser checks and live telemetry fake-provider coverage";
         exec = ''
           set -euo pipefail
+          unset NODE_PRESERVE_SYMLINKS
           node "${config.devenv.root}/flakes/vista/scripts/packaged-smoke.mjs" --include-live-telemetry
         '';
       };
@@ -151,6 +153,7 @@ in
         description = "Build/smoke packaged Vista service and CLI paths without browser checks";
         exec = ''
           set -euo pipefail
+          unset NODE_PRESERVE_SYMLINKS
           node "${config.devenv.root}/flakes/vista/scripts/packaged-smoke.mjs" --no-browser
         '';
       };
