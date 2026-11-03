@@ -17,6 +17,14 @@ import { fileURLToPath } from 'node:url'
 
 import { encodeRouteOwner } from '../blocks/src/owner-identity.ts'
 
+// Node reads this flag at startup; clearing it later cannot repair package resolution.
+if (process.env.NODE_PRESERVE_SYMLINKS === '1') {
+  console.error(
+    'packaged smoke requires NODE_PRESERVE_SYMLINKS to be unset before Node starts; run env -u NODE_PRESERVE_SYMLINKS node flakes/vista/scripts/packaged-smoke.mjs or use a vista:packaged-smoke task',
+  )
+  process.exit(1)
+}
+
 const here = dirname(fileURLToPath(import.meta.url))
 const repoRoot = join(here, '..', '..', '..')
 
