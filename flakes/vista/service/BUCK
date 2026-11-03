@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:dad579dee42670da875a977700b1c89d3d534c3ebd387680d807e5237af71cc2
+# Semantic fingerprint: sha256:78f20acbdaf0ccae0bad2fa4ee93dcb20f39a9af25e56440aafb2c1fb7dbaf63
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -77,6 +77,7 @@ export_materialization_inputs([
     "src/decision-review.integration.test.ts",
     "src/derive-projection.test.ts",
     "src/derive-projection.ts",
+    "src/draft-middleware.integration.test.ts",
     "src/favicon.ts",
     "src/frozen-skew.browser.test.ts",
     "src/grafana-config.test.ts",
@@ -256,6 +257,7 @@ package_view(
         "src/decision-review.integration.test.ts": "src/decision-review.integration.test.ts",
         "src/derive-projection.test.ts": "src/derive-projection.test.ts",
         "src/derive-projection.ts": "src/derive-projection.ts",
+        "src/draft-middleware.integration.test.ts": "src/draft-middleware.integration.test.ts",
         "src/favicon.ts": "src/favicon.ts",
         "src/frozen-skew.browser.test.ts": "src/frozen-skew.browser.test.ts",
         "src/grafana-config.test.ts": "src/grafana-config.test.ts",
@@ -696,6 +698,7 @@ package_view(
         "src/decision-review.integration.test.ts": "src/decision-review.integration.test.ts",
         "src/derive-projection.test.ts": "src/derive-projection.test.ts",
         "src/derive-projection.ts": "src/derive-projection.ts",
+        "src/draft-middleware.integration.test.ts": "src/draft-middleware.integration.test.ts",
         "src/favicon.ts": "src/favicon.ts",
         "src/frozen-skew.browser.test.ts": "src/frozen-skew.browser.test.ts",
         "src/grafana-config.test.ts": "src/grafana-config.test.ts",

@@ -3,13 +3,13 @@ inputs:
   devenv:
     url: github:cachix/devenv/v2.4.0
   effect-utils:
-    url: github:overengineeringstudio/effect-utils/fd01f8ee6c97beec34a8a80284039e297a9a5317
+    url: github:overengineeringstudio/effect-utils/d883d18e3ad7609602db0ec8687c14a77625b905
   nixpkgs:
     follows: effect-utils/nixpkgs
   flake-utils:
     follows: effect-utils/flake-utils
   playwright:
-    url: github:overengineeringstudio/effect-utils/fd01f8ee6c97beec34a8a80284039e297a9a5317?dir=nix/playwright-flake
+    url: github:overengineeringstudio/effect-utils/d883d18e3ad7609602db0ec8687c14a77625b905?dir=nix/playwright-flake
     inputs:
       nixpkgs:
         follows: nixpkgs

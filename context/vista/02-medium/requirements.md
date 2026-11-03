@@ -32,7 +32,7 @@ realization requirement refines whichever contract it specializes.
 
 | Node | Scope | IDs |
 | --- | --- | --- |
-| [05-blocks](./05-blocks/requirements.md) | the curated block library (+ packaging/Storybook/Geist) and 6 heavy-block child subsystems | `MED.BLK-*` |
+| [05-blocks](./05-blocks/requirements.md) | the curated block library (+ packaging/Storybook/Vista UI) and 6 heavy-block child subsystems | `MED.BLK-*` |
 | [06-templates](./06-templates/requirements.md) | per-kind app scaffolds that realize doctrine and compose blocks | `MED.TMPL-R*` |
 
 Within-medium order (authoring → renderer → data → doctrine → blocks → templates):

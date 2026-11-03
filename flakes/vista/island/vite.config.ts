@@ -130,7 +130,11 @@ export default defineConfig({
     rollupOptions: {
       // Zero externals: bundle react + Grafana into the one chunk.
       external: [],
-      output: { inlineDynamicImports: true },
+      output: {
+        inlineDynamicImports: true,
+        banner:
+          '/*! Vista telemetry island. License: Apache-2.0 AND AGPL-3.0-only. Source: https://github.com/compoundingtech/vista */',
+      },
     },
   },
 })

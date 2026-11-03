@@ -16,6 +16,7 @@
     // Mirror the Vite aliases (vite.config.ts) for the type-checker.
     "paths": {
       "@vista/grafana-timeseries": [
+        "./node_modules/@grafana/ui/dist/types/graveyard/TimeSeries/TimeSeries.d.ts",
         "../../../node_modules/@grafana/ui/dist/types/graveyard/TimeSeries/TimeSeries.d.ts"
       ],
       "@grafana/o11y-ds-frontend": ["./vendor/traceview/o11y-ds-frontend.stub.ts"],

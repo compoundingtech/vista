@@ -109,6 +109,11 @@ describe('Vista runtime policy', () => {
     expect(projected.serviceOwnedImportRoots).not.toContain('@overeng/agent-timeline')
     expect(projected.optimizeInclude).toEqual(
       expect.arrayContaining([
+        '@overeng/meters',
+        '@overeng/meters/canvas',
+        '@overeng/meters/platform/browser',
+        '@overeng/meters/react',
+        '@overeng/meters/sources/frame',
         '@overeng/agent-timeline/encodings',
         '@overeng/agent-timeline/labels',
         '@overeng/agent-timeline/model',

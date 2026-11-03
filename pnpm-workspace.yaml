@@ -19,50 +19,50 @@ overrides:
   '@opentelemetry/sdk-logs': 0.222.0
   '@opentelemetry/sdk-trace-node': 2.11.0
   '@opentelemetry/semantic-conventions': 1.43.0
-  '@playwright/test': 1.63.0
+  '@playwright/test': 1.64.1
   '@storybook/react': 10.6.0
   '@storybook/react-vite': 10.6.0
   effect: 4.0.3
-  playwright: 1.63.0
+  playwright: 1.64.1
   react: 19.2.8
   react-dom: 19.2.8
   storybook: 10.6.0
   typescript: 7.0.2
   vitest: 5.0.3
   '@effect/platform-node-shared': 4.0.3
-  '@overeng/content-address': 'https://overeng-effect-utils.cachix.org/serve/ghjmicl0wx5xbvzj37bml68rs19r1259/overeng-content-address.tgz'
-  '@overeng/devbar': 'https://overeng-effect-utils.cachix.org/serve/q2ds56nvxxrrkjqcnzz562hw1kznxhbs/overeng-devbar.tgz'
+  '@overeng/content-address': 'https://overeng-effect-utils.cachix.org/serve/ml71g6kzpkq5rcgsyfprhvfpagmf22rc/overeng-content-address.tgz'
+  '@overeng/devbar': 'https://overeng-effect-utils.cachix.org/serve/8b4fwpxn05mjp0pf5zicpv2i3py55841/overeng-devbar.tgz'
   '@overeng/effect-distributed-lock': 'https://overeng-effect-utils.cachix.org/serve/w2dligpm8ams7sm62bfhgy9i1panr98w/overeng-effect-distributed-lock.tgz'
-  '@overeng/effect-rpc-explorer': 'https://overeng-effect-utils.cachix.org/serve/jych9z3q78sn15fs69198mjlqbw50206/overeng-effect-rpc-explorer.tgz'
-  '@overeng/effect-rpc-explorer-react': 'https://overeng-effect-utils.cachix.org/serve/2m88bb9bfva3mzlxjf8q0jwngqgmkdz5/overeng-effect-rpc-explorer-react.tgz'
-  '@overeng/effect-rpc-observer': 'https://overeng-effect-utils.cachix.org/serve/0mnhknjvh04bqp0r8dk1q3rfbg63i8a6/overeng-effect-rpc-observer.tgz'
-  '@overeng/effect-rust': 'https://overeng-effect-utils.cachix.org/serve/m267ik94vnv826pz2zx69jg4jg8bmybg/overeng-effect-rust.tgz'
-  '@overeng/meters': 'https://overeng-effect-utils.cachix.org/serve/6hxbbkqasnjbipfbfqdybnlaninxzd5i/overeng-meters.tgz'
+  '@overeng/effect-rpc-explorer': 'https://overeng-effect-utils.cachix.org/serve/fikh0j1xaxhxixpz6fvq5vkbx6fpsxr0/overeng-effect-rpc-explorer.tgz'
+  '@overeng/effect-rpc-explorer-react': 'https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz'
+  '@overeng/effect-rpc-observer': 'https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz'
+  '@overeng/effect-rust': 'https://overeng-effect-utils.cachix.org/serve/8qy18h040ksh67p09am19q85k2vq3w03/overeng-effect-rust.tgz'
+  '@overeng/meters': 'https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz'
   '@overeng/otel-browser': 'file:.devenv/pnpm-source-inputs/current/repos/effect-utils/packages/@overeng/otel-browser'
-  '@overeng/otel-contract': 'https://overeng-effect-utils.cachix.org/serve/0mvc1z6iyrw4h2ka7h3vm95i54iix7ms/overeng-otel-contract.tgz'
-  '@overeng/rpc-devtools': 'https://overeng-effect-utils.cachix.org/serve/sp27fhdg9m3gvrjydr2k39wd3d19crwh/overeng-rpc-devtools.tgz'
-  '@overeng/stylex-tokens': 'https://overeng-effect-utils.cachix.org/serve/kafs16b49y2sl5b5x404hd1f4h4zxx54/overeng-stylex-tokens.tgz'
-  '@overeng/utils': 'https://overeng-effect-utils.cachix.org/serve/7jw2qzxqk0ksbi5ildgvk5642c2si7ka/overeng-utils.tgz'
-  '@overeng/utils-dev': 'https://overeng-effect-utils.cachix.org/serve/kffh1ijikrqdg1hx7qbp9wsw8an3j10f/overeng-utils-dev.tgz'
-  '@overeng/utils-storybook': 'https://overeng-effect-utils.cachix.org/serve/bsf5rgjk7y9nq9xdhkmsbf9big0dp19w/overeng-utils-storybook.tgz'
-  '@overeng/agent-session-ingest': 'https://overeng-effect-utils.cachix.org/serve/pg8c17qb3nbal9if5xxgm30id8vswcak/overeng-agent-session-ingest.tgz'
-  '@overeng/ai-gateway-conformance': 'https://overeng-effect-utils.cachix.org/serve/pd1fj4ybp9i0kf36iimrsidyc5vm8p62/overeng-ai-gateway-conformance.tgz'
-  '@overeng/ai-gateway-edge': 'https://overeng-effect-utils.cachix.org/serve/s0kdlpdzw7rwcahc0pn47bw1161rrd66/overeng-ai-gateway-edge.tgz'
-  '@overeng/data-graph': 'https://overeng-effect-utils.cachix.org/serve/lj9rdgw4fqr41xi2qp2hs5lm6aqgjwcd/overeng-data-graph.tgz'
-  '@overeng/effect-ai-claude-cli': 'https://overeng-effect-utils.cachix.org/serve/67jz7b4l20cz10bmfg0jjzdv5inmb0n6/overeng-effect-ai-claude-cli.tgz'
-  '@overeng/effect-ai-gateway': 'https://overeng-effect-utils.cachix.org/serve/f1lyjm5b11pkmh21sbvwn7nvysydlz8j/overeng-effect-ai-gateway.tgz'
-  '@overeng/effect-react': 'https://overeng-effect-utils.cachix.org/serve/ahvlv90ikrf83b76bm8fyjzw6r6m8bnr/overeng-effect-react.tgz'
-  '@overeng/genie': 'https://overeng-effect-utils.cachix.org/serve/7dp8c9x7zrm1pg7nakjyxb3hdfdna38r/overeng-genie.tgz'
-  '@overeng/notion-core': 'https://overeng-effect-utils.cachix.org/serve/6hs7zwgk8iljpiy06zsyldagscy6vxc6/overeng-notion-core.tgz'
-  '@overeng/notion-effect-client': 'https://overeng-effect-utils.cachix.org/serve/3s96avlc3f331yy8vfg74y00cnz8mgjs/overeng-notion-effect-client.tgz'
-  '@overeng/notion-effect-schema': 'https://overeng-effect-utils.cachix.org/serve/3aklr3hclfyh508a5hhr8i3f8lr9g31n/overeng-notion-effect-schema.tgz'
-  '@overeng/notion-md': 'https://overeng-effect-utils.cachix.org/serve/gdf5650vk9kyyakbbj7dc2cpdgm2k3v6/overeng-notion-md.tgz'
-  '@overeng/notion-property-write': 'https://overeng-effect-utils.cachix.org/serve/9yvb6q6fzsh35hsjv4p62gghmffylaxw/overeng-notion-property-write.tgz'
-  '@overeng/notion-react': 'https://overeng-effect-utils.cachix.org/serve/z67iixqqy7246rq1lq3k5a52h4519b9z/overeng-notion-react.tgz'
-  '@overeng/outline': 'https://overeng-effect-utils.cachix.org/serve/jlhlhg2cggm3agvnkvnmnl7apsdmkkxy/overeng-outline.tgz'
-  '@overeng/restate-effect': 'https://overeng-effect-utils.cachix.org/serve/99yzph5a3z4v9v2ax72jjpcgh9n7g1fk/overeng-restate-effect.tgz'
-  '@overeng/tui-core': 'https://overeng-effect-utils.cachix.org/serve/j5484px39hl6pz9gz2skkfi3n51k2r64/overeng-tui-core.tgz'
-  '@overeng/tui-react': 'https://overeng-effect-utils.cachix.org/serve/37rfaqiar7a0glc83cdm5xakrlf765xm/overeng-tui-react.tgz'
+  '@overeng/otel-contract': 'https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz'
+  '@overeng/rpc-devtools': 'https://overeng-effect-utils.cachix.org/serve/z3cyc2ggxa2m9ki54xg0ypharrnw027h/overeng-rpc-devtools.tgz'
+  '@overeng/stylex-tokens': 'https://overeng-effect-utils.cachix.org/serve/rgypnig74c5bq4x45b3xjazayjd0k6v9/overeng-stylex-tokens.tgz'
+  '@overeng/utils': 'https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz'
+  '@overeng/utils-dev': 'https://overeng-effect-utils.cachix.org/serve/1n938bi12xgdsr5j2kya013pqwlcwy6y/overeng-utils-dev.tgz'
+  '@overeng/utils-storybook': 'https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz'
+  '@overeng/agent-session-ingest': 'https://overeng-effect-utils.cachix.org/serve/kh8qrslqfgvwr0xgywmlc6qriqfrmz4h/overeng-agent-session-ingest.tgz'
+  '@overeng/ai-gateway-conformance': 'https://overeng-effect-utils.cachix.org/serve/n1h8q8kj2x1ncqmg34xy5dxginyqz2yn/overeng-ai-gateway-conformance.tgz'
+  '@overeng/ai-gateway-edge': 'https://overeng-effect-utils.cachix.org/serve/bgwdnwrg2f2fn3mg1vs4hvsgj4bx041b/overeng-ai-gateway-edge.tgz'
+  '@overeng/data-graph': 'https://overeng-effect-utils.cachix.org/serve/zs6r7j2nhq3qh2bmr8l6adkckna2b6zq/overeng-data-graph.tgz'
+  '@overeng/effect-ai-claude-cli': 'https://overeng-effect-utils.cachix.org/serve/6ajqql5bawmcg587d6j5idhswcz4k1vb/overeng-effect-ai-claude-cli.tgz'
+  '@overeng/effect-ai-gateway': 'https://overeng-effect-utils.cachix.org/serve/8h5gwh7dmk5jk1r2dp8a6skink44g3fz/overeng-effect-ai-gateway.tgz'
+  '@overeng/effect-react': 'https://overeng-effect-utils.cachix.org/serve/v7x84r8b157aav5r2wn9avi1jlb7fimp/overeng-effect-react.tgz'
+  '@overeng/genie': 'https://overeng-effect-utils.cachix.org/serve/p7qb5m6kfm58bkgk0krpbwcprvxlr97k/overeng-genie.tgz'
+  '@overeng/notion-core': 'https://overeng-effect-utils.cachix.org/serve/fmns755r1jki6gfq3l9lw1y51v1x18ks/overeng-notion-core.tgz'
+  '@overeng/notion-effect-client': 'https://overeng-effect-utils.cachix.org/serve/dpb0gmi4g3dflcxg6m49ci9fniv9ssk7/overeng-notion-effect-client.tgz'
+  '@overeng/notion-effect-schema': 'https://overeng-effect-utils.cachix.org/serve/hzln0jlqvhl7fci253a0j53dn6ra2scs/overeng-notion-effect-schema.tgz'
+  '@overeng/notion-md': 'https://overeng-effect-utils.cachix.org/serve/qy8svxjwkcgsydysyiblg1wzkfmq1qap/overeng-notion-md.tgz'
+  '@overeng/notion-property-write': 'https://overeng-effect-utils.cachix.org/serve/z29f9gs94wpc8a590fbn4yzvd9xk13nb/overeng-notion-property-write.tgz'
+  '@overeng/notion-react': 'https://overeng-effect-utils.cachix.org/serve/bynj5gjfbyinqn10j0c85v3q516kkng8/overeng-notion-react.tgz'
+  '@overeng/outline': 'https://overeng-effect-utils.cachix.org/serve/5hcph1irbza96gkbkv8c707rknn1xv68/overeng-outline.tgz'
+  '@overeng/restate-effect': 'https://overeng-effect-utils.cachix.org/serve/lrfdp96737bskhd5xga789f65jcjxcdx/overeng-restate-effect.tgz'
+  '@overeng/tui-core': 'https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz'
+  '@overeng/tui-react': 'https://overeng-effect-utils.cachix.org/serve/mv4fxr508i83694xhh1aa93qwcafmbkv/overeng-tui-react.tgz'
   '@types/bun': 1.4.2
   '@types/hast': 3.0.5
   '@types/unist': 3.0.3

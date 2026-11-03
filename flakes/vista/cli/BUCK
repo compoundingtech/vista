@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/cli/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:6aa15af2e121ace8db52beafc84f829f26bb09ce7ce25a90b015ab7c52e497a4
+# Semantic fingerprint: sha256:527e75a5670c3dc0bbd707994ccd5a813ec5a8029211da40529a5fd4c1328fc7
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -244,6 +244,7 @@ package_view(
         "node_modules/@vista/service/src/decision-review.integration.test.ts": "//flakes/vista/service:src/decision-review.integration.test.ts",
         "node_modules/@vista/service/src/derive-projection.test.ts": "//flakes/vista/service:src/derive-projection.test.ts",
         "node_modules/@vista/service/src/derive-projection.ts": "//flakes/vista/service:src/derive-projection.ts",
+        "node_modules/@vista/service/src/draft-middleware.integration.test.ts": "//flakes/vista/service:src/draft-middleware.integration.test.ts",
         "node_modules/@vista/service/src/favicon.ts": "//flakes/vista/service:src/favicon.ts",
         "node_modules/@vista/service/src/frozen-skew.browser.test.ts": "//flakes/vista/service:src/frozen-skew.browser.test.ts",
         "node_modules/@vista/service/src/grafana-config.test.ts": "//flakes/vista/service:src/grafana-config.test.ts",
@@ -464,6 +465,7 @@ package_view(
         "node_modules/@vista/service/src/decision-review.integration.test.ts": "//flakes/vista/service:src/decision-review.integration.test.ts",
         "node_modules/@vista/service/src/derive-projection.test.ts": "//flakes/vista/service:src/derive-projection.test.ts",
         "node_modules/@vista/service/src/derive-projection.ts": "//flakes/vista/service:src/derive-projection.ts",
+        "node_modules/@vista/service/src/draft-middleware.integration.test.ts": "//flakes/vista/service:src/draft-middleware.integration.test.ts",
         "node_modules/@vista/service/src/favicon.ts": "//flakes/vista/service:src/favicon.ts",
         "node_modules/@vista/service/src/frozen-skew.browser.test.ts": "//flakes/vista/service:src/frozen-skew.browser.test.ts",
         "node_modules/@vista/service/src/grafana-config.test.ts": "//flakes/vista/service:src/grafana-config.test.ts",

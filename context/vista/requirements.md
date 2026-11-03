@@ -41,8 +41,8 @@ Terms are defined in [ontology.md](./ontology.md) and used precisely here.
 - **A07 Modern web tooling:** The block library and service may rely on Vite, React,
   StyleX, Storybook, and Bun as the standard toolchain. Tailwind is not part of the
   current Vista App or block-library styling contract.
-- **A08 Geist visual system:** Vista may depend on
-  `@overeng/geist-design-system` as the canonical product UI system for its block
+- **A08 Vista UI visual system:** Vista may depend on
+  `@vista/ui` as the canonical product UI system for its block
   library and Storybook surfaces (decision 0036).
 
 ## Acceptable Tradeoffs
@@ -188,7 +188,7 @@ defined in exactly one file; the full old→new map is in
 | &nbsp;&nbsp;├ [02-renderer](./02-medium/02-renderer/requirements.md) — *contract* | canonical React/manifest/DOM equivalence and derived bindings | `MED.REND-R02–R04` |
 | &nbsp;&nbsp;├ [03-data-sources](./02-medium/03-data-sources/requirements.md) — *contract* | provider contract satisfying live/frozen semantic bindings | `MED.DATA-R28–R31`, `MED.DATA-R46–R50` |
 | &nbsp;&nbsp;├ [04-doctrine](./02-medium/04-doctrine/requirements.md) — *contract* | decision-driving app composition principles | `MED.DOC-R32–R35` |
-| &nbsp;&nbsp;├ [05-blocks](./02-medium/05-blocks/requirements.md) — *realize* | curated block library (packaging/Storybook/Geist) + heavy-block subsystems | `MED.BLK-*`, `MED.BLK.CODE-*`, `MED.BLK.MERM-*`, `MED.BLK.SYSX-*`, `MED.BLK.TREE-*`, `MED.BLK.TELEM-*`, `MED.BLK.FORK-*` |
+| &nbsp;&nbsp;├ [05-blocks](./02-medium/05-blocks/requirements.md) — *realize* | curated block library (packaging/Storybook/Vista UI) + heavy-block subsystems | `MED.BLK-*`, `MED.BLK.CODE-*`, `MED.BLK.MERM-*`, `MED.BLK.SYSX-*`, `MED.BLK.TREE-*`, `MED.BLK.TELEM-*`, `MED.BLK.FORK-*` |
 | &nbsp;&nbsp;└ [06-templates](./02-medium/06-templates/requirements.md) — *realize* | per-kind app scaffolds; realize doctrine, compose blocks | `MED.TMPL-R*` |
 | [03-agent-interface](./03-agent-interface/requirements.md) | how an agent produces an app (composite) | `AGT-R*` |
 | &nbsp;&nbsp;├ [01-cli](./03-agent-interface/01-cli/requirements.md) | the `vista` CLI surface | `AGT.CLI-R06`, `AGT.CLI-R08`, `AGT.CLI-R56`, `AGT.CLI-R67`, `AGT.CLI-R68` |
