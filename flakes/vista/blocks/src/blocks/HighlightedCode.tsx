@@ -16,7 +16,7 @@ const aliases: Readonly<Record<string, string>> = {
   plaintext: 'text',
 }
 
-/** Pierre shares its Shiki instance with diff/inspector and loads grammars on demand. */
+/** Code, diffs, and source inspection share the configured Pierre highlighter. */
 const HighlightedCode = React.memo(function HighlightedCode({
   code,
   language,

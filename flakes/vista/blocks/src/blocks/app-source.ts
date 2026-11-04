@@ -18,7 +18,7 @@ export interface AppSourceFile {
   readonly path: string
   /** Full frozen contents. */
   readonly contents: string
-  /** Explicit Shiki language; otherwise inferred from the path. */
+  /** Explicit Pierre language; otherwise inferred from the path. Unsupported Highlights lexers render as text. */
   readonly lang?: string | undefined
 }
 

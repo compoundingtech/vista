@@ -1,17 +1,17 @@
 import type { FileDiffOptions } from '@pierre/diffs'
-import { PatchDiff } from '@pierre/diffs/react'
+import { MultiFileDiff, PatchDiff } from '@pierre/diffs/react'
 import * as stylex from '@stylexjs/stylex'
 import type { StyleXStylesWithout } from '@stylexjs/stylex'
 import { scale, tokens } from '@vista/ui/tokens.stylex'
 /**
  * `diff` block: wraps `@pierre/diffs` (decision 0024). Authored from a unified
- * patch string or an old/new file pair (framed into a patch), with a runtime
+ * patch string or a complete old/new file pair, with a runtime
  * split⇄unified toggle, word-level granularity, and collapsible hunks.
  *
  * The dependency is fully encapsulated here: the document references diff content
  * by Vista's own `DiffSource` shape (portable, MED.AUTH-R25); @pierre is an implementation
  * detail. Theme is reconciled with the kit's `--vista-*` tokens via the
- * registered `vista-light`/`vista-dark` Shiki themes (KR07, see `pierre-theme`).
+ * registered `vista-light`/`vista-dark` themes (KR07, see `pierre-theme`).
  */
 import * as React from 'react'
 
@@ -19,25 +19,6 @@ import type { DiffSource, DiffView, DiffWordLevel } from '../model.ts'
 import { useTheme } from '../theme.ts'
 import { ensureVistaDiffThemes, VISTA_DIFF_THEMES, VISTA_DIFF_UNSAFE_CSS } from './pierre-theme.ts'
 import { ResizableSplit } from './ResizableSplit.tsx'
-
-/** Build a unified patch from an old/new file pair so `PatchDiff` can render it. */
-const filesToPatch = ({
-  path,
-  oldContents,
-  newContents,
-}: {
-  path: string
-  oldContents: string
-  newContents: string
-}): string => {
-  const oldLines = oldContents.split('\n')
-  const newLines = newContents.split('\n')
-  // A whole-file replacement hunk: correct unified-diff framing that @pierre
-  // re-diffs at render (it does its own char/word diffing inside the hunk).
-  const header = `--- a/${path}\n+++ b/${path}\n@@ -1,${oldLines.length} +1,${newLines.length} @@\n`
-  const body = [...oldLines.map((l) => `-${l}`), ...newLines.map((l) => `+${l}`)].join('\n')
-  return header + body + '\n'
-}
 
 /** Configures user-resizable height for a diff via initial, minimum, and maximum CSS size strings. */
 export interface DiffHeightResizeConfig {
@@ -161,7 +142,8 @@ export const Diff = ({
       unsafeCSS: VISTA_DIFF_UNSAFE_CSS,
       diffStyle: view,
       lineDiffType: wordLevel,
-      expandUnchanged: !collapsed,
+      // Patch captures contain only their supplied hunks, not loadable full files.
+      expandUnchanged: !collapsed && source._tag === 'files',
       onPostRender: (node, _instance, phase) => {
         const failOpen = () =>
           setExtentState((current) => (current?.epoch === epoch ? undefined : current))
@@ -197,18 +179,20 @@ export const Diff = ({
         )
       },
     }),
-    [collapsed, epoch, theme, view, wordLevel],
+    [collapsed, epoch, source._tag, theme, view, wordLevel],
   )
 
-  const patch =
-    source._tag === 'patch'
-      ? source.patch
-      : filesToPatch({
-          path: source.path,
-          oldContents: source.oldContents,
-          newContents: source.newContents,
-        })
-  const isEmpty = patch.trim().length === 0
+  const files = React.useMemo(
+    () =>
+      source._tag === 'files'
+        ? {
+            oldFile: { name: source.path, contents: source.oldContents },
+            newFile: { name: source.path, contents: source.newContents },
+          }
+        : undefined,
+    [source],
+  )
+  const isEmpty = source._tag === 'patch' && source.patch.trim().length === 0
 
   const figure = (
     <figure
@@ -243,9 +227,11 @@ export const Diff = ({
       <div {...stylex.props(styles.host)}>
         {isEmpty ? (
           <p {...stylex.props(styles.empty)}>No diff content.</p>
-        ) : (
-          <PatchDiff patch={patch} options={options} />
-        )}
+        ) : files !== undefined ? (
+          <MultiFileDiff oldFile={files.oldFile} newFile={files.newFile} options={options} />
+        ) : source._tag === 'patch' ? (
+          <PatchDiff patch={source.patch} options={options} />
+        ) : null}
       </div>
       {caption ? (
         <figcaption ref={captionRef} {...stylex.props(styles.caption)}>

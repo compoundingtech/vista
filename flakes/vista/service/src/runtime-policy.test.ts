@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
 import { Effect } from 'effect'
-import { parseSync } from 'oxc-parser'
+import { parseSync, type ParseResult } from 'oxc-parser'
 import { describe, expect, it } from 'vitest'
 
 import {
@@ -34,6 +34,31 @@ const unquoteModuleSpecifier = (source: string, start: number, end: number): str
   return undefined
 }
 
+const runtimeStaticImportSpecifiers = (parsed: ParseResult): string[] => {
+  const typeOnlyStarts = new Set(
+    parsed.program.body.flatMap((statement) =>
+      statement.type === 'ImportDeclaration' && statement.importKind === 'type'
+        ? [statement.start]
+        : [],
+    ),
+  )
+  // Inline type specifiers still emit a side-effect import under verbatimModuleSyntax.
+  return parsed.module.staticImports
+    .filter((entry) => !typeOnlyStarts.has(entry.start))
+    .map((entry) => entry.moduleRequest.value)
+}
+
+it.each([
+  { source: "import type { A, B } from 'types'", expected: [] },
+  { source: "import { type A, type B } from 'inline-types'", expected: ['inline-types'] },
+  { source: "import { type A, B } from 'mixed'", expected: ['mixed'] },
+  { source: "import 'side-effect'", expected: ['side-effect'] },
+])('tracks emitted runtime imports for $source', ({ source, expected }) => {
+  const parsed = parseSync('example.ts', source, { lang: 'ts', sourceType: 'module' })
+  expect(parsed.errors).toEqual([])
+  expect(runtimeStaticImportSpecifiers(parsed)).toEqual(expected)
+})
+
 const kitRuntimeImportSpecifiers = (): string[] => {
   const files = walk(join(blocksDir(), 'src')).filter(
     (file) =>
@@ -62,7 +87,7 @@ const kitRuntimeImportSpecifiers = (): string[] => {
       )
     }
     const candidates = [
-      ...parsed.module.staticImports.map((entry) => entry.moduleRequest.value),
+      ...runtimeStaticImportSpecifiers(parsed),
       ...parsed.module.staticExports.flatMap((entry) =>
         entry.entries.flatMap((item) =>
           item.moduleRequest === null ? [] : [item.moduleRequest.value],
