@@ -131,7 +131,7 @@ in
           CI=1 run_package_bin playwright playwright test --config playwright.config.ts
         '';
         cwd = "flakes/vista/blocks";
-        after = [ rootNodeModulesReadyTask ];
+        after = [ rootNodeModulesReadyTask "vista:island:build" ];
       };
       "vista:packaged-smoke" = {
         description = "Build/smoke the packaged Vista artifact with browser checks against isolated mutable roots";
