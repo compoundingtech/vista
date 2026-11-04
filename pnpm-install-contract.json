@@ -77,7 +77,7 @@
   "installPolicy": {
     "dedupePeerDependents": true,
     "ignoreScripts": true,
-    "minimumReleaseAgeExclude": ["@types/node", "@pierre/highlights@0.4.0"],
+    "minimumReleaseAgeExclude": ["@types/node", "@pierre/highlights@0.4.0", "@pierre/diffs@1.6.4"],
     "optimisticRepeatInstall": false,
     "packageImportMethod": {
       "live": {

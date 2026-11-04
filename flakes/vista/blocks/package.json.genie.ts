@@ -39,7 +39,7 @@ const composition = catalog.compose({
       // Markdown documents and wrapped diff / file-tree families (decisions 0024, 0079).
       'react-markdown': '10.1.0',
       'remark-gfm': '4.0.1',
-      '@pierre/diffs': '1.6.2',
+      '@pierre/diffs': '1.6.4',
       '@pierre/highlights': '0.4.0',
       // @pierre/trees' theming peer is still on theme v1 while diffs carries v2.
       '@pierre/theme': '1.1.0',
