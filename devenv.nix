@@ -70,6 +70,8 @@ in
     })
     (shared.storybook {
       installTask = rootNodeModulesReadyTask;
+      # Blocks imports the built telemetry island through its service-host runtime.
+      extraInstallTasks = [ "vista:island:build" ];
       packages = [ { path = "flakes/vista/blocks"; name = "vista-blocks"; port = 6006; } ];
     })
     (import ./nix/devenv/vista-tasks.nix {
