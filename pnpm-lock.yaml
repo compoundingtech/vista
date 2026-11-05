@@ -198,6 +198,9 @@ importers:
       remark-gfm:
         specifier: 4.0.1
         version: 4.0.1
+      shiki:
+        specifier: 4.4.3
+        version: 4.4.3
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -557,6 +560,9 @@ importers:
       remark-gfm:
         specifier: 4.0.1
         version: 4.0.1
+      shiki:
+        specifier: 4.4.3
+        version: 4.4.3
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
