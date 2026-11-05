@@ -41,6 +41,8 @@ const composition = catalog.compose({
       'remark-gfm': '4.0.1',
       '@pierre/diffs': '1.6.4',
       '@pierre/highlights': '0.4.0',
+      // pierre-theme imports ThemeRegistration directly; Pierre no longer re-exports it.
+      shiki: '4.4.3',
       // @pierre/trees' theming peer is still on theme v1 while diffs carries v2.
       '@pierre/theme': '1.1.0',
       // @pierre/trees remains beta — watch item per decision 0024.

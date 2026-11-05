@@ -3,7 +3,7 @@
 
 # Generated file - DO NOT EDIT
 # Source: pnpm-lock.yaml
-# Store fingerprint: sha256:1139e2d9d16c1be45e9c09ae7fdcf530beb99d6bb114bed4862f453479f79bf4
+# Store fingerprint: sha256:711d26ff766225186dfc6d9c8e87c7d47b60c08a66a12af46eb7993c42c5dbdb
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs")
 
@@ -26053,6 +26053,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
@@ -28254,6 +28255,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
@@ -30455,6 +30457,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
@@ -42384,6 +42387,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
@@ -44649,6 +44653,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
@@ -46914,6 +46919,7 @@ pnpm_store_view(
         "react-markdown": "react-markdown@10.1.0_@types+react@19.2.18_react@19.2.8",
         "recharts": "recharts@3.8.1_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react-is@19.3.0_react@19.2.8_redux@5.0.1",
         "remark-gfm": "remark-gfm@4.0.1",
+        "shiki": "shiki@4.4.3",
         "storybook": "storybook@10.6.0_@types+react@19.2.18_react-dom@19.2.8_react@19.2.8_react@19.2.8",
         "svg-pan-zoom": "svg-pan-zoom@3.6.2",
         "typescript": "typescript@7.0.2",
