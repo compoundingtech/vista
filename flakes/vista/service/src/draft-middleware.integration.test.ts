@@ -2,8 +2,9 @@ import { once } from 'node:events'
 import http from 'node:http'
 
 import { NodeHttpServer } from '@effect/platform-node'
-import { Cause, Effect, Exit, Scope } from 'effect'
+import { Effect, Exit, Scope } from 'effect'
 import * as HttpServerRequest from 'effect/http/HttpServerRequest'
+import * as HttpServerResponse from 'effect/http/HttpServerResponse'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { nodeRoute, serveDraftMiddleware } from './server.ts'
@@ -45,7 +46,7 @@ describe('draft middleware response ownership', () => {
 
   it('rejects a non-HTTP1 platform request before invoking the node handler', async () => {
     let invoked = false
-    const result = await Effect.runPromiseExit(
+    const result = await Effect.runPromise(
       nodeRoute('vista.test.protocol', () => {
         invoked = true
       }).pipe(
@@ -56,11 +57,8 @@ describe('draft middleware response ownership', () => {
       ),
     )
     expect(invoked).toBe(false)
-    expect(Exit.isFailure(result)).toBe(true)
-    if (Exit.isFailure(result))
-      expect(Cause.pretty(result.cause)).toContain(
-        'Vista nodeRoute requires an HTTP/1 request and response',
-      )
+    expect(result.status).toBe(505)
+    expect(await HttpServerResponse.toWeb(result).text()).toBe('HTTP version not supported')
   })
 
   it.each(['error', 'fallthrough'] as const)(
