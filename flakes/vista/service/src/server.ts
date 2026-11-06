@@ -1365,11 +1365,9 @@ export const nodeRoute = (
     const request = yield* HttpServerRequest.HttpServerRequest
     const nodeReq = NodeHttpServerRequest.toIncomingMessage(request)
     const nodeRes = NodeHttpServerRequest.toServerResponse(request)
-    // Vite's imperative middleware requires HTTP/1, even when the platform
-    // request helpers also support HTTP/2 transports.
-    if (!(nodeReq instanceof http.IncomingMessage) || !(nodeRes instanceof http.ServerResponse)) {
-      return HttpServerResponse.text('HTTP version not supported', { status: 505 })
-    }
+    // The bridge belongs to our http.createServer transport, never HTTP/2.
+    if (!(nodeReq instanceof http.IncomingMessage) || !(nodeRes instanceof http.ServerResponse))
+      return yield* Effect.die(new Error('Vista nodeRoute requires an HTTP/1 request and response'))
     yield* Effect.callback<void>((resume) => {
       let handlerDone = false
       let responseDone = nodeRes.destroyed || nodeRes.writableEnded

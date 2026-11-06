@@ -2,7 +2,8 @@ import { once } from 'node:events'
 import http from 'node:http'
 
 import { NodeHttpServer } from '@effect/platform-node'
-import { Effect, Exit, Scope } from 'effect'
+import { Cause, Effect, Exit, Scope } from 'effect'
+import * as HttpServerRequest from 'effect/http/HttpServerRequest'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { nodeRoute, serveDraftMiddleware } from './server.ts'
@@ -41,6 +42,26 @@ const serve = async (middleware: Middleware) => {
 // Deferred next() is the Connect boundary that previously escaped nodeRoute.
 describe('draft middleware response ownership', () => {
   afterEach(() => vi.restoreAllMocks())
+
+  it('rejects a non-HTTP1 platform request before invoking the node handler', async () => {
+    let invoked = false
+    const result = await Effect.runPromiseExit(
+      nodeRoute('vista.test.protocol', () => {
+        invoked = true
+      }).pipe(
+        Effect.provideService(
+          HttpServerRequest.HttpServerRequest,
+          HttpServerRequest.fromWeb(new Request('http://localhost/draft/')),
+        ),
+      ),
+    )
+    expect(invoked).toBe(false)
+    expect(Exit.isFailure(result)).toBe(true)
+    if (Exit.isFailure(result))
+      expect(Cause.pretty(result.cause)).toContain(
+        'Vista nodeRoute requires an HTTP/1 request and response',
+      )
+  })
 
   it.each(['error', 'fallthrough'] as const)(
     'finishes a committed response after deferred next: %s',
