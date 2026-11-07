@@ -1,4 +1,4 @@
-import type { ChangelogEntrySource } from '../changelog/contract.ts'
+import type { ChangelogEntrySource } from '../service/src/changelog/contract.ts'
 
 export const entry = {
   title: 'Agent Trace has shared compact and detail renderers',

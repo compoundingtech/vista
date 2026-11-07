@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:b614abc7d6dc7c2e9357bb55fe2e23db62c9a55f1d6f3f8b94c3ab5bd25510c6
+# Semantic fingerprint: sha256:87ebec820e3cf8e4b69762c18b250bd11c79e64f00c69f0c9bb666bbcecfb83c
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -28,6 +28,9 @@ export_materialization_inputs([
     "src/build-info.ts",
     "src/changelog-companion.integration.test.ts",
     "src/changelog-companion.ts",
+    "src/changelog/compiler.ts",
+    "src/changelog/compiler.unit.test.ts",
+    "src/changelog/contract.ts",
     "src/chart-interop.browser.test.ts",
     "src/control-rpc.test.ts",
     "src/control-server.ts",
@@ -208,6 +211,9 @@ package_view(
         "src/build-info.ts": "src/build-info.ts",
         "src/changelog-companion.integration.test.ts": "src/changelog-companion.integration.test.ts",
         "src/changelog-companion.ts": "src/changelog-companion.ts",
+        "src/changelog/compiler.ts": "src/changelog/compiler.ts",
+        "src/changelog/compiler.unit.test.ts": "src/changelog/compiler.unit.test.ts",
+        "src/changelog/contract.ts": "src/changelog/contract.ts",
         "src/chart-interop.browser.test.ts": "src/chart-interop.browser.test.ts",
         "src/control-rpc.test.ts": "src/control-rpc.test.ts",
         "src/control-server.ts": "src/control-server.ts",
@@ -650,6 +656,9 @@ package_view(
         "src/build-info.ts": "src/build-info.ts",
         "src/changelog-companion.integration.test.ts": "src/changelog-companion.integration.test.ts",
         "src/changelog-companion.ts": "src/changelog-companion.ts",
+        "src/changelog/compiler.ts": "src/changelog/compiler.ts",
+        "src/changelog/compiler.unit.test.ts": "src/changelog/compiler.unit.test.ts",
+        "src/changelog/contract.ts": "src/changelog/contract.ts",
         "src/chart-interop.browser.test.ts": "src/chart-interop.browser.test.ts",
         "src/control-rpc.test.ts": "src/control-rpc.test.ts",
         "src/control-server.ts": "src/control-server.ts",

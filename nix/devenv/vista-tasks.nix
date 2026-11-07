@@ -61,7 +61,7 @@ in
           set -euo pipefail
           mkdir -p "$(dirname ${lib.escapeShellArg vistaTestChangelogManifest})"
           machine_version="$(bun -e "const { resolveVistaBuildInfo } = await import('./src/build-info.ts'); process.stdout.write(resolveVistaBuildInfo().machineVersion)")"
-          bun ../changelog/compiler.ts \
+          bun src/changelog/compiler.ts \
             --machine-version "$machine_version" \
             --output ${lib.escapeShellArg vistaTestChangelogManifest}
         '';

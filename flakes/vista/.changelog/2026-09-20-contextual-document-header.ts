@@ -1,4 +1,4 @@
-import type { ChangelogEntrySource } from '../changelog/contract.ts'
+import type { ChangelogEntrySource } from '../service/src/changelog/contract.ts'
 
 export const entry = {
   title: 'Document context stays visible while you read',

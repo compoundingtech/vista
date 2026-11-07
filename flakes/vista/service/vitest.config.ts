@@ -39,11 +39,7 @@ export default defineConfig({
     },
   },
   test: {
-    include: [
-      'src/**/*.test.ts',
-      '../../disk-index/vista/*.test.tsx',
-      '../changelog/*.unit.test.ts',
-    ],
+    include: ['src/**/*.test.ts', '../../disk-index/vista/*.test.tsx'],
     // `ts:build` emits compiled `.test.js` copies into `dist/`; without an
     // explicit exclude vitest would discover and re-run those stale duplicates
     // alongside the real `src/**` TypeScript suite. Pin the suite to source.

@@ -36,6 +36,13 @@ The tasks are defined by `devenv.nix`, `nix/devenv/vista-tasks.nix`, and the
 shared effect-utils task modules. `test:run` runs the blocks and non-browser
 service suites; browser proofs are separate tasks.
 
+The changelog compiler, contract, and tests live in
+`flakes/vista/service/src/changelog/`, where `@vista/service` declares their
+`effect` and `@vista/blocks` dependencies. Authored entries remain in
+`flakes/vista/.changelog/` and import the contract from
+`../service/src/changelog/contract.ts`. Both the source-worktree task and Nix
+package run this compiler; no separate changelog workspace package is needed.
+
 The standing service uses an HTTP/1 listener. Its imperative Vite middleware
 bridge requires Node HTTP/1 request and response objects and returns HTTP 505
 for HTTP/2 transports, including when platform adapters expose both types.

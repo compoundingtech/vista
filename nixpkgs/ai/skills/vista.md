@@ -12,7 +12,7 @@ and code changes. Keep linear output in the terminal.
 
 Shipped product release recaps belong in `.changelog` entries, not a new App.
 Add one `flakes/vista/.changelog/YYYY-MM-DD-slug.ts` file exporting `entry`
-with `satisfies ChangelogEntrySource` from `../changelog/contract.ts`.
+with `satisfies ChangelogEntrySource` from `../service/src/changelog/contract.ts`.
 The compiler discovers entry files directly; no index or generated inventory
 needs editing. It validates dates and entry schemas and emits newest-first
 history with descending IDs as the same-day tie-breaker.
