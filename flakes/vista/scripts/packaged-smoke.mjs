@@ -80,7 +80,9 @@ const packagePath =
   sh('nix', ['build', '.#vista', '--no-link', '--print-out-paths'])
 
 const workspace = join(packagePath, 'libexec', 'workspace')
-const tmp = mkdtempSync(join(tmpdir(), 'vista-packaged-smoke-'))
+// Actions cleans RUNNER_TEMP per job, including smoke roots retained after failure.
+const tempRoot = (process.env.CI && process.env.RUNNER_TEMP) || tmpdir()
+const tmp = mkdtempSync(join(tempRoot, 'vista-packaged-smoke-'))
 const appsDir = join(tmp, 'apps')
 const cache = join(tmp, 'cache')
 const logs = join(tmp, 'logs')

@@ -577,6 +577,11 @@ store:
   logs/
 ```
 
+Smoke roots use `RUNNER_TEMP` when both `CI` and `RUNNER_TEMP` are set, so Actions
+cleans retained failure evidence per job. Otherwise they use the OS temp directory
+shown above. Failed runs and `--keep` retain the root for debugging; successful
+runs remove it by default.
+
 The default developer surface is through the repo devenv shell, which provides the
 Nix-managed Playwright browser environment:
 
