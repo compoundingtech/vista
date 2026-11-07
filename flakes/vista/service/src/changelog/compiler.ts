@@ -1,5 +1,5 @@
-import { readdir } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { mkdir, readdir, writeFile } from 'node:fs/promises'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { Schema } from 'effect'
@@ -116,7 +116,7 @@ const parseArguments = (args: readonly string[]): CompilerArguments => ({
   sourceDirectory:
     args.includes('--source-directory') === true
       ? requiredValue({ args, name: '--source-directory' })
-      : fileURLToPath(new URL('../.changelog/', import.meta.url)),
+      : fileURLToPath(new URL('../../../.changelog/', import.meta.url)),
 })
 
 export const discoverChangelogEntries = async (
@@ -145,7 +145,8 @@ const runCompiler = async (): Promise<void> => {
     product: 'vista',
     machineVersion,
   })
-  await Bun.write(output, bytes)
+  await mkdir(dirname(output), { recursive: true })
+  await writeFile(output, bytes)
 }
 
 if (import.meta.main) await runCompiler()

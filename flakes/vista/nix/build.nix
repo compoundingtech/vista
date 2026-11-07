@@ -100,8 +100,8 @@ let
     root = ../.;
     fileset = lib.fileset.unions [
       ../.changelog
-      ../changelog/compiler.ts
-      ../changelog/contract.ts
+      ../service/src/changelog/compiler.ts
+      ../service/src/changelog/contract.ts
     ];
   };
 in
@@ -231,7 +231,7 @@ pkgs.stdenv.mkDerivation {
     machine_version="$(VISTA_ROOT="$out/libexec/workspace" CLI_BUILD_STAMP=${lib.escapeShellArg buildStamp} \
       ${pkgs.bun}/bin/bun -e \
       "const { resolveVistaBuildInfo } = await import('$out/libexec/workspace/flakes/vista/service/src/build-info.ts'); process.stdout.write(resolveVistaBuildInfo().machineVersion)")"
-    ${pkgs.bun}/bin/bun "$out/libexec/workspace/flakes/vista/changelog/compiler.ts" \
+    ${pkgs.bun}/bin/bun "$out/libexec/workspace/flakes/vista/service/src/changelog/compiler.ts" \
       --source-directory "$out/libexec/workspace/flakes/vista/.changelog" \
       --machine-version "$machine_version" \
       --output "$out/share/vista/changelog.v1.json"

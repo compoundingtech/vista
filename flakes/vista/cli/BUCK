@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/cli/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:527e75a5670c3dc0bbd707994ccd5a813ec5a8029211da40529a5fd4c1328fc7
+# Semantic fingerprint: sha256:9ede91dd4768d54a59ef7370175395c17722f3af1dc2d6a0d6eeadf5d0768c6c
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -195,6 +195,9 @@ package_view(
         "node_modules/@vista/service/src/build-info.ts": "//flakes/vista/service:src/build-info.ts",
         "node_modules/@vista/service/src/changelog-companion.integration.test.ts": "//flakes/vista/service:src/changelog-companion.integration.test.ts",
         "node_modules/@vista/service/src/changelog-companion.ts": "//flakes/vista/service:src/changelog-companion.ts",
+        "node_modules/@vista/service/src/changelog/compiler.ts": "//flakes/vista/service:src/changelog/compiler.ts",
+        "node_modules/@vista/service/src/changelog/compiler.unit.test.ts": "//flakes/vista/service:src/changelog/compiler.unit.test.ts",
+        "node_modules/@vista/service/src/changelog/contract.ts": "//flakes/vista/service:src/changelog/contract.ts",
         "node_modules/@vista/service/src/chart-interop.browser.test.ts": "//flakes/vista/service:src/chart-interop.browser.test.ts",
         "node_modules/@vista/service/src/control-rpc.test.ts": "//flakes/vista/service:src/control-rpc.test.ts",
         "node_modules/@vista/service/src/control-server.ts": "//flakes/vista/service:src/control-server.ts",
@@ -416,6 +419,9 @@ package_view(
         "node_modules/@vista/service/src/build-info.ts": "//flakes/vista/service:src/build-info.ts",
         "node_modules/@vista/service/src/changelog-companion.integration.test.ts": "//flakes/vista/service:src/changelog-companion.integration.test.ts",
         "node_modules/@vista/service/src/changelog-companion.ts": "//flakes/vista/service:src/changelog-companion.ts",
+        "node_modules/@vista/service/src/changelog/compiler.ts": "//flakes/vista/service:src/changelog/compiler.ts",
+        "node_modules/@vista/service/src/changelog/compiler.unit.test.ts": "//flakes/vista/service:src/changelog/compiler.unit.test.ts",
+        "node_modules/@vista/service/src/changelog/contract.ts": "//flakes/vista/service:src/changelog/contract.ts",
         "node_modules/@vista/service/src/chart-interop.browser.test.ts": "//flakes/vista/service:src/chart-interop.browser.test.ts",
         "node_modules/@vista/service/src/control-rpc.test.ts": "//flakes/vista/service:src/control-rpc.test.ts",
         "node_modules/@vista/service/src/control-server.ts": "//flakes/vista/service:src/control-server.ts",

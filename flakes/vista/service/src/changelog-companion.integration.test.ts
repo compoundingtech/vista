@@ -97,7 +97,7 @@ describe('Vista changelog companion', () => {
     )
     execFileSync(
       'bun',
-      ['../changelog/compiler.ts', '--machine-version', machineVersion, '--output', output],
+      ['src/changelog/compiler.ts', '--machine-version', machineVersion, '--output', output],
       {
         cwd: serviceDirectory,
         env,

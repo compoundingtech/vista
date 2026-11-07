@@ -33,7 +33,7 @@ describe('Vista changelog compiler', () => {
   it('decodes real authored output with the canonical service build identity', () => {
     const directory = mkdtempSync(join(tmpdir(), 'vista-changelog-compiler-'))
     try {
-      const serviceDirectory = fileURLToPath(new URL('../service', import.meta.url))
+      const serviceDirectory = fileURLToPath(new URL('../..', import.meta.url))
       const output = join(directory, 'changelog.v1.json')
       const env = { ...process.env }
       delete env.VISTA_ROOT
@@ -47,7 +47,7 @@ describe('Vista changelog compiler', () => {
       )
       execFileSync(
         'bun',
-        ['../changelog/compiler.ts', '--machine-version', machineVersion, '--output', output],
+        ['src/changelog/compiler.ts', '--machine-version', machineVersion, '--output', output],
         { cwd: serviceDirectory, env },
       )
       const manifest = decodeChangelogManifestV1(JSON.parse(readFileSync(output, 'utf8')))
