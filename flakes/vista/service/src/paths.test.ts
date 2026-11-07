@@ -1,6 +1,7 @@
-import { mkdtempSync, rmSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
@@ -14,6 +15,7 @@ const savedEnv = {
   VISTA_CACHE: process.env.VISTA_CACHE,
   VISTA_SOURCES: process.env.VISTA_SOURCES,
   VISTA_LIVE_STATE: process.env.VISTA_LIVE_STATE,
+  VISTA_DEPS: process.env.VISTA_DEPS,
   XDG_STATE_HOME: process.env.XDG_STATE_HOME,
   XDG_CACHE_HOME: process.env.XDG_CACHE_HOME,
   HOME: process.env.HOME,
@@ -38,6 +40,40 @@ afterEach(() => {
 })
 
 describe('vista runtime paths', () => {
+  it('defaults dependencies from the service package, independently of VISTA_ROOT', async () => {
+    delete process.env.VISTA_DEPS
+    process.env.VISTA_ROOT = '/unrelated/workspace'
+    const paths = await freshPaths()
+    const service = resolve(dirname(fileURLToPath(import.meta.url)), '..')
+    expect(paths.depsNodeModules()).toBe(
+      paths.resolveServiceNodeModules(join(service, 'package.json')),
+    )
+    expect(existsSync(join(paths.depsNodeModules(), 'react', 'package.json'))).toBe(true)
+  })
+
+  it.each(['isolated', 'hoisted'])(
+    'resolves the service dependency set in a %s layout',
+    async (layout) => {
+      dir = mkdtempSync(join(tmpdir(), 'vista-paths-'))
+      const service = join(dir, 'flakes', 'vista', 'service')
+      const dependencies = join(layout === 'isolated' ? service : dir, 'node_modules')
+      mkdirSync(join(service, 'node_modules'), { recursive: true })
+      mkdirSync(join(dependencies, 'react'), { recursive: true })
+      writeFileSync(join(dependencies, 'react', 'package.json'), '{"name":"react"}')
+      const paths = await freshPaths()
+      expect(paths.resolveServiceNodeModules(join(service, 'package.json'))).toBe(dependencies)
+    },
+  )
+
+  it.each(['/nix/store/abc-vista/libexec/workspace/node_modules', 'custom-deps'])(
+    'honors the dependency override (%s)',
+    async (deps) => {
+      process.env.VISTA_DEPS = deps
+      const paths = await freshPaths()
+      expect(paths.depsNodeModules()).toBe(resolve(deps))
+    },
+  )
+
   it('derives one canonical AppSource from sources root, owner, and slug', async () => {
     const paths = await freshPaths()
     expect(paths.appSourcePath('/sources', 'dev3.worker.alpha', 'review')).toBe(

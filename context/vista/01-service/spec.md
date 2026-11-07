@@ -374,6 +374,19 @@ resolves against the Nix `vista-deps` store closure via its root `node_modules`
 symlink (decisions 0006, 0017). Apps are bound to the service's dep set by design
 and are not standalone-buildable in isolation. Zero per-app install (AGT.CLI-R08, SVC-R16).
 
+`VISTA_DEPS` overrides that dependency directory. Without an override, Node's
+package-local search order from `@vista/service` selects the nearest `node_modules`
+containing its required React dependency: the service package's own directory for
+pnpm isolated installs, or the hoisted directory for hoisted installs. React is
+only the shared-singleton sentinel, not a dependency-closure check. The selection
+assumes the layout invariant that the chosen `node_modules` holds the service's
+dependency set; it does not verify that invariant. Mixed-hoisting layouts can
+violate it and require `VISTA_DEPS`. Package symlinks are not dereferenced into
+the virtual store. `VISTA_ROOT` remains the workspace asset/mutable-default anchor
+and does not select dependencies. Packaged deployments set `VISTA_DEPS` to the
+immutable workspace dependency closure; the packaged service package's
+`node_modules` also links to that same closure.
+
 The untransformed service-process value-import graph must not load `.stylex`
 sources or the `@stylexjs/stylex` runtime. Schema readers use the node-safe
 `@vista/blocks/contract` surface rather than the semantic evaluator's rendering

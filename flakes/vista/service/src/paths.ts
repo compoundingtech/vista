@@ -1,24 +1,25 @@
 import { existsSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { dirname, join, resolve } from 'node:path'
 /**
- * Runtime path resolution. Everything resolves relative to a single project
- * root so the tree is relocatable. Packaged Vista ships the imported Buck
- * runtime closure in a read-only workspace and keeps apps/cache mutable via
- * environment variables (decision 0017); local dev needs no configuration.
+ * Runtime path resolution. Workspace assets resolve from the project root;
+ * dependencies resolve from the service package. Packaged Vista ships the
+ * imported Buck runtime closure in a read-only workspace and keeps apps/cache
+ * mutable via environment variables (decision 0017); local dev needs no configuration.
  *
  * Layout:
  *   <sources>/_owned.v1/<encoded-owner>/<slug>               (canonical AppSource)
  *   <apps>/_owned/<owner>/<slug>/{v1, v2, …, latest→vN, RETIRED?}
- *   <root>/node_modules                                     (shared dep closure)
+ *   <service dependency directory>/node_modules             (shared dep closure)
  *
  * `VISTA_ROOT`    — project root (defaults to the workspace containing a root
- *                   marker and its shared `node_modules` dependency closure).
+ *                   marker; used for workspace assets and mutable path defaults).
  * `VISTA_APPS`    — mutable app state (local: <root>/tmp/vista; packaged: required).
  * `VISTA_SOURCES` — required authored AppSource root (packaged: XDG state/vista/sources).
  * `VISTA_CACHE`   — Vite cache outside immutable version source (decision 0029;
  *                   local: <root>/tmp/vista-cache; packaged: XDG cache).
  * `VISTA_DEPS`    — the shared `node_modules` dir Vite resolves bare specifiers
- *                   from (defaults to <root>/node_modules).
+ *                   from (defaults to the service's package-local dependency directory).
  */
 import { fileURLToPath } from 'node:url'
 
@@ -42,8 +43,8 @@ const once = <T>(f: () => T): (() => T) => {
 }
 
 /**
- * Files that mark the workspace root (the dir owning the shared `node_modules`
- * the dep walk-up resolves against). Either marks it on its own.
+ * Files that mark the workspace root for authored assets and mutable path
+ * defaults. Either marks it on its own; dependency resolution is package-local.
  */
 const ROOT_MARKERS = ['flake.nix', 'pnpm-workspace.yaml']
 
@@ -102,8 +103,8 @@ const findWorkspaceRoot = (start: string): string | undefined => {
 }
 
 /**
- * Project root: the workspace root whose `node_modules` is the shared dep
- * closure. Derived by walking up from this file to the nearest {@link
+ * Project root for workspace assets and mutable path defaults.
+ * Derived by walking up from this file to the nearest {@link
  * ROOT_MARKERS} ancestor (NOT a fixed hop count — the old `../../../../..`
  * overshot ABOVE the repo root inside a nested megarepo worktree, forcing a
  * `VISTA_ROOT` override). `VISTA_ROOT` remains the explicit override for deploys
@@ -115,7 +116,7 @@ export const root = once((): string => {
   if (found === undefined) {
     throw new Error(
       `vista: could not locate the workspace root (no ${ROOT_MARKERS.join(' / ')} found ` +
-        `above ${here}). Set VISTA_ROOT to the dir owning the shared node_modules.`,
+        `above ${here}). Set VISTA_ROOT to the workspace containing Vista assets.`,
     )
   }
   return found
@@ -159,9 +160,32 @@ export const islandDir = once((): string =>
     : resolve(root(), 'flakes', 'vista', 'island'),
 )
 
-/** The shared dependency closure Vite resolves app imports from (SVC-R16, 0006). */
+/**
+ * Locate a dependency directory using Node's package-local search order, with
+ * React as the shared-singleton sentinel, not a dependency-closure check. This
+ * assumes the chosen node_modules holds the service's dependency set; mixed
+ * hoisting can violate that invariant and requires VISTA_DEPS.
+ * Do not realpath React's entry into its isolated-install virtual store: that
+ * package's parent is not the service dependency directory.
+ */
+export const resolveServiceNodeModules = (servicePackageJson: string): string => {
+  const candidates = createRequire(servicePackageJson).resolve.paths('react') ?? []
+  const found = candidates.find((candidate) => existsSync(join(candidate, 'react', 'package.json')))
+  if (found === undefined) {
+    throw new Error(
+      `vista: could not locate service dependencies from ${servicePackageJson}; set VISTA_DEPS`,
+    )
+  }
+  return found
+}
+
+/** The configured or layout-assumed service dependency directory (SVC-R16, 0006). */
 export const depsNodeModules = once((): string =>
-  process.env.VISTA_DEPS ? resolve(process.env.VISTA_DEPS) : resolve(root(), 'node_modules'),
+  process.env.VISTA_DEPS
+    ? resolve(process.env.VISTA_DEPS)
+    : resolveServiceNodeModules(
+        createRequire(import.meta.url).resolve('@vista/service/package.json'),
+      ),
 )
 
 /** The `node_modules` symlink the apps tree walks up to (decision 0006). */
