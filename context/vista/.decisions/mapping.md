@@ -101,6 +101,11 @@ Decision
 data-first semantic diff surface, its H2/S1/A3 frame chrome, the text shape
 rule, and the per-lens defaults.
 
+Decision
+[0102](./0102-universal-context-section.md) owns the universal context-section
+authoring contract (H2/S2/A1, A4 for multiple asks), resolving 0101's pending
+brief variant. Its §9 text budget remains proposed, not decided.
+
 
 > Note: the former `0036` number-collision is resolved — the control-plane
 > decision is now `0065-control-plane-rpc-boundary`; `0036` is solely

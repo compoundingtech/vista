@@ -24,7 +24,10 @@ The skill teaches:
 1. shipped release recaps use `.changelog` contributor context as specified above;
 2. AppSource default-exports a zero-prop AppRoot using `@vista/blocks`;
 3. stable IDs identify only addressable SemanticNodes and RuntimeIslands;
-4. AppRoot leads with the ask and exposes only bounded choices;
+4. AppRoot opens with the universal context section and exposes only bounded
+   choices, following the [authoring skill](../../../../nixpkgs/ai/skills/vista.md#universal-context-section)
+   and [doctrine contract](../../02-medium/04-doctrine/spec.md#universal-context-section);
+   its §9 text budget is proposed, not decided;
 5. optional `vista check [path]` supports iteration;
 6. `vista publish <local-slug> --message <summary>` is sufficient;
 7. browser-judge the pinned URL returned by publish before sharing.
