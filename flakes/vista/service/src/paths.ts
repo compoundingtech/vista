@@ -161,10 +161,12 @@ export const islandDir = once((): string =>
 )
 
 /**
- * Locate the service's dependency directory using Node's package-local search
- * order. React is a required service dependency and the shared runtime singleton.
- * Do not realpath its entry: isolated installs symlink into a virtual store whose
- * parent is not the service's complete dependency set.
+ * Locate a dependency directory using Node's package-local search order, with
+ * React as the shared-singleton sentinel, not a dependency-closure check. This
+ * assumes the chosen node_modules holds the service's dependency set; mixed
+ * hoisting can violate that invariant and requires VISTA_DEPS.
+ * Do not realpath React's entry into its isolated-install virtual store: that
+ * package's parent is not the service dependency directory.
  */
 export const resolveServiceNodeModules = (servicePackageJson: string): string => {
   const candidates = createRequire(servicePackageJson).resolve.paths('react') ?? []
@@ -177,7 +179,7 @@ export const resolveServiceNodeModules = (servicePackageJson: string): string =>
   return found
 }
 
-/** The service-owned dependency closure Vite resolves app imports from (SVC-R16, 0006). */
+/** The configured or layout-assumed service dependency directory (SVC-R16, 0006). */
 export const depsNodeModules = once((): string =>
   process.env.VISTA_DEPS
     ? resolve(process.env.VISTA_DEPS)
