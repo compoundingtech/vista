@@ -470,6 +470,9 @@ and Vista's other packages are genie-composed pnpm-workspace packages (`.genie.t
 not standalone projects, so the kit is a real importable package the service and
 apps depend on through the workspace (decision 0025).
 
+The proposed [protected Cachix publisher](./publisher.md) owns distribution of
+the packaged closure and App-authored manifest proposals; it does not deploy.
+
 The packaged workspace retains service, CLI, blocks, shared agent-timeline, Genie,
 and island sources. Package-local dependency links resolve into the imported
 runtime tree; Vite transforms first-party StyleX source and Vite-loaded Providers
