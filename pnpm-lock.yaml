@@ -126,6 +126,9 @@ importers:
       '@overeng/effect-rpc-explorer-react':
         specifier: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz
         version: https://overeng-effect-utils.cachix.org/serve/0jzhficzkh7y7fl5h2m1wvfj34z2wz6c/overeng-effect-rpc-explorer-react.tgz(@stylexjs/stylex@0.19.0)(effect@4.0.3)(react-aria-components@1.21.1(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(redis@6.2.1(@opentelemetry/api@1.9.1))
+      '@overeng/geist-design-system':
+        specifier: workspace:^
+        version: link:../../../packages/ui-legacy-alias
       '@overeng/meters':
         specifier: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz
         version: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -470,6 +473,9 @@ importers:
       '@overeng/effect-rpc-observer':
         specifier: https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz
         version: https://overeng-effect-utils.cachix.org/serve/rnax6mv8zg8r06yfrdp50i0iakjdg80s/overeng-effect-rpc-observer.tgz(effect@4.0.3)
+      '@overeng/geist-design-system':
+        specifier: workspace:^
+        version: link:../../../packages/ui-legacy-alias
       '@overeng/meters':
         specifier: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz
         version: https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz(effect@4.0.3)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -679,6 +685,12 @@ importers:
       vitest:
         specifier: 5.0.3
         version: 5.0.3(@opentelemetry/api@1.9.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(vite@8.2.2(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
+
+  packages/ui-legacy-alias:
+    dependencies:
+      '@vista/ui':
+        specifier: workspace:^
+        version: link:../ui
 
 packages:
 

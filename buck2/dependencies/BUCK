@@ -1,9 +1,6 @@
 # Generated file - DO NOT EDIT
-# Source: BUCK.genie.ts
-
-# Generated file - DO NOT EDIT
 # Source: pnpm-lock.yaml
-# Store fingerprint: sha256:711d26ff766225186dfc6d9c8e87c7d47b60c08a66a12af46eb7993c42c5dbdb
+# Store fingerprint: sha256:4529880b8e154e9b6273f86908c2d6815619073e32d03cd89bdf779de8070133
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs")
 
@@ -28203,9 +28200,11 @@ pnpm_store_view(
     workspace_trees = {
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
     visibility = ["PUBLIC"],
@@ -30405,9 +30404,11 @@ pnpm_store_view(
     workspace_trees = {
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:product_package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:product_package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
     visibility = ["PUBLIC"],
@@ -44595,9 +44596,11 @@ pnpm_store_view(
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:package_tree",
         "workspace_flakes_vista_blocks_4c807a90c74c": "//flakes/vista/blocks:package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/blocks": "workspace_flakes_vista_blocks_4c807a90c74c",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
@@ -46861,9 +46864,11 @@ pnpm_store_view(
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:product_package_tree",
         "workspace_flakes_vista_blocks_4c807a90c74c": "//flakes/vista/blocks:product_package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:product_package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/blocks": "workspace_flakes_vista_blocks_4c807a90c74c",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
@@ -52502,6 +52507,58 @@ pnpm_store_view(
     visibility = ["PUBLIC"],
 )
 
+pnpm_store_view(
+    name = "view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+    },
+    closure = {
+    },
+    bins = {
+    },
+    workspace_trees = {
+        "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+    },
+    workspace_dependencies = {
+        "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
+    },
+    visibility = ["PUBLIC"],
+)
+
+pnpm_store_view(
+    name = "product_view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+    },
+    closure = {
+    },
+    bins = {
+    },
+    workspace_trees = {
+        "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+    },
+    workspace_dependencies = {
+        "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
+    },
+    visibility = ["PUBLIC"],
+)
+
+pnpm_store_view(
+    name = "external_view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+    },
+    closure = {
+    },
+    bins = {
+    },
+    workspace_trees = {
+    },
+    workspace_dependencies = {
+    },
+    visibility = ["PUBLIC"],
+)
+
 alias(
     name = "importer__cdb4ee2aea69",
     actual = ":view__cdb4ee2aea69",
@@ -52541,5 +52598,11 @@ alias(
 alias(
     name = "importer_packages_ui_26725b8410f0",
     actual = ":view_packages_ui_26725b8410f0",
+    visibility = ["PUBLIC"],
+)
+
+alias(
+    name = "importer_packages_ui_legacy_alias_967cf2ad5401",
+    actual = ":view_packages_ui_legacy_alias_967cf2ad5401",
     visibility = ["PUBLIC"],
 )

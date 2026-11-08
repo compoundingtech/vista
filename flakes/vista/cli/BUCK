@@ -1,6 +1,3 @@
-# Generated file - DO NOT EDIT
-# Source: BUCK.genie.ts
-
 load("@rules//buck2:package_tools.bzl", "package_bin_artifact")
 load("@rules//buck2/products:defs.bzl", "javascript_product")
 
