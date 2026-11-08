@@ -93,7 +93,7 @@ allowBuilds:
 
 blockExoticSubdeps: false
 
-minimumReleaseAgeExclude: ['@types/node', '@pierre/highlights@0.4.0', '@pierre/diffs@1.6.4']
+minimumReleaseAgeExclude: ['@types/node']
 
 supportedArchitectures:
   os: [linux, darwin]
