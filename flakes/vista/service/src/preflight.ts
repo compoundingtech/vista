@@ -45,6 +45,7 @@ import {
   vistaRuntimePolicy,
   vistaViteResolveConfig,
 } from './runtime-policy/index.ts'
+import { vistaDependencyAnchorResolver } from './runtime-policy/vite-plugin.ts'
 import { unfilledScaffoldSlots } from './scaffold.ts'
 import { semanticExtractor } from './semantic-extractor.ts'
 import { typecheckVistaSource } from './source-typecheck.ts'
@@ -437,6 +438,7 @@ export const preflightVistaApp = async (inputPath: string): Promise<VistaPreflig
         noDiscovery: true,
       },
       plugins: [
+        vistaDependencyAnchorResolver(join(depsNodeModules(), '..')),
         ...createStylexVitePlugins({
           externalPackages: stylexLibraries,
           entries: [join(evaluationRoot, 'app.tsx')],

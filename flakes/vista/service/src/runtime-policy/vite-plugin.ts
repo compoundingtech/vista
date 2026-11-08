@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 
+import { parse } from '@babel/parser'
 import { createIdResolver, type Environment, type Plugin, type ResolverFunction } from 'vite'
 
 import { appsDir } from '../paths.ts'
@@ -139,6 +140,39 @@ export const vistaDependencyAnchorResolver = (
         seedEntries.set(environment.name, entries)
       }
       return true
+    },
+    async transform(code, id) {
+      // Babel resolves StyleX token imports itself, before Vite's resolveId.
+      // Give both spellings the canonical absolute filename even when authored
+      // sources live outside the workspace's node_modules ancestry.
+      if (!/\.[cm]?[jt]sx?(?:\?|$)/.test(id) || !code.includes('/tokens.stylex')) return null
+      const ast = parse(code, { sourceType: 'unambiguous', plugins: ['typescript', 'jsx'] })
+      let transformed = code
+      for (const node of ast.program.body.toReversed()) {
+        if (
+          node.type !== 'ImportDeclaration' &&
+          node.type !== 'ExportNamedDeclaration' &&
+          node.type !== 'ExportAllDeclaration'
+        ) continue
+        const source = node.source
+        if (
+          source === null ||
+          source === undefined ||
+          (source.value !== '@overeng/geist-design-system/tokens.stylex' &&
+            source.value !== '@vista/ui/tokens.stylex') ||
+          source.start === null ||
+          source.start === undefined ||
+          source.end === null ||
+          source.end === undefined
+        ) continue
+        const canonical = await this.resolve('@vista/ui/tokens.stylex', anchorImporter)
+        if (canonical === null) continue
+        transformed =
+          transformed.slice(0, source.start) +
+          JSON.stringify(canonical.id.split('?', 1)[0]) +
+          transformed.slice(source.end)
+      }
+      return transformed === code ? null : { code: transformed, map: null }
     },
     async resolveId(source, importer, options) {
       const policy = vistaRuntimePolicy()
