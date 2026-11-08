@@ -37,6 +37,23 @@ beforeAll(async () => {
     join(allowedSource, 'app.tsx'),
     "import React from 'react'\nimport { AppRoot } from '@vista/blocks'\nimport '@pierre/diffs/react'\nexport default function App() { return <AppRoot title=\"Dependency anchor\" template=\"architecture-review\" scope={React.version} /> }\n",
   )
+  const legacySource = appSourcePath(sources, OWNER, 'legacy-ui')
+  mkdirSync(legacySource, { recursive: true })
+  writeFileSync(
+    join(legacySource, 'app.tsx'),
+    `import { AppRoot } from '@vista/blocks'
+import { Button } from '@overeng/geist-design-system'
+import '@overeng/geist-design-system/document.css'
+import { tokens } from '@overeng/geist-design-system/tokens.stylex'
+import * as stylex from '@stylexjs/stylex'
+const styles = stylex.create({ text: { color: tokens['--ds-foreground'] } })
+export default function App() {
+  return <AppRoot title="Legacy UI" template="architecture-review" scope="compatibility">
+    <Button><span {...stylex.props(styles.text)}>Ready</span></Button>
+  </AppRoot>
+}
+`,
+  )
 
   const { startService } = await import('./server.ts')
   port = await freePort()
@@ -51,6 +68,35 @@ afterAll(async () => {
 })
 
 describe('Vista runtime import policy Vite enforcement', () => {
+  it('serves legacy UI imports and resolves every supported export to its canonical file', async () => {
+    const response = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/legacy-ui/draft/app.tsx`,
+    )
+    expect(response.status).toBe(200)
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/legacy-ui`)
+    expect(draft).toBeDefined()
+    const importer = join(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'legacy-ui'),
+      'app.tsx',
+    )
+    for (const suffix of [
+      '',
+      '/components',
+      '/foundations',
+      '/document.css',
+      '/styles.css',
+      '/tokens.stylex',
+    ]) {
+      const legacy = `@overeng/geist-design-system${suffix}`
+      const canonical = `@vista/ui${suffix}`
+      const legacyResolved = await draft!.pluginContainer.resolveId(legacy, importer)
+      const canonicalResolved = await draft!.pluginContainer.resolveId(canonical, importer)
+      expect(legacyResolved, legacy).not.toBeNull()
+      expect(canonicalResolved, canonical).not.toBeNull()
+      expect(legacyResolved!.id, legacy).toBe(canonicalResolved!.id)
+    }
+  })
+
   it('throws a typed runtime-policy error from the resolver boundary', async () => {
     const { vistaRuntimeImportPolicy } = await import('./runtime-policy/vite-plugin.ts')
     const plugin = vistaRuntimeImportPolicy(appSource)

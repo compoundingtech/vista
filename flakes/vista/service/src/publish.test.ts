@@ -395,6 +395,58 @@ describe('Vista publication transaction', () => {
     )
   }, 240_000)
 
+  it('publishes legacy UI imports without duplicating the canonical document stylesheet', async () => {
+    // These modules capture Vista roots and must load after beforeAll isolates them.
+    const { preflightVistaApp } = await import('./preflight.ts')
+    const { previewPublish, publish, verifyStaticPublication } = await import('./publish.ts')
+    const { versionDir } = await import('./registry.ts')
+    const appSource = await writeApp(
+      'legacy-ui',
+      `import { AppRoot, Section } from '@vista/blocks'
+import { Button } from '@overeng/geist-design-system'
+import '@overeng/geist-design-system/document.css'
+import '@vista/ui/document.css'
+import { tokens } from '@overeng/geist-design-system/tokens.stylex'
+import * as stylex from '@stylexjs/stylex'
+
+const styles = stylex.create({ text: { color: tokens['--ds-foreground'] } })
+
+export default function App() {
+  return <AppRoot title="Legacy UI" template="architecture-review" scope="compatibility">
+    <Section><Button><span {...stylex.props(styles.text)}>Ready</span></Button></Section>
+  </AppRoot>
+}
+`,
+    )
+
+    const preflight = await preflightVistaApp(appSource)
+    expect(preflight._tag).toBe('ready')
+    if (preflight._tag !== 'ready') return
+    expect(preflight.report.warnings.map((warning) => warning.message)).toContain(
+      'legacy import root @overeng/geist-design-system; use @vista/ui',
+    )
+    expect(await previewPublish({ owner: OWNER, slug: 'legacy-ui' })).toMatchObject({
+      bindings: [],
+    })
+    expect(
+      await publish(
+        { owner: OWNER, slug: 'legacy-ui', author: 'tester', changeSummary: 'legacy UI compatibility' },
+        state.providers,
+      ),
+    ).toMatchObject({ owner: OWNER, slug: 'legacy-ui', version: 1, bindings: [] })
+
+    const receipt = verifyStaticPublication(OWNER, 'legacy-ui', 1)
+    expect(receipt).not.toBeNull()
+    const cssFiles = receipt!.inventory.filter((entry) => entry.path.endsWith('.css'))
+    expect(cssFiles.length).toBeGreaterThan(0)
+    const css = cssFiles
+      .map((entry) => readFileSync(join(versionDir(OWNER, 'legacy-ui', 1), entry.path), 'utf8'))
+      .join('\n')
+    // This declaration belongs to document.css. The authored legacy and
+    // canonical imports plus Vista's bootstrap must emit the foundation once.
+    expect(css.match(/--form-height-sm\s*:/g)).toHaveLength(1)
+  }, 240_000)
+
   it('admits one app-local Provider identically in check, preview, and publish', async () => {
     const { checkVistaApp } = await import('./preflight.ts')
     const { previewPublish, publish } = await import('./publish.ts')

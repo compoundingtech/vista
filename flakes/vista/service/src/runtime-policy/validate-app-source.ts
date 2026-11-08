@@ -3,6 +3,7 @@ import { join } from 'node:path'
 
 import { parse } from '@babel/parser'
 
+import type { VistaCheckWarning } from '../preflight-contract.ts'
 import { isVistaProviderModuleSpecifier } from './import-classifier.ts'
 import {
   importPolicyProblem,
@@ -91,8 +92,9 @@ const importSpecifiers = (source: string, extension: string): string[] => {
  * Throws a source-root error when the given path is not a directory, then walks every source file
  * beneath it—skipping provider implementation modules whose Node/service-only imports are
  * legitimate—and throws a runtime policy error if any scanned module violates the import policy.
+ * Returns advisory import warnings without making otherwise valid sources fail admission.
  */
-export const validateVistaAppSource = (root: string): void => {
+export const validateVistaAppSource = (root: string): readonly VistaCheckWarning[] => {
   if (!statSync(root).isDirectory()) {
     throw runtimePolicySourceRootError(root)
   }
@@ -100,16 +102,27 @@ export const validateVistaAppSource = (root: string): void => {
   // Implementations execute only through server-side discovery. Their imports
   // may legitimately include Node and service-only packages; client/query
   // modules are still scanned transitively and cannot re-export them.
+  let hasLegacyImportRoot = false
   const problems = walkSourceFiles(root)
     .filter((file) => !isVistaProviderModuleSpecifier(file))
     .flatMap((file) => {
       const source = readFileSync(file, 'utf8')
-      return importSpecifiers(source, sourceExtension(file)!)
-        .map((specifier) => importPolicyProblem({ root, importer: file, source: specifier }))
-        .filter((problem) => !problem.diagnostic.allowed)
+      return importSpecifiers(source, sourceExtension(file)!).flatMap((specifier) => {
+        if (specifier === '@overeng/geist-design-system') hasLegacyImportRoot = true
+        const problem = importPolicyProblem({ root, importer: file, source: specifier })
+        return problem.diagnostic.allowed ? [] : [problem]
+      })
     })
 
   if (problems.length > 0) {
     throw runtimePolicyImportError({ root, problems })
   }
+  return hasLegacyImportRoot
+    ? [
+        {
+          code: 'legacy-import-root',
+          message: 'legacy import root @overeng/geist-design-system; use @vista/ui',
+        },
+      ]
+    : []
 }

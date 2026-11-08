@@ -144,6 +144,16 @@ export const vistaDependencyAnchorResolver = (
       const policy = vistaRuntimePolicy()
       if (!policy.publicImportRoots.includes(importRoot(source))) return null
 
+      // Resolve legacy entries through the canonical package before Vite sees
+      // a forwarding module, so React contexts, CSS and StyleX tokens share IDs.
+      if (importRoot(source) === '@overeng/geist-design-system') {
+        const canonical = `@vista/ui${source.slice('@overeng/geist-design-system'.length)}`
+        return (
+          (await this.resolve(canonical, importer, { ...options, skipSelf: true })) ??
+          this.resolve(canonical, anchorImporter, { ...options, skipSelf: true })
+        )
+      }
+
       const resolved = await this.resolve(source, importer, { ...options, skipSelf: true })
       if (resolved !== null) return resolved
 

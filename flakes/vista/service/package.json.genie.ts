@@ -9,12 +9,14 @@ import explorerPkg from '../../../repos/effect-utils/packages/@overeng/effect-rp
 import utilsDevPkg from '../../../repos/effect-utils/packages/@overeng/utils-dev/package.json.genie.ts'
 import utilsPkg from '../../../repos/effect-utils/packages/@overeng/utils/package.json.genie.ts'
 import uiPkg from '../../../packages/ui/package.json.genie.ts'
+import legacyUiPkg from '../../../packages/ui-legacy-alias/package.json.genie.ts'
 import agentTimelinePkg from '../agent-timeline/package.json.genie.ts'
 import blocksPkg from '../blocks/package.json.genie.ts'
 import { vistaRuntimePolicyFromComposition } from '../genie/runtime-policy.ts'
 
 const {
   '@vista/ui': _blocksUi,
+  '@overeng/geist-design-system': _blocksLegacyUi,
   '@overeng/agent-timeline': _blocksAgentTimeline,
   '@vista/blocks': _blocksSelf,
   effect: _blocksEffect,
@@ -44,7 +46,7 @@ const composition = catalog.compose({
     // `@overeng/utils` backs the service OTel bootstrap (`withTelemetry` +
     // `ServiceIdentity`/`otelEndpointFromConfig`, decision 0062) wired at the
     // Effect-native host root in `main.ts` (decision 0060).
-    workspace: [uiPkg, blocksPkg, utilsPkg, explorerPkg, agentTimelinePkg],
+    workspace: [uiPkg, legacyUiPkg, blocksPkg, utilsPkg, explorerPkg, agentTimelinePkg],
     external: {
       ...catalog.pick(
         'effect',

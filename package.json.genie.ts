@@ -5,6 +5,7 @@ import cliPkg from './flakes/vista/cli/package.json.genie.ts'
 import islandPkg from './flakes/vista/island/package.json.genie.ts'
 import servicePkg from './flakes/vista/service/package.json.genie.ts'
 import uiPkg from './packages/ui/package.json.genie.ts'
+import legacyUiPkg from './packages/ui-legacy-alias/package.json.genie.ts'
 import { packageJson } from './repos/effect-utils/genie/external.ts'
 
 export const rootWorkspacePackages = [
@@ -14,6 +15,7 @@ export const rootWorkspacePackages = [
   islandPkg,
   servicePkg,
   uiPkg,
+  legacyUiPkg,
 ] as const
 
 export default packageJson.aggregateFromPackages({

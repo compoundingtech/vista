@@ -38,7 +38,7 @@ in
       sourceInputPaths = installContract.workspaceManifestContract.sourceInputPaths;
     })
     (shared.lint-oxc {
-      geniePatterns = [ "*.genie.ts" "flakes/vista/**/*.genie.ts" "packages/ui/**/*.genie.ts" "genie/**/*.genie.ts" "nix/buck2-products/*.genie.ts" "buck2/dependencies/*.genie.ts" "pnpm/*.genie.ts" ];
+      geniePatterns = [ "*.genie.ts" "flakes/vista/**/*.genie.ts" "packages/ui/**/*.genie.ts" "packages/ui-legacy-alias/**/*.genie.ts" "genie/**/*.genie.ts" "nix/buck2-products/*.genie.ts" "buck2/dependencies/*.genie.ts" "pnpm/*.genie.ts" ];
       # Frozen D covers these authored TS/TSX paths, not CSS or handwritten island config.
       genieCoverageDirs = builtins.concatMap (path: [ "${path}/package.json" "${path}/tsconfig.json" ]) (builtins.filter (path: path != "flakes/vista/island") packagePaths);
       lintPaths = [

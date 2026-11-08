@@ -38,6 +38,7 @@ import type {
   VistaCheckFailed,
   VistaCheckReady,
   VistaCheckResult,
+  VistaCheckWarning,
 } from './preflight-contract.ts'
 import {
   validateVistaAppSource,
@@ -333,21 +334,24 @@ const readyReport = (
   semantics: SemanticManifest,
   bindings: readonly SemanticCaptureBinding[],
   slots: readonly string[],
+  importWarnings: readonly VistaCheckWarning[],
 ): VistaCheckReady => ({
   _tag: 'ready',
   path: appPath,
   title: semantics.app.title,
   semanticNodes: semantics.nodes.length,
   dataRequests: bindings.length,
-  warnings:
-    slots.length === 0
+  warnings: [
+    ...importWarnings,
+    ...(slots.length === 0
       ? []
       : [
           {
-            code: 'scaffold-slots',
+            code: 'scaffold-slots' as const,
             message: `Unfilled scaffold slots: ${slots.join(', ')}. Replace the slot comments with real context, a reader ask, and one primary visual before sharing.`,
           },
-        ],
+        ]),
+  ],
 })
 
 /**
@@ -375,8 +379,9 @@ export const preflightVistaApp = async (inputPath: string): Promise<VistaPreflig
     }
   }
 
+  let importWarnings: readonly VistaCheckWarning[]
   try {
-    validateVistaAppSource(appSource)
+    importWarnings = validateVistaAppSource(appSource)
   } catch (cause) {
     if (isRuntimePolicyError(cause)) {
       return {
@@ -475,6 +480,7 @@ export const preflightVistaApp = async (inputPath: string): Promise<VistaPreflig
         projection.semantics,
         bindings,
         unfilledScaffoldSlots(readFileSync(join(evaluationRoot, 'app.tsx'), 'utf8')),
+        importWarnings,
       ),
       projection,
     }

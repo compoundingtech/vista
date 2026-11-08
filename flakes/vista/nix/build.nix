@@ -199,6 +199,7 @@ pkgs.stdenv.mkDerivation {
     ' runtime/flakes/vista/cli/runtime.js
     test -f runtime/node_modules/vite/package.json
     test -f runtime/node_modules/@vista/ui/package.json
+    test -f runtime/node_modules/@overeng/geist-design-system/package.json
     runHook postBuild
   '';
   installPhase = ''

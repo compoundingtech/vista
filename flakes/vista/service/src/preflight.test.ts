@@ -11,6 +11,7 @@ import type { SemanticCaptureBinding } from './data/app.ts'
 import otelProvider from './data/providers/otel.provider.ts'
 import { checkVistaApp, validateVistaDataBindings } from './preflight.ts'
 import { scaffold } from './scaffold.ts'
+import { validateVistaAppSource } from './runtime-policy/index.ts'
 
 const appSource = (body: string): string => `
 import { AppRoot, Evidence, MetricQuery, Section } from '@vista/blocks'
@@ -37,6 +38,32 @@ afterEach(() => {
 })
 
 describe('Vista local preflight', () => {
+  it('accepts legacy UI root, CSS, and token imports through source validation and native typecheck', async () => {
+    const root = writeApp(`
+import { AppRoot, Section } from '@vista/blocks'
+import { Button } from '@overeng/geist-design-system'
+import '@overeng/geist-design-system/document.css'
+import { tokens } from '@overeng/geist-design-system/tokens.stylex'
+import * as stylex from '@stylexjs/stylex'
+
+const styles = stylex.create({ text: { color: tokens['--ds-foreground'] } })
+
+export default function VistaApp() {
+  return <AppRoot title="Legacy UI" template="architecture-review" scope="compatibility">
+    <Section><Button><span {...stylex.props(styles.text)}>Ready</span></Button></Section>
+  </AppRoot>
+}
+`)
+
+    expect(() => validateVistaAppSource(root)).not.toThrow()
+    const result = await checkVistaApp(root)
+    expect(result).toMatchObject({ _tag: 'ready', title: 'Legacy UI', dataRequests: 0 })
+    if (result._tag !== 'ready') return
+    expect(result.warnings.map((warning) => warning.message)).toContain(
+      'legacy import root @overeng/geist-design-system; use @vista/ui',
+    )
+  })
+
   it('warns about untouched scaffold slots without failing the source check', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vista-scaffold-test-'))
     roots.push(root)

@@ -1,0 +1,27 @@
+{
+  "$genie": {
+    "source": "package.json.genie.ts",
+    "warning": "DO NOT EDIT - changes will be overwritten",
+    "workspaceClosureDirs": [
+      "packages/ui",
+      "packages/ui-legacy-alias"
+    ]
+  },
+  "name": "@overeng/geist-design-system",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "license": "Apache-2.0",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./components": "./src/components.ts",
+    "./document.css": "./src/document.css",
+    "./foundations": "./src/foundations.ts",
+    "./styles.css": "./src/styles.css",
+    "./tokens.stylex": "./src/tokens.stylex.ts"
+  },
+  "dependencies": {
+    "@vista/ui": "workspace:^"
+  },
+  "deprecated": "legacy import root @overeng/geist-design-system; use @vista/ui"
+}

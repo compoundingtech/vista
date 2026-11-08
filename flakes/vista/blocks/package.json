@@ -6,6 +6,7 @@
       "flakes/vista/agent-timeline",
       "flakes/vista/blocks",
       "packages/ui",
+      "packages/ui-legacy-alias",
       "repos/effect-utils/packages/@overeng/content-address",
       "repos/effect-utils/packages/@overeng/devbar",
       "repos/effect-utils/packages/@overeng/effect-distributed-lock",
@@ -58,6 +59,7 @@
     "@overeng/devbar": "link:../../../repos/effect-utils/packages/@overeng/devbar",
     "@overeng/effect-rpc-explorer": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer",
     "@overeng/effect-rpc-explorer-react": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
+    "@overeng/geist-design-system": "workspace:^",
     "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/b4x3p3jhnsqnn62klk27i7qz72c9k143/overeng-meters.tgz",
     "@pierre/diffs": "1.6.4",
     "@pierre/highlights": "0.4.0",
@@ -181,6 +183,7 @@
           "name": "ui-shell",
           "publicImportRoots": [
             "@vista/ui",
+            "@overeng/geist-design-system",
             "@overeng/utils",
             "@effect/atom-react",
             "@stylexjs/stylex",
@@ -189,6 +192,9 @@
             "react-aria-components",
             "react-aria",
             "react-dom"
+          ],
+          "optimizeExcludeRoots": [
+            "@overeng/geist-design-system"
           ],
           "optimizeInclude": [
             "@effect/atom-react",
@@ -201,7 +207,9 @@
             "react/jsx-runtime"
           ],
           "cssImports": [
-            "@vista/ui/document.css"
+            "@vista/ui/document.css",
+            "@overeng/geist-design-system/document.css",
+            "@overeng/geist-design-system/styles.css"
           ]
         },
         {

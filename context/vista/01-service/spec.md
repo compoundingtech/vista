@@ -458,6 +458,19 @@ The source pre-scan selects Babel syntax plugins by extension: TypeScript for
 `.ts`/`.tsx`, JSX for `.jsx`/`.tsx`, and neither for `.js`/`.mjs`. This preserves
 angle-bracket assertions in `.ts` helpers while scanning genuine JSX modules.
 
+The legacy import root `@overeng/geist-design-system` remains a deprecated,
+root-only compatibility entrypoint forwarding the same `@vista/ui` implementation.
+It does not provide a second component/context implementation or permit legacy
+subpath imports. New scaffolds use `@vista/ui`. Check and publication preflight
+reuse the source pre-scan's AST import specifiers to emit one nonfatal
+`legacy-import-root` warning with the exact message
+`legacy import root @overeng/geist-design-system; use @vista/ui`; comments and
+ordinary string payloads do not trigger it. The warning does not block admission.
+Stored sources remain unchanged during the rollback window: no codemod runs as
+part of this compatibility release. After that window, a later Vista
+migration/codemod rewrites stored sources to `@vista/ui`; the compatibility root
+is removed in a subsequent release, not in the migration release.
+
 ## Packaging + deployment
 
 First-party flake + Nix-managed standing service (VST-R40, decision 0017): Buck

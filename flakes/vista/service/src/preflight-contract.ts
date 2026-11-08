@@ -17,7 +17,7 @@ export type VistaCheckDiagnostic = typeof VistaCheckDiagnostic.Type
 
 /** Advisory authoring feedback; warnings do not change a ready report or block publication. */
 export const VistaCheckWarning = Schema.Struct({
-  code: Schema.Literals(['scaffold-slots']),
+  code: Schema.Literals(['scaffold-slots', 'legacy-import-root']),
   message: NonEmptyTrimmedString,
 }).annotate({ identifier: 'Vista.CheckWarning' })
 export type VistaCheckWarning = typeof VistaCheckWarning.Type
