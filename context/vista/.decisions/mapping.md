@@ -106,6 +106,10 @@ Decision
 authoring contract (H2/S2/A1, A4 for multiple asks), resolving 0101's pending
 brief variant. Its §9 text budget remains proposed, not decided.
 
+Decision [0103](./0103-protected-cachix-publisher.md) proposes protected-main
+Cachix publication and App-authored manifest PRs for service packaging (VST-R40);
+ruleset activation remains subject to Johannes's approval (q62).
+
 
 > Note: the former `0036` number-collision is resolved — the control-plane
 > decision is now `0065-control-plane-rpc-boundary`; `0036` is solely

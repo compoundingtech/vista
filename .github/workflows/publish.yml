@@ -1,0 +1,121 @@
+name: Publish Nix
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [nix/published/manifest.json]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vista-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Inert until an approved main ruleset and cache-scoped Write token exist.
+    if: >-
+      github.repository == 'compoundingtech/vista' &&
+      github.ref == 'refs/heads/main' && github.ref_protected &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      vars.VISTA_PUBLISH_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Check required credentials without exposing them
+        env:
+          CACHE_TOKEN_PRESENT: ${{ secrets.CACHIX_AUTH_TOKEN != '' }}
+          APP_KEY_PRESENT: ${{ secrets.NIX_PUBLISHER_GITHUB_APP_PRIVATE_KEY != '' }}
+          APP_ID: ${{ vars.NIX_PUBLISHER_GITHUB_APP_ID }}
+        run: |
+          set -euo pipefail
+          test "$CACHE_TOKEN_PRESENT" = true
+          test "$APP_KEY_PRESENT" = true
+          test -n "$APP_ID"
+      - name: Install Nix
+        uses: DeterminateSystems/determinate-nix-action@92957199488000b908fdad19f63711000965d8f3
+        with:
+          extra-conf: |
+            extra-substituters = https://compoundingtech-vista.cachix.org
+            extra-trusted-public-keys = compoundingtech-vista.cachix.org-1:9sYNnZ7wXzBgPRLOVkhvFAw+8bwc5AMn3v7eI3c5yKA=
+            sandbox = true
+            sandbox-fallback = false
+      - name: Install read-only Cachix client
+        uses: cachix/cachix-action@38b082610b782e7e93e209c35fd730d399dee866
+        with:
+          name: compoundingtech-vista
+          skipPush: true
+      - name: Build exact locked Vista output and describe it
+        run: |
+          set -euo pipefail
+          nix build --no-link --no-update-lock-file --json .#vista > "$RUNNER_TEMP/build.json"
+          mapfile -t paths < <(jq -r '.[].outputs[]' "$RUNNER_TEMP/build.json")
+          nix path-info --json "${paths[@]}" > "$RUNNER_TEMP/paths.json"
+          jq -n --arg rev "$GITHUB_SHA" --slurpfile build "$RUNNER_TEMP/build.json" \
+            --slurpfile info "$RUNNER_TEMP/paths.json" '
+            ($info[0] | if type == "array" then . else
+              to_entries | map(.value + {path: .key}) end) as $paths |
+            {schemaVersion: 1, rev: $rev, system: "x86_64-linux",
+             outputs: [$build[0][].outputs | to_entries[] |
+               . as $output | {name: .key, storePath: .value,
+                 narHash: ([$paths[] | select(.path == $output.value) | .narHash][0] // null)}]}
+          ' > "$RUNNER_TEMP/manifest.json"
+      - name: Push only the Vista runtime closure
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
+        run: |
+          set -euo pipefail
+          mapfile -t paths < <(jq -r '.outputs[].storePath' "$RUNNER_TEMP/manifest.json")
+          cachix push compoundingtech-vista "${paths[@]}"
+      - name: Mint repository-scoped publisher token
+        id: app
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ vars.NIX_PUBLISHER_GITHUB_APP_ID }}
+          private-key: ${{ secrets.NIX_PUBLISHER_GITHUB_APP_PRIVATE_KEY }}
+          owner: compoundingtech
+          repositories: vista
+          permission-contents: write
+          permission-pull-requests: write
+      - name: Propose published manifest with the App identity
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          set -euo pipefail
+          branch=automation/vista-published-manifest
+          manifest=nix/published/manifest.json
+          gh auth setup-git
+          git fetch --no-tags origin main
+          if [ "$(git rev-parse FETCH_HEAD)" != "$GITHUB_SHA" ]; then
+            echo '::notice::Main advanced; retain the cache output but skip the stale manifest proposal'
+            exit 0
+          fi
+          git config user.name 'compoundingtech-vista-publisher[bot]'
+          bot_id="$(gh api users/compoundingtech-vista-publisher\[bot\] --jq .id)"
+          git config user.email "$bot_id+compoundingtech-vista-publisher[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin "$branch"; then
+            git fetch --no-tags origin "$branch"
+            git switch -c "$branch" FETCH_HEAD
+            git merge --no-edit origin/main
+          else
+            git switch -c "$branch" origin/main
+          fi
+          mkdir -p nix/published
+          cp "$RUNNER_TEMP/manifest.json" "$manifest"
+          git add "$manifest"
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(nix): record published Vista output'
+          git push origin "HEAD:refs/heads/$branch"
+          title='chore(nix): update published Vista manifest'
+          body="Published immutable Vista closure for $GITHUB_SHA (x86_64-linux). Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. No manifest consumer exists yet."
+          pr="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr" ]; then
+            gh pr edit "$pr" --title "$title" --body "$body"
+          else
+            gh pr create --base main --head "$branch" --title "$title" --body "$body"
+          fi
