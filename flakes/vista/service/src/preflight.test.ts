@@ -44,13 +44,20 @@ import { AppRoot, Section } from '@vista/blocks'
 import { Button } from '@overeng/geist-design-system'
 import '@overeng/geist-design-system/document.css'
 import { tokens } from '@overeng/geist-design-system/tokens.stylex'
+import { tokens as canonicalTokens } from '@vista/ui/tokens.stylex'
 import * as stylex from '@stylexjs/stylex'
 
-const styles = stylex.create({ text: { color: tokens['--ds-foreground'] } })
+const styles = stylex.create({
+  legacy: { color: tokens['--ds-foreground'] },
+  canonical: { color: canonicalTokens['--ds-foreground'] },
+})
 
 export default function VistaApp() {
+  if (stylex.props(styles.legacy).className !== stylex.props(styles.canonical).className) {
+    throw new Error('Legacy and canonical UI tokens compiled to different identities')
+  }
   return <AppRoot title="Legacy UI" template="architecture-review" scope="compatibility">
-    <Section><Button><span {...stylex.props(styles.text)}>Ready</span></Button></Section>
+    <Section><Button><span {...stylex.props(styles.legacy)}>Ready</span></Button></Section>
   </AppRoot>
 }
 `)
