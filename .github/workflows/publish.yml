@@ -27,6 +27,7 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Check required credentials without exposing them
         env:
           CACHE_TOKEN_PRESENT: ${{ secrets.CACHIX_AUTH_TOKEN != '' }}
@@ -108,9 +109,10 @@ jobs:
           mkdir -p nix/published
           cp "$RUNNER_TEMP/manifest.json" "$manifest"
           git add "$manifest"
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore(nix): record published Vista output'
-          git push origin "HEAD:refs/heads/$branch"
+          if ! git diff --cached --quiet; then
+            git commit -m 'chore(nix): record published Vista output'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
           title='chore(nix): update published Vista manifest'
           body="Published immutable Vista closure for $GITHUB_SHA (x86_64-linux). Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. No manifest consumer exists yet."
           pr="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
