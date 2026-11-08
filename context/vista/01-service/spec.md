@@ -458,10 +458,12 @@ The source pre-scan selects Babel syntax plugins by extension: TypeScript for
 `.ts`/`.tsx`, JSX for `.jsx`/`.tsx`, and neither for `.js`/`.mjs`. This preserves
 angle-bracket assertions in `.ts` helpers while scanning genuine JSX modules.
 
-The legacy import root `@overeng/geist-design-system` remains a deprecated,
-root-only compatibility entrypoint forwarding the same `@vista/ui` implementation.
-It does not provide a second component/context implementation or permit legacy
-subpath imports. New scaffolds use `@vista/ui`. Check and publication preflight
+The legacy import root `@overeng/geist-design-system` remains a deprecated
+compatibility entrypoint forwarding the same `@vista/ui` implementation. Its
+supported exports are the root, `/components`, `/foundations`, `/document.css`,
+`/styles.css`, and `/tokens.stylex`; Vite resolves them to the canonical UI files.
+It does not provide a second component, context, stylesheet, or token implementation.
+New scaffolds use `@vista/ui`. Check and publication preflight
 reuse the source pre-scan's AST import specifiers to emit one nonfatal
 `legacy-import-root` warning with the exact message
 `legacy import root @overeng/geist-design-system; use @vista/ui`; comments and

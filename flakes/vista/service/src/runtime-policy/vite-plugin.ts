@@ -145,8 +145,19 @@ export const vistaDependencyAnchorResolver = (
       // Babel resolves StyleX token imports itself, before Vite's resolveId.
       // Give both spellings the canonical absolute filename even when authored
       // sources live outside the workspace's node_modules ancestry.
-      if (!/\.[cm]?[jt]sx?(?:\?|$)/.test(id) || !code.includes('/tokens.stylex')) return null
-      const ast = parse(code, { sourceType: 'unambiguous', plugins: ['typescript', 'jsx'] })
+      const extension = /\.[cm]?([jt]sx?)(?:\?|$)/.exec(id)?.[1]
+      if (extension === undefined || !code.includes('/tokens.stylex')) return null
+      const ast = parse(code, {
+        sourceType: 'unambiguous',
+        plugins:
+          extension === 'tsx'
+            ? ['typescript', 'jsx']
+            : extension === 'ts'
+              ? ['typescript']
+              : extension === 'jsx'
+                ? ['jsx']
+                : [],
+      })
       let transformed = code
       for (const node of ast.program.body.toReversed()) {
         if (
