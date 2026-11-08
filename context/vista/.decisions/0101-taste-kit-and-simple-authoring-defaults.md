@@ -1,6 +1,6 @@
 # Taste kit and simple authoring defaults
 
-Status: accepted (brief variant pending)
+Status: accepted (brief variant resolved by [0102](./0102-universal-context-section.md))
 
 Provenance: Johannes and manager-confirmed Vista owner decisions.
 
@@ -21,7 +21,7 @@ its implementation complexity to authors or readers.
 | Mission page A: graph-first.                                                                                                                                                                                                                                                          | Relationships are the entry point for understanding a mission.                                                  |
 | Use Opus (`anthropic/claude-opus-5-5`) for Vista design and critic work.                                                                                                                                                                                                              | Design and critique share the chosen model baseline.                                                            |
 | `vista review` is advisory and runs only on first versions and structural rewrites.                                                                                                                                                                                                   | Feedback targets consequential changes rather than adding ceremony to every edit.                               |
-| Every vista starts with an ELI5 context brief followed by progressive drill-down; brief variant pending ([#5671](https://github.com/schickling/dotfiles/pull/5671)).                                                                                                                  | Readers understand the purpose before encountering detail, without prematurely fixing the presentation variant. |
+| Every vista starts with an ELI5 context brief followed by progressive drill-down; brief variant resolved by [0102](./0102-universal-context-section.md) ([#5671](https://github.com/schickling/dotfiles/pull/5671)).                                                                  | Readers understand the purpose before encountering detail, as decision 0102 specifies the presentation variant. |
 | Owner byline: display name, full id on hover and keyboard focus, and `legacy session` for dotted owners ([#6064](https://github.com/schickling/dotfiles/pull/6064)).                                                                                                                  | Attribution stays readable while preserving access to the exact identity.                                       |
 | Keep things simple overall; Vista must not leak complexity.                                                                                                                                                                                                                           | Authoring and reading should expose the task, not Vista's machinery.                                            |
 
@@ -29,4 +29,5 @@ its implementation complexity to authors or readers.
 
 Authors compose the taste kit using the skill pattern; these defaults guide
 presentation rather than prescribing a universal page template. The brief's
-presentation variant remains undecided; its context-first contract does not.
+presentation variant is resolved by [0102](./0102-universal-context-section.md);
+its context-first contract stands.
