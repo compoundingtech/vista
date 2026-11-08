@@ -95,6 +95,15 @@ describe('Vista runtime import policy Vite enforcement', () => {
       expect(canonicalResolved, canonical).not.toBeNull()
       expect(legacyResolved!.id, legacy).toBe(canonicalResolved!.id)
     }
+    // Providers execute in the standing SSR realm, not the draft client realm.
+    const legacyUi = await state.published.ssrLoadModule('@overeng/geist-design-system')
+    const canonicalUi = await state.published.ssrLoadModule('@vista/ui')
+    expect(legacyUi.Button).toBe(canonicalUi.Button)
+    const legacyTokens = await state.published.ssrLoadModule(
+      '@overeng/geist-design-system/tokens.stylex',
+    )
+    const canonicalTokens = await state.published.ssrLoadModule('@vista/ui/tokens.stylex')
+    expect(legacyTokens.tokens).toBe(canonicalTokens.tokens)
   })
 
   it('throws a typed runtime-policy error from the resolver boundary', async () => {
