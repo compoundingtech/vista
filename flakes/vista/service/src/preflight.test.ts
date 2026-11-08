@@ -64,6 +64,32 @@ export default function VistaApp() {
     )
   })
 
+  it('warns once for a legacy CSS-only import without requiring a legacy root import', async () => {
+    const root = writeApp(
+      `import '@overeng/geist-design-system/document.css'\n${appSource('<Section><p>Ready</p></Section>')}`,
+    )
+
+    expect(() => validateVistaAppSource(root)).not.toThrow()
+    const result = await checkVistaApp(root)
+    expect(result._tag).toBe('ready')
+    if (result._tag !== 'ready') return
+    expect(result.warnings.map((warning) => warning.message)).toEqual([
+      'legacy import root @overeng/geist-design-system; use @vista/ui',
+    ])
+  })
+
+  it('does not warn about legacy package names in ordinary payload strings', async () => {
+    const root = writeApp(
+      appSource('<Section><p>{"@overeng/geist-design-system/document.css"}</p></Section>'),
+    )
+
+    expect(() => validateVistaAppSource(root)).not.toThrow()
+    const result = await checkVistaApp(root)
+    expect(result._tag).toBe('ready')
+    if (result._tag !== 'ready') return
+    expect(result.warnings).toEqual([])
+  })
+
   it('warns about untouched scaffold slots without failing the source check', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vista-scaffold-test-'))
     roots.push(root)

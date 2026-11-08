@@ -10,6 +10,7 @@ import {
   runtimePolicyImportError,
   runtimePolicySourceRootError,
 } from './import-diagnostics.ts'
+import { importRoot } from './project.ts'
 
 const SOURCE_EXTENSIONS = new Set(['.css', '.js', '.jsx', '.mjs', '.ts', '.tsx'])
 const SKIP_DIRS = new Set(['.vite', 'node_modules'])
@@ -108,7 +109,7 @@ export const validateVistaAppSource = (root: string): readonly VistaCheckWarning
     .flatMap((file) => {
       const source = readFileSync(file, 'utf8')
       return importSpecifiers(source, sourceExtension(file)!).flatMap((specifier) => {
-        if (specifier === '@overeng/geist-design-system') hasLegacyImportRoot = true
+        if (importRoot(specifier) === '@overeng/geist-design-system') hasLegacyImportRoot = true
         const problem = importPolicyProblem({ root, importer: file, source: specifier })
         return problem.diagnostic.allowed ? [] : [problem]
       })

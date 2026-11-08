@@ -1531,6 +1531,16 @@ export const startService = async <ROut = never>(
       semanticExtractor(),
       vistaRuntimeImportPolicy(),
       vistaDependencyAnchorResolver(dirname(depsNodeModules())),
+      // UI imports also execute during semantic extraction and provider SSR.
+      // Compile the same canonical modules used by drafts and local preflight.
+      ...createStylexVitePlugins({
+        externalPackages: [
+          '@vista/ui',
+          '@overeng/agent-timeline',
+          '@overeng/devbar',
+          '@overeng/effect-rpc-explorer-react',
+        ],
+      }).map((plugin) => Object.assign(plugin, { configureServer: undefined })),
       react(),
       {
         name: 'vista-publication-ssr-only',
