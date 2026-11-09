@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:87ebec820e3cf8e4b69762c18b250bd11c79e64f00c69f0c9bb666bbcecfb83c
+# Semantic fingerprint: sha256:bbaada1dce7d22136e39e2dec02a7895ac064b1de9f6a9493fdbe00143ea0e36
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -1123,6 +1123,7 @@ npm_package_archive(
         "//flakes/vista/agent-timeline:package.json",
         "//flakes/vista/blocks:package.json",
         "//packages/ui:package.json",
+        "//packages/ui-legacy-alias:package.json",
     ],
     output = "vista-service.tgz",
     visibility = ["PUBLIC"],

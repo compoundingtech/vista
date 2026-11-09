@@ -78,6 +78,7 @@ import {
   vistaRuntimePolicy,
   vistaViteResolveConfig,
 } from './runtime-policy/index.ts'
+import { vistaDependencyAnchorResolver } from './runtime-policy/vite-plugin.ts'
 
 /**
  * Input to a publish operation: app identity and authorship, a change summary, and an optional
@@ -735,6 +736,7 @@ const finalizeStaticPublication = async (
       configFile: false,
       publicDir: staticPublicDir,
       plugins: [
+        vistaDependencyAnchorResolver(join(buildDependencies, '..')),
         pinnedRemoteBuildPlugin(join(cacheDir(), 'remote-modules')),
         ...(buildEntries.length === 0
           ? []

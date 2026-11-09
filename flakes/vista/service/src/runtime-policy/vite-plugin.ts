@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs'
 import { join, relative, resolve } from 'node:path'
 
+import { parse } from '@babel/parser'
 import { createIdResolver, type Environment, type Plugin, type ResolverFunction } from 'vite'
 
 import { appsDir } from '../paths.ts'
@@ -140,9 +141,65 @@ export const vistaDependencyAnchorResolver = (
       }
       return true
     },
+    async transform(code, id) {
+      // Babel resolves StyleX token imports itself, before Vite's resolveId.
+      // Give both spellings the canonical absolute filename even when authored
+      // sources live outside the workspace's node_modules ancestry.
+      const extension = /\.[cm]?([jt]sx?)(?:\?|$)/.exec(id)?.[1]
+      if (extension === undefined || !code.includes('/tokens.stylex')) return null
+      const ast = parse(code, {
+        sourceType: 'unambiguous',
+        plugins:
+          extension === 'tsx'
+            ? ['typescript', 'jsx']
+            : extension === 'ts'
+              ? ['typescript']
+              : extension === 'jsx'
+                ? ['jsx']
+                : [],
+      })
+      let transformed = code
+      for (const node of ast.program.body.toReversed()) {
+        if (
+          node.type !== 'ImportDeclaration' &&
+          node.type !== 'ExportNamedDeclaration' &&
+          node.type !== 'ExportAllDeclaration'
+        )
+          continue
+        const source = node.source
+        if (
+          source === null ||
+          source === undefined ||
+          (source.value !== '@overeng/geist-design-system/tokens.stylex' &&
+            source.value !== '@vista/ui/tokens.stylex') ||
+          source.start === null ||
+          source.start === undefined ||
+          source.end === null ||
+          source.end === undefined
+        )
+          continue
+        const canonical = await this.resolve('@vista/ui/tokens.stylex', anchorImporter)
+        if (canonical === null) continue
+        transformed =
+          transformed.slice(0, source.start) +
+          JSON.stringify(canonical.id.split('?', 1)[0]) +
+          transformed.slice(source.end)
+      }
+      return transformed === code ? null : { code: transformed, map: null }
+    },
     async resolveId(source, importer, options) {
       const policy = vistaRuntimePolicy()
       if (!policy.publicImportRoots.includes(importRoot(source))) return null
+
+      // Resolve legacy entries through the canonical package before Vite sees
+      // a forwarding module, so React contexts, CSS and StyleX tokens share IDs.
+      if (importRoot(source) === '@overeng/geist-design-system') {
+        const canonical = `@vista/ui${source.slice('@overeng/geist-design-system'.length)}`
+        return (
+          (await this.resolve(canonical, importer, { ...options, skipSelf: true })) ??
+          this.resolve(canonical, anchorImporter, { ...options, skipSelf: true })
+        )
+      }
 
       const resolved = await this.resolve(source, importer, { ...options, skipSelf: true })
       if (resolved !== null) return resolved

@@ -3,7 +3,7 @@
 
 # Generated file - DO NOT EDIT
 # Source: pnpm-lock.yaml
-# Store fingerprint: sha256:711d26ff766225186dfc6d9c8e87c7d47b60c08a66a12af46eb7993c42c5dbdb
+# Store fingerprint: sha256:bbda6a58b823946191ac3ae59d2e6308459ad15b687a6ae67b40f1d47424aec8
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs")
 
@@ -28203,9 +28203,11 @@ pnpm_store_view(
     workspace_trees = {
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
     visibility = ["PUBLIC"],
@@ -30405,9 +30407,11 @@ pnpm_store_view(
     workspace_trees = {
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:product_package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:product_package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
     visibility = ["PUBLIC"],
@@ -44595,9 +44599,11 @@ pnpm_store_view(
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:package_tree",
         "workspace_flakes_vista_blocks_4c807a90c74c": "//flakes/vista/blocks:package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/blocks": "workspace_flakes_vista_blocks_4c807a90c74c",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
@@ -46861,9 +46867,11 @@ pnpm_store_view(
         "workspace_flakes_vista_agent_timeline_1135302487f4": "//flakes/vista/agent-timeline:product_package_tree",
         "workspace_flakes_vista_blocks_4c807a90c74c": "//flakes/vista/blocks:product_package_tree",
         "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+        "workspace_packages_ui_legacy_alias_4ef8255e085a": "//packages/ui-legacy-alias:product_package_tree",
     },
     workspace_dependencies = {
         "@overeng/agent-timeline": "workspace_flakes_vista_agent_timeline_1135302487f4",
+        "@overeng/geist-design-system": "workspace_packages_ui_legacy_alias_4ef8255e085a",
         "@vista/blocks": "workspace_flakes_vista_blocks_4c807a90c74c",
         "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
     },
@@ -52502,6 +52510,145 @@ pnpm_store_view(
     visibility = ["PUBLIC"],
 )
 
+pnpm_store_view(
+    name = "view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+        "@stylexjs/stylex": "@stylexjs+stylex@0.19.0",
+        "react": "react@19.2.8",
+        "react-aria-components": "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8",
+        "react-dom": "react-dom@19.2.8_react@19.2.8",
+    },
+    closure = {
+        "@internationalized+date@3.12.4": ":entry_internationalized_date_3_12_4_5e4b6a270af8",
+        "@internationalized+number@3.6.8": ":entry_internationalized_number_3_6_8_33245ac1adf6",
+        "@internationalized+string@3.2.10": ":entry_internationalized_string_3_2_10_6aa62d807286",
+        "@react-types+shared@3.36.1_react@19.2.8": ":entry_react_types_shared_3_36_1_react_19_2_8_91ba92137fc2",
+        "@stylexjs+stylex@0.19.0": ":entry_stylexjs_stylex_0_19_0_cda959b356f4",
+        "@swc+helpers@0.5.21": ":entry_swc_helpers_0_5_21_b99e683b8d25",
+        "@types+react-dom@19.2.7_@types+react@19.2.18": ":entry_types_react_dom_19_2_7_types_react_19_2_18_cafde4f429b3",
+        "@types+react@19.2.18": ":entry_types_react_19_2_18_231c43c28c72",
+        "aria-hidden@1.2.6": ":entry_aria_hidden_1_2_6_82f175f421e4",
+        "client-only@0.0.1": ":entry_client_only_0_0_1_0538f21b471e",
+        "clsx@2.1.1": ":entry_clsx_2_1_1_d00f5fa05915",
+        "css-mediaquery@0.1.2": ":entry_css_mediaquery_0_1_2_da1abaddca6c",
+        "csstype@3.2.3": ":entry_csstype_3_2_3_d75166202534",
+        "invariant@2.2.4": ":entry_invariant_2_2_4_1101ec1e2443",
+        "js-tokens@4.0.0": ":entry_js_tokens_4_0_0_f4371f095c6f",
+        "loose-envify@1.4.0": ":entry_loose_envify_1_4_0_ad111a799171",
+        "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_components_1_21_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_308a47324382",
+        "react-aria@3.52.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_3_52_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_b2b1abe05456",
+        "react-dom@19.2.8_react@19.2.8": ":entry_react_dom_19_2_8_react_19_2_8_322c46404300",
+        "react-stately@3.50.0_react@19.2.8": ":entry_react_stately_3_50_0_react_19_2_8_11846d4463e3",
+        "react@19.2.8": ":entry_react_19_2_8_f0ed5178d6d7",
+        "scheduler@0.27.0": ":entry_scheduler_0_27_0_e21311c62741",
+        "styleq@0.2.1": ":entry_styleq_0_2_1_23f606d8da0e",
+        "tslib@2.8.1": ":entry_tslib_2_8_1_b15471035cb0",
+        "use-sync-external-store@1.6.0_react@19.2.8": ":entry_use_sync_external_store_1_6_0_react_19_2_8_6b5cba987dec",
+    },
+    bins = {
+    },
+    workspace_trees = {
+        "workspace_packages_ui_f66ca1cb9433": "//packages/ui:package_tree",
+    },
+    workspace_dependencies = {
+        "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
+    },
+    visibility = ["PUBLIC"],
+)
+
+pnpm_store_view(
+    name = "product_view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+        "@stylexjs/stylex": "@stylexjs+stylex@0.19.0",
+        "react": "react@19.2.8",
+        "react-aria-components": "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8",
+        "react-dom": "react-dom@19.2.8_react@19.2.8",
+    },
+    closure = {
+        "@internationalized+date@3.12.4": ":entry_internationalized_date_3_12_4_5e4b6a270af8",
+        "@internationalized+number@3.6.8": ":entry_internationalized_number_3_6_8_33245ac1adf6",
+        "@internationalized+string@3.2.10": ":entry_internationalized_string_3_2_10_6aa62d807286",
+        "@react-types+shared@3.36.1_react@19.2.8": ":entry_react_types_shared_3_36_1_react_19_2_8_91ba92137fc2",
+        "@stylexjs+stylex@0.19.0": ":entry_stylexjs_stylex_0_19_0_cda959b356f4",
+        "@swc+helpers@0.5.21": ":entry_swc_helpers_0_5_21_b99e683b8d25",
+        "@types+react-dom@19.2.7_@types+react@19.2.18": ":entry_types_react_dom_19_2_7_types_react_19_2_18_cafde4f429b3",
+        "@types+react@19.2.18": ":entry_types_react_19_2_18_231c43c28c72",
+        "aria-hidden@1.2.6": ":entry_aria_hidden_1_2_6_82f175f421e4",
+        "client-only@0.0.1": ":entry_client_only_0_0_1_0538f21b471e",
+        "clsx@2.1.1": ":entry_clsx_2_1_1_d00f5fa05915",
+        "css-mediaquery@0.1.2": ":entry_css_mediaquery_0_1_2_da1abaddca6c",
+        "csstype@3.2.3": ":entry_csstype_3_2_3_d75166202534",
+        "invariant@2.2.4": ":entry_invariant_2_2_4_1101ec1e2443",
+        "js-tokens@4.0.0": ":entry_js_tokens_4_0_0_f4371f095c6f",
+        "loose-envify@1.4.0": ":entry_loose_envify_1_4_0_ad111a799171",
+        "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_components_1_21_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_308a47324382",
+        "react-aria@3.52.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_3_52_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_b2b1abe05456",
+        "react-dom@19.2.8_react@19.2.8": ":entry_react_dom_19_2_8_react_19_2_8_322c46404300",
+        "react-stately@3.50.0_react@19.2.8": ":entry_react_stately_3_50_0_react_19_2_8_11846d4463e3",
+        "react@19.2.8": ":entry_react_19_2_8_f0ed5178d6d7",
+        "scheduler@0.27.0": ":entry_scheduler_0_27_0_e21311c62741",
+        "styleq@0.2.1": ":entry_styleq_0_2_1_23f606d8da0e",
+        "tslib@2.8.1": ":entry_tslib_2_8_1_b15471035cb0",
+        "use-sync-external-store@1.6.0_react@19.2.8": ":entry_use_sync_external_store_1_6_0_react_19_2_8_6b5cba987dec",
+    },
+    bins = {
+    },
+    workspace_trees = {
+        "workspace_packages_ui_f66ca1cb9433": "//packages/ui:product_package_tree",
+    },
+    workspace_dependencies = {
+        "@vista/ui": "workspace_packages_ui_f66ca1cb9433",
+    },
+    visibility = ["PUBLIC"],
+)
+
+pnpm_store_view(
+    name = "external_view_packages_ui_legacy_alias_967cf2ad5401",
+    runtime = "@rules//buck2/dependencies:assemble-store.ts",
+    direct = {
+        "@stylexjs/stylex": "@stylexjs+stylex@0.19.0",
+        "react": "react@19.2.8",
+        "react-aria-components": "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8",
+        "react-dom": "react-dom@19.2.8_react@19.2.8",
+    },
+    closure = {
+        "@internationalized+date@3.12.4": ":entry_internationalized_date_3_12_4_5e4b6a270af8",
+        "@internationalized+number@3.6.8": ":entry_internationalized_number_3_6_8_33245ac1adf6",
+        "@internationalized+string@3.2.10": ":entry_internationalized_string_3_2_10_6aa62d807286",
+        "@react-types+shared@3.36.1_react@19.2.8": ":entry_react_types_shared_3_36_1_react_19_2_8_91ba92137fc2",
+        "@stylexjs+stylex@0.19.0": ":entry_stylexjs_stylex_0_19_0_cda959b356f4",
+        "@swc+helpers@0.5.21": ":entry_swc_helpers_0_5_21_b99e683b8d25",
+        "@types+react-dom@19.2.7_@types+react@19.2.18": ":entry_types_react_dom_19_2_7_types_react_19_2_18_cafde4f429b3",
+        "@types+react@19.2.18": ":entry_types_react_19_2_18_231c43c28c72",
+        "aria-hidden@1.2.6": ":entry_aria_hidden_1_2_6_82f175f421e4",
+        "client-only@0.0.1": ":entry_client_only_0_0_1_0538f21b471e",
+        "clsx@2.1.1": ":entry_clsx_2_1_1_d00f5fa05915",
+        "css-mediaquery@0.1.2": ":entry_css_mediaquery_0_1_2_da1abaddca6c",
+        "csstype@3.2.3": ":entry_csstype_3_2_3_d75166202534",
+        "invariant@2.2.4": ":entry_invariant_2_2_4_1101ec1e2443",
+        "js-tokens@4.0.0": ":entry_js_tokens_4_0_0_f4371f095c6f",
+        "loose-envify@1.4.0": ":entry_loose_envify_1_4_0_ad111a799171",
+        "react-aria-components@1.21.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_components_1_21_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_308a47324382",
+        "react-aria@3.52.1_react-dom@19.2.8_react@19.2.8_react@19.2.8": ":entry_react_aria_3_52_1_react_dom_19_2_8_react_19_2_8_react_19_2_8_b2b1abe05456",
+        "react-dom@19.2.8_react@19.2.8": ":entry_react_dom_19_2_8_react_19_2_8_322c46404300",
+        "react-stately@3.50.0_react@19.2.8": ":entry_react_stately_3_50_0_react_19_2_8_11846d4463e3",
+        "react@19.2.8": ":entry_react_19_2_8_f0ed5178d6d7",
+        "scheduler@0.27.0": ":entry_scheduler_0_27_0_e21311c62741",
+        "styleq@0.2.1": ":entry_styleq_0_2_1_23f606d8da0e",
+        "tslib@2.8.1": ":entry_tslib_2_8_1_b15471035cb0",
+        "use-sync-external-store@1.6.0_react@19.2.8": ":entry_use_sync_external_store_1_6_0_react_19_2_8_6b5cba987dec",
+    },
+    bins = {
+    },
+    workspace_trees = {
+    },
+    workspace_dependencies = {
+    },
+    visibility = ["PUBLIC"],
+)
+
 alias(
     name = "importer__cdb4ee2aea69",
     actual = ":view__cdb4ee2aea69",
@@ -52541,5 +52688,11 @@ alias(
 alias(
     name = "importer_packages_ui_26725b8410f0",
     actual = ":view_packages_ui_26725b8410f0",
+    visibility = ["PUBLIC"],
+)
+
+alias(
+    name = "importer_packages_ui_legacy_alias_967cf2ad5401",
+    actual = ":view_packages_ui_legacy_alias_967cf2ad5401",
     visibility = ["PUBLIC"],
 )

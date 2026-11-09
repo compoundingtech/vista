@@ -8,6 +8,7 @@
       "flakes/vista/cli",
       "flakes/vista/service",
       "packages/ui",
+      "packages/ui-legacy-alias",
       "repos/effect-utils/packages/@overeng/content-address",
       "repos/effect-utils/packages/@overeng/devbar",
       "repos/effect-utils/packages/@overeng/effect-distributed-lock",

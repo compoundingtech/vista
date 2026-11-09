@@ -84,6 +84,9 @@
     },
     {
       "path": "../../../packages/ui"
+    },
+    {
+      "path": "../../../packages/ui-legacy-alias"
     }
   ]
 }

@@ -37,6 +37,46 @@ beforeAll(async () => {
     join(allowedSource, 'app.tsx'),
     "import React from 'react'\nimport { AppRoot } from '@vista/blocks'\nimport '@pierre/diffs/react'\nexport default function App() { return <AppRoot title=\"Dependency anchor\" template=\"architecture-review\" scope={React.version} /> }\n",
   )
+  const legacySource = appSourcePath(sources, OWNER, 'legacy-ui')
+  mkdirSync(legacySource, { recursive: true })
+  writeFileSync(
+    join(legacySource, 'app.tsx'),
+    `import { AppRoot } from '@vista/blocks'
+import { Button } from '@overeng/geist-design-system'
+import '@overeng/geist-design-system/document.css'
+import { tokens } from '@overeng/geist-design-system/tokens.stylex'
+import * as stylex from '@stylexjs/stylex'
+const styles = stylex.create({ text: { color: tokens['--ds-foreground'] } })
+export default function App() {
+  return <AppRoot title="Legacy UI" template="architecture-review" scope="compatibility">
+    <Button><span {...stylex.props(styles.text)}>Ready</span></Button>
+  </AppRoot>
+}
+`,
+  )
+  const canonicalSource = appSourcePath(sources, OWNER, 'canonical-ui')
+  mkdirSync(canonicalSource, { recursive: true })
+  writeFileSync(
+    join(canonicalSource, 'helper.ts'),
+    `import { tokens } from '@vista/ui/tokens.stylex'
+type Config = { enabled: boolean }
+const v = <Config>{ enabled: true }
+export const label = <string>'/tokens.stylex'
+export const foreground = v.enabled ? tokens['--ds-foreground'] : undefined
+`,
+  )
+  writeFileSync(
+    join(canonicalSource, 'app.tsx'),
+    `import { AppRoot } from '@vista/blocks'
+import { Button } from '@vista/ui'
+import { foreground, label } from './helper.ts'
+export default function App() {
+  return <AppRoot title="Canonical UI" template="architecture-review" scope={label}>
+    <Button><span style={{ color: foreground }}>Ready</span></Button>
+  </AppRoot>
+}
+`,
+  )
 
   const { startService } = await import('./server.ts')
   port = await freePort()
@@ -51,6 +91,69 @@ afterAll(async () => {
 })
 
 describe('Vista runtime import policy Vite enforcement', () => {
+  it('preserves TypeScript angle assertions containing token-path payload strings', async () => {
+    // Runtime-policy modules capture the isolated roots configured by beforeAll.
+    const { vistaDependencyAnchorResolver } = await import('./runtime-policy/vite-plugin.ts')
+    const transform = vistaDependencyAnchorResolver(join(depsNodeModules(), '..')).transform
+    if (typeof transform !== 'function') throw new Error('expected transform hook')
+    expect(
+      await transform.call(
+        {} as never,
+        "export const label = <string>'/tokens.stylex'",
+        join(appSource, 'helper.ts'),
+      ),
+    ).toBeNull()
+  })
+
+  it('serves canonical UI with a token-importing TypeScript angle-assertion helper', async () => {
+    const response = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/canonical-ui/draft/app.tsx`,
+    )
+    expect(response.status).toBe(200)
+    const helper = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/canonical-ui/draft/helper.ts`,
+    )
+    expect(helper.status).toBe(200)
+  })
+
+  it('serves legacy UI imports and resolves every supported export to its canonical file', async () => {
+    const response = await fetch(
+      `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/legacy-ui/draft/app.tsx`,
+    )
+    expect(response.status).toBe(200)
+    const draft = state.drafts.get(`${encodeRouteOwner(OWNER)}/legacy-ui`)
+    expect(draft).toBeDefined()
+    const importer = join(
+      appSourcePath(process.env.VISTA_SOURCES!, OWNER, 'legacy-ui'),
+      'app.tsx',
+    )
+    for (const suffix of [
+      '',
+      '/components',
+      '/foundations',
+      '/document.css',
+      '/styles.css',
+      '/tokens.stylex',
+    ]) {
+      const legacy = `@overeng/geist-design-system${suffix}`
+      const canonical = `@vista/ui${suffix}`
+      const legacyResolved = await draft!.pluginContainer.resolveId(legacy, importer)
+      const canonicalResolved = await draft!.pluginContainer.resolveId(canonical, importer)
+      expect(legacyResolved, legacy).not.toBeNull()
+      expect(canonicalResolved, canonical).not.toBeNull()
+      expect(legacyResolved!.id, legacy).toBe(canonicalResolved!.id)
+    }
+    // Providers execute in the standing SSR realm, not the draft client realm.
+    const legacyUi = await state.published.ssrLoadModule('@overeng/geist-design-system')
+    const canonicalUi = await state.published.ssrLoadModule('@vista/ui')
+    expect(legacyUi.Button).toBe(canonicalUi.Button)
+    const legacyTokens = await state.published.ssrLoadModule(
+      '@overeng/geist-design-system/tokens.stylex',
+    )
+    const canonicalTokens = await state.published.ssrLoadModule('@vista/ui/tokens.stylex')
+    expect(legacyTokens.tokens).toBe(canonicalTokens.tokens)
+  })
+
   it('throws a typed runtime-policy error from the resolver boundary', async () => {
     const { vistaRuntimeImportPolicy } = await import('./runtime-policy/vite-plugin.ts')
     const plugin = vistaRuntimeImportPolicy(appSource)

@@ -158,7 +158,8 @@
       "flakes/vista/cli",
       "flakes/vista/island",
       "flakes/vista/service",
-      "packages/ui"
+      "packages/ui",
+      "packages/ui-legacy-alias"
     ],
     "patchedDependencies": {
       "@storybook/builder-vite@10.6.0": "repos/effect-utils/packages/@overeng/utils-storybook/patches/@storybook__builder-vite@10.6.0.patch",

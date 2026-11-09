@@ -11,7 +11,8 @@
     "flakes/vista/cli",
     "flakes/vista/island",
     "flakes/vista/service",
-    "packages/ui"
+    "packages/ui",
+    "packages/ui-legacy-alias"
   ],
   "packageManager": "pnpm@12.15.0"
 }

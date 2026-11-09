@@ -8,6 +8,7 @@ packages:
   - flakes/vista/island
   - flakes/vista/service
   - packages/ui
+  - packages/ui-legacy-alias
 
 overrides:
   '@effect/atom-react': 4.0.3

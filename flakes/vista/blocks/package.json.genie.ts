@@ -12,6 +12,7 @@ import utilsDevPkg from '../../../repos/effect-utils/packages/@overeng/utils-dev
 import utilsStorybookPkg from '../../../repos/effect-utils/packages/@overeng/utils-storybook/package.json.genie.ts'
 import utilsPkg from '../../../repos/effect-utils/packages/@overeng/utils/package.json.genie.ts'
 import uiPkg from '../../../packages/ui/package.json.genie.ts'
+import legacyUiPkg from '../../../packages/ui-legacy-alias/package.json.genie.ts'
 import agentTimelinePkg from '../agent-timeline/package.json.genie.ts'
 import { vistaRuntimePolicyFromComposition } from '../genie/runtime-policy.ts'
 
@@ -19,7 +20,7 @@ const composition = catalog.compose({
   mode: 'install',
   workspace: { repoName: 'vista', memberPath: 'flakes/vista/blocks' },
   dependencies: {
-    workspace: [uiPkg, explorerPkg, explorerReactPkg, devbarPkg, agentTimelinePkg],
+    workspace: [uiPkg, legacyUiPkg, explorerPkg, explorerReactPkg, devbarPkg, agentTimelinePkg],
     external: {
       '@overeng/meters': effectUtilsArtifactUrls['@overeng/meters'],
       ...catalog.pick('@stylexjs/stylex'),
@@ -163,6 +164,7 @@ export default packageJson(
             name: 'ui-shell',
             publicImportRoots: [
               '@vista/ui',
+              '@overeng/geist-design-system',
               '@overeng/utils',
               '@effect/atom-react',
               '@stylexjs/stylex',
@@ -172,6 +174,8 @@ export default packageJson(
               'react-aria',
               'react-dom',
             ],
+            // Legacy imports resolve to canonical UI files, never a second optimizer entry.
+            optimizeExcludeRoots: ['@overeng/geist-design-system'],
             optimizeInclude: [
               '@effect/atom-react',
               '@overeng/utils',
@@ -182,7 +186,11 @@ export default packageJson(
               'react/jsx-dev-runtime',
               'react/jsx-runtime',
             ],
-            cssImports: ['@vista/ui/document.css'],
+            cssImports: [
+              '@vista/ui/document.css',
+              '@overeng/geist-design-system/document.css',
+              '@overeng/geist-design-system/styles.css',
+            ],
           },
           {
             name: 'doctrine-blocks',

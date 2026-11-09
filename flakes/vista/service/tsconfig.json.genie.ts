@@ -26,5 +26,10 @@ export default tsconfigJson({
     },
   },
   include: ['src/**/*', 'samples/**/*.ts', 'samples/**/*.tsx', 'samples/**/*.json'],
-  references: [{ path: '../blocks' }, { path: '../agent-timeline' }, { path: '../../../packages/ui' }],
+  references: [
+    { path: '../blocks' },
+    { path: '../agent-timeline' },
+    { path: '../../../packages/ui' },
+    { path: '../../../packages/ui-legacy-alias' },
+  ],
 })

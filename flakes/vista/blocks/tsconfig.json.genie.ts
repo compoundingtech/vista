@@ -18,5 +18,9 @@ export default tsconfigJson({
   // where Storybook/Vite deps don't resolve. The Storybook build validates it
   // instead — the same idiom factory/op-proxy use (`include: src` only).
   include: ['src/**/*', 'src/**/*.json'],
-  references: [{ path: '../agent-timeline' }, { path: '../../../packages/ui' }],
+  references: [
+    { path: '../agent-timeline' },
+    { path: '../../../packages/ui' },
+    { path: '../../../packages/ui-legacy-alias' },
+  ],
 })

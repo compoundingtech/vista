@@ -147,10 +147,11 @@ pkgs.stdenv.mkDerivation {
         "island"
       ]
     }
-    # Vite follows the staged members' tsconfig references into the private UI
-    # workspace; keep its authored source/config beside the other members.
+    # Vite follows the staged members' tsconfig references into the canonical
+    # and legacy UI workspaces; keep both authored source/config trees beside them.
     mkdir -p runtime/packages
     cp -R ${root + "/packages/ui"} runtime/packages/ui
+    cp -R ${root + "/packages/ui-legacy-alias"} runtime/packages/ui-legacy-alias
     chmod -R u+w runtime
     ln -s ${importedVista}/libexec/node_modules runtime/node_modules
     ln -s ${importedVista}/libexec/importers/cli/node_modules runtime/flakes/vista/cli/node_modules
@@ -199,6 +200,7 @@ pkgs.stdenv.mkDerivation {
     ' runtime/flakes/vista/cli/runtime.js
     test -f runtime/node_modules/vite/package.json
     test -f runtime/node_modules/@vista/ui/package.json
+    test -f runtime/node_modules/@overeng/geist-design-system/package.json
     runHook postBuild
   '';
   installPhase = ''

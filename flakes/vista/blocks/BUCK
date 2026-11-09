@@ -4,7 +4,7 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:e3088536783e1221fbeef68c422ebdc2e7d2ed932df1dd48640a2454cb53fbec
+# Semantic fingerprint: sha256:02258724adcc8e82c517a57170f47c1051b7bae793617aee60f0413c3f5c279f
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -968,6 +968,7 @@ npm_package_archive(
     workspace_manifests = [
         "//flakes/vista/agent-timeline:package.json",
         "//packages/ui:package.json",
+        "//packages/ui-legacy-alias:package.json",
     ],
     output = "vista-blocks.tgz",
     visibility = ["PUBLIC"],
