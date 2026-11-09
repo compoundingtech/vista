@@ -5,7 +5,9 @@ import uiPkg from '../ui/package.json.genie.ts'
 const composition = catalog.compose({
   workspace: { repoName: 'vista', memberPath: 'packages/ui-legacy-alias' },
   dependencies: { workspace: [uiPkg] },
-  devDependencies: { external: uiPkg.data.peerDependencies },
+  devDependencies: {
+    external: catalog.pick('@stylexjs/stylex', 'react', 'react-aria-components', 'react-dom'),
+  },
 })
 
 export default packageJson(
