@@ -27,8 +27,13 @@ let port: number
 // The canonical tailnet base VISTA_PUBLIC_URL is plumbed with at deploy time.
 const CANONICAL_BASE = 'https://vista-test.test-tailnet.ts.net'
 
+// arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+// Tests pick the owner through ST_AGENT; an inherited seat FRACTAL_AGENT would win or conflict.
+const inheritedEnv = { ...process.env }
+delete inheritedEnv.FRACTAL_AGENT
+
 const baseEnv = (extra: Record<string, string> = {}): Record<string, string> => ({
-  ...process.env,
+  ...inheritedEnv,
   VISTA_URL: `http://127.0.0.1:${port}`,
   VISTA_APPS: join(dir, 'apps'),
   VISTA_CACHE: join(dir, '.vista-cache'),

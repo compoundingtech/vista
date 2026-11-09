@@ -10,6 +10,7 @@ import {
   JOURNAL_KEEP,
   readJournalEntries,
   recentJournalEntries,
+  resolveAgentIdentity,
   SHIP_LIMIT,
   toShippedEntries,
   type TrailJournalEntry,
@@ -127,5 +128,18 @@ describe('trail journal', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }
+  })
+})
+
+// arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+describe('ambient journal owner', () => {
+  it('reads FRACTAL_AGENT first, ST_AGENT as fallback, and journals nothing on disagreement', () => {
+    expect(resolveAgentIdentity({ FRACTAL_AGENT: OWNER })).toBe(OWNER)
+    expect(resolveAgentIdentity({ ST_AGENT: OWNER })).toBe(OWNER)
+    expect(resolveAgentIdentity({ FRACTAL_AGENT: OWNER, ST_AGENT: OWNER })).toBe(OWNER)
+    expect(resolveAgentIdentity({ FRACTAL_AGENT: OWNER, ST_AGENT: 'vista.other' })).toBeUndefined()
+    expect(resolveAgentIdentity({})).toBeUndefined()
+    expect(resolveAgentIdentity({ FRACTAL_AGENT: '', ST_AGENT: OWNER })).toBe(OWNER)
+    expect(resolveAgentIdentity({ FRACTAL_AGENT: OWNER, ST_AGENT: '' })).toBe(OWNER)
   })
 })

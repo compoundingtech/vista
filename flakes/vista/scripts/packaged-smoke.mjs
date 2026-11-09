@@ -337,6 +337,8 @@ const main = async () => {
   const encodedSmokeOwner = encodeRouteOwner(smokeOwner)
   const inheritedEnv = { ...process.env }
   delete inheritedEnv.ST_AGENT
+  // arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+  delete inheritedEnv.FRACTAL_AGENT
   /**
    * Devenv preserves workspace symlinks for source development. The packaged
    * workspace relies on Node's normal realpath deduplication so Effect schemas

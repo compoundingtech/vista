@@ -116,10 +116,13 @@ describe('vista check output', () => {
     const root = writeValidApp()
     const previous = {
       CATALOG: process.env.CATALOG,
+      // arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+      FRACTAL_AGENT: process.env.FRACTAL_AGENT,
       ST_AGENT: process.env.ST_AGENT,
       VISTA_URL: process.env.VISTA_URL,
     }
     delete process.env.CATALOG
+    delete process.env.FRACTAL_AGENT
     delete process.env.ST_AGENT
     delete process.env.VISTA_URL
     try {
