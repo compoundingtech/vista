@@ -23,5 +23,11 @@
   "dependencies": {
     "@vista/ui": "workspace:^"
   },
+  "devDependencies": {
+    "@stylexjs/stylex": "^0.19.0",
+    "react": "^19.2.8",
+    "react-aria-components": "^1.21.1",
+    "react-dom": "^19.2.8"
+  },
   "deprecated": "legacy import root @overeng/geist-design-system; use @vista/ui"
 }

@@ -164,7 +164,8 @@ export const vistaDependencyAnchorResolver = (
           node.type !== 'ImportDeclaration' &&
           node.type !== 'ExportNamedDeclaration' &&
           node.type !== 'ExportAllDeclaration'
-        ) continue
+        )
+          continue
         const source = node.source
         if (
           source === null ||
@@ -175,7 +176,8 @@ export const vistaDependencyAnchorResolver = (
           source.start === undefined ||
           source.end === null ||
           source.end === undefined
-        ) continue
+        )
+          continue
         const canonical = await this.resolve('@vista/ui/tokens.stylex', anchorImporter)
         if (canonical === null) continue
         transformed =
