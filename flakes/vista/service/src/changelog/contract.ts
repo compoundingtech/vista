@@ -1,6 +1,5 @@
-import { Schema } from 'effect'
-
 import { isValidContributorIdentity } from '@vista/blocks/internal/owner-identity'
+import { Schema } from 'effect'
 
 const NonEmptyTrimmedString = Schema.NonEmptyString.pipe(Schema.check(Schema.isTrimmed()))
 
@@ -12,6 +11,7 @@ const Worktree = NonEmptyTrimmedString.pipe(
   Schema.check(Schema.isPattern(/^[A-Za-z0-9][A-Za-z0-9._-]*\/[A-Za-z0-9][A-Za-z0-9._-]*$/u)),
 ).annotate({ identifier: 'Vista.Changelog.Worktree' })
 
+/** Contributor attribution with a validated agent identity and optional name and worktree. */
 export const ChangelogContributorSchema = Schema.Struct({
   agentId: AgentId,
   name: Schema.optional(NonEmptyTrimmedString),
@@ -49,6 +49,7 @@ const ChangelogDate = NonEmptyTrimmedString.pipe(
   Schema.check(Schema.isPattern(/^\d{4}-\d{2}-\d{2}$/u)),
 ).annotate({ identifier: 'Vista.Changelog.Date' })
 
+/** Published changelog entry with its filename-derived identity and date. */
 export const ChangelogEntrySchema = Schema.Struct({
   id: ChangelogEntryId,
   date: ChangelogDate,
@@ -76,6 +77,7 @@ export const decodeChangelogManifestV1 = Schema.decodeUnknownSync(
 )
 export type ChangelogManifestV1 = typeof ChangelogManifestV1Schema.Type
 
+/** Associates an authored entry filename with its source payload for compilation. */
 export interface ChangelogSourceRegistration {
   readonly file: string
   readonly source: unknown

@@ -48,6 +48,7 @@ const enforceRuntimeImportPolicy = (
   }
 }
 
+/** Enforces Vista's runtime import policy before Vite resolves app-authored imports. */
 export const vistaRuntimeImportPolicy = (root = appsDir()): Plugin => ({
   name: 'vista-runtime-import-policy',
   enforce: 'pre',

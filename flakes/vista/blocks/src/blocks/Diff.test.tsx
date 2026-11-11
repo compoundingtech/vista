@@ -49,22 +49,25 @@ test('Diff keeps patch-only hunks without requesting missing full files', () => 
   expect(MultiFileDiff).not.toHaveBeenCalled()
 })
 
-test.each(['folded', 'full'] as const)('PierreDiff expands only complete inputs (%s)', (context) => {
-  renderToStaticMarkup(<PierreDiff source={files} arrangement="unified" context={context} />)
-  expect(MultiFileDiff).toHaveBeenLastCalledWith(
-    expect.objectContaining({
-      oldFile: { name: files.path, contents: files.oldContents },
-      newFile: { name: files.path, contents: files.newContents },
-      options: expect.objectContaining({ expandUnchanged: context === 'full' }),
-    }),
-    undefined,
-  )
-  renderToStaticMarkup(<PierreDiff source={patch} arrangement="split" context={context} />)
-  expect(PatchDiff).toHaveBeenLastCalledWith(
-    expect.objectContaining({
-      patch: patch.patch,
-      options: expect.objectContaining({ expandUnchanged: false }),
-    }),
-    undefined,
-  )
-})
+test.each(['folded', 'full'] as const)(
+  'PierreDiff expands only complete inputs (%s)',
+  (context) => {
+    renderToStaticMarkup(<PierreDiff source={files} arrangement="unified" context={context} />)
+    expect(MultiFileDiff).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        oldFile: { name: files.path, contents: files.oldContents },
+        newFile: { name: files.path, contents: files.newContents },
+        options: expect.objectContaining({ expandUnchanged: context === 'full' }),
+      }),
+      undefined,
+    )
+    renderToStaticMarkup(<PierreDiff source={patch} arrangement="split" context={context} />)
+    expect(PatchDiff).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        patch: patch.patch,
+        options: expect.objectContaining({ expandUnchanged: false }),
+      }),
+      undefined,
+    )
+  },
+)
