@@ -216,8 +216,16 @@ export const ensureVistaDiffThemes = (): void => {
   if (registered) return
   registerCustomTheme(VISTA_DIFF_THEMES.light, () => Promise.resolve(buildDiffTheme('light')))
   registerCustomTheme(VISTA_DIFF_THEMES.dark, () => Promise.resolve(buildDiffTheme('dark')))
-  registerCustomTheme(VISTA_DIFF_THEMES.light, () => Promise.resolve(buildZedDiffTheme('light')), 'zed')
-  registerCustomTheme(VISTA_DIFF_THEMES.dark, () => Promise.resolve(buildZedDiffTheme('dark')), 'zed')
+  registerCustomTheme(
+    VISTA_DIFF_THEMES.light,
+    () => Promise.resolve(buildZedDiffTheme('light')),
+    'zed',
+  )
+  registerCustomTheme(
+    VISTA_DIFF_THEMES.dark,
+    () => Promise.resolve(buildZedDiffTheme('dark')),
+    'zed',
+  )
   // Prime the singleton before File, MultiFileDiff, or CodeView can create it.
   // Both formats are registered because Shiki cannot consume a Zed theme.
   void getSharedHighlighter({

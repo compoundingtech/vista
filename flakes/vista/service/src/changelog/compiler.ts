@@ -15,6 +15,7 @@ import {
 const encodeManifest = Schema.encodeSync(Schema.fromJsonString(ChangelogManifestV1Schema))
 const ENTRY_FILENAME = /^(?<date>\d{4}-\d{2}-\d{2})-[a-z0-9]+(?:-[a-z0-9]+)*\.ts$/u
 
+/** Reports invalid changelog filenames or duplicate entry identities during compilation. */
 export class ChangelogCompileError extends Error {
   readonly _tag = 'Vista.ChangelogCompileError'
 
@@ -63,6 +64,7 @@ const identityFromFilename = (file: string): { readonly id: string; readonly dat
   return { id: file.slice(0, -'.ts'.length), date }
 }
 
+/** Validates and sorts registered changelog entries into a manifest and serialized JSON. */
 export const compileChangelog = ({
   registry,
   product,
@@ -119,6 +121,7 @@ const parseArguments = (args: readonly string[]): CompilerArguments => ({
       : fileURLToPath(new URL('../../../.changelog/', import.meta.url)),
 })
 
+/** Loads and decodes changelog entry modules from the supplied source directory. */
 export const discoverChangelogEntries = async (
   sourceDirectory: string,
 ): Promise<readonly ChangelogSourceRegistration[]> => {
