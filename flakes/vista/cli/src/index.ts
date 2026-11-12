@@ -69,6 +69,7 @@ import { reviewVista } from './review.ts'
 import {
   appendJournalEntry,
   recentJournalEntries,
+  resolveAgentIdentity,
   toShippedEntries,
   trailStateDir,
   withTrailEntry,
@@ -217,7 +218,7 @@ export const runCheck = (path = process.cwd()) =>
       }),
     )
     const failed = outcome._tag === 'Failure' || outcome.value._tag === 'failed'
-    const owner = process.env.ST_AGENT
+    const owner = resolveAgentIdentity()
     if (owner !== undefined) {
       const slug = basename(resolve(path))
       yield* Effect.sync(() =>
@@ -257,7 +258,7 @@ const newCommand = Cli.Command.make(
   ({ slug, dryRun, output }) => {
     const resolvedSlug = slug._tag === 'Some' ? slug.value : defaultSlug()
     return withTrailEntry(
-      { owner: process.env.ST_AGENT, slug: resolvedSlug, command: 'new' },
+      { owner: resolveAgentIdentity(), slug: resolvedSlug, command: 'new' },
       Effect.gen(function* () {
         const vista = yield* VistaClient
         const result = yield* vista.newApp(resolvedSlug, { dryRun })

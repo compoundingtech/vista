@@ -26,10 +26,15 @@ const execFileAsync = promisify(execFile)
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CLI = join(HERE, '..', 'src', 'cli.ts')
 
+// arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+// The test owner is ST_AGENT; an inherited seat FRACTAL_AGENT would win or conflict.
+const inheritedEnv = { ...process.env }
+delete inheritedEnv.FRACTAL_AGENT
+
 const runCli = (args: readonly string[], env: Record<string, string> = {}) =>
   execFileAsync('bun', [CLI, ...args], {
     env: {
-      ...process.env,
+      ...inheritedEnv,
       NO_COLOR: '1',
       ST_AGENT: 'dev3.cli-test',
       ...env,

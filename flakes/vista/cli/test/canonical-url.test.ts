@@ -236,6 +236,30 @@ describe('service-owned AppSource resolution', () => {
       for (const error of errors) expect(error).toBeInstanceOf(ServiceUnreachable)
     }).pipe(Effect.provide(clientLayer({ ...canonicalEnv, ST_AGENT: 'bogus' }))),
   )
+
+  // arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+  it.effect('reads FRACTAL_AGENT first and refuses a disagreeing ST_AGENT', () =>
+    Effect.gen(function* () {
+      const urlUnder = (env: Record<string, string>) =>
+        Effect.gen(function* () {
+          const vista = yield* VistaClient
+          return (yield* vista.urlFor('my-review', 'v1')).url
+        }).pipe(Effect.provide(clientLayer({ VISTA_URL: LOOPBACK, VISTA_PUBLIC_URL: CANONICAL_BASE, ...env })))
+      const expected = `${CANONICAL_BASE}/r/o-6167656e742f76697374612f617574686f72/my-review/v1/`
+      expect(yield* urlUnder({ FRACTAL_AGENT: 'agent/vista/author' })).toBe(expected)
+      expect(yield* urlUnder({ ST_AGENT: 'agent/vista/author' })).toBe(expected)
+      expect(
+        yield* urlUnder({ FRACTAL_AGENT: 'agent/vista/author', ST_AGENT: 'agent/vista/author' }),
+      ).toBe(expected)
+      expect(yield* urlUnder({ FRACTAL_AGENT: '', ST_AGENT: 'agent/vista/author' })).toBe(expected)
+      expect(yield* urlUnder({ FRACTAL_AGENT: 'agent/vista/author', ST_AGENT: '' })).toBe(expected)
+      const error = yield* Effect.flip(
+        urlUnder({ FRACTAL_AGENT: 'agent/vista/author', ST_AGENT: 'agent/vista/other' }),
+      )
+      expect(error).toBeInstanceOf(InvalidOwnerIdentity)
+      expect((error as InvalidOwnerIdentity).message).toContain('FRACTAL_AGENT and ST_AGENT disagree')
+    }),
+  )
 })
 
 /**

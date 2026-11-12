@@ -273,15 +273,36 @@ const makeVistaClient = Effect.gen(function* () {
   const author = yield* Config.String('VISTA_AUTHOR').pipe(
     Config.withDefault(process.env.USER ?? 'agent'),
   )
-  // Preserve the construction-time provider without reading ST_AGENT until needed.
+  // Preserve the construction-time provider without reading the owner identity until needed.
   const configProvider = yield* ConfigProvider.ConfigProvider
   const resolveOwner = Effect.gen(function* () {
-    const rawOwner = yield* Config.String('ST_AGENT')
+    // arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+    // Empty counts as absent: FRACTAL_AGENT first, then ST_AGENT.
+    const current = Option.filter(
+      yield* Config.String('FRACTAL_AGENT').pipe(Config.option),
+      (value) => value !== '',
+    )
+    const legacy = Option.filter(
+      yield* Config.String('ST_AGENT').pipe(Config.option),
+      (value) => value !== '',
+    )
+    if (Option.isSome(current) && Option.isSome(legacy) && current.value !== legacy.value) {
+      return yield* new InvalidOwnerIdentity({
+        owner: current.value,
+        message: `FRACTAL_AGENT and ST_AGENT disagree (${current.value} vs ${legacy.value}); refusing to pick a Vista owner`,
+      })
+    }
+    const source = Option.isSome(current) ? 'FRACTAL_AGENT' : 'ST_AGENT'
+    const rawOwner = Option.isSome(current)
+      ? current.value
+      : Option.isSome(legacy)
+        ? legacy.value
+        : yield* Config.String('ST_AGENT')
     const decodedOwner = Schema.decodeResult(OwnerIdentity)(rawOwner)
     if (Result.isFailure(decodedOwner)) {
       return yield* new InvalidOwnerIdentity({
         owner: rawOwner,
-        message: `ST_AGENT is not a valid Vista owner identity: ${rawOwner}`,
+        message: `${source} is not a valid Vista owner identity: ${rawOwner}`,
       })
     }
     return decodedOwner.success

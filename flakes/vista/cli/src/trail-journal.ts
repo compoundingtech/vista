@@ -37,6 +37,23 @@ export const trailStateDir = (explicit?: string | undefined): string =>
   process.env.VISTA_TRAIL_DIR ??
   join(process.env.XDG_STATE_HOME ?? join(homedir(), '.local', 'state'), 'vista', 'trail')
 
+// arn:lmig:smalltalk:2026-10-16-env-fractal-dual-read
+/**
+ * Ambient journal owner for owner-free commands (attribution only): FRACTAL_AGENT
+ * first, then ST_AGENT; disagreeing names journal nothing.
+ */
+export const resolveAgentIdentity = (
+  env: { readonly FRACTAL_AGENT?: string | undefined; readonly ST_AGENT?: string | undefined } = {
+    FRACTAL_AGENT: process.env.FRACTAL_AGENT,
+    ST_AGENT: process.env.ST_AGENT,
+  },
+): string | undefined => {
+  const current = env.FRACTAL_AGENT || undefined
+  const legacy = env.ST_AGENT || undefined
+  if (current !== undefined && legacy !== undefined && current !== legacy) return undefined
+  return current ?? legacy
+}
+
 /** Journal file for one app. Throws on an unencodable owner (caller swallows). */
 export const journalPath = (stateDir: string, owner: string, slug: string): string =>
   join(stateDir, encodeOwner(owner), `${slug}.jsonl`)
