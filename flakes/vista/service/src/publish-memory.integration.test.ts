@@ -1,8 +1,19 @@
 import { execFileSync } from 'node:child_process'
+import { createRequire } from 'node:module'
+import { pathToFileURL } from 'node:url'
 
 import { expect, it } from 'vitest'
 
 // Isolate the native callback cycle without Vite, React, StyleX or build caches.
+// The service declares Vite (not Rolldown); resolve the experimental entry through
+// Vite's own dependency edge so the child imports exactly the publication bundler's
+// Rolldown without loading Vite into the isolated process.
+const viteOwnedRolldownExperimental = pathToFileURL(
+  createRequire(createRequire(import.meta.url).resolve('vite/package.json')).resolve(
+    'rolldown/experimental',
+  ),
+).href
+
 it('releases native resolver callback owners under the publication heap cap', () => {
   const result = execFileSync(
     process.execPath,
@@ -14,7 +25,7 @@ it('releases native resolver callback owners under the publication heap cap', ()
       String.raw`
       import assert from 'node:assert/strict'
       import { setImmediate } from 'node:timers/promises'
-      import { viteResolvePlugin } from 'rolldown/experimental'
+      import { viteResolvePlugin } from ${JSON.stringify(viteOwnedRolldownExperimental)}
 
       // Callback identity is intentionally shared between all resolver owners.
       const ignoreSubpathImports = () => undefined
