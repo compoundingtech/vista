@@ -22,7 +22,7 @@ import {
 import { FetchHttpClient } from 'effect/http'
 import * as KeyValueStore from 'effect/persistence/KeyValueStore'
 import * as RpcClient from 'effect/rpc/RpcClient'
-import { layerJson, layerNdjson } from 'effect/rpc/RpcSerialization'
+import { layerJson, layerNdjson, ndjson } from 'effect/rpc/RpcSerialization'
 import { afterAll, describe, expect, it } from 'vitest'
 
 import type { ClockEvent, ClockState } from '../samples/checks-app/providers/clock.query.ts'
@@ -55,8 +55,10 @@ writeFileSync(
 process.env.VISTA_CHANGELOG_MANIFEST = changelogPath
 
 const { ClockApi, clockStream } = await import('../samples/checks-app/providers/clock.query.ts')
+const { default: clockProvider } = await import('../samples/checks-app/providers/clock.provider.ts')
 const { encodeRouteOwner, PublishInput, PublishOk, VistaControlApi } = await import('./control.ts')
 const { makeProviderBudget, makeSubscriptionHub } = await import('./data/live-hub.ts')
+const { materializeProvider } = await import('./data/provider.ts')
 const { versionDir } = await import('./registry.ts')
 const { freePort } = await import('./test-support.ts')
 const { wireCall } = await import('./wire.ts')
@@ -329,6 +331,63 @@ describe('subscription live runtime', () => {
   })
 })
 
+describe('provider NDJSON media-type compatibility', () => {
+  it.each(['application/ndjson', 'application/x-ndjson'])(
+    'delivers initial state progressively for %s',
+    async (contentType) => {
+      const body = ndjson.makeUnsafe().encode({
+        _tag: 'Request',
+        id: 1,
+        tag: 'clockStream',
+        payload: { lane: 'media-type' },
+        headers: [],
+      })
+      if (typeof body !== 'string') throw new Error('NDJSON request must be text')
+      await Effect.runPromise(
+        Effect.gen(function* () {
+          const store = yield* memoryStore
+          const version = yield* appScopeHub(store, `media-type/${contentType}`)
+          yield* Effect.addFinalizer(() => Scope.close(version.scope, Exit.void))
+          const mounted = yield* materializeProvider(clockProvider, version.hub)
+          yield* Effect.promise(async () => {
+            const controller = new AbortController()
+            try {
+              const response = await mounted.handler(
+                new Request('http://localhost/_data/clock', {
+                  method: 'POST',
+                  headers: { 'content-type': contentType },
+                  signal: AbortSignal.any([controller.signal, AbortSignal.timeout(2_000)]),
+                  body,
+                }),
+              )
+              expect(response.status).toBe(200)
+              expect(response.headers.get('content-type')).toBe(contentType)
+              expect(response.body).not.toBeNull()
+              const reader = response.body!.getReader()
+              try {
+                const initial = await reader.read()
+                if (initial.done) throw new Error('NDJSON ended before the initial state')
+                const frames = ndjson.makeUnsafe().decode(initial.value)
+                expect(frames).toContainEqual(
+                  expect.objectContaining({
+                    _tag: 'Chunk',
+                    values: [{ _tag: 'Synced', state: { cursor: 'tick-0', ticks: 0 } }],
+                  }),
+                )
+              } finally {
+                controller.abort()
+                await reader.cancel()
+              }
+            } finally {
+              controller.abort()
+            }
+          })
+        }).pipe(Effect.scoped),
+      )
+    },
+  )
+})
+
 describe('node stream response ownership', () => {
   it('does not write a second response when the client disconnects during provider startup', async () => {
     const owner = 'vista.abort-test'
@@ -366,7 +425,7 @@ describe('node stream response ownership', () => {
         port,
         path: `/r/${encodeRouteOwner(owner)}/${slug}/draft/_data/clock`,
         method: 'POST',
-        headers: { 'content-type': 'application/ndjson' },
+        headers: { 'content-type': ndjson.contentType },
       })
       req.once('close', requestDone.resolve)
       req.once('error', (error: NodeJS.ErrnoException) => {
@@ -379,6 +438,7 @@ describe('node stream response ownership', () => {
           id: 1,
           tag: 'clockStream',
           payload: { lane: 'abort-test' },
+          headers: [],
         })}\n`,
       )
       await providerStarted.promise
