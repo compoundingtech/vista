@@ -146,8 +146,8 @@ export const projectVistaRuntimePolicySource = (
  * Computes once the runtime policy source projected from the runtime-policy contributions
  * discovered in the current environment.
  */
-export const vistaRuntimePolicySource = once(
-  (): RuntimePolicySource => projectVistaRuntimePolicySource(),
+export const vistaRuntimePolicySource = once((): RuntimePolicySource =>
+  projectVistaRuntimePolicySource(),
 )
 
 const ensureRootsInstalled = (
@@ -228,8 +228,8 @@ export const projectVistaRuntimePolicy = Effect.fn('vista.runtime-policy.project
  * Synchronously computes (once) the validated runtime policy projection by running the projecting
  * effect against the current policy source and installed closure.
  */
-export const vistaRuntimePolicy = once(
-  (): RuntimePolicyProjection => Effect.runSync(projectVistaRuntimePolicy()),
+export const vistaRuntimePolicy = once((): RuntimePolicyProjection =>
+  Effect.runSync(projectVistaRuntimePolicy()),
 )
 
 /**

@@ -212,88 +212,86 @@ export const captureFrozenEffect = (
     const capturedByKey = new Map<SnapshotKey, CapturedValue>()
     const frozenAt = DateTime.formatIso(yield* DateTime.now)
 
-    const results = yield* Effect.forEach(
-      bindings,
-      (binding): Effect.Effect<BlockCaptureResult> =>
-        Effect.gen(function* () {
-          const parent = yield* captureOne(
+    const results = yield* Effect.forEach(bindings, (binding): Effect.Effect<BlockCaptureResult> =>
+      Effect.gen(function* () {
+        const parent = yield* captureOne(
+          registry,
+          capturedByKey,
+          binding.provider,
+          binding.operation,
+          binding.args,
+          binding.policy,
+        )
+        if (parent._tag !== 'captured') return blockResult(binding.semanticId, parent)
+
+        const captures: CapturedValue[] = [parent]
+        const pendingByKey = new Map(capturedByKey)
+        pendingByKey.set(parent.call.key, parent)
+        if (binding.dependency !== undefined) {
+          const expectedEdge = `${parent.call.key}::flatMap::${binding.dependency.id}`
+          if (binding.dependency.edge !== expectedEdge) {
+            return {
+              _tag: 'failed',
+              blockId: binding.semanticId,
+              providerId: binding.provider,
+              rpcTag: binding.operation,
+              error: `flatMap edge mismatch: expected '${expectedEdge}'`,
+            } satisfies BlockCaptureResult
+          }
+          const select = capturePlan.flatMapSelectors.get(binding.dependency.edge)
+          if (select === undefined) {
+            return {
+              _tag: 'failed',
+              blockId: binding.semanticId,
+              providerId: binding.provider,
+              rpcTag: binding.operation,
+              error: `flatMap selector '${binding.dependency.id}' is not registered`,
+            } satisfies BlockCaptureResult
+          }
+          const selectedExit = yield* Effect.exit(Effect.sync(() => select(parent.value)))
+          if (Exit.isFailure(selectedExit)) {
+            return {
+              _tag: 'failed',
+              blockId: binding.semanticId,
+              providerId: binding.provider,
+              rpcTag: binding.operation,
+              error: Cause.pretty(selectedExit.cause),
+            } satisfies BlockCaptureResult
+          }
+          const selected = selectedExit.value
+          const child = yield* captureOne(
             registry,
-            capturedByKey,
-            binding.provider,
-            binding.operation,
-            binding.args,
+            pendingByKey,
+            selected.operation.providerId,
+            selected.operation.tag,
+            selected.args,
             binding.policy,
           )
-          if (parent._tag !== 'captured') return blockResult(binding.semanticId, parent)
+          if (child._tag !== 'captured') return blockResult(binding.semanticId, child)
+          captures.push(child)
+        }
 
-          const captures: CapturedValue[] = [parent]
-          const pendingByKey = new Map(capturedByKey)
-          pendingByKey.set(parent.call.key, parent)
-          if (binding.dependency !== undefined) {
-            const expectedEdge = `${parent.call.key}::flatMap::${binding.dependency.id}`
-            if (binding.dependency.edge !== expectedEdge) {
-              return {
-                _tag: 'failed',
-                blockId: binding.semanticId,
-                providerId: binding.provider,
-                rpcTag: binding.operation,
-                error: `flatMap edge mismatch: expected '${expectedEdge}'`,
-              } satisfies BlockCaptureResult
-            }
-            const select = capturePlan.flatMapSelectors.get(binding.dependency.edge)
-            if (select === undefined) {
-              return {
-                _tag: 'failed',
-                blockId: binding.semanticId,
-                providerId: binding.provider,
-                rpcTag: binding.operation,
-                error: `flatMap selector '${binding.dependency.id}' is not registered`,
-              } satisfies BlockCaptureResult
-            }
-            const selectedExit = yield* Effect.exit(Effect.sync(() => select(parent.value)))
-            if (Exit.isFailure(selectedExit)) {
-              return {
-                _tag: 'failed',
-                blockId: binding.semanticId,
-                providerId: binding.provider,
-                rpcTag: binding.operation,
-                error: Cause.pretty(selectedExit.cause),
-              } satisfies BlockCaptureResult
-            }
-            const selected = selectedExit.value
-            const child = yield* captureOne(
-              registry,
-              pendingByKey,
-              selected.operation.providerId,
-              selected.operation.tag,
-              selected.args,
-              binding.policy,
-            )
-            if (child._tag !== 'captured') return blockResult(binding.semanticId, child)
-            captures.push(child)
-          }
-
-          for (const capture of captures) {
-            if (!capture.fresh) continue
-            recorded.push(capture.call)
-            entries[capture.call.key] = capture.entry
-            capturedByKey.set(capture.call.key, capture)
-          }
-          return {
-            _tag: 'captured',
-            blockId: binding.semanticId,
-            call: captures.at(-1)!.call,
-          } satisfies BlockCaptureResult
-        }).pipe(
-          Effect.withSpan('vista.freeze.block.capture', {
-            attributes: {
-              'span.label': binding.semanticId,
-              'vista.freeze.block_id': binding.semanticId,
-              'vista.provider.id': binding.provider,
-              'vista.provider.rpc': binding.operation,
-            },
-          }),
-        ),
+        for (const capture of captures) {
+          if (!capture.fresh) continue
+          recorded.push(capture.call)
+          entries[capture.call.key] = capture.entry
+          capturedByKey.set(capture.call.key, capture)
+        }
+        return {
+          _tag: 'captured',
+          blockId: binding.semanticId,
+          call: captures.at(-1)!.call,
+        } satisfies BlockCaptureResult
+      }).pipe(
+        Effect.withSpan('vista.freeze.block.capture', {
+          attributes: {
+            'span.label': binding.semanticId,
+            'vista.freeze.block_id': binding.semanticId,
+            'vista.provider.id': binding.provider,
+            'vista.provider.rpc': binding.operation,
+          },
+        }),
+      ),
     )
 
     yield* Effect.forEach(

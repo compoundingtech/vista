@@ -47,8 +47,8 @@ const readPackageJson = (repoRelativePath: string): PackageJson =>
  * Reads and caches the Vista service's own package.json so repeated policy checks share a single
  * parsed copy.
  */
-export const servicePackageJson = once(
-  (): PackageJson => readPackageJson('flakes/vista/service/package.json'),
+export const servicePackageJson = once((): PackageJson =>
+  readPackageJson('flakes/vista/service/package.json'),
 )
 
 const readClosurePackageJson = (workspaceDir: string): PackageJson | undefined => {

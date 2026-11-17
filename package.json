@@ -14,5 +14,5 @@
     "packages/ui",
     "packages/ui-legacy-alias"
   ],
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.17.0"
 }

@@ -410,16 +410,14 @@ const normalizeFileStatus = (status: string): Effect.Effect<PullRequestFile['sta
 
 const normalizeFile = (file: typeof GhPullRequestFileJson.Type) =>
   normalizeFileStatus(file.status).pipe(
-    Effect.map(
-      (status): PullRequestFile => ({
-        path: file.filename,
-        status,
-        ...(file.previous_filename === undefined ? {} : { previousPath: file.previous_filename }),
-        ...(file.patch === undefined ? {} : { patch: file.patch }),
-        additions: file.additions,
-        deletions: file.deletions,
-      }),
-    ),
+    Effect.map((status): PullRequestFile => ({
+      path: file.filename,
+      status,
+      ...(file.previous_filename === undefined ? {} : { previousPath: file.previous_filename }),
+      ...(file.patch === undefined ? {} : { patch: file.patch }),
+      additions: file.additions,
+      deletions: file.deletions,
+    })),
   )
 
 /**
