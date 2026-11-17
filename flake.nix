@@ -2,11 +2,11 @@
   description = "Vista review-publishing service";
 
   inputs = {
-    effect-utils.url = "github:overengineeringstudio/effect-utils/7412154cde31346d8e7de2d8111b53b3ae40d7bb";
+    effect-utils.url = "github:overengineeringstudio/effect-utils/58f04331e097e9b61d333deaaa2e694d39c0f107";
     nixpkgs.follows = "effect-utils/nixpkgs";
     flake-utils.follows = "effect-utils/flake-utils";
     playwright = {
-      url = "github:overengineeringstudio/effect-utils/7412154cde31346d8e7de2d8111b53b3ae40d7bb?dir=nix/playwright-flake";
+      url = "github:overengineeringstudio/effect-utils/58f04331e097e9b61d333deaaa2e694d39c0f107?dir=nix/playwright-flake";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.playwright-web-flake.inputs.flake-utils.follows = "flake-utils";
     };

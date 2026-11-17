@@ -85,17 +85,17 @@
         "tsgo": "tsgo"
       },
       "locked": {
-        "lastModified": 1794856235,
-        "narHash": "sha256-5g25IFLzzLZzHWe6xIB2xXzXUpI0VGFKZZKqZQEg//Q=",
+        "lastModified": 1794902439,
+        "narHash": "sha256-LEjir0zrXRCeih+HJbEeShVGAGMHpWLs+gNCPplHQ7I=",
         "owner": "overengineeringstudio",
         "repo": "effect-utils",
-        "rev": "7412154cde31346d8e7de2d8111b53b3ae40d7bb",
+        "rev": "58f04331e097e9b61d333deaaa2e694d39c0f107",
         "type": "github"
       },
       "original": {
         "owner": "overengineeringstudio",
         "repo": "effect-utils",
-        "rev": "7412154cde31346d8e7de2d8111b53b3ae40d7bb",
+        "rev": "58f04331e097e9b61d333deaaa2e694d39c0f107",
         "type": "github"
       }
     },
@@ -169,6 +169,7 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       }
     },
@@ -316,22 +317,6 @@
         "type": "github"
       }
     },
-    "nixpkgsUnstable": {
-      "locked": {
-        "lastModified": 1794042290,
-        "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1794042290,
@@ -366,6 +351,7 @@
     },
     "playwright": {
       "inputs": {
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -373,24 +359,27 @@
       },
       "locked": {
         "dir": "nix/playwright-flake",
-        "lastModified": 1794856235,
-        "narHash": "sha256-5g25IFLzzLZzHWe6xIB2xXzXUpI0VGFKZZKqZQEg//Q=",
+        "lastModified": 1794902439,
+        "narHash": "sha256-LEjir0zrXRCeih+HJbEeShVGAGMHpWLs+gNCPplHQ7I=",
         "owner": "overengineeringstudio",
         "repo": "effect-utils",
-        "rev": "7412154cde31346d8e7de2d8111b53b3ae40d7bb",
+        "rev": "58f04331e097e9b61d333deaaa2e694d39c0f107",
         "type": "github"
       },
       "original": {
         "dir": "nix/playwright-flake",
         "owner": "overengineeringstudio",
         "repo": "effect-utils",
-        "rev": "7412154cde31346d8e7de2d8111b53b3ae40d7bb",
+        "rev": "58f04331e097e9b61d333deaaa2e694d39c0f107",
         "type": "github"
       }
     },
     "playwright-web-flake": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": [
+          "playwright",
+          "flake-utils"
+        ],
         "nixpkgs": [
           "playwright",
           "nixpkgs"
@@ -501,7 +490,10 @@
     "tsgo": {
       "inputs": {
         "nixpkgs": "nixpkgs_3",
-        "nixpkgsUnstable": "nixpkgsUnstable",
+        "nixpkgsUnstable": [
+          "effect-utils",
+          "nixpkgs"
+        ],
         "typescript-src": "typescript-src"
       },
       "locked": {

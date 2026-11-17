@@ -8,8 +8,8 @@
     "react"
   ],
   "jsPlugins": [
-    "/nix/store/31z3ixz5db3gsc9g4vybp13q7vh9mgd2-oxlint-npm-1.82.0/lib/oxc-config-plugin.js",
-    "/nix/store/31z3ixz5db3gsc9g4vybp13q7vh9mgd2-oxlint-npm-1.82.0/lib/stylex-upstream-plugin.js"
+    "/nix/store/yxcvy608c7f9y9244qbkqkq8f24y5hfr-oxlint-npm-1.82.0/lib/oxc-config-plugin.js",
+    "/nix/store/yxcvy608c7f9y9244qbkqkq8f24y5hfr-oxlint-npm-1.82.0/lib/stylex-upstream-plugin.js"
   ],
   "ignorePatterns": [
     "**/node_modules/**",

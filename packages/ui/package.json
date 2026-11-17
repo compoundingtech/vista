@@ -31,7 +31,7 @@
     "@effect/language-service": "0.69.2",
     "@internationalized/date": "3.12.1",
     "@overeng/otel-contract": "https://overeng-effect-utils.cachix.org/serve/2im5k8m9c851nncmrfpiqpigcl43nxz6/overeng-otel-contract.tgz",
-    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/4mxgc9hjpbr116ym80g8xf65xibh0dpj/overeng-utils.tgz",
+    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/71yygf7n7kj40m2yihv5l0f4nrr8qwi0/overeng-utils.tgz",
     "@overeng/utils-storybook": "https://overeng-effect-utils.cachix.org/serve/7gkvxgagnzsk4qxn0mda02b8c8f1awq3/overeng-utils-storybook.tgz",
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/react": "10.6.0",
