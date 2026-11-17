@@ -635,8 +635,10 @@ the shared limiter and never becomes an AppVersion-local allowance.
 Unary and stream Rpcs both `POST` to the Provider's same-origin
 `/_data/<providerId>` endpoint. `Content-Type: application/json` selects the
 `RpcSerialization.layerJson` Provider handler for unary Operations;
-`Content-Type: application/ndjson` selects the
-`RpcSerialization.layerNdjson` handler for SubscriptionOperations. Keeping one
+`Content-Type: application/ndjson` and `application/x-ndjson` select the
+`RpcSerialization.layerNdjson` handler for SubscriptionOperations. Both Effect
+media types remain accepted because published Apps freeze their client per
+AppVersion (decision 0075); responses match the request media type. Keeping one
 Provider URL preserves the Rpc-first contract while NDJSON supplies progressive
 framing for the open stream. Rpc/Schema owns request, event, error, framing, and
 cancellation decoding.

@@ -4,7 +4,7 @@ import { Context, Effect, Exit, Layer, Metric, Schema, Stream, type Scope } from
 import { HttpRouter } from 'effect/http'
 import type * as Rpc from 'effect/rpc/Rpc'
 import type * as RpcGroup from 'effect/rpc/RpcGroup'
-import { layerJson, layerNdjson } from 'effect/rpc/RpcSerialization'
+import { layerJson, layerNdjson, ndjson } from 'effect/rpc/RpcSerialization'
 import * as RpcServer from 'effect/rpc/RpcServer'
 
 import { dataCallDuration, dataCalls, trackDuration } from '../metrics.ts'
@@ -525,17 +525,29 @@ export const materializeProvider = <
       // Content-Type from its serialization layer. Unary JSON and progressive
       // stream NDJSON therefore share /_data/<provider> without inspecting RPC
       // payloads or adding a second public route.
-      handler: (request) => {
+      handler: async (request) => {
         const contentType = request.headers.get('content-type')?.split(';', 1)[0]?.trim()
+        // Decision 0075 freezes clients per AppVersion: immutable published Apps
+        // built with Effect 4.0.x keep sending application/ndjson.
+        const streamingContentType =
+          contentType === ndjson.contentType ||
+          contentType === 'application/ndjson' ||
+          contentType === 'application/x-ndjson'
+            ? contentType
+            : undefined
         const path = aliasHandlers.length === 0 ? undefined : new URL(request.url).pathname
         const alias = aliasHandlers.find(
           (candidate) => path === candidate.path || path === `${candidate.path}/`,
         )
         const selected =
-          contentType === 'application/ndjson'
+          streamingContentType !== undefined
             ? (alias?.ndjson ?? ndjsonHandler)
             : (alias?.json ?? jsonHandler)
-        return selected.handler(request, Context.empty())
+        const response = await selected.handler(request, Context.empty())
+        if (streamingContentType !== undefined) {
+          response.headers.set('content-type', streamingContentType)
+        }
+        return response
       },
     }
   })
