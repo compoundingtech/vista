@@ -1,4 +1,4 @@
-import { Effect, Schema } from 'effect'
+import { Effect, Schema, SchemaTransformation } from 'effect'
 import * as Rpc from 'effect/rpc/Rpc'
 import * as RpcGroup from 'effect/rpc/RpcGroup'
 
@@ -666,6 +666,46 @@ export const LensCoverage = Schema.Struct({
 export type LensCoverage = typeof LensCoverage.Type
 
 /**
+ * Producer build provenance, accepting the legacy wire name without confusing the shared usage
+ * producer's build identity with the native OMP version. Encoding uses only the canonical name.
+ */
+export const LensProvenance = Schema.Union([
+  Schema.Struct({
+    pricing_source: Schema.String,
+    producer_build_version: Schema.String,
+    omp_version: Schema.optionalKey(Schema.String),
+    ledger_schema: OmpUsageNonNegativeInt,
+  }),
+  Schema.Struct({
+    pricing_source: Schema.String,
+    omp_version: Schema.String,
+    ledger_schema: OmpUsageNonNegativeInt,
+  }),
+]).pipe(
+  Schema.decodeTo(
+    Schema.Struct({
+      pricing_source: Schema.String,
+      producer_build_version: Schema.String,
+      ledger_schema: OmpUsageNonNegativeInt,
+    }),
+    SchemaTransformation.transform({
+      decode: (provenance) => ({
+        pricing_source: provenance.pricing_source,
+        producer_build_version:
+          'producer_build_version' in provenance
+            ? provenance.producer_build_version
+            : provenance.omp_version,
+        ledger_schema: provenance.ledger_schema,
+      }),
+      encode: (provenance) => provenance,
+    }),
+  ),
+).annotate({
+  identifier: 'Vista.OmpUsage.LensProvenance',
+})
+export type LensProvenance = typeof LensProvenance.Type
+
+/**
  * Schema for a versioned materialized lens result, carrying its window, computation timestamp,
  * coverage metrics with gate status, and provenance metadata.
  */
@@ -677,11 +717,7 @@ export const LensEnvelope = Schema.Struct({
   coverage: LensCoverage,
   coverage_gate: Schema.Finite,
   coverage_ok: Schema.Boolean,
-  provenance: Schema.Struct({
-    pricing_source: Schema.String,
-    omp_version: Schema.String,
-    ledger_schema: OmpUsageNonNegativeInt,
-  }),
+  provenance: LensProvenance,
   parameters: Schema.optionalKey(Schema.Record(Schema.String, Schema.Unknown)),
   filter: Schema.optionalKey(Schema.Record(Schema.String, Schema.Unknown)),
   rows: Schema.Array(Schema.Record(Schema.String, Schema.Unknown)),

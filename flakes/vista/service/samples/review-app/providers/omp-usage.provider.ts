@@ -67,7 +67,7 @@ const source: OmpUsageSource = {
         coverage_ok: true,
         provenance: {
           pricing_source: 'fixture',
-          omp_version: 'fixture',
+          producer_build_version: 'fixture',
           ledger_schema: 6,
         },
         rows:

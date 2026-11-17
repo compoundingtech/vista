@@ -24,7 +24,7 @@ const envelope = Schema.decodeSync(LensEnvelope)({
   },
   coverage_gate: 0.95,
   coverage_ok: true,
-  provenance: { pricing_source: 'OMP Usage', omp_version: 'story', ledger_schema: 6 },
+  provenance: { pricing_source: 'OMP Usage', producer_build_version: 'story', ledger_schema: 6 },
   rows: projects.map((key, index) => ({
     key,
     rank: index + 1,

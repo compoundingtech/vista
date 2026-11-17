@@ -24,7 +24,7 @@ const baseEnvelope = {
   coverage_ok: true,
   provenance: {
     pricing_source: 'omp-catalog@18.2.0',
-    omp_version: '0.1.0',
+    producer_build_version: '0.1.0',
     ledger_schema: 6,
   },
 } as const
