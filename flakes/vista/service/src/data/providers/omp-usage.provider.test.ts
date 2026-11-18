@@ -91,6 +91,16 @@ describe('omp-usage lens provenance wire', () => {
   const strict = { onExcessProperty: 'error' } as const
   const decode = Schema.decodeUnknownEffect(LensEnvelope, strict)
   const provenance = { pricing_source: 'omp-catalog@test', ledger_schema: 6 }
+  // Provenance contract bundled into retained published clients at 8c47ecd8.
+  const oldFrozenClientProvenance = Schema.Struct({
+    pricing_source: Schema.String,
+    omp_version: Schema.String,
+    ledger_schema: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
+  })
+  const oldFrozenClientEnvelope = Schema.Struct({
+    ...LensEnvelope.fields,
+    provenance: oldFrozenClientProvenance,
+  })
   const fixtures = [
     { name: 'legacy-only', versions: { omp_version: 'legacy' }, expected: 'legacy' },
     {
@@ -116,8 +126,15 @@ describe('omp-usage lens provenance wire', () => {
           ...provenance,
           producer_build_version: fixture.expected,
         })
-        const encoded = yield* Schema.encodeEffect(LensEnvelope, strict)(result)
-        expect(encoded.provenance).toEqual(result.provenance)
+        const encoded = yield* Schema.encodeEffect(Schema.toCodecJson(LensEnvelope), strict)(result)
+        const frozenClientValue = yield* Schema.decodeUnknownEffect(
+          oldFrozenClientEnvelope,
+          strict,
+        )(encoded)
+        expect(frozenClientValue.provenance).toEqual({
+          ...provenance,
+          omp_version: fixture.expected,
+        })
       }),
     )
   }

@@ -667,7 +667,9 @@ export type LensCoverage = typeof LensCoverage.Type
 
 /**
  * Producer build provenance, accepting the legacy wire name without confusing the shared usage
- * producer's build identity with the native OMP version. Encoding uses only the canonical name.
+ * producer's build identity with the native OMP version. The client wire name stays `omp_version`
+ * while published clients with the old strict contract are retained; renaming it requires a
+ * negotiated or versioned client contract. Decoding always exposes `producer_build_version`.
  */
 export const LensProvenance = Schema.Union([
   Schema.Struct({
@@ -697,7 +699,11 @@ export const LensProvenance = Schema.Union([
             : provenance.omp_version,
         ledger_schema: provenance.ledger_schema,
       }),
-      encode: (provenance) => provenance,
+      encode: (provenance) => ({
+        pricing_source: provenance.pricing_source,
+        omp_version: provenance.producer_build_version,
+        ledger_schema: provenance.ledger_schema,
+      }),
     }),
   ),
 ).annotate({
