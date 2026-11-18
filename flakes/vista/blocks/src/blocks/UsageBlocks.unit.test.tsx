@@ -26,7 +26,7 @@ const envelope = Schema.decodeSync(LensEnvelope)({
   coverage_ok: true,
   provenance: {
     pricing_source: 'test',
-    omp_version: 'test',
+    producer_build_version: 'test',
     ledger_schema: 6,
   },
   rows: [
