@@ -19,9 +19,8 @@ const additionalPaths = [
   'flakes/vista/BUCK',
   'buck2/dependencies/BUCK',
   'buck2/dependencies/pnpm-lock.sha256.json',
-  // The canonical dependency graph names local patches in the pnpm Buck package.
+  // Keep the canonical pnpm Buck package in the dependency supply.
   'pnpm/BUCK',
-  'pnpm/patches',
 ] as const
 
 // E's supported projection retains package directories and the canonical root
