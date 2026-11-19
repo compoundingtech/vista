@@ -319,10 +319,7 @@ const documentPair = (
 ): DocumentPair => {
   const subjects = new WeakMap<EmbedBlock, DiffSubject>()
   const title = (after ?? before)?.title ?? ''
-  const convert = (
-    doc: DocumentSubjectSnapshot | undefined,
-    side: Lowering['side'],
-  ): DocSnapshot =>
+  const convert = (doc: DocumentSubjectSnapshot | undefined, side: Lowering['side']): DocSnapshot =>
     doc === undefined ? { title, blocks: [] } : toDocSnapshot(doc, { side, subjects })
   return { before: convert(before, 'before'), after: convert(after, 'after'), subjects }
 }

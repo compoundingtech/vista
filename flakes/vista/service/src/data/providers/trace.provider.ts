@@ -206,9 +206,7 @@ const fetchJson = <A, I>(
     ),
   )
 
-const getTrace = (
-  traceId: string,
-): Effect.Effect<TraceResult, TraceError, HttpClient.HttpClient> =>
+const getTrace = (traceId: string): Effect.Effect<TraceResult, TraceError, HttpClient.HttpClient> =>
   traceId.trim() === ''
     ? Effect.fail(new TraceError({ message: 'empty traceId' }))
     : Effect.gen(function* () {

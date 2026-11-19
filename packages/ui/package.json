@@ -30,9 +30,9 @@
   "devDependencies": {
     "@effect/language-service": "0.69.2",
     "@internationalized/date": "3.12.1",
-    "@overeng/otel-contract": "https://overeng-effect-utils.cachix.org/serve/fpqsnlqp5i0mm9099hyzh9mw89h2200q/overeng-otel-contract.tgz",
-    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/18m2y3w6gaikyawzhnv38zfn2bq36mz3/overeng-utils.tgz",
-    "@overeng/utils-storybook": "https://overeng-effect-utils.cachix.org/serve/b8ib4azv73vk937rhsdzyhki9sb6a6w4/overeng-utils-storybook.tgz",
+    "@overeng/otel-contract": "https://overeng-effect-utils.cachix.org/serve/2im5k8m9c851nncmrfpiqpigcl43nxz6/overeng-otel-contract.tgz",
+    "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/71yygf7n7kj40m2yihv5l0f4nrr8qwi0/overeng-utils.tgz",
+    "@overeng/utils-storybook": "https://overeng-effect-utils.cachix.org/serve/7gkvxgagnzsk4qxn0mda02b8c8f1awq3/overeng-utils-storybook.tgz",
     "@storybook/addon-a11y": "10.6.0",
     "@storybook/react": "10.6.0",
     "@storybook/react-vite": "10.6.0",
@@ -48,7 +48,7 @@
     "react-dom": "19.2.8",
     "storybook": "10.6.0",
     "typescript": "7.0.2",
-    "vite": "8.2.2",
+    "vite": "8.3.8",
     "vitest": "5.0.3"
   },
   "peerDependencies": {

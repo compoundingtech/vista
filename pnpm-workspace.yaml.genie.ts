@@ -47,11 +47,7 @@ const {
   ...rootPatchedDependencies
 } = pnpmPatchedDependencies()
 
-// Native callable resolvers otherwise retain closed Vista preflight graphs.
-// https://github.com/rolldown/rolldown/issues/10887
-export const vistaPatchedDependencies = {
-  'rolldown@1.2.7': 'pnpm/patches/rolldown@1.2.7.patch',
-} as const
+export const vistaPatchedDependencies = {} as const
 
 export const rootPnpmSourceInputs = projectPnpmSourceInputs({
   packages: rootWorkspacePackages,
