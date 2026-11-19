@@ -66,6 +66,9 @@ let
     buck2 = effect-utils.packages.${pkgs.stdenv.hostPlatform.system}.buck2;
     effectUtilsSrc = "${effect-utils}";
   };
+  consumerArchives = import ./consumer-archives.nix {
+    inherit pkgs effect-utils root capabilities pnpmArchives rootProjection sourcePaths;
+  };
 in
 {
   inherit vista;
@@ -75,4 +78,4 @@ in
   vista-runtime = runtimeProduct;
   vista-preflight = preflightProduct;
   vista-island = vista.telemetryIslandDist;
-}
+} // consumerArchives

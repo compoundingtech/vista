@@ -109,6 +109,20 @@ export default packageJson(
       './shell': './src/shell.ts',
       './package.json': './package.json',
     },
+    publishConfig: {
+      exports: {
+        '.': './dist/src/index.js',
+        './contract': './dist/src/contract.js',
+        './explore': './dist/src/explore.js',
+        './internal/authoring': './dist/src/internal-authoring.js',
+        './internal/provider-contracts': './dist/src/provider-contracts.js',
+        './internal/data-contract': './dist/src/data-contract.js',
+        './internal/owner-identity': './dist/src/owner-identity.js',
+        './query': './dist/src/query.js',
+        './shell': './dist/src/shell.js',
+        './package.json': './package.json',
+      },
+    },
     scripts: {
       test: 'vitest run',
       typecheck: 'tsc -p tsconfig.json',

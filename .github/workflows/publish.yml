@@ -51,22 +51,44 @@ jobs:
         with:
           name: compoundingtech-vista
           skipPush: true
-      - name: Build exact locked Vista output and describe it
+      - name: Build exact locked Vista runtime and consumer archives
         run: |
           set -euo pipefail
-          nix build --no-link --no-update-lock-file --json .#vista > "$RUNNER_TEMP/build.json"
+          nix build --no-link --no-update-lock-file --json \
+            .#vista .#vista-ui-archive .#vista-ui-legacy-archive \
+            .#vista-agent-timeline-archive .#vista-blocks-archive \
+            .#vista-service-archive > "$RUNNER_TEMP/build.json"
           mapfile -t paths < <(jq -r '.[].outputs[]' "$RUNNER_TEMP/build.json")
           nix path-info --json "${paths[@]}" > "$RUNNER_TEMP/paths.json"
-          jq -n --arg rev "$GITHUB_SHA" --slurpfile build "$RUNNER_TEMP/build.json" \
+          # Match effect-utils' flat SHA-256 and Cachix /serve/<store-hash>/<file>.
+          : > "$RUNNER_TEMP/archives.jsonl"
+          for path in "${paths[@]}"; do
+            for archive in "$path"/*.tgz; do
+              [ -f "$archive" ] || continue
+              package="$(tar -xOzf "$archive" package/package.json)"
+              hash="${path##*/}"; hash="${hash%%-*}"
+              jq -n --argjson package "$package" --arg path "$path" \
+                --arg file "${archive##*/}" --arg hash "$hash" \
+                --arg sha256 "$(sha256sum "$archive" | cut -d' ' -f1)" \
+                --argjson size "$(stat -c %s "$archive")" \
+                '{name: $package.name, version: $package.version, storePath: $path,
+                  outputName: $file, sha256: $sha256, size: $size,
+                  artifactUrl: ("https://compoundingtech-vista.cachix.org/serve/" + $hash + "/" + $file)}' \
+                >> "$RUNNER_TEMP/archives.jsonl"
+            done
+          done
+          jq -s 'sort_by(.name)' "$RUNNER_TEMP/archives.jsonl" > "$RUNNER_TEMP/archives.json"
+          jq -n --arg rev "$GITHUB_SHA" --slurpfile archives "$RUNNER_TEMP/archives.json" \
+            --slurpfile build "$RUNNER_TEMP/build.json" \
             --slurpfile info "$RUNNER_TEMP/paths.json" '
             ($info[0] | if type == "array" then . else
               to_entries | map(.value + {path: .key}) end) as $paths |
-            {schemaVersion: 1, rev: $rev, system: "x86_64-linux",
+            {schemaVersion: 2, rev: $rev, system: "x86_64-linux", archives: $archives[0],
              outputs: [$build[0][].outputs | to_entries[] |
                . as $output | {name: .key, storePath: .value,
                  narHash: ([$paths[] | select(.path == $output.value) | .narHash][0] // null)}]}
           ' > "$RUNNER_TEMP/manifest.json"
-      - name: Push only the Vista runtime closure
+      - name: Push only the Vista runtime and consumer archive closures
         env:
           CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
         run: |
@@ -114,7 +136,7 @@ jobs:
             git push origin "HEAD:refs/heads/$branch"
           fi
           title='chore(nix): update published Vista manifest'
-          body="Published immutable Vista closure for $GITHUB_SHA (x86_64-linux). Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. No manifest consumer exists yet."
+          body="Published immutable Vista runtime and consumer package archives for $GITHUB_SHA (x86_64-linux). Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID. Consumer archives use Cachix serve URLs and flat SHA-256 pins."
           pr="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
           if [ -n "$pr" ]; then
             gh pr edit "$pr" --title "$title" --body "$body"

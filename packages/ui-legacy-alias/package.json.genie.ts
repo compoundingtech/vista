@@ -24,6 +24,16 @@ export default packageJson(
       './styles.css': './src/styles.css',
       './tokens.stylex': './src/tokens.stylex.ts',
     },
+    publishConfig: {
+      exports: {
+        '.': './dist/src/mod.js',
+        './components': './dist/src/components.js',
+        './foundations': './dist/src/foundations.js',
+        './document.css': './src/document.css',
+        './styles.css': './src/styles.css',
+        './tokens.stylex': './dist/src/tokens.stylex.js',
+      },
+    },
   },
   composition,
 )

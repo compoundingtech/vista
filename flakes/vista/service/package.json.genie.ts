@@ -132,6 +132,23 @@ export default packageJson(
     bin: {
       'vista-service': './src/main.ts',
     },
+    publishConfig: {
+      exports: {
+        '.': './dist/src/index.js',
+        './control': './dist/src/control.js',
+        './read': './dist/src/read.js',
+        './wire': './dist/src/wire.js',
+        './registry': './dist/src/registry.js',
+        './publish': './dist/src/publish.js',
+        './preflight': './dist/src/preflight.js',
+        './preflight-contract': './dist/src/preflight-contract.js',
+        './native-build': './dist/src/native-build.js',
+        './interview/contract': './dist/src/interview/contract.js',
+        './runtime-policy': './dist/src/runtime-policy/index.js',
+        './package.json': './package.json',
+      },
+      bin: { 'vista-service': './dist/src/main.js' },
+    },
     scripts: {
       start: 'node --experimental-strip-types src/main.ts',
       test: 'vitest run',
