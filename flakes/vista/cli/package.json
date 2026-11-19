@@ -48,7 +48,7 @@
     "@effect/platform-node": "4.1.0",
     "@effect/vitest": "4.1.0",
     "@overeng/tui-core": "https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz",
-    "@overeng/tui-react": "https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz",
+    "@overeng/tui-react": "https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz",
     "@overeng/utils": "https://overeng-effect-utils.cachix.org/serve/71yygf7n7kj40m2yihv5l0f4nrr8qwi0/overeng-utils.tgz",
     "@playwright/test": "1.64.1",
     "@storybook/react-vite": "10.6.0",

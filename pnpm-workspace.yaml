@@ -53,7 +53,7 @@ overrides:
   '@overeng/effect-ai-claude-cli': 'https://overeng-effect-utils.cachix.org/serve/s697bjg8xxaamkf3h5vb5gihq0amwpfl/overeng-effect-ai-claude-cli.tgz'
   '@overeng/effect-ai-gateway': 'https://overeng-effect-utils.cachix.org/serve/qir12h5bwbpjm1kdbppxp896z309yy2x/overeng-effect-ai-gateway.tgz'
   '@overeng/effect-react': 'https://overeng-effect-utils.cachix.org/serve/rvc0jjqhi2lkrsv88lxjwhdrycjr1jx4/overeng-effect-react.tgz'
-  '@overeng/genie': 'https://overeng-effect-utils.cachix.org/serve/wa8yjbbr5v417yz2ffznr1gdz6zwgb1w/overeng-genie.tgz'
+  '@overeng/genie': 'https://overeng-effect-utils.cachix.org/serve/4806mfysw8k4mjzr9rgs2fmfh2m21m5r/overeng-genie.tgz'
   '@overeng/notion-core': 'https://overeng-effect-utils.cachix.org/serve/gq24cs7g2wlaqmkyilabvswa73knjxvw/overeng-notion-core.tgz'
   '@overeng/notion-effect-client': 'https://overeng-effect-utils.cachix.org/serve/6b7fhay99kbckfp6pjyzakn5jygnyrra/overeng-notion-effect-client.tgz'
   '@overeng/notion-effect-schema': 'https://overeng-effect-utils.cachix.org/serve/j8ffwvkzcw1rcsvxfh967djv0mbb5077/overeng-notion-effect-schema.tgz'
@@ -63,7 +63,7 @@ overrides:
   '@overeng/outline': 'https://overeng-effect-utils.cachix.org/serve/pzb17bp38bs63rpvspdax6srpsfdym8j/overeng-outline.tgz'
   '@overeng/restate-effect': 'https://overeng-effect-utils.cachix.org/serve/ia07ccksjgwf6jbhcczvjpwnhqkc2b1v/overeng-restate-effect.tgz'
   '@overeng/tui-core': 'https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz'
-  '@overeng/tui-react': 'https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz'
+  '@overeng/tui-react': 'https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz'
   '@types/bun': 1.4.2
   '@types/hast': 3.0.5
   '@types/unist': 3.0.3

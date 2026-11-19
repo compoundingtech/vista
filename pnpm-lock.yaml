@@ -47,7 +47,7 @@ overrides:
   '@overeng/effect-ai-claude-cli': https://overeng-effect-utils.cachix.org/serve/s697bjg8xxaamkf3h5vb5gihq0amwpfl/overeng-effect-ai-claude-cli.tgz
   '@overeng/effect-ai-gateway': https://overeng-effect-utils.cachix.org/serve/qir12h5bwbpjm1kdbppxp896z309yy2x/overeng-effect-ai-gateway.tgz
   '@overeng/effect-react': https://overeng-effect-utils.cachix.org/serve/rvc0jjqhi2lkrsv88lxjwhdrycjr1jx4/overeng-effect-react.tgz
-  '@overeng/genie': https://overeng-effect-utils.cachix.org/serve/wa8yjbbr5v417yz2ffznr1gdz6zwgb1w/overeng-genie.tgz
+  '@overeng/genie': https://overeng-effect-utils.cachix.org/serve/4806mfysw8k4mjzr9rgs2fmfh2m21m5r/overeng-genie.tgz
   '@overeng/notion-core': https://overeng-effect-utils.cachix.org/serve/gq24cs7g2wlaqmkyilabvswa73knjxvw/overeng-notion-core.tgz
   '@overeng/notion-effect-client': https://overeng-effect-utils.cachix.org/serve/6b7fhay99kbckfp6pjyzakn5jygnyrra/overeng-notion-effect-client.tgz
   '@overeng/notion-effect-schema': https://overeng-effect-utils.cachix.org/serve/j8ffwvkzcw1rcsvxfh967djv0mbb5077/overeng-notion-effect-schema.tgz
@@ -57,7 +57,7 @@ overrides:
   '@overeng/outline': https://overeng-effect-utils.cachix.org/serve/pzb17bp38bs63rpvspdax6srpsfdym8j/overeng-outline.tgz
   '@overeng/restate-effect': https://overeng-effect-utils.cachix.org/serve/ia07ccksjgwf6jbhcczvjpwnhqkc2b1v/overeng-restate-effect.tgz
   '@overeng/tui-core': https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
-  '@overeng/tui-react': https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz
+  '@overeng/tui-react': https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz
   '@types/bun': 1.4.2
   '@types/hast': 3.0.5
   '@types/unist': 3.0.3
@@ -273,8 +273,8 @@ importers:
         specifier: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
         version: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz
       '@overeng/tui-react':
-        specifier: https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz
-        version: https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz(dfa7ab59d8e10634628d0b130c75bdba)
+        specifier: https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz
+        version: https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz(dfa7ab59d8e10634628d0b130c75bdba)
       '@overeng/utils':
         specifier: https://overeng-effect-utils.cachix.org/serve/71yygf7n7kj40m2yihv5l0f4nrr8qwi0/overeng-utils.tgz
         version: https://overeng-effect-utils.cachix.org/serve/71yygf7n7kj40m2yihv5l0f4nrr8qwi0/overeng-utils.tgz(@effect/opentelemetry@4.1.0(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.1.0))(@effect/platform-node@4.1.0(effect@4.1.0)(redis@6.2.1(@opentelemetry/api@1.9.1)))(@playwright/test@1.64.1)(@types/node@26.5.0)(@vitest/browser-playwright@5.0.3)(@vitest/ui@5.0.3)(effect@4.1.0)(esbuild@0.27.1)(redis@6.2.1(@opentelemetry/api@1.9.1))(rolldown@1.2.19)(vite@8.3.8(@types/node@26.5.0)(esbuild@0.27.1)(jiti@2.7.0)(yaml@2.8.3))
@@ -1751,8 +1751,8 @@ packages:
     resolution: {integrity: sha512-+aAHj9r9HVf0EK3E6UFqlDv5WiDQLNxPQ/86iOJG6Db3aFZbrS1G8UsWUfER4yUytpSIUiRnvA2DSCC2kNPrpg==, tarball: https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz}
     version: 0.1.0
 
-  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz':
-    resolution: {integrity: sha512-FkpdjxVgtoWm0gLvLN9+W/HUWqAqjlz7bgMNolOW42dRQaTWakwC31A9yf97Lg443WFrjeHajWgQaISjyCofjg==, tarball: https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz}
+  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz':
+    resolution: {integrity: sha512-Sve3JCzYe77rMhvT1xCluXop0gvJm+1rg6SujrFgBnoDtvjkKDm6reGWHtMtBbxw7KgHJdNu13qsOv7ksX9paw==, tarball: https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz}
     version: 0.1.0
     peerDependencies:
       '@effect/atom-react': 4.1.0
@@ -7141,7 +7141,7 @@ snapshots:
 
   '@overeng/tui-core@https://overeng-effect-utils.cachix.org/serve/qpdqa4g809p32wzs43pw8zscfxk7xjpa/overeng-tui-core.tgz': {}
 
-  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/70z2mazds51bwm4gdfxjhz71nbrks7c9/overeng-tui-react.tgz(dfa7ab59d8e10634628d0b130c75bdba)':
+  '@overeng/tui-react@https://overeng-effect-utils.cachix.org/serve/h0529alzskd487x46qmwi4mnavyypgzh/overeng-tui-react.tgz(dfa7ab59d8e10634628d0b130c75bdba)':
     dependencies:
       '@effect/atom-react': 4.1.0(effect@4.1.0)(react@19.2.8)(scheduler@0.27.0)
       '@effect/opentelemetry': 4.1.0(@opentelemetry/api-logs@0.222.0)(@opentelemetry/api@1.9.1)(@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-node@2.11.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-web@2.6.1(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.43.0)(effect@4.1.0)
