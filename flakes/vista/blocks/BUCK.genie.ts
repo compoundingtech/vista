@@ -1,3 +1,5 @@
+import { globSync } from 'node:fs'
+
 import { dependencyImporterFor } from '../../../buck2/dependencies/generate.ts'
 import { buck2TypeScriptPackageProjection } from '../../../genie/buck2/javascript-candidates.ts'
 import { rootWorkspacePackages } from '../../../package.json.genie.ts'
@@ -12,7 +14,13 @@ const admission = {
   rulesCell: '@rules',
   workspacePackages: rootWorkspacePackages,
   sourceRoots: ['src'],
-  authorities: [{ projectFile: 'tsconfig.json' }],
+  authorities: [
+    {
+      projectFile: 'tsconfig.json',
+      // Stories and tests import JSON fixtures alongside their TypeScript sources.
+      projectInputs: globSync('src/**/*.json', { cwd: import.meta.dirname }).sort(),
+    },
+  ],
 } as const satisfies Buck2TypeScriptPackageProjection
 
 const projection = buck2TypeScriptPackageProjection(admission)

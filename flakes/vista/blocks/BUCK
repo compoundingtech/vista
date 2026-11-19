@@ -4,7 +4,7 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:02258724adcc8e82c517a57170f47c1051b7bae793617aee60f0413c3f5c279f
+# Semantic fingerprint: sha256:0c0ae8b7937c0d0cd3572eb60624d33e05d5a2cdd40d8d994c78c68a0309f81b
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -264,6 +264,9 @@ export_materialization_inputs([
     "src/stories/_pull-request-fixtures.ts",
     "src/stories/_telemetry-island.ts",
     "src/stories/_treemap-fixtures.ts",
+    "src/stories/agent-timeline/1d.json",
+    "src/stories/agent-timeline/1h.json",
+    "src/stories/agent-timeline/7d.json",
     "src/stories/agent-timeline/AgentTimeline.stories.tsx",
     "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
     "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -272,6 +275,9 @@ export_materialization_inputs([
     "src/stories/agent-timeline/Span.stories.tsx",
     "src/stories/agent-timeline/SpanDetails.stories.tsx",
     "src/stories/agent-timeline/fixtures.ts",
+    "src/stories/agent-timeline/perf-128.json",
+    "src/stories/agent-timeline/perf-512.json",
+    "src/stories/canary/effect-utils-1260-stack.json",
     "src/stories/diff/DiffFrame.stories.tsx",
     "src/stories/diff/DocumentTree.stories.tsx",
     "src/stories/diff/ImageDiff.stories.tsx",
@@ -587,6 +593,9 @@ package_view(
         "src/stories/_pull-request-fixtures.ts": "src/stories/_pull-request-fixtures.ts",
         "src/stories/_telemetry-island.ts": "src/stories/_telemetry-island.ts",
         "src/stories/_treemap-fixtures.ts": "src/stories/_treemap-fixtures.ts",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
         "src/stories/agent-timeline/AgentTimeline.stories.tsx": "src/stories/agent-timeline/AgentTimeline.stories.tsx",
         "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx": "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
         "src/stories/agent-timeline/CompactSpend.stories.tsx": "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -595,6 +604,9 @@ package_view(
         "src/stories/agent-timeline/Span.stories.tsx": "src/stories/agent-timeline/Span.stories.tsx",
         "src/stories/agent-timeline/SpanDetails.stories.tsx": "src/stories/agent-timeline/SpanDetails.stories.tsx",
         "src/stories/agent-timeline/fixtures.ts": "src/stories/agent-timeline/fixtures.ts",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
         "src/stories/diff/DiffFrame.stories.tsx": "src/stories/diff/DiffFrame.stories.tsx",
         "src/stories/diff/DocumentTree.stories.tsx": "src/stories/diff/DocumentTree.stories.tsx",
         "src/stories/diff/ImageDiff.stories.tsx": "src/stories/diff/ImageDiff.stories.tsx",
@@ -886,6 +898,9 @@ package_view(
         "src/stories/_pull-request-fixtures.ts": "src/stories/_pull-request-fixtures.ts",
         "src/stories/_telemetry-island.ts": "src/stories/_telemetry-island.ts",
         "src/stories/_treemap-fixtures.ts": "src/stories/_treemap-fixtures.ts",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
         "src/stories/agent-timeline/AgentTimeline.stories.tsx": "src/stories/agent-timeline/AgentTimeline.stories.tsx",
         "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx": "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
         "src/stories/agent-timeline/CompactSpend.stories.tsx": "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -894,6 +909,9 @@ package_view(
         "src/stories/agent-timeline/Span.stories.tsx": "src/stories/agent-timeline/Span.stories.tsx",
         "src/stories/agent-timeline/SpanDetails.stories.tsx": "src/stories/agent-timeline/SpanDetails.stories.tsx",
         "src/stories/agent-timeline/fixtures.ts": "src/stories/agent-timeline/fixtures.ts",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
         "src/stories/diff/DiffFrame.stories.tsx": "src/stories/diff/DiffFrame.stories.tsx",
         "src/stories/diff/DocumentTree.stories.tsx": "src/stories/diff/DocumentTree.stories.tsx",
         "src/stories/diff/ImageDiff.stories.tsx": "src/stories/diff/ImageDiff.stories.tsx",
