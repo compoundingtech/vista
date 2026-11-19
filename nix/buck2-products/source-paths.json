@@ -14,8 +14,7 @@
       "packages/ui",
       "packages/ui-legacy-alias",
       "pnpm-workspace.yaml",
-      "pnpm/BUCK",
-      "pnpm/patches"
+      "pnpm/BUCK"
     ]
   },
   "provenance": {
@@ -35,6 +34,6 @@
       "packages/ui/package.json.genie.ts",
       "packages/ui-legacy-alias/package.json.genie.ts"
     ],
-    "fingerprint": "sha256:d07826971c6f9f85ba8068616287e87539411890cb2c04d1e54972e3e78839c4"
+    "fingerprint": "sha256:55ad7b3317253c24f5b62fa192d94c59b16b28b05b91db03c5f491cd09e17758"
   }
 }
