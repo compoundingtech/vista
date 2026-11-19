@@ -45,7 +45,7 @@ const envelope = ({
     coverage_ok: accountShare >= 0.95,
     provenance: {
       pricing_source: 'omp-catalog@test',
-      omp_version: 'test',
+      producer_build_version: 'test',
       ledger_schema: 6,
     },
     rows,
@@ -86,6 +86,83 @@ const checked = (read: LensRead, healthValue = health()) => {
     })
     .pipe(Effect.provide(layer))
 }
+
+describe('omp-usage lens provenance wire', () => {
+  const strict = { onExcessProperty: 'error' } as const
+  const decode = Schema.decodeUnknownEffect(LensEnvelope, strict)
+  const provenance = { pricing_source: 'omp-catalog@test', ledger_schema: 6 }
+  // Provenance contract bundled into retained published clients at 8c47ecd8.
+  const oldFrozenClientProvenance = Schema.Struct({
+    pricing_source: Schema.String,
+    omp_version: Schema.String,
+    ledger_schema: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
+  })
+  const oldFrozenClientEnvelope = Schema.Struct({
+    ...LensEnvelope.fields,
+    provenance: oldFrozenClientProvenance,
+  })
+  const fixtures = [
+    { name: 'legacy-only', versions: { omp_version: 'legacy' }, expected: 'legacy' },
+    {
+      name: 'canonical-only',
+      versions: { producer_build_version: 'canonical' },
+      expected: 'canonical',
+    },
+    {
+      name: 'both, with canonical precedence',
+      versions: { omp_version: 'legacy', producer_build_version: 'canonical' },
+      expected: 'canonical',
+    },
+  ] as const
+
+  for (const fixture of fixtures) {
+    it.effect(`decodes ${fixture.name} into one producer build identity`, () =>
+      Effect.gen(function* () {
+        const result = yield* decode({
+          ...envelope(),
+          provenance: { ...provenance, ...fixture.versions },
+        })
+        expect(result.provenance).toEqual({
+          ...provenance,
+          producer_build_version: fixture.expected,
+        })
+        const encoded = yield* Schema.encodeEffect(Schema.toCodecJson(LensEnvelope), strict)(result)
+        const frozenClientValue = yield* Schema.decodeUnknownEffect(
+          oldFrozenClientEnvelope,
+          strict,
+        )(encoded)
+        expect(frozenClientValue.provenance).toEqual({
+          ...provenance,
+          omp_version: fixture.expected,
+        })
+      }),
+    )
+  }
+
+  it.effect('still requires a producer build identity', () =>
+    decode({ ...envelope(), provenance }).pipe(Effect.flip, Effect.asVoid),
+  )
+
+  for (const fixture of fixtures) {
+    it.effect(`rejects unrelated provenance properties for ${fixture.name}`, () =>
+      decode({
+        ...envelope(),
+        provenance: { ...provenance, ...fixture.versions, unrelated: 'excess' },
+      }).pipe(Effect.flip, Effect.asVoid),
+    )
+  }
+
+  it.effect('does not fall back to the legacy field when the canonical field is invalid', () =>
+    decode({
+      ...envelope(),
+      provenance: { ...provenance, omp_version: 'legacy', producer_build_version: 42 },
+    }).pipe(Effect.flip, Effect.asVoid),
+  )
+
+  it.effect('still rejects unrelated envelope properties', () =>
+    decode({ ...envelope(), unrelated: 'excess' }).pipe(Effect.flip, Effect.asVoid),
+  )
+})
 
 describe('omp-usage provider trust outcomes', () => {
   it.effect('returns ok for a fresh generation above the account coverage gate', () =>
