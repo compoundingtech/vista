@@ -32,7 +32,9 @@ export const catalog = defineCatalog({
     '@internationalized/date': '3.12.1',
     clsx: '2.1.1',
     'fast-check': '4.9.0',
-    'oxc-parser': '0.149.0',
     recharts: '3.8.1',
+  },
+  overrides: {
+    'oxc-parser': '0.149.0',
   },
 })
