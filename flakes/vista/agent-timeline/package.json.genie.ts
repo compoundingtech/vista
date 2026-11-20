@@ -27,6 +27,22 @@ export default packageJson(
       './spend': './src/SpendPanel.tsx',
       './package.json': './package.json',
     },
+    publishConfig: {
+      exports: {
+        '.': './dist/src/index.js',
+        './model': './dist/src/model.js',
+        './projection': './dist/src/projection.js',
+        './labels': './dist/src/labels.js',
+        './types': './dist/src/types.js',
+        './encodings': './dist/src/encodings.js',
+        './icons': './dist/src/icons.js',
+        './span': './dist/src/Span.js',
+        './compact': './dist/src/compact.js',
+        './detail': './dist/src/SpanDetails.js',
+        './spend': './dist/src/SpendPanel.js',
+        './package.json': './package.json',
+      },
+    },
   },
   catalog.compose({
     workspace: { repoName: 'vista', memberPath: 'flakes/vista/agent-timeline' },

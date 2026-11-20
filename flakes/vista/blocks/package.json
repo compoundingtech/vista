@@ -122,6 +122,20 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/src/index.js",
+      "./contract": "./dist/src/contract.js",
+      "./explore": "./dist/src/explore.js",
+      "./internal/authoring": "./dist/src/internal-authoring.js",
+      "./internal/provider-contracts": "./dist/src/provider-contracts.js",
+      "./internal/data-contract": "./dist/src/data-contract.js",
+      "./internal/owner-identity": "./dist/src/owner-identity.js",
+      "./query": "./dist/src/query.js",
+      "./shell": "./dist/src/shell.js",
+      "./package.json": "./package.json"
+    }
+  },
   "$vista": {
     "runtimePolicy": {
       "publicImportRoots": [

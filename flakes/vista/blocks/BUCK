@@ -4,13 +4,14 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:02258724adcc8e82c517a57170f47c1051b7bae793617aee60f0413c3f5c279f
+# Semantic fingerprint: sha256:344e8dfe0aabe2ce168ab2b206106b146afe72ecd481137bad237fb78174a501
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
 load("@rules//buck2:editor_view.bzl", "editor_view_inputs")
 load("@rules//buck2:static_checks.bzl", "STATIC_SOURCE_EXCLUDES", "STATIC_SOURCE_GLOBS", "static_source_set")
-load("@rules//buck2:typescript.bzl", "tsgo_emit", "tsgo_typecheck")
+load("@rules//buck2:typescript.bzl", "tsgo_typecheck")
+load("//buck2:dist-assets.bzl", "tsgo_emit")
 load("@rules//buck2:package_tools.bzl", "npm_package_archive")
 
 export_file(
@@ -264,6 +265,9 @@ export_materialization_inputs([
     "src/stories/_pull-request-fixtures.ts",
     "src/stories/_telemetry-island.ts",
     "src/stories/_treemap-fixtures.ts",
+    "src/stories/agent-timeline/1d.json",
+    "src/stories/agent-timeline/1h.json",
+    "src/stories/agent-timeline/7d.json",
     "src/stories/agent-timeline/AgentTimeline.stories.tsx",
     "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
     "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -272,6 +276,9 @@ export_materialization_inputs([
     "src/stories/agent-timeline/Span.stories.tsx",
     "src/stories/agent-timeline/SpanDetails.stories.tsx",
     "src/stories/agent-timeline/fixtures.ts",
+    "src/stories/agent-timeline/perf-128.json",
+    "src/stories/agent-timeline/perf-512.json",
+    "src/stories/canary/effect-utils-1260-stack.json",
     "src/stories/diff/DiffFrame.stories.tsx",
     "src/stories/diff/DocumentTree.stories.tsx",
     "src/stories/diff/ImageDiff.stories.tsx",
@@ -340,8 +347,6 @@ package_view(
     name = "package_tree",
     dependency_view = "//buck2/dependencies:view_flakes_vista_blocks_98f5686aa1e1",
     files = {
-        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
-        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "package.json": "package.json",
         "src/AppShell.test.tsx": "src/AppShell.test.tsx",
         "src/AppShell.tsx": "src/AppShell.tsx",
@@ -349,6 +354,9 @@ package_view(
         "src/RpcExplorerPanel.tsx": "src/RpcExplorerPanel.tsx",
         "src/ShellSelect.tsx": "src/ShellSelect.tsx",
         "src/ShellThemeSwitcher.tsx": "src/ShellThemeSwitcher.tsx",
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "src/authoring.test.tsx": "src/authoring.test.tsx",
         "src/authoring.tsx": "src/authoring.tsx",
         "src/blocks/ChartBlock.tsx": "src/blocks/ChartBlock.tsx",
@@ -587,6 +595,9 @@ package_view(
         "src/stories/_pull-request-fixtures.ts": "src/stories/_pull-request-fixtures.ts",
         "src/stories/_telemetry-island.ts": "src/stories/_telemetry-island.ts",
         "src/stories/_treemap-fixtures.ts": "src/stories/_treemap-fixtures.ts",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
         "src/stories/agent-timeline/AgentTimeline.stories.tsx": "src/stories/agent-timeline/AgentTimeline.stories.tsx",
         "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx": "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
         "src/stories/agent-timeline/CompactSpend.stories.tsx": "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -595,6 +606,9 @@ package_view(
         "src/stories/agent-timeline/Span.stories.tsx": "src/stories/agent-timeline/Span.stories.tsx",
         "src/stories/agent-timeline/SpanDetails.stories.tsx": "src/stories/agent-timeline/SpanDetails.stories.tsx",
         "src/stories/agent-timeline/fixtures.ts": "src/stories/agent-timeline/fixtures.ts",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
         "src/stories/diff/DiffFrame.stories.tsx": "src/stories/diff/DiffFrame.stories.tsx",
         "src/stories/diff/DocumentTree.stories.tsx": "src/stories/diff/DocumentTree.stories.tsx",
         "src/stories/diff/ImageDiff.stories.tsx": "src/stories/diff/ImageDiff.stories.tsx",
@@ -648,6 +662,9 @@ package_view(
         "src/RpcExplorerPanel.tsx": "src/RpcExplorerPanel.tsx",
         "src/ShellSelect.tsx": "src/ShellSelect.tsx",
         "src/ShellThemeSwitcher.tsx": "src/ShellThemeSwitcher.tsx",
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "src/authoring.test.tsx": "src/authoring.test.tsx",
         "src/authoring.tsx": "src/authoring.tsx",
         "src/blocks/ChartBlock.tsx": "src/blocks/ChartBlock.tsx",
@@ -886,6 +903,9 @@ package_view(
         "src/stories/_pull-request-fixtures.ts": "src/stories/_pull-request-fixtures.ts",
         "src/stories/_telemetry-island.ts": "src/stories/_telemetry-island.ts",
         "src/stories/_treemap-fixtures.ts": "src/stories/_treemap-fixtures.ts",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
         "src/stories/agent-timeline/AgentTimeline.stories.tsx": "src/stories/agent-timeline/AgentTimeline.stories.tsx",
         "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx": "src/stories/agent-timeline/AgentTimelinePerf.stories.tsx",
         "src/stories/agent-timeline/CompactSpend.stories.tsx": "src/stories/agent-timeline/CompactSpend.stories.tsx",
@@ -894,6 +914,9 @@ package_view(
         "src/stories/agent-timeline/Span.stories.tsx": "src/stories/agent-timeline/Span.stories.tsx",
         "src/stories/agent-timeline/SpanDetails.stories.tsx": "src/stories/agent-timeline/SpanDetails.stories.tsx",
         "src/stories/agent-timeline/fixtures.ts": "src/stories/agent-timeline/fixtures.ts",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
         "src/stories/diff/DiffFrame.stories.tsx": "src/stories/diff/DiffFrame.stories.tsx",
         "src/stories/diff/DocumentTree.stories.tsx": "src/stories/diff/DocumentTree.stories.tsx",
         "src/stories/diff/ImageDiff.stories.tsx": "src/stories/diff/ImageDiff.stories.tsx",
@@ -951,6 +974,20 @@ tsgo_typecheck(
 
 tsgo_emit(
     name = "dist",
+    assets = {
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
+        "src/document-reset.css": "src/document-reset.css",
+        "src/foreign-dom.css": "src/foreign-dom.css",
+        "src/semantic-chrome.css": "src/semantic-chrome.css",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
+    },
     package_tree = ":package_tree",
     declaration_sources = {
         "src/types/css.d.ts": "src/types/css.d.ts",
@@ -974,14 +1011,4 @@ npm_package_archive(
     visibility = ["PUBLIC"],
 )
 
-export_file(
-    name = "src/assets/vista-icon-mono-dark.svg",
-    src = "src/assets/vista-icon-mono-dark.svg",
-    visibility = ["PUBLIC"],
-)
-
-export_file(
-    name = "src/assets/vista-icon-mono-light.svg",
-    src = "src/assets/vista-icon-mono-light.svg",
-    visibility = ["PUBLIC"],
-)
+export_materialization_inputs(["src/assets/vista-icon-color.svg","src/assets/vista-icon-mono-dark.svg","src/assets/vista-icon-mono-light.svg"])

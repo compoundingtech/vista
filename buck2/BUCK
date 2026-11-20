@@ -1,0 +1,5 @@
+export_file(
+    name = "dist-assets.mjs",
+    src = "dist-assets.mjs",
+    visibility = ["PUBLIC"],
+)

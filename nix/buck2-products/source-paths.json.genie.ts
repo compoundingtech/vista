@@ -16,6 +16,9 @@ const source = 'nix/buck2-products/source-paths.json.genie.ts'
 const generator = 'vista/buck2-product-source-paths'
 const schemaVersion = 1
 const additionalPaths = [
+  'buck2/BUCK',
+  'buck2/dist-assets.bzl',
+  'buck2/dist-assets.mjs',
   'flakes/vista/BUCK',
   'buck2/dependencies/BUCK',
   'buck2/dependencies/pnpm-lock.sha256.json',

@@ -1,8 +1,9 @@
+import { globSync } from 'node:fs'
+
 import { dependencyImporterFor } from '../../../buck2/dependencies/generate.ts'
-import { buck2TypeScriptPackageProjection } from '../../../genie/buck2/javascript-candidates.ts'
+import { buck2TypeScriptPackageProjectionWithAssets } from '../../../genie/buck2/dist-assets.ts'
 import { rootWorkspacePackages } from '../../../package.json.genie.ts'
 import type { Buck2TypeScriptPackageProjection } from '../../../repos/effect-utils/genie/buck2/typescript-package-projection.ts'
-import { createGenieOutput } from '../../../repos/effect-utils/packages/@overeng/genie/src/runtime/core.ts'
 
 const admission = {
   dependencyImporter: dependencyImporterFor('flakes/vista/blocks'),
@@ -12,33 +13,13 @@ const admission = {
   rulesCell: '@rules',
   workspacePackages: rootWorkspacePackages,
   sourceRoots: ['src'],
-  authorities: [{ projectFile: 'tsconfig.json' }],
+  authorities: [
+    {
+      projectFile: 'tsconfig.json',
+      // Stories and tests import JSON fixtures alongside their TypeScript sources.
+      projectInputs: globSync('src/**/*.json', { cwd: import.meta.dirname }).sort(),
+    },
+  ],
 } as const satisfies Buck2TypeScriptPackageProjection
 
-const projection = buck2TypeScriptPackageProjection(admission)
-
-export default createGenieOutput({
-  ...projection,
-  // Vite reads these static imports from the materialized source package.
-  stringify: (context) =>
-    projection.stringify(context).replace(
-      '    files = {\n',
-      `    files = {
-        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
-        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
-`,
-    ) +
-    `
-export_file(
-    name = "src/assets/vista-icon-mono-dark.svg",
-    src = "src/assets/vista-icon-mono-dark.svg",
-    visibility = ["PUBLIC"],
-)
-
-export_file(
-    name = "src/assets/vista-icon-mono-light.svg",
-    src = "src/assets/vista-icon-mono-light.svg",
-    visibility = ["PUBLIC"],
-)
-`,
-})
+export default buck2TypeScriptPackageProjectionWithAssets(admission)

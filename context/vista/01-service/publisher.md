@@ -3,15 +3,16 @@
 This document specifies distribution of the packaged service (VST-R40), building
 on [service requirements](./requirements.md), packaging decision
 [0017](../.decisions/0017-nix-packaging-unbundled-service-readonly-deps-closure.md)
-and publisher decision [0103](../.decisions/0103-protected-cachix-publisher.md).
+and publisher decisions [0103](../.decisions/0103-protected-cachix-publisher.md)
+and [0104](../.decisions/0104-consumer-package-archives.md).
 Status: proposed; the checked-in workflow is inert until `VISTA_PUBLISH_ENABLED`
 is exactly `true`. This is not approval to provision credentials or protection.
 
 ## Publication boundary
 
 ```text
-protected main -> build .#vista -> push runtime closure to Cachix
-                              -> App token -> fixed branch -> manifest PR
+protected main -> build runtime + package archives -> push closures to Cachix
+                                                  -> App token -> manifest PR
 ```
 
 `.github/workflows/publish.yml` accepts pushes to main and manual dispatches on
@@ -30,13 +31,13 @@ and maintenance surface. It does not double a public-repo runner bill. The
 flake's `eachDefaultSystem` exports do not imply cache coverage; other systems
 continue building from source. No private or organization runner is assumed.
 
-Build `.#vista` with the committed lock and no lock updates, then explicitly
-`cachix push compoundingtech-vista` its output paths. Cachix includes their
-transitive runtime closure. `default` and `vista-service` alias `vista`;
-`vista-runtime`, `vista-preflight`, and `vista-island` are separate exports, not
-additional publication roots ([packages.nix](../../../nix/packages.nix#L70-L77)).
-The packaged application already references what it needs; do not upload the
-whole store, build-only dependencies, a watcher, or an automatic post-build hook.
+Build `.#vista` and the five `*-archive` outputs with the committed lock and no
+lock updates, then explicitly `cachix push compoundingtech-vista` their output
+paths. Cachix includes their transitive runtime closures. Runtime aliases remain
+unchanged. Archive roots are `vista-ui-archive`, `vista-ui-legacy-archive`,
+`vista-agent-timeline-archive`, `vista-blocks-archive`, and `vista-service-archive`.
+Do not upload the whole store, build-only dependencies, a watcher, or an automatic
+post-build hook.
 
 The cache is public. Its substituter is
 `https://compoundingtech-vista.cachix.org`; its trusted public key is
@@ -51,20 +52,37 @@ github:compoundingtech/vista` and the portable Home Manager module without input
 follows). Dotfiles currently consumes Vista as a **source** flake and follows
 its own effect-utils/nixpkgs/flake-utils/playwright inputs. Those derivations do
 not match upstream outputs: this publisher does **not** establish substitution
-for dotfiles. A future binary-consumption path could use the manifest below.
+for dotfiles. Consumer package archives are a separate portable consumption path.
 
 ## Manifest and identity
 
 `nix/published/manifest.json` is a repository-local format owned by Vista:
-`schemaVersion` is the integer `1`; `rev` is a full lowercase 40-hex Git commit;
+`schemaVersion` is the integer `2`; `rev` is a full lowercase 40-hex Git commit;
 `system` is exactly `x86_64-linux`; `outputs` is a nonempty array of
-`{name, storePath, narHash}` for the realized `.#vista` outputs. `name` is the
+`{name, storePath, narHash}` for all realized publication roots. `name` is the
 Nix output name (`out` today), `storePath` an absolute `/nix/store/` path, and
-`narHash` the SRI NAR hash from `nix path-info`, or null if unavailable. This is
-output metadata, not a complete closure inventory or a portable archive URL.
-Future readers must reject unsupported schema versions. **DQ2:** nobody consumes
-this manifest yet; consumer choice and validation remain open, not an implicit
-change to the source flake or Home Manager module.
+`narHash` the SRI NAR hash from `nix path-info`, or null if unavailable.
+`archives` contains `{name, version, storePath, outputName, sha256, size,
+artifactUrl}` for each package. `sha256` is the lowercase hex SHA-256 of the
+compressed file bytes, not its NAR; `size` is its byte length. `artifactUrl` is
+`https://compoundingtech-vista.cachix.org/serve/<store-hash>/<outputName>`.
+Consumers pin that URL and flat digest using the existing effect-utils
+`registryUrl` sidecar / `pnpm-archives.nix` fetchurl path. No consumer changes
+are implied by publication. Readers must reject unsupported schema versions.
+
+Archives derive from Buck's typechecked `dist-package` targets, then receive a
+deterministic manifest projection. Local runtime dependencies use the exact
+published sibling archive URLs; effect-utils dependencies use its pinned public
+artifact manifest. The legacy Geist import root remains a real archive because
+blocks and service still import it. Development scripts/dependencies are omitted;
+no dependency specifier may retain `workspace:`, `link:`, or `file:`.
+Published exports address emitted JavaScript and declarations, including blocks'
+`./contract` and `./internal/provider-contracts`. Consumer archives expose stable
+consumer contracts, not the runtime server: service advertises only `./read` and
+`./wire`, with their transitive modules retained. Its archive has no root export
+or executable entry; the runtime remains the Nix package. Every archive is checked
+for unresolved relative imports in `dist/**/*.js` and `.d.ts` before deterministic
+packing.
 
 Only after successful Cachix push does `compoundingtech-vista-publisher` mint a
 short-lived installation token, explicitly selecting owner `compoundingtech`
