@@ -72,7 +72,6 @@ import {
   type VerifiedPublicationIndex,
 } from './publish.ts'
 import { latestMeta, scanAll, scanApp, versionDir, type AppState } from './registry.ts'
-import { makeBrowserMountSmoke } from './render-smoke.ts'
 import {
   INSPECTOR_RPC_PATH,
   makeVistaRpcExplorer,
@@ -1489,38 +1488,9 @@ export interface StartedService {
   readonly close: () => Promise<void>
 }
 
-/**
- * Start the standing service on `port` (decision 0060). The request boundary is
- * Effect-native: an `@effect/platform` `HttpRouter` attached to the shared
- * `http.Server` via `NodeHttpServer.makeHandler` + a manual `server.on('request')`
- * — NEVER `serveEffect`, which would install a competing `upgrade` listener and
- * corrupt Vite's HMR WebSocket frames (spike-backed invariant). Vite keeps its own
- * per-draft `upgrade` listener, so HMR is unchanged.
- *
- * `makeHandler` captures the runtime it is run in and forks each request into it,
- * so running it inside a `ManagedRuntime` built from `appLayer` gives every
- * request fiber that layer's context — this is where the service's OTel tracer
- * lives (Track G / decision 0062). `appLayer` defaults to `Layer.empty` so tests
- * (and any embedder) boot with zero telemetry surface; production supplies the
- * `withTelemetry` layer from `main.ts`. The long-lived runtime is disposed in
- * `close()`, flushing the exporter.
- */
-export const startService = async <ROut = never>(
-  port: number,
-  // `Layer`'s `ROut` is invariant, so a single non-generic type cannot accept both
-  // `Layer.empty` (tests) and a service-providing telemetry layer (`main.ts`). The
-  // generic + `never` default keeps both call shapes type-safe; the cast only
-  // applies when the default is used (ROut = never), where it is an identity.
-  appLayer: Layer.Layer<ROut, never, never> = Layer.empty as Layer.Layer<ROut, never, never>,
-): Promise<StartedService> => {
-  const startedAt = Date.now()
-  const buildInfo = resolveVistaBuildInfo()
-  ensureDepsSymlink()
-  mkdirSync(cacheDir(), { recursive: true })
-
-  // One non-HTTP Vite runtime evaluates projection and provider modules. It has
-  // no HTTP routing path; published bytes come only from verified static output.
-  const published = await createViteServer({
+/** Identical provider evaluation runtime for the service and one-shot publisher. */
+export const createPublicationRuntime = () =>
+  createViteServer({
     root: appsDir(),
     base: '/r/',
     configFile: false,
@@ -1572,6 +1542,39 @@ export const startService = async <ROut = never>(
     },
   })
 
+/**
+ * Start the standing service on `port` (decision 0060). The request boundary is
+ * Effect-native: an `@effect/platform` `HttpRouter` attached to the shared
+ * `http.Server` via `NodeHttpServer.makeHandler` + a manual `server.on('request')`
+ * — NEVER `serveEffect`, which would install a competing `upgrade` listener and
+ * corrupt Vite's HMR WebSocket frames (spike-backed invariant). Vite keeps its own
+ * per-draft `upgrade` listener, so HMR is unchanged.
+ *
+ * `makeHandler` captures the runtime it is run in and forks each request into it,
+ * so running it inside a `ManagedRuntime` built from `appLayer` gives every
+ * request fiber that layer's context — this is where the service's OTel tracer
+ * lives (Track G / decision 0062). `appLayer` defaults to `Layer.empty` so tests
+ * (and any embedder) boot with zero telemetry surface; production supplies the
+ * `withTelemetry` layer from `main.ts`. The long-lived runtime is disposed in
+ * `close()`, flushing the exporter.
+ */
+export const startService = async <ROut = never>(
+  port: number,
+  // `Layer`'s `ROut` is invariant, so a single non-generic type cannot accept both
+  // `Layer.empty` (tests) and a service-providing telemetry layer (`main.ts`). The
+  // generic + `never` default keeps both call shapes type-safe; the cast only
+  // applies when the default is used (ROut = never), where it is an identity.
+  appLayer: Layer.Layer<ROut, never, never> = Layer.empty as Layer.Layer<ROut, never, never>,
+): Promise<StartedService> => {
+  const startedAt = Date.now()
+  const buildInfo = resolveVistaBuildInfo()
+  ensureDepsSymlink()
+  mkdirSync(cacheDir(), { recursive: true })
+
+  // One non-HTTP Vite runtime evaluates projection and provider modules. It has
+  // no HTTP routing path; published bytes come only from verified static output.
+  const published = await createPublicationRuntime()
+
   const runtime = ManagedRuntime.make(appLayer)
   const explorerScope = await runtime.runPromise(Scope.make())
   const explorer = await runtime.runPromise(
@@ -1591,10 +1594,8 @@ export const startService = async <ROut = never>(
   // suites leave it off (undefined → publish skips it), so publishing stays
   // browser-free unless the render guarantee is explicitly demanded. Bound to
   // this server's own base URL so the smoke loads the just-frozen `/r/<slug>/vN/`.
-  const renderSmoke =
-    process.env.VISTA_RENDER_SMOKE === '1'
-      ? makeBrowserMountSmoke(`http://127.0.0.1:${port}`)
-      : undefined
+  const renderBaseUrl =
+    process.env.VISTA_RENDER_SMOKE === '1' ? `http://127.0.0.1:${port}` : undefined
   const publicBaseUrl = process.env.VISTA_PUBLIC_URL?.trim()
   let state!: ServiceState
   const handlerOptions = {
@@ -1603,7 +1604,7 @@ export const startService = async <ROut = never>(
     interview,
     startedAt,
     listApps: () => state.apps.values(),
-    ...(renderSmoke !== undefined ? { renderSmoke } : {}),
+    ...(renderBaseUrl !== undefined ? { renderBaseUrl } : {}),
     ...(publicBaseUrl ? { publicBaseUrl } : {}),
     refreshApp: (owner: OwnerIdentity, slug: Slug) => {
       const key = `${encodeOwner(owner)}/${slug}`
@@ -1692,7 +1693,7 @@ export const startService = async <ROut = never>(
 }
 
 /** Load the service's shipped pre-configured providers by absolute path. */
-const loadPreconfiguredProviders = async (
+export const loadPreconfiguredProviders = async (
   registry: ProviderRegistry,
   dir: string,
 ): Promise<void> => {

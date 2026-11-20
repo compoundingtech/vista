@@ -49,19 +49,19 @@ import {
   UnknownVersion,
   VistaControlApi,
 } from './control.ts'
-import { VistaReadApi } from './read.ts'
 import type { ProviderRegistryManager } from './data/mount.ts'
 import type { InterviewStore } from './interview/store.ts'
 import { publishDuration, publishOperations, snapshotSkew, trackDuration } from './metrics.ts'
 import { resolveAppSource, cacheDir, depsNodeModules, appsDir, root } from './paths.ts'
+import { publishInWorker } from './publish-worker-client.ts'
 import {
   inspectStaticPublication,
   previewPublish,
-  publish,
   publishOwnerRefusal,
   rehydrateSource,
   RehydrateTargetNotEmpty,
 } from './publish.ts'
+import { VistaReadApi } from './read.ts'
 import {
   latestMeta,
   retire,
@@ -71,7 +71,6 @@ import {
   snapshotDarkReason,
   type AppState,
 } from './registry.ts'
-import type { RenderSmoke } from './render-smoke.ts'
 import {
   VistaExplorerMiddleware,
   explorerServerLayer,
@@ -84,7 +83,6 @@ import { NoPayload, wireHandler } from './wire.ts'
 const decodeAppRow = Schema.decodeUnknownSync(AppRow)
 const decodeVersionSummary = Schema.decodeUnknownSync(VersionSummary)
 const decodeAppRows = Schema.decodeUnknownSync(Schema.Array(AppRow))
-const decodePublishOk = Schema.decodeUnknownSync(PublishOk)
 const decodePublishPreviewOk = Schema.decodeUnknownSync(PublishPreviewOk)
 const decodeRehydrateOk = Schema.decodeUnknownSync(RehydrateOk)
 const decodeNewAppOk = Schema.decodeUnknownSync(NewAppOk)
@@ -217,7 +215,7 @@ export interface VistaControlOptions {
   readonly refreshApp: (owner: OwnerIdentity, slug: Slug) => void
   /** Per-review render smoke (decision 0058); `undefined` disables it (browser-
    * free publish, the default off the deployed closure). Wired in `server.ts`. */
-  readonly renderSmoke?: RenderSmoke
+  readonly renderBaseUrl?: string
   /**
    * Telemetry layer merged into the RPC server runtime (Track G3 / decision 0062).
    * Without a tracer in this runtime the control-plane `Effect.withSpan`s are
@@ -437,32 +435,7 @@ export const createVistaControlHandler = (options: VistaControlOptions) => {
             const refusal = publishOwnerRefusal(input.owner, input.slug)
             if (refusal !== undefined) return yield* refusal
             yield* resolveControlAppSource(input.owner, input.slug)
-            const outcome = yield* Effect.gen(function* () {
-              const runtime = yield* Effect.context<never>()
-              const parentSpan = yield* Effect.currentSpan.pipe(Effect.orDie)
-              return yield* Effect.tryPromise({
-                try: () =>
-                  publish(
-                    {
-                      owner: input.owner,
-                      slug: input.slug,
-                      author: input.author,
-                      changeSummary: input.changeSummary,
-                      ...(input.trail === undefined ? {} : { trail: input.trail }),
-                    },
-                    options.providers,
-                    options.renderSmoke,
-                    { runtime, parentSpan },
-                  ),
-                catch: (cause) =>
-                  new PublishFailed({
-                    owner: input.owner,
-                    slug: input.slug,
-                    message: String(cause instanceof Error ? cause.message : cause),
-                    cause: String(cause),
-                  }),
-              })
-            }).pipe(
+            const outcome = yield* publishInWorker(input, options.renderBaseUrl).pipe(
               Effect.withSpan('vista.control.publish', {
                 attributes: {
                   'span.label': 'publish',
@@ -482,16 +455,14 @@ export const createVistaControlHandler = (options: VistaControlOptions) => {
               ),
             )
             options.refreshApp(input.owner, input.slug)
-            return decodePublishOk({
-              owner: outcome.owner,
-              slug: outcome.slug,
-              version: outcome.version,
-              frozen: outcome.bindings.filter((binding) => binding.policy.mode === 'frozen').length,
-              live: outcome.bindings.filter((binding) => binding.policy.mode === 'live').length,
-              subscription: outcome.bindings.filter(
-                (binding) => binding.policy.mode === 'subscription',
-              ).length,
-            })
+            yield* Effect.promise(() =>
+              options.providers.retainVersion({
+                owner: outcome.owner,
+                slug: outcome.slug,
+                version: outcome.version,
+              }),
+            )
+            return outcome
           }),
         ),
 

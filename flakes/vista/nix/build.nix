@@ -147,6 +147,10 @@ pkgs.stdenv.mkDerivation {
         "island"
       ]
     }
+    # Publish runs in a one-shot interpreter process, not in the bundled service.
+    # Keep its source entry and protocol beside the service's dependency tree.
+    test -s runtime/flakes/vista/service/src/publish-worker.ts
+    test -s runtime/flakes/vista/service/src/publish-worker-protocol.ts
     # Vite follows the staged members' tsconfig references into the canonical
     # and legacy UI workspaces; keep both authored source/config trees beside them.
     mkdir -p runtime/packages

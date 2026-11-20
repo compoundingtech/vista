@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:9ca1608e91a999646b96f6ec2c7d33515b0f48942d413f23dd43b11a5e843286
+# Semantic fingerprint: sha256:68a9a78dadea3de25054eaad7fef816087e351fd60ba9d014e29bd56348a33b1
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -140,6 +140,10 @@ export_materialization_inputs([
     "src/publication-trust.integration.test.ts",
     "src/publish-http.test.ts",
     "src/publish-memory.integration.test.ts",
+    "src/publish-worker-client.ts",
+    "src/publish-worker-protocol.ts",
+    "src/publish-worker.integration.test.ts",
+    "src/publish-worker.ts",
     "src/publish.test.ts",
     "src/publish.ts",
     "src/query-publish.test.ts",
@@ -355,6 +359,10 @@ package_view(
         "src/publication-trust.integration.test.ts": "src/publication-trust.integration.test.ts",
         "src/publish-http.test.ts": "src/publish-http.test.ts",
         "src/publish-memory.integration.test.ts": "src/publish-memory.integration.test.ts",
+        "src/publish-worker-client.ts": "src/publish-worker-client.ts",
+        "src/publish-worker-protocol.ts": "src/publish-worker-protocol.ts",
+        "src/publish-worker.integration.test.ts": "src/publish-worker.integration.test.ts",
+        "src/publish-worker.ts": "src/publish-worker.ts",
         "src/publish.test.ts": "src/publish.test.ts",
         "src/publish.ts": "src/publish.ts",
         "src/query-publish.test.ts": "src/query-publish.test.ts",
@@ -832,6 +840,10 @@ package_view(
         "src/publication-trust.integration.test.ts": "src/publication-trust.integration.test.ts",
         "src/publish-http.test.ts": "src/publish-http.test.ts",
         "src/publish-memory.integration.test.ts": "src/publish-memory.integration.test.ts",
+        "src/publish-worker-client.ts": "src/publish-worker-client.ts",
+        "src/publish-worker-protocol.ts": "src/publish-worker-protocol.ts",
+        "src/publish-worker.integration.test.ts": "src/publish-worker.integration.test.ts",
+        "src/publish-worker.ts": "src/publish-worker.ts",
         "src/publish.test.ts": "src/publish.test.ts",
         "src/publish.ts": "src/publish.ts",
         "src/query-publish.test.ts": "src/query-publish.test.ts",

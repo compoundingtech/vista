@@ -115,8 +115,12 @@ freeze pass as a single connected, traced Effect.
 
 Single canonical host, path-routed (decisions 0005, 0075). Drafts use the Vite/HMR
 authoring surface. Each publish runs one build with the repository-current pinned
-Vite toolchain and atomically exposes a copied, self-contained static directory;
-published requests use the generic static-file runtime, never source evaluation.
+Vite toolchain in a fresh, one-shot worker process and atomically exposes a copied,
+self-contained static directory; published requests use the generic static-file
+runtime, never source evaluation. The standing service owns the worker's lifetime
+and waits for its exit before treating publication as complete. Ending the process
+reclaims evaluator module caches and compiler memory between publishes instead of
+retaining them in the standing service.
 
 - `/r/<encoded-owner>/<local-slug>/v<n>/` — immutable published directory
   containing canonical React source, a schema-versioned minimal semantic manifest,
@@ -360,6 +364,13 @@ must not derive default mutable state under that store path. Operator-provided p
 overrides must take precedence over wrapper-provided defaults; wrappers may supply
 fallbacks for the compiled binary, but those fallbacks must not make `VISTA_ROOT`
 non-overridable.
+
+The packaged runtime retains `service/src/publish-worker.ts` and its protocol in
+the immutable workspace beside the service dependency tree. Workers use the
+parent's `process.execPath` and `process.execArgv`, so the Nix wrapper's Bun runtime
+and development interpreter flags remain consistent across the process boundary.
+The entry path addresses that source workspace, not a sibling of the bundled
+`vista-service.mjs`.
 
 Dependencies: apps `import` React/Vite/kit/mermaid/etc. from the service-owned
 runtime composition, not from per-app installs. Bare external packages resolve
