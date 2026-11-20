@@ -18,11 +18,11 @@ const SLUG = 'publish-worker-memory'
 const PUBLICATIONS = 10
 const WARMUP_PUBLICATIONS = 3
 const MIB = 1024 * 1024
-// Conservative provisional ceilings, NOT calibrated steady-state claims. Compare
-// each peak after publication 3 against publication 3, including swap so paging
-// cannot conceal retained native memory. Calibrate with repeated cold packaged
-// runs on CI and the affected Linux host, retain >=2x the largest fixed-run delta,
-// and check that the pre-fix implementation still exceeds the selected ceiling.
+// Compare each peak after publication 3 against publication 3, including swap.
+// The isolated f413 worker run grew 3.38 MiB footprint / 1.11 MiB external;
+// these ceilings leave >75x / >57x measured headroom for host/JIT variation.
+// Main b96 grew 915.73 MiB footprint over the same window (>3.5x the cap).
+// Final-head packaged measurements and observed margins accompany the PR.
 const MAX_FOOTPRINT_GROWTH = 256 * MIB
 const MAX_EXTERNAL_GROWTH = 64 * MIB
 

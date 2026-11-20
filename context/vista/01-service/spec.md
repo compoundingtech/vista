@@ -381,6 +381,11 @@ entry and supply its command through the launcher Layer, without Vitest transfor
 or Node TypeScript loaders in the child. `test:vista-publish-memory` targets the
 real packaged wrapper via `VISTA_TEST_PACKAGE`, records ten publishes, and checks
 the standing process's RSS+swap, external memory, and worker reaping.
+Capture uses the worker's own provider instances; they are closed before its
+success envelope is acknowledged. The standing service's live providers start
+independently and share no in-memory cache, subscriptions, counters, or session
+setup with capture. Persisted provider state still follows each provider's own
+contract. Capture must not be used to warm or initialize live-service instances.
 
 Dependencies: apps `import` React/Vite/kit/mermaid/etc. from the service-owned
 runtime composition, not from per-app installs. Bare external packages resolve

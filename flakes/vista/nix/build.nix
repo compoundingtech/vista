@@ -152,16 +152,16 @@ pkgs.stdenv.mkDerivation {
         "island"
       ]
     }
-    # Publish runs the Buck-built JavaScript in a one-shot interpreter process.
-    # Keep it beside the service bundle so both resolve the same runtime closure.
-    cp ${publishWorkerProduct}/publish-worker.mjs runtime/flakes/vista/service/publish-worker.mjs
-    test -s runtime/flakes/vista/service/publish-worker.mjs
     # Vite follows the staged members' tsconfig references into the canonical
     # and legacy UI workspaces; keep both authored source/config trees beside them.
     mkdir -p runtime/packages
     cp -R ${root + "/packages/ui"} runtime/packages/ui
     cp -R ${root + "/packages/ui-legacy-alias"} runtime/packages/ui-legacy-alias
     chmod -R u+w runtime
+    # Publish runs the Buck-built JavaScript in a one-shot interpreter process.
+    # Keep it beside the service bundle so both resolve the same runtime closure.
+    cp ${publishWorkerProduct}/publish-worker.mjs runtime/flakes/vista/service/publish-worker.mjs
+    test -s runtime/flakes/vista/service/publish-worker.mjs
     ln -s ${importedVista}/libexec/node_modules runtime/node_modules
     ln -s ${importedVista}/libexec/importers/cli/node_modules runtime/flakes/vista/cli/node_modules
     ln -s ../../../node_modules runtime/flakes/vista/service/node_modules

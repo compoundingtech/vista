@@ -125,7 +125,24 @@ describe('query publication', () => {
         (client) => client.read({ message: 'direct live proof' }),
       ),
     )
-    expect(direct).toEqual({ message: 'direct live proof', revision: 2 })
+    // Capture ran on the worker's provider instance. The standing service starts
+    // its live provider independently, then retains state across live requests.
+    expect(direct).toEqual({ message: 'direct live proof', revision: 1 })
+    const second = await Effect.runPromise(
+      callLive(
+        `http://127.0.0.1:${port}/r/${encodeRouteOwner(OWNER)}/${SLUG}/v1/_data/sample-note/`,
+        NoteApi,
+        (client) => client.read({ message: 'second live proof' }),
+      ),
+    )
+    expect(second).toEqual({ message: 'second live proof', revision: 2 })
+    const unchanged = Schema.decodeUnknownSync(Snapshot, { onExcessProperty: 'error' })(
+      JSON.parse(readFileSync(join(versionDir(OWNER, SLUG, 1), 'snapshot.json'), 'utf8')),
+    )
+    expect(unchanged.entries[key]?.encodedValue).toEqual({
+      message: 'frozen first, live on demand',
+      revision: 1,
+    })
   }, 120_000)
 
   it('establishes one viewer before parallel initial data requests', async () => {
