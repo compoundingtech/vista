@@ -18,7 +18,12 @@ Use Buck's typechecked `dist-package` targets, as effect-utils does, followed by
 one deterministic manifest projection that pins local runtime siblings to their
 Cachix serve URLs and effect-utils runtime packages to its pinned public manifest.
 Omit development dependencies and scripts; reject unresolved local specifiers.
-Exports point to emitted JavaScript, preserving the existing public subpaths.
+Exports address emitted JavaScript and declarations. Consumer archives expose
+stable consumer contracts, not the runtime server: `@vista/service` advertises
+only `./read` and `./wire`, retaining their transitive modules in the archive.
+The runtime remains the Nix package. Buck's dist preserves non-TypeScript assets
+beside emitted modules. Before archiving, every package's emitted JavaScript and
+declarations are checked for unresolved relative imports.
 
 Publish these roots alongside the runtime under 0103's unchanged enable gate,
 credential boundary, protected-main guard, and App-authored manifest PR flow.

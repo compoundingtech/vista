@@ -4,13 +4,14 @@
 # Projection source: packages/ui/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:a8201ac157e567023cd50772654460f387c082ba12986f7147ece9b2a67d2ac1
+# Semantic fingerprint: sha256:f9da84089b43ceaebeb80ce7c6489dd033bd7278374b1180d0c4082245306a37
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
 load("@rules//buck2:editor_view.bzl", "editor_view_inputs")
 load("@rules//buck2:static_checks.bzl", "STATIC_SOURCE_EXCLUDES", "STATIC_SOURCE_GLOBS", "static_source_set")
-load("@rules//buck2:typescript.bzl", "tsgo_emit", "tsgo_typecheck")
+load("@rules//buck2:typescript.bzl", "tsgo_typecheck")
+load("//buck2:dist-assets.bzl", "tsgo_emit")
 load("@rules//buck2:package_tools.bzl", "npm_package_archive")
 
 export_file(
@@ -328,10 +329,13 @@ package_view(
         "src/components/Tooltip/mod.ts": "src/components/Tooltip/mod.ts",
         "src/components/mod.ts": "src/components/mod.ts",
         "src/foundations/document.css": "src/foundations/document.css",
+        "src/foundations/document.css": "src/foundations/document.css",
         "src/foundations/mod.ts": "src/foundations/mod.ts",
         "src/foundations/props.ts": "src/foundations/props.ts",
         "src/foundations/props.type-test.ts": "src/foundations/props.type-test.ts",
         "src/foundations/reset.css": "src/foundations/reset.css",
+        "src/foundations/reset.css": "src/foundations/reset.css",
+        "src/foundations/styles.css": "src/foundations/styles.css",
         "src/foundations/styles.css": "src/foundations/styles.css",
         "src/foundations/theme.ts": "src/foundations/theme.ts",
         "src/foundations/themes.ts": "src/foundations/themes.ts",
@@ -485,10 +489,13 @@ package_view(
         "src/components/Tooltip/mod.ts": "src/components/Tooltip/mod.ts",
         "src/components/mod.ts": "src/components/mod.ts",
         "src/foundations/document.css": "src/foundations/document.css",
+        "src/foundations/document.css": "src/foundations/document.css",
         "src/foundations/mod.ts": "src/foundations/mod.ts",
         "src/foundations/props.ts": "src/foundations/props.ts",
         "src/foundations/props.type-test.ts": "src/foundations/props.type-test.ts",
         "src/foundations/reset.css": "src/foundations/reset.css",
+        "src/foundations/reset.css": "src/foundations/reset.css",
+        "src/foundations/styles.css": "src/foundations/styles.css",
         "src/foundations/styles.css": "src/foundations/styles.css",
         "src/foundations/theme.ts": "src/foundations/theme.ts",
         "src/foundations/themes.ts": "src/foundations/themes.ts",
@@ -523,6 +530,11 @@ tsgo_typecheck(
 
 tsgo_emit(
     name = "dist",
+    assets = {
+        "src/foundations/document.css": "src/foundations/document.css",
+        "src/foundations/reset.css": "src/foundations/reset.css",
+        "src/foundations/styles.css": "src/foundations/styles.css",
+    },
     package_tree = ":package_tree",
     declaration_sources = {
     },
@@ -540,3 +552,5 @@ npm_package_archive(
     output = "vista-ui.tgz",
     visibility = ["PUBLIC"],
 )
+
+export_materialization_inputs(["src/foundations/document.css","src/foundations/reset.css","src/foundations/styles.css"])

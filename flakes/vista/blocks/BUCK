@@ -4,13 +4,14 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:0c0ae8b7937c0d0cd3572eb60624d33e05d5a2cdd40d8d994c78c68a0309f81b
+# Semantic fingerprint: sha256:1e94c6bf08c8ea490e419e4527f396b597e082b076eaee1bbb5499a214a3da69
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
 load("@rules//buck2:editor_view.bzl", "editor_view_inputs")
 load("@rules//buck2:static_checks.bzl", "STATIC_SOURCE_EXCLUDES", "STATIC_SOURCE_GLOBS", "static_source_set")
-load("@rules//buck2:typescript.bzl", "tsgo_emit", "tsgo_typecheck")
+load("@rules//buck2:typescript.bzl", "tsgo_typecheck")
+load("//buck2:dist-assets.bzl", "tsgo_emit")
 load("@rules//buck2:package_tools.bzl", "npm_package_archive")
 
 export_file(
@@ -346,8 +347,6 @@ package_view(
     name = "package_tree",
     dependency_view = "//buck2/dependencies:view_flakes_vista_blocks_98f5686aa1e1",
     files = {
-        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
-        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "package.json": "package.json",
         "src/AppShell.test.tsx": "src/AppShell.test.tsx",
         "src/AppShell.tsx": "src/AppShell.tsx",
@@ -355,6 +354,9 @@ package_view(
         "src/RpcExplorerPanel.tsx": "src/RpcExplorerPanel.tsx",
         "src/ShellSelect.tsx": "src/ShellSelect.tsx",
         "src/ShellThemeSwitcher.tsx": "src/ShellThemeSwitcher.tsx",
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "src/authoring.test.tsx": "src/authoring.test.tsx",
         "src/authoring.tsx": "src/authoring.tsx",
         "src/blocks/ChartBlock.tsx": "src/blocks/ChartBlock.tsx",
@@ -503,7 +505,9 @@ package_view(
         "src/data-query.unit.test.tsx": "src/data-query.unit.test.tsx",
         "src/disk-index-contract.ts": "src/disk-index-contract.ts",
         "src/document-reset.css": "src/document-reset.css",
+        "src/document-reset.css": "src/document-reset.css",
         "src/explore.tsx": "src/explore.tsx",
+        "src/foreign-dom.css": "src/foreign-dom.css",
         "src/foreign-dom.css": "src/foreign-dom.css",
         "src/grafana-trace-url.test.ts": "src/grafana-trace-url.test.ts",
         "src/grafana-trace-url.ts": "src/grafana-trace-url.ts",
@@ -519,6 +523,7 @@ package_view(
         "src/rpc-explorer-filter.ts": "src/rpc-explorer-filter.ts",
         "src/self-inspection.test.ts": "src/self-inspection.test.ts",
         "src/self-inspection.ts": "src/self-inspection.ts",
+        "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic.ts": "src/semantic.ts",
         "src/service-host-runtime.ts": "src/service-host-runtime.ts",
@@ -660,6 +665,9 @@ package_view(
         "src/RpcExplorerPanel.tsx": "src/RpcExplorerPanel.tsx",
         "src/ShellSelect.tsx": "src/ShellSelect.tsx",
         "src/ShellThemeSwitcher.tsx": "src/ShellThemeSwitcher.tsx",
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
         "src/authoring.test.tsx": "src/authoring.test.tsx",
         "src/authoring.tsx": "src/authoring.tsx",
         "src/blocks/ChartBlock.tsx": "src/blocks/ChartBlock.tsx",
@@ -808,7 +816,9 @@ package_view(
         "src/data-query.unit.test.tsx": "src/data-query.unit.test.tsx",
         "src/disk-index-contract.ts": "src/disk-index-contract.ts",
         "src/document-reset.css": "src/document-reset.css",
+        "src/document-reset.css": "src/document-reset.css",
         "src/explore.tsx": "src/explore.tsx",
+        "src/foreign-dom.css": "src/foreign-dom.css",
         "src/foreign-dom.css": "src/foreign-dom.css",
         "src/grafana-trace-url.test.ts": "src/grafana-trace-url.test.ts",
         "src/grafana-trace-url.ts": "src/grafana-trace-url.ts",
@@ -824,6 +834,7 @@ package_view(
         "src/rpc-explorer-filter.ts": "src/rpc-explorer-filter.ts",
         "src/self-inspection.test.ts": "src/self-inspection.test.ts",
         "src/self-inspection.ts": "src/self-inspection.ts",
+        "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic.ts": "src/semantic.ts",
         "src/service-host-runtime.ts": "src/service-host-runtime.ts",
@@ -969,6 +980,20 @@ tsgo_typecheck(
 
 tsgo_emit(
     name = "dist",
+    assets = {
+        "src/assets/vista-icon-color.svg": "src/assets/vista-icon-color.svg",
+        "src/assets/vista-icon-mono-dark.svg": "src/assets/vista-icon-mono-dark.svg",
+        "src/assets/vista-icon-mono-light.svg": "src/assets/vista-icon-mono-light.svg",
+        "src/document-reset.css": "src/document-reset.css",
+        "src/foreign-dom.css": "src/foreign-dom.css",
+        "src/semantic-chrome.css": "src/semantic-chrome.css",
+        "src/stories/agent-timeline/1d.json": "src/stories/agent-timeline/1d.json",
+        "src/stories/agent-timeline/1h.json": "src/stories/agent-timeline/1h.json",
+        "src/stories/agent-timeline/7d.json": "src/stories/agent-timeline/7d.json",
+        "src/stories/agent-timeline/perf-128.json": "src/stories/agent-timeline/perf-128.json",
+        "src/stories/agent-timeline/perf-512.json": "src/stories/agent-timeline/perf-512.json",
+        "src/stories/canary/effect-utils-1260-stack.json": "src/stories/canary/effect-utils-1260-stack.json",
+    },
     package_tree = ":package_tree",
     declaration_sources = {
         "src/types/css.d.ts": "src/types/css.d.ts",
@@ -992,14 +1017,4 @@ npm_package_archive(
     visibility = ["PUBLIC"],
 )
 
-export_file(
-    name = "src/assets/vista-icon-mono-dark.svg",
-    src = "src/assets/vista-icon-mono-dark.svg",
-    visibility = ["PUBLIC"],
-)
-
-export_file(
-    name = "src/assets/vista-icon-mono-light.svg",
-    src = "src/assets/vista-icon-mono-light.svg",
-    visibility = ["PUBLIC"],
-)
+export_materialization_inputs(["src/assets/vista-icon-color.svg","src/assets/vista-icon-mono-dark.svg","src/assets/vista-icon-mono-light.svg","src/document-reset.css","src/foreign-dom.css","src/semantic-chrome.css"])

@@ -4,13 +4,14 @@
 # Projection source: packages/ui-legacy-alias/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:e35a42b16f463ee78e57e9c9103edec4682caa8d438dc86dbdaf4a0f42be37c2
+# Semantic fingerprint: sha256:5e1847634c7e8d730aee2b00c81c91ecb7e0b028f087947579681fc436712fe5
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
 load("@rules//buck2:editor_view.bzl", "editor_view_inputs")
 load("@rules//buck2:static_checks.bzl", "STATIC_SOURCE_EXCLUDES", "STATIC_SOURCE_GLOBS", "static_source_set")
-load("@rules//buck2:typescript.bzl", "tsgo_emit", "tsgo_typecheck")
+load("@rules//buck2:typescript.bzl", "tsgo_typecheck")
+load("//buck2:dist-assets.bzl", "tsgo_emit")
 load("@rules//buck2:package_tools.bzl", "npm_package_archive")
 
 export_file(
@@ -69,8 +70,10 @@ package_view(
         "package.json": "package.json",
         "src/components.ts": "src/components.ts",
         "src/document.css": "src/document.css",
+        "src/document.css": "src/document.css",
         "src/foundations.ts": "src/foundations.ts",
         "src/mod.ts": "src/mod.ts",
+        "src/styles.css": "src/styles.css",
         "src/styles.css": "src/styles.css",
         "src/tokens.stylex.ts": "src/tokens.stylex.ts",
         "tsconfig.json": "tsconfig.json",
@@ -94,8 +97,10 @@ package_view(
         "package.json": "package.json",
         "src/components.ts": "src/components.ts",
         "src/document.css": "src/document.css",
+        "src/document.css": "src/document.css",
         "src/foundations.ts": "src/foundations.ts",
         "src/mod.ts": "src/mod.ts",
+        "src/styles.css": "src/styles.css",
         "src/styles.css": "src/styles.css",
         "src/tokens.stylex.ts": "src/tokens.stylex.ts",
         "tsconfig.json": "tsconfig.json",
@@ -127,6 +132,10 @@ tsgo_typecheck(
 
 tsgo_emit(
     name = "dist",
+    assets = {
+        "src/document.css": "src/document.css",
+        "src/styles.css": "src/styles.css",
+    },
     package_tree = ":package_tree",
     declaration_sources = {
     },
@@ -145,3 +154,5 @@ npm_package_archive(
     output = "overeng-geist-design-system.tgz",
     visibility = ["PUBLIC"],
 )
+
+export_materialization_inputs(["src/document.css","src/styles.css"])

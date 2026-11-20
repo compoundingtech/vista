@@ -7,13 +7,14 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:c46cf6dd4fa4d037bd377699032596fe5912cdbfb3f7e81184aca8f849bddc92
+# Semantic fingerprint: sha256:9ca1608e91a999646b96f6ec2c7d33515b0f48942d413f23dd43b11a5e843286
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
 load("@rules//buck2:editor_view.bzl", "editor_view_inputs")
 load("@rules//buck2:static_checks.bzl", "STATIC_SOURCE_EXCLUDES", "STATIC_SOURCE_GLOBS", "static_source_set")
-load("@rules//buck2:typescript.bzl", "tsgo_emit", "tsgo_typecheck")
+load("@rules//buck2:typescript.bzl", "tsgo_typecheck")
+load("//buck2:dist-assets.bzl", "tsgo_emit")
 load("@rules//buck2:package_tools.bzl", "npm_package_archive")
 
 export_file(
@@ -279,6 +280,15 @@ package_view(
         "src/data/provider.test.ts": "src/data/provider.test.ts",
         "src/data/provider.ts": "src/data/provider.ts",
         "src/data/provider.unit.test.ts": "src/data/provider.unit.test.ts",
+        "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json": "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-commits.json": "src/data/providers/__fixtures__/gh-pr-2910-commits.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-files.json": "src/data/providers/__fixtures__/gh-pr-2910-files.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-view.json": "src/data/providers/__fixtures__/gh-pr-2910-view.json",
+        "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json": "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json",
+        "src/data/providers/__fixtures__/prom-matrix.json": "src/data/providers/__fixtures__/prom-matrix.json",
+        "src/data/providers/__fixtures__/pyro-flamebearer.json": "src/data/providers/__fixtures__/pyro-flamebearer.json",
+        "src/data/providers/__fixtures__/tempo-search.json": "src/data/providers/__fixtures__/tempo-search.json",
+        "src/data/providers/__fixtures__/tempo-trace.json": "src/data/providers/__fixtures__/tempo-trace.json",
         "src/data/providers/agent-timeline-tmux.ts": "src/data/providers/agent-timeline-tmux.ts",
         "src/data/providers/agent-timeline-tmux.unit.test.ts": "src/data/providers/agent-timeline-tmux.unit.test.ts",
         "src/data/providers/agent-timeline.provider.integration.test.ts": "src/data/providers/agent-timeline.provider.integration.test.ts",
@@ -747,6 +757,15 @@ package_view(
         "src/data/provider.test.ts": "src/data/provider.test.ts",
         "src/data/provider.ts": "src/data/provider.ts",
         "src/data/provider.unit.test.ts": "src/data/provider.unit.test.ts",
+        "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json": "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-commits.json": "src/data/providers/__fixtures__/gh-pr-2910-commits.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-files.json": "src/data/providers/__fixtures__/gh-pr-2910-files.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-view.json": "src/data/providers/__fixtures__/gh-pr-2910-view.json",
+        "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json": "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json",
+        "src/data/providers/__fixtures__/prom-matrix.json": "src/data/providers/__fixtures__/prom-matrix.json",
+        "src/data/providers/__fixtures__/pyro-flamebearer.json": "src/data/providers/__fixtures__/pyro-flamebearer.json",
+        "src/data/providers/__fixtures__/tempo-search.json": "src/data/providers/__fixtures__/tempo-search.json",
+        "src/data/providers/__fixtures__/tempo-trace.json": "src/data/providers/__fixtures__/tempo-trace.json",
         "src/data/providers/agent-timeline-tmux.ts": "src/data/providers/agent-timeline-tmux.ts",
         "src/data/providers/agent-timeline-tmux.unit.test.ts": "src/data/providers/agent-timeline-tmux.unit.test.ts",
         "src/data/providers/agent-timeline.provider.integration.test.ts": "src/data/providers/agent-timeline.provider.integration.test.ts",
@@ -1173,6 +1192,17 @@ tsgo_typecheck(
 
 tsgo_emit(
     name = "dist",
+    assets = {
+        "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json": "src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-commits.json": "src/data/providers/__fixtures__/gh-pr-2910-commits.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-files.json": "src/data/providers/__fixtures__/gh-pr-2910-files.json",
+        "src/data/providers/__fixtures__/gh-pr-2910-view.json": "src/data/providers/__fixtures__/gh-pr-2910-view.json",
+        "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json": "src/data/providers/__fixtures__/gh-run-35628602056-jobs.json",
+        "src/data/providers/__fixtures__/prom-matrix.json": "src/data/providers/__fixtures__/prom-matrix.json",
+        "src/data/providers/__fixtures__/pyro-flamebearer.json": "src/data/providers/__fixtures__/pyro-flamebearer.json",
+        "src/data/providers/__fixtures__/tempo-search.json": "src/data/providers/__fixtures__/tempo-search.json",
+        "src/data/providers/__fixtures__/tempo-trace.json": "src/data/providers/__fixtures__/tempo-trace.json",
+    },
     package_tree = ":package_tree",
     declaration_sources = {
         "src/types/css.d.ts": "src/types/css.d.ts",
@@ -1197,6 +1227,8 @@ npm_package_archive(
     output = "vista-service.tgz",
     visibility = ["PUBLIC"],
 )
+
+export_materialization_inputs(["src/data/providers/__fixtures__/checks-stream-v14-pr-2959.json","src/data/providers/__fixtures__/gh-pr-2910-commits.json","src/data/providers/__fixtures__/gh-pr-2910-files.json","src/data/providers/__fixtures__/gh-pr-2910-view.json","src/data/providers/__fixtures__/gh-run-35628602056-jobs.json","src/data/providers/__fixtures__/prom-matrix.json","src/data/providers/__fixtures__/pyro-flamebearer.json","src/data/providers/__fixtures__/tempo-search.json","src/data/providers/__fixtures__/tempo-trace.json"])
 
 package_bin_artifact(
     name = "vista-service-bundle-module",

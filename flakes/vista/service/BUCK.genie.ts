@@ -1,8 +1,6 @@
 import { dependencyImporterFor } from '../../../buck2/dependencies/generate.ts'
-import {
-  buck2TypeScriptPackageProjection,
-  withConsumerJavaScriptProducts,
-} from '../../../genie/buck2/javascript-candidates.ts'
+import { buck2TypeScriptPackageProjectionWithAssets } from '../../../genie/buck2/dist-assets.ts'
+import { withConsumerJavaScriptProducts } from '../../../genie/buck2/javascript-candidates.ts'
 import { rootWorkspacePackages } from '../../../package.json.genie.ts'
 import type { Buck2TypeScriptPackageProjection } from '../../../repos/effect-utils/genie/buck2/typescript-package-projection.ts'
 import { createGenieOutput } from '../../../repos/effect-utils/packages/@overeng/genie/src/runtime/core.ts'
@@ -22,7 +20,7 @@ const admission = {
   authorities: [{ projectFile: 'tsconfig.json' }],
 } as const satisfies Buck2TypeScriptPackageProjection
 
-const projection = buck2TypeScriptPackageProjection(admission)
+const projection = buck2TypeScriptPackageProjectionWithAssets(admission)
 
 export default withConsumerJavaScriptProducts({
   projection: createGenieOutput({

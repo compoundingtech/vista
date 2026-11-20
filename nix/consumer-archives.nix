@@ -27,7 +27,7 @@ let
         value = archiveUrl archive;
       }) dependencies);
     in pkgs.runCommand "${archiveName}-consumer" {
-      nativeBuildInputs = [ pkgs.jq pkgs.gnutar pkgs.gzip ];
+      nativeBuildInputs = [ pkgs.jq pkgs.gnutar pkgs.gzip pkgs.nodejs pkgs.typescript ];
       passthru = {
         inherit archiveName;
         packageName = name;
@@ -36,8 +36,22 @@ let
     } ''
       mkdir stage "$out"
       tar -xzf ${raw}/${archiveName} -C stage
-      jq --argjson urls ${pkgs.lib.escapeShellArg (builtins.toJSON urls)} '
+      jq --arg name ${pkgs.lib.escapeShellArg name} \
+        --argjson urls ${pkgs.lib.escapeShellArg (builtins.toJSON urls)} '
         del(.devDependencies, .scripts, .dependenciesMeta, ."$genie", .private) |
+        if $name == "@vista/service" then
+          del(.bin, .main, .module, .types, .typings, .browser, .server, .publishConfig, ."$vista") |
+          .exports = {
+            "./read": {
+              "types": "./dist/src/read.d.ts",
+              "default": "./dist/src/read.js"
+            },
+            "./wire": {
+              "types": "./dist/src/wire.d.ts",
+              "default": "./dist/src/wire.js"
+            }
+          }
+        else . end |
         reduce ["dependencies", "optionalDependencies", "peerDependencies"][] as $field (. ;
           if has($field) then .[$field] |= with_entries(
             if $urls[.key] != null then .value = $urls[.key]
@@ -47,6 +61,8 @@ let
           else . end)
       ' stage/package/package.json > manifest.json
       mv manifest.json stage/package/package.json
+      node ${./check-archive-imports.mjs} stage/package \
+        ${pkgs.typescript}/lib/node_modules/typescript/lib/typescript.js
       tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner \
         -C stage -cf - package | gzip -n > "$out/${archiveName}"
     '';

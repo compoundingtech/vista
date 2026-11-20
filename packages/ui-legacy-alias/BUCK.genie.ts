@@ -1,7 +1,7 @@
 import type { Buck2TypeScriptPackageProjection } from '#mr/effect-utils/genie/buck2/typescript-package-projection.ts'
-import { buck2TypeScriptPackageProjection } from '#mr/effect-utils/genie/buck2/typescript-package-projection.ts'
 
 import { dependencyImporterFor } from '../../buck2/dependencies/generate.ts'
+import { buck2TypeScriptPackageProjectionWithAssets } from '../../genie/buck2/dist-assets.ts'
 import { rootWorkspacePackages } from '../../package.json.genie.ts'
 
 export const buck2TypeScriptAdmission = {
@@ -15,4 +15,4 @@ export const buck2TypeScriptAdmission = {
   authorities: [{ declarationEntrypoint: 'src/mod.d.ts', projectFile: 'tsconfig.json' }],
 } as const satisfies Buck2TypeScriptPackageProjection
 
-export default buck2TypeScriptPackageProjection(buck2TypeScriptAdmission)
+export default buck2TypeScriptPackageProjectionWithAssets(buck2TypeScriptAdmission)

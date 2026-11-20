@@ -76,8 +76,13 @@ published sibling archive URLs; effect-utils dependencies use its pinned public
 artifact manifest. The legacy Geist import root remains a real archive because
 blocks and service still import it. Development scripts/dependencies are omitted;
 no dependency specifier may retain `workspace:`, `link:`, or `file:`.
-Published exports address emitted JavaScript, including blocks' `./contract`
-and `./internal/provider-contracts`, and service's `./read` and `./wire`.
+Published exports address emitted JavaScript and declarations, including blocks'
+`./contract` and `./internal/provider-contracts`. Consumer archives expose stable
+consumer contracts, not the runtime server: service advertises only `./read` and
+`./wire`, with their transitive modules retained. Its archive has no root export
+or executable entry; the runtime remains the Nix package. Every archive is checked
+for unresolved relative imports in `dist/**/*.js` and `.d.ts` before deterministic
+packing.
 
 Only after successful Cachix push does `compoundingtech-vista-publisher` mint a
 short-lived installation token, explicitly selecting owner `compoundingtech`
