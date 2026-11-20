@@ -31,6 +31,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  readlinkSync,
   renameSync,
   rmSync,
   symlinkSync,
@@ -118,6 +119,32 @@ const scopedScanApp = (owner: string, slug: string) => scanApp(owner, slug)
 
 const PUBLISHING_MARKER = '.publishing'
 
+// Outside the immutable version: ownership survives worker resource teardown and
+// is released only after its parent has decoded success and observed exit zero.
+const publishAttemptPath = (owner: string, slug: string, attemptId: string): string =>
+  join(scopedAppDir(owner, slug), `.publish-attempt-${attemptId}`)
+
+const PublishAttemptJson = Schema.fromJsonString(
+  Schema.Struct({
+    version: NonNegativeInt,
+    previousLatest: Schema.optionalKey(Schema.NullOr(Schema.String)),
+  }),
+)
+
+const readLatestTarget = (owner: string, slug: string): string | null => {
+  try {
+    return readlinkSync(join(scopedAppDir(owner, slug), 'latest'))
+  } catch (cause) {
+    if (cause instanceof Error && 'code' in cause && cause.code === 'ENOENT') return null
+    throw cause
+  }
+}
+
+/** The parent calls this only after the response and successful child exit. */
+export const acknowledgePublishAttempt = (owner: string, slug: string, attemptId: string): void => {
+  rmSync(publishAttemptPath(owner, slug, attemptId))
+}
+
 const nextCandidate = (owner: string, slug: string): number => {
   const st = scopedScanApp(owner, slug)
   const maxOnDisk = st && st.versions.length > 0 ? st.versions[st.versions.length - 1]!.version : 0
@@ -137,7 +164,11 @@ const swapLatest = (owner: string, slug: string, v: number): void => {
  * Atomic mkdir-claim loop (SVC-R19). The `mkdir` is the serialization point: two
  * concurrent publishers cannot claim the same `vN`. Returns `{ v, claimed }`.
  */
-const claimVersion = (owner: string, slug: string): { v: number; claimed: string } => {
+const claimVersion = (
+  owner: string,
+  slug: string,
+  attemptId?: string,
+): { v: number; claimed: string } => {
   // Ensure the app dir exists before the atomic `vN` claim. AppSource lives
   // outside the service-owned version store, so publication does not otherwise
   // pre-create this directory. The per-version `mkdir vN` below stays
@@ -148,7 +179,19 @@ const claimVersion = (owner: string, slug: string): { v: number; claimed: string
     const candidate = scopedVersionDir(owner, slug, v)
     try {
       mkdirSync(candidate) // throws EEXIST if another publisher already claimed it
-      writeFileSync(join(candidate, PUBLISHING_MARKER), '')
+      try {
+        writeFileSync(join(candidate, PUBLISHING_MARKER), '')
+        if (attemptId !== undefined) {
+          writeFileSync(
+            publishAttemptPath(owner, slug, attemptId),
+            Schema.encodeSync(PublishAttemptJson)({ version: v }),
+          )
+        }
+      } catch (cause) {
+        rmSync(candidate, { recursive: true, force: true })
+        if (attemptId !== undefined) rmSync(publishAttemptPath(owner, slug, attemptId), { force: true })
+        throw cause
+      }
       return { v, claimed: candidate }
     } catch (e) {
       if ((e as NodeJS.ErrnoException).code === 'EEXIST') {
@@ -159,6 +202,45 @@ const claimVersion = (owner: string, slug: string): { v: number; claimed: string
     }
   }
   throw new Error(`could not claim a version for ${slug} after 256 attempts`)
+}
+
+/**
+ * After reaping a worker, evict any render-smoke registry and roll back only its
+ * owned claim. The claim remains occupied until this cleanup, preventing another
+ * attempt from reusing its identity before the parent registry has closed.
+ */
+export const rollbackPublishAttempt = async (
+  owner: string,
+  slug: string,
+  attemptId: string,
+  providers: ProviderRegistryManager,
+): Promise<void> => {
+  const record = publishAttemptPath(owner, slug, attemptId)
+  let encoded: string
+  try {
+    encoded = readFileSync(record, 'utf8')
+  } catch (cause) {
+    if (cause instanceof Error && 'code' in cause && cause.code === 'ENOENT') return
+    throw cause
+  }
+  const { version, previousLatest } = Schema.decodeSync(PublishAttemptJson)(encoded)
+  await providers.closeVersion({ owner, slug, version })
+  // A cancelled worker may have already swapped latest before hanging during
+  // resource cleanup. Do not expose that unacknowledged transaction.
+  if (readLatestTarget(owner, slug) === `v${version}` && previousLatest !== undefined) {
+    const latest = join(scopedAppDir(owner, slug), 'latest')
+    if (previousLatest === null) {
+      rmSync(latest)
+    } else {
+      const temporary = join(scopedAppDir(owner, slug), `.latest.rollback.${attemptId}`)
+      symlinkSync(previousLatest, temporary)
+      renameSync(temporary, latest)
+    }
+  }
+  rmSync(scopedVersionDir(owner, slug, version), { recursive: true, force: true })
+  rmSync(scopedPublicationTrustRoot(owner, slug, version), { force: true })
+  rmSync(record)
+  invalidateVerifiedPublications(owner, slug)
 }
 
 /** Copy the canonical AppSource into the claimed immutable version. */
@@ -1185,6 +1267,7 @@ export const publish = async (
   providers: ProviderRegistryManager,
   renderSmoke?: RenderSmoke,
   trace?: FreezeTraceContext,
+  attemptId?: string,
 ): Promise<PublishResult> => {
   const { owner, slug } = input
   const refusal = publishOwnerRefusal(owner, slug)
@@ -1204,7 +1287,7 @@ export const publish = async (
   // A missing advertised companion fails at this service boundary immediately.
   const changelogCompanion = readVistaChangelogCompanion()
 
-  const { v, claimed } = claimVersion(owner, slug)
+  const { v, claimed } = claimVersion(owner, slug, attemptId)
   let versionRegistry: ProviderRegistry | undefined
   try {
     populateVersion(appSource, claimed)
@@ -1276,16 +1359,30 @@ export const publish = async (
     }
 
     rmSync(join(claimed, PUBLISHING_MARKER))
+    if (attemptId !== undefined) {
+      writeFileSync(
+        publishAttemptPath(owner, slug, attemptId),
+        Schema.encodeSync(PublishAttemptJson)({
+          version: v,
+          previousLatest: readLatestTarget(owner, slug),
+        }),
+      )
+    }
     swapLatest(owner, slug, v)
     await providers.retainVersion({ owner, slug, version: v })
     invalidateVerifiedPublications(owner, slug)
-    return buildPublishResult(owner, slug, v, meta, publishedBindings)
+    const result = buildPublishResult(owner, slug, v, meta, publishedBindings)
+    return result
   } catch (error) {
     if (versionRegistry !== undefined) {
       await providers.closeVersion({ owner, slug, version: v })
     }
-    rmSync(claimed, { recursive: true, force: true })
-    rmSync(scopedPublicationTrustRoot(owner, slug, v), { force: true })
+    // Service workers leave their owned claim for the parent to clean AFTER
+    // reaping and closing any registry loaded by render smoke in that process.
+    if (attemptId === undefined) {
+      rmSync(claimed, { recursive: true, force: true })
+      rmSync(scopedPublicationTrustRoot(owner, slug, v), { force: true })
+    }
     invalidateVerifiedPublications(owner, slug)
     throw error
   }

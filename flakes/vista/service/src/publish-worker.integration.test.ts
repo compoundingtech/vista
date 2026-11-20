@@ -1,0 +1,324 @@
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  readlinkSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { Effect, Fiber, Layer } from 'effect'
+import { FetchHttpClient } from 'effect/http'
+import * as RpcClient from 'effect/rpc/RpcClient'
+import { layerJson } from 'effect/rpc/RpcSerialization'
+import { expect, it, vi } from 'vitest'
+
+import { freePort, installTestChangelog } from './test-support.ts'
+
+const HERE = dirname(fileURLToPath(import.meta.url))
+const OWNER = 'agent/compoundingtech/publish-memory-test'
+const SLUG = 'publish-worker-memory'
+const PUBLICATIONS = 1
+
+type WorkerChild = { pid: number; argv: string[] }
+
+// Children can belong to the libuv task that spawned them, rather than the
+// process leader. Inspect every task so a worker cannot evade the exit assertion.
+const childPids = (): number[] => {
+  const children = new Set<number>()
+  for (const task of readdirSync('/proc/self/task')) {
+    let text: string
+    try {
+      text = readFileSync(`/proc/self/task/${task}/children`, 'utf8').trim()
+    } catch (error) {
+      // A native thread may exit between listing tasks and reading its children.
+      if (error instanceof Error && 'code' in error && error.code === 'ENOENT') continue
+      throw error
+    }
+    if (text !== '') for (const pid of text.split(/\s+/)) children.add(Number(pid))
+  }
+  return [...children].sort((left, right) => left - right)
+}
+
+const workerChildren = (): WorkerChild[] =>
+  childPids().flatMap((pid) => {
+    let argv: string[]
+    try {
+      argv = readFileSync(`/proc/${pid}/cmdline`, 'utf8').split('\0').filter(Boolean)
+    } catch (error) {
+      if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return []
+      throw error
+    }
+    // Zombies have an empty cmdline. Count them too: exit without reaping is
+    // not sufficient, and argv matching alone would silently miss that leak.
+    if (argv.length === 0) return [{ pid, argv }]
+    // Ignore persistent helpers such as the standing runtime's esbuild.
+    return argv.some((argument) => /(?:^|\/)publish-worker\.(?:ts|m?js)$/.test(argument))
+      ? [{ pid, argv }]
+      : []
+  })
+
+it.skipIf(process.platform !== 'linux')(
+  'reaps workers, rolls back interrupted claims, and scopes per-app queue ownership',
+  async () => {
+    // The suite uses isolated Vitest forks. Install all mutable roots before
+    // importing service modules; no publication or trust state touches user data.
+    mkdirSync(join(HERE, '..', 'tmp'), { recursive: true })
+    const directory = mkdtempSync(join(HERE, '..', 'tmp', 'vista-publish-worker-'))
+    vi.stubEnv('VISTA_APPS', join(directory, 'apps'))
+    vi.stubEnv('VISTA_SOURCES', join(directory, 'sources'))
+    vi.stubEnv('VISTA_CACHE', join(directory, 'cache'))
+    vi.stubEnv('VISTA_LIVE_STATE', join(directory, 'live-state'))
+    vi.stubEnv('ROLLDOWN_WORKER_THREADS', '4')
+    let close: (() => Promise<void>) | undefined
+    let restoreChangelog: (() => void) | undefined
+    try {
+      restoreChangelog = await installTestChangelog(directory)
+      // Static imports would initialize module-scoped paths before the private
+      // environment above; this intentionally tests that module-load boundary.
+      const { PublishInput, PublishOk, VistaControlApi, encodeRouteOwner } =
+        await import('./control.ts')
+      const { appSourcePath } = await import('./paths.ts')
+      const { startService } = await import('./server.ts')
+      const { wireCall } = await import('./wire.ts')
+      const source = appSourcePath(join(directory, 'sources'), OWNER, SLUG)
+      mkdirSync(source, { recursive: true })
+      const port = await freePort()
+      const started = await startService(port)
+      close = started.close
+      const origin = `http://127.0.0.1:${port}`
+      const protocol = RpcClient.layerProtocolHttp({ url: `${origin}/_rpc/control` }).pipe(
+        Layer.provide(layerJson),
+        Layer.provide(FetchHttpClient.layer),
+      )
+
+      for (let publication = 1; publication <= PUBLICATIONS; publication++) {
+        writeFileSync(
+          join(source, 'app.tsx'),
+          `import { AppRoot, Decision } from '@vista/blocks'
+export default function PublishedApp() {
+  return (
+    <AppRoot title="Publish worker memory" template="architecture-review" scope="scope">
+      <Decision id="decision" status="locked" provenance="test/Decision">
+        <main>Publication ${publication}</main>
+      </Decision>
+    </AppRoot>
+  )
+}
+`,
+        )
+        const result = await Effect.runPromise(
+          Effect.gen(function* () {
+            const client = yield* RpcClient.make(VistaControlApi)
+            return yield* wireCall(
+              'vista.publish',
+              PublishInput,
+              PublishOk,
+            )((envelope) => client['vista.publish'](envelope), {
+              owner: OWNER,
+              slug: SLUG,
+              author: 'publish-memory-regression',
+              changeSummary: `Publication ${publication}`,
+            })
+          }).pipe(Effect.scoped, Effect.provide(protocol)),
+        )
+        expect(result.version).toBe(publication)
+
+        // Exercise the actual served artifact, not just an RPC success envelope.
+        const response = await fetch(
+          `${origin}/r/${encodeRouteOwner(OWNER)}/${SLUG}/v${publication}/`,
+        )
+        expect(response.status).toBe(200)
+        expect(await response.text()).toContain('<html')
+      }
+
+      expect(workerChildren()).toEqual([])
+
+      // Hold a real capture open after claiming. Interrupt the parent fiber and
+      // verify cleanup also evicts a registry loaded in the standing process
+      // (the same ownership split as browser render smoke).
+      const providerDirectory = join(source, 'providers')
+      mkdirSync(providerDirectory)
+      writeFileSync(
+        join(providerDirectory, 'held.query.ts'),
+        `import { contract } from '@vista/blocks/query'
+import { Schema } from 'effect'
+import { Rpc, RpcGroup } from 'effect/rpc'
+export const held = contract({
+  id: 'held-capture',
+  group: RpcGroup.make(Rpc.make('read', { payload: {}, success: Schema.String })),
+})
+`,
+      )
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.never },
+}), Layer.empty)
+`,
+      )
+      writeFileSync(
+        join(source, 'app.tsx'),
+        `import { AppRoot, Decision } from '@vista/blocks'
+import { bind, useBinding } from '@vista/blocks/query'
+import { held } from './providers/held.query.ts'
+const binding = bind(held.ops.read, {}, { mode: 'frozen' })
+const Held = () => { useBinding(binding); return <p>Held</p> }
+export default function PublishedApp() {
+  return <AppRoot title="Interrupted publish" template="architecture-review" scope="scope">
+    <Decision id="decision" status="locked" provenance="test/Decision"><Held /></Decision>
+  </AppRoot>
+}
+`,
+      )
+      const { publishInWorker } = await import('./publish-worker-client.ts')
+      const { versionDir } = await import('./registry.ts')
+      const identity = { owner: OWNER, slug: SLUG, version: PUBLICATIONS + 1 }
+      const claimed = versionDir(OWNER, SLUG, identity.version)
+      const publishing = Effect.runFork(
+        publishInWorker(
+          {
+            owner: OWNER,
+            slug: SLUG,
+            author: 'publish-memory-regression',
+            changeSummary: 'Interrupted capture',
+          },
+          started.state.providers,
+        ).pipe(Effect.withSpan('test.publish.interrupted')),
+      )
+      try {
+        await vi.waitFor(() => expect(existsSync(join(claimed, '.publishing'))).toBe(true), {
+          timeout: 60_000,
+        })
+        await started.state.providers.ensureVersion(identity, join(claimed, 'providers'))
+        expect(started.state.providers.getVersion(identity)).toBeDefined()
+      } finally {
+        await Effect.runPromise(Fiber.interrupt(publishing))
+      }
+      expect(existsSync(claimed)).toBe(false)
+      expect(started.state.providers.getVersion(identity)).toBeUndefined()
+      expect(workerChildren()).toEqual([])
+
+      // Hold teardown AFTER publish() swapped latest, rather than holding capture.
+      // Success must remain unacknowledged until this resource has closed.
+      const cleanupStarted = join(directory, 'worker-cleanup-started')
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { writeFileSync } from 'node:fs'
+import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+const teardown = Layer.effectDiscard(Effect.addFinalizer(() =>
+  Effect.sync(() => writeFileSync(${JSON.stringify(cleanupStarted)}, 'closing'))
+    .pipe(Effect.andThen(Effect.never)),
+))
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.succeed('captured') },
+}), teardown)
+`,
+      )
+      const postCommitInput = {
+        owner: OWNER,
+        slug: SLUG,
+        author: 'publish-memory-regression',
+        changeSummary: 'Interrupted worker teardown',
+      }
+      const postCommit = Effect.runFork(
+        publishInWorker(postCommitInput, started.state.providers).pipe(
+          Effect.withSpan('test.publish.teardown'),
+        ),
+      )
+      try {
+        await vi.waitFor(() => expect(existsSync(cleanupStarted)).toBe(true), { timeout: 60_000 })
+        expect(readlinkSync(join(dirname(claimed), 'latest'))).toBe(`v${identity.version}`)
+        let waiterStarted = false
+        const queued = Effect.runFork(
+          Effect.sync(() => {
+            waiterStarted = true
+          }).pipe(
+            Effect.andThen(publishInWorker(postCommitInput, started.state.providers)),
+            Effect.withSpan('test.publish.queued'),
+          ),
+        )
+        try {
+          await vi.waitFor(() => expect(waiterStarted).toBe(true))
+          const parallelSlug = 'parallel-publish'
+          const parallelSource = appSourcePath(join(directory, 'sources'), OWNER, parallelSlug)
+          mkdirSync(parallelSource, { recursive: true })
+          writeFileSync(
+            join(parallelSource, 'app.tsx'),
+            `import { AppRoot, Decision } from '@vista/blocks'
+export default function PublishedApp() {
+  return <AppRoot title="Parallel app" template="architecture-review" scope="scope">
+    <Decision id="decision" status="locked" provenance="test/Decision">Parallel</Decision>
+  </AppRoot>
+}
+`,
+          )
+          // A different app must finish while the first app still holds its
+          // permit in worker teardown. The same-app waiter must not claim v12.
+          const parallel = await Effect.runPromise(
+            publishInWorker(
+              { ...postCommitInput, slug: parallelSlug },
+              started.state.providers,
+            ).pipe(Effect.withSpan('test.publish.parallel')),
+          )
+          expect(parallel.version).toBe(1)
+          expect(workerChildren()).toHaveLength(1)
+          expect(existsSync(versionDir(OWNER, SLUG, identity.version + 1))).toBe(false)
+          await Effect.runPromise(Fiber.interrupt(queued))
+          expect(existsSync(versionDir(OWNER, SLUG, identity.version + 1))).toBe(false)
+        } finally {
+          await Effect.runPromise(Fiber.interrupt(queued))
+        }
+      } finally {
+        await Effect.runPromise(Fiber.interrupt(postCommit))
+      }
+      expect(existsSync(claimed)).toBe(false)
+      expect(readlinkSync(join(dirname(claimed), 'latest'))).toBe(`v${PUBLICATIONS}`)
+      expect(workerChildren()).toEqual([])
+      expect(
+        readdirSync(dirname(claimed)).filter((entry) => entry.startsWith('.publish-attempt-')),
+      ).toEqual([])
+
+      // Both the killed holder and the cancelled waiter released their scoped
+      // lock resources; the next real publish reuses precisely the rolled-back v11.
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.succeed('released') },
+}), Layer.empty)
+`,
+      )
+      const resumed = await Effect.runPromise(
+        publishInWorker(postCommitInput, started.state.providers).pipe(
+          Effect.withSpan('test.publish.resumed'),
+        ),
+      )
+      expect(resumed.version).toBe(identity.version)
+      expect(workerChildren()).toEqual([])
+    } finally {
+      try {
+        await close?.()
+      } finally {
+        restoreChangelog?.()
+        vi.unstubAllEnvs()
+        rmSync(directory, { recursive: true, force: true })
+      }
+    }
+  },
+  600_000,
+)

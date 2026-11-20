@@ -6,6 +6,7 @@
   runtimeProduct,
   preflightProduct,
   serviceProduct,
+  publishWorkerProduct,
   effectUtilsSrc,
   playwrightWebFlake,
   gitRev ? "unknown",
@@ -105,11 +106,14 @@ let
     ];
   };
 in
-assert lib.assertMsg (
-  toString buckSource == toString runtimeProduct.passthru.source
-  && toString buckSource == toString preflightProduct.passthru.source
-  && toString buckSource == toString serviceProduct.passthru.source
-) "Vista bootstrap, runtime, preflight, and service products must use one Buck source";
+assert lib.assertMsg
+  (
+    toString buckSource == toString runtimeProduct.passthru.source
+    && toString buckSource == toString preflightProduct.passthru.source
+    && toString buckSource == toString serviceProduct.passthru.source
+    && toString buckSource == toString publishWorkerProduct.passthru.source
+  )
+  "Vista bootstrap, runtime, preflight, service, and publish worker products must use one Buck source";
 pkgs.stdenv.mkDerivation {
   pname = "vista";
   version = "0.1.0";
@@ -127,6 +131,7 @@ pkgs.stdenv.mkDerivation {
     buck2RuntimeProduct = runtimeProduct;
     buck2PreflightProduct = preflightProduct;
     buck2ServiceProduct = serviceProduct;
+    buck2PublishWorkerProduct = publishWorkerProduct;
     inherit telemetryIslandDist;
   };
   buildPhase = ''
@@ -153,6 +158,10 @@ pkgs.stdenv.mkDerivation {
     cp -R ${root + "/packages/ui"} runtime/packages/ui
     cp -R ${root + "/packages/ui-legacy-alias"} runtime/packages/ui-legacy-alias
     chmod -R u+w runtime
+    # Publish runs the Buck-built JavaScript in a one-shot interpreter process.
+    # Keep it beside the service bundle so both resolve the same runtime closure.
+    cp ${publishWorkerProduct}/publish-worker.mjs runtime/flakes/vista/service/publish-worker.mjs
+    test -s runtime/flakes/vista/service/publish-worker.mjs
     ln -s ${importedVista}/libexec/node_modules runtime/node_modules
     ln -s ${importedVista}/libexec/importers/cli/node_modules runtime/flakes/vista/cli/node_modules
     ln -s ../../../node_modules runtime/flakes/vista/service/node_modules

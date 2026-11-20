@@ -39,11 +39,17 @@ export default defineConfig({
     },
   },
   test: {
+    globalSetup: ['./vitest.worker-global-setup.ts'],
+    setupFiles: ['./vitest.worker-setup.ts'],
     include: ['src/**/*.test.ts', '../../disk-index/vista/*.test.tsx'],
     // `ts:build` emits compiled `.test.js` copies into `dist/`; without an
     // explicit exclude vitest would discover and re-run those stale duplicates
     // alongside the real `src/**` TypeScript suite. Pin the suite to source.
-    exclude: ['**/node_modules/**', '**/dist/**'],
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      ...(process.env.VISTA_TEST_PACKAGE === undefined ? ['**/*.packaged.test.ts'] : []),
+    ],
     // Publication smoke tests run real proof/publish round trips; the 30s
     // default expires on a loaded shared host — a timeout, never an assertion.
     // Fixture hooks start the same Vite-backed service and may publish first.

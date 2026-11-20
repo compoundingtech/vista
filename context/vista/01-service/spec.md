@@ -115,8 +115,20 @@ freeze pass as a single connected, traced Effect.
 
 Single canonical host, path-routed (decisions 0005, 0075). Drafts use the Vite/HMR
 authoring surface. Each publish runs one build with the repository-current pinned
-Vite toolchain and atomically exposes a copied, self-contained static directory;
-published requests use the generic static-file runtime, never source evaluation.
+Vite toolchain in a fresh, one-shot worker process and atomically exposes a copied,
+self-contained static directory; published requests use the generic static-file
+runtime, never source evaluation. The standing service owns the worker's lifetime
+and waits for its exit before treating publication as complete. Ending the process
+reclaims evaluator module caches and compiler memory between publishes instead of
+retaining them in the standing service.
+
+Publish attempts for the same owner/app now queue behind a scoped per-app permit,
+rather than overlapping; different apps remain parallel. The deadline includes
+queue time. Interrupted waiters neither claim a version nor retain a lock entry.
+Ownership persists through worker resource teardown until the parent has decoded
+success and observed exit zero. On interruption/failure after the latest swap,
+post-reaping rollback restores the prior latest only if it still points at that
+attempt's version, evicts parent smoke registries, and removes the owned claim.
 
 - `/r/<encoded-owner>/<local-slug>/v<n>/` — immutable published directory
   containing canonical React source, a schema-versioned minimal semantic manifest,
@@ -360,6 +372,20 @@ must not derive default mutable state under that store path. Operator-provided p
 overrides must take precedence over wrapper-provided defaults; wrappers may supply
 fallbacks for the compiled binary, but those fallbacks must not make `VISTA_ROOT`
 non-overridable.
+
+The packaged runtime installs a Buck-built `service/publish-worker.mjs` alongside
+`vista-service.mjs`, using the same Bun bundling policy and dependency closure.
+Workers use the parent's `process.execPath` and `process.execArgv`, preserving the
+Nix wrapper's runtime. Service logic tests build a real standalone Node worker
+entry and supply its command through the launcher Layer, without Vitest transforms
+or Node TypeScript loaders in the child. `test:vista-publish-memory` targets the
+real packaged wrapper via `VISTA_TEST_PACKAGE`, records ten publishes, and checks
+the standing process's RSS+swap, external memory, and worker reaping.
+Capture uses the worker's own provider instances; they are closed before its
+success envelope is acknowledged. The standing service's live providers start
+independently and share no in-memory cache, subscriptions, counters, or session
+setup with capture. Persisted provider state still follows each provider's own
+contract. Capture must not be used to warm or initialize live-service instances.
 
 Dependencies: apps `import` React/Vite/kit/mermaid/etc. from the service-owned
 runtime composition, not from per-app installs. Bare external packages resolve
