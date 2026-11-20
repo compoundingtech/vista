@@ -25,10 +25,14 @@ export const buck2TypeScriptPackageProjectionWithAssets = (
   const projectInputs = new Set(
     admission.authorities.flatMap((authority) => authority.projectInputs ?? []),
   )
+  // The pinned projection already admits CSS and explicitly declared project inputs.
+  const additionalAssets = assets.filter(
+    (file) => path.extname(file) !== '.css' && projectInputs.has(file) === false,
+  )
   const runtimeFiles = [
     ...new Set([
       ...(admission.runtimeFiles ?? []),
-      ...assets.filter((file) => projectInputs.has(file) === false),
+      ...additionalAssets,
     ]),
   ].sort()
   const projection = buck2TypeScriptPackageProjection({ ...admission, runtimeFiles })
@@ -48,8 +52,6 @@ export const buck2TypeScriptPackageProjectionWithAssets = (
             .map((file) => `        ${JSON.stringify(file)}: ${JSON.stringify(file)},`)
             .join('\n')}\n    },`,
         ) +
-      `\nexport_materialization_inputs(${JSON.stringify(
-        assets.filter((file) => projectInputs.has(file) === false),
-      )})\n`,
+      `\nexport_materialization_inputs(${JSON.stringify(additionalAssets)})\n`,
   })
 }

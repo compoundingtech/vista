@@ -4,7 +4,7 @@
 # Projection source: packages/ui-legacy-alias/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:5e1847634c7e8d730aee2b00c81c91ecb7e0b028f087947579681fc436712fe5
+# Semantic fingerprint: sha256:e35a42b16f463ee78e57e9c9103edec4682caa8d438dc86dbdaf4a0f42be37c2
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -70,10 +70,8 @@ package_view(
         "package.json": "package.json",
         "src/components.ts": "src/components.ts",
         "src/document.css": "src/document.css",
-        "src/document.css": "src/document.css",
         "src/foundations.ts": "src/foundations.ts",
         "src/mod.ts": "src/mod.ts",
-        "src/styles.css": "src/styles.css",
         "src/styles.css": "src/styles.css",
         "src/tokens.stylex.ts": "src/tokens.stylex.ts",
         "tsconfig.json": "tsconfig.json",
@@ -97,10 +95,8 @@ package_view(
         "package.json": "package.json",
         "src/components.ts": "src/components.ts",
         "src/document.css": "src/document.css",
-        "src/document.css": "src/document.css",
         "src/foundations.ts": "src/foundations.ts",
         "src/mod.ts": "src/mod.ts",
-        "src/styles.css": "src/styles.css",
         "src/styles.css": "src/styles.css",
         "src/tokens.stylex.ts": "src/tokens.stylex.ts",
         "tsconfig.json": "tsconfig.json",
@@ -155,4 +151,4 @@ npm_package_archive(
     visibility = ["PUBLIC"],
 )
 
-export_materialization_inputs(["src/document.css","src/styles.css"])
+export_materialization_inputs([])

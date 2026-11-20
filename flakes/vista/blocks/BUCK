@@ -4,7 +4,7 @@
 # Projection source: flakes/vista/blocks/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:1e94c6bf08c8ea490e419e4527f396b597e082b076eaee1bbb5499a214a3da69
+# Semantic fingerprint: sha256:344e8dfe0aabe2ce168ab2b206106b146afe72ecd481137bad237fb78174a501
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -505,9 +505,7 @@ package_view(
         "src/data-query.unit.test.tsx": "src/data-query.unit.test.tsx",
         "src/disk-index-contract.ts": "src/disk-index-contract.ts",
         "src/document-reset.css": "src/document-reset.css",
-        "src/document-reset.css": "src/document-reset.css",
         "src/explore.tsx": "src/explore.tsx",
-        "src/foreign-dom.css": "src/foreign-dom.css",
         "src/foreign-dom.css": "src/foreign-dom.css",
         "src/grafana-trace-url.test.ts": "src/grafana-trace-url.test.ts",
         "src/grafana-trace-url.ts": "src/grafana-trace-url.ts",
@@ -523,7 +521,6 @@ package_view(
         "src/rpc-explorer-filter.ts": "src/rpc-explorer-filter.ts",
         "src/self-inspection.test.ts": "src/self-inspection.test.ts",
         "src/self-inspection.ts": "src/self-inspection.ts",
-        "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic.ts": "src/semantic.ts",
         "src/service-host-runtime.ts": "src/service-host-runtime.ts",
@@ -816,9 +813,7 @@ package_view(
         "src/data-query.unit.test.tsx": "src/data-query.unit.test.tsx",
         "src/disk-index-contract.ts": "src/disk-index-contract.ts",
         "src/document-reset.css": "src/document-reset.css",
-        "src/document-reset.css": "src/document-reset.css",
         "src/explore.tsx": "src/explore.tsx",
-        "src/foreign-dom.css": "src/foreign-dom.css",
         "src/foreign-dom.css": "src/foreign-dom.css",
         "src/grafana-trace-url.test.ts": "src/grafana-trace-url.test.ts",
         "src/grafana-trace-url.ts": "src/grafana-trace-url.ts",
@@ -834,7 +829,6 @@ package_view(
         "src/rpc-explorer-filter.ts": "src/rpc-explorer-filter.ts",
         "src/self-inspection.test.ts": "src/self-inspection.test.ts",
         "src/self-inspection.ts": "src/self-inspection.ts",
-        "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic-chrome.css": "src/semantic-chrome.css",
         "src/semantic.ts": "src/semantic.ts",
         "src/service-host-runtime.ts": "src/service-host-runtime.ts",
@@ -1017,4 +1011,4 @@ npm_package_archive(
     visibility = ["PUBLIC"],
 )
 
-export_materialization_inputs(["src/assets/vista-icon-color.svg","src/assets/vista-icon-mono-dark.svg","src/assets/vista-icon-mono-light.svg","src/document-reset.css","src/foreign-dom.css","src/semantic-chrome.css"])
+export_materialization_inputs(["src/assets/vista-icon-color.svg","src/assets/vista-icon-mono-dark.svg","src/assets/vista-icon-mono-light.svg"])
