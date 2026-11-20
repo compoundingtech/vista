@@ -14,7 +14,8 @@ const admission = {
   projectionSource: 'flakes/vista/service/BUCK.genie.ts',
   rulesCell: '@rules',
   workspacePackages: rootWorkspacePackages,
-  sourceRoots: ['src'],
+  // Tests import the sample providers included by the package's TypeScript project.
+  sourceRoots: ['src', 'samples'],
   workspaceSiblings: [
     { packageName: '@vista/blocks', packagePath: 'flakes/vista/blocks', sourceRoots: ['src'] },
   ],
