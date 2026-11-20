@@ -122,6 +122,14 @@ and waits for its exit before treating publication as complete. Ending the proce
 reclaims evaluator module caches and compiler memory between publishes instead of
 retaining them in the standing service.
 
+Publish attempts for the same owner/app now queue behind a scoped per-app permit,
+rather than overlapping; different apps remain parallel. The deadline includes
+queue time. Interrupted waiters neither claim a version nor retain a lock entry.
+Ownership persists through worker resource teardown until the parent has decoded
+success and observed exit zero. On interruption/failure after the latest swap,
+post-reaping rollback restores the prior latest only if it still points at that
+attempt's version, evicts parent smoke registries, and removes the owned claim.
+
 - `/r/<encoded-owner>/<local-slug>/v<n>/` — immutable published directory
   containing canonical React source, a schema-versioned minimal semantic manifest,
   and content-addressed self-contained JS/CSS/assets under `site/`. The build base

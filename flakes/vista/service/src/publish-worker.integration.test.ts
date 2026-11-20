@@ -4,6 +4,7 @@ import {
   mkdtempSync,
   readFileSync,
   readdirSync,
+  readlinkSync,
   rmSync,
   writeFileSync,
 } from 'node:fs'
@@ -263,6 +264,110 @@ export default function PublishedApp() {
       }
       expect(existsSync(claimed)).toBe(false)
       expect(started.state.providers.getVersion(identity)).toBeUndefined()
+      expect(workerChildren()).toEqual([])
+
+      // Hold teardown AFTER publish() swapped latest, rather than holding capture.
+      // Success must remain unacknowledged until this resource has closed.
+      const cleanupStarted = join(directory, 'worker-cleanup-started')
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { writeFileSync } from 'node:fs'
+import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+const teardown = Layer.effectDiscard(Effect.addFinalizer(() =>
+  Effect.sync(() => writeFileSync(${JSON.stringify(cleanupStarted)}, 'closing'))
+    .pipe(Effect.andThen(Effect.never)),
+))
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.succeed('captured') },
+}), teardown)
+`,
+      )
+      const postCommitInput = {
+        owner: OWNER,
+        slug: SLUG,
+        author: 'publish-memory-regression',
+        changeSummary: 'Interrupted worker teardown',
+      }
+      const postCommit = Effect.runFork(
+        publishInWorker(postCommitInput, started.state.providers).pipe(
+          Effect.withSpan('test.publish.teardown'),
+        ),
+      )
+      try {
+        await vi.waitFor(() => expect(existsSync(cleanupStarted)).toBe(true), { timeout: 60_000 })
+        expect(readlinkSync(join(dirname(claimed), 'latest'))).toBe(`v${identity.version}`)
+        let waiterStarted = false
+        const queued = Effect.runFork(
+          Effect.sync(() => {
+            waiterStarted = true
+          }).pipe(
+            Effect.andThen(publishInWorker(postCommitInput, started.state.providers)),
+            Effect.withSpan('test.publish.queued'),
+          ),
+        )
+        try {
+          await vi.waitFor(() => expect(waiterStarted).toBe(true))
+          const parallelSlug = 'parallel-publish'
+          const parallelSource = appSourcePath(join(directory, 'sources'), OWNER, parallelSlug)
+          mkdirSync(parallelSource, { recursive: true })
+          writeFileSync(
+            join(parallelSource, 'app.tsx'),
+            `import { AppRoot, Decision } from '@vista/blocks'
+export default function PublishedApp() {
+  return <AppRoot title="Parallel app" template="architecture-review" scope="scope">
+    <Decision id="decision" status="locked" provenance="test/Decision">Parallel</Decision>
+  </AppRoot>
+}
+`,
+          )
+          // A different app must finish while the first app still holds its
+          // permit in worker teardown. The same-app waiter must not claim v12.
+          const parallel = await Effect.runPromise(
+            publishInWorker(
+              { ...postCommitInput, slug: parallelSlug },
+              started.state.providers,
+            ).pipe(Effect.withSpan('test.publish.parallel')),
+          )
+          expect(parallel.version).toBe(1)
+          expect(workerChildren()).toHaveLength(1)
+          expect(existsSync(versionDir(OWNER, SLUG, identity.version + 1))).toBe(false)
+          await Effect.runPromise(Fiber.interrupt(queued))
+          expect(existsSync(versionDir(OWNER, SLUG, identity.version + 1))).toBe(false)
+        } finally {
+          await Effect.runPromise(Fiber.interrupt(queued))
+        }
+      } finally {
+        await Effect.runPromise(Fiber.interrupt(postCommit))
+      }
+      expect(existsSync(claimed)).toBe(false)
+      expect(readlinkSync(join(dirname(claimed), 'latest'))).toBe(`v${PUBLICATIONS}`)
+      expect(workerChildren()).toEqual([])
+      expect(
+        readdirSync(dirname(claimed)).filter((entry) => entry.startsWith('.publish-attempt-')),
+      ).toEqual([])
+
+      // Both the killed holder and the cancelled waiter released their scoped
+      // lock resources; the next real publish reuses precisely the rolled-back v11.
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.succeed('released') },
+}), Layer.empty)
+`,
+      )
+      const resumed = await Effect.runPromise(
+        publishInWorker(postCommitInput, started.state.providers).pipe(
+          Effect.withSpan('test.publish.resumed'),
+        ),
+      )
+      expect(resumed.version).toBe(identity.version)
       expect(workerChildren()).toEqual([])
     } finally {
       try {

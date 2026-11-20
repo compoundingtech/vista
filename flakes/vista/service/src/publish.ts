@@ -31,6 +31,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  readlinkSync,
   renameSync,
   rmSync,
   symlinkSync,
@@ -118,10 +119,31 @@ const scopedScanApp = (owner: string, slug: string) => scanApp(owner, slug)
 
 const PUBLISHING_MARKER = '.publishing'
 
-// Outside the immutable version: survives .publishing removal until all fallible
-// commit work completes, without entering authored inventory or receipt hashes.
+// Outside the immutable version: ownership survives worker resource teardown and
+// is released only after its parent has decoded success and observed exit zero.
 const publishAttemptPath = (owner: string, slug: string, attemptId: string): string =>
   join(scopedAppDir(owner, slug), `.publish-attempt-${attemptId}`)
+
+const PublishAttemptJson = Schema.fromJsonString(
+  Schema.Struct({
+    version: NonNegativeInt,
+    previousLatest: Schema.optionalKey(Schema.NullOr(Schema.String)),
+  }),
+)
+
+const readLatestTarget = (owner: string, slug: string): string | null => {
+  try {
+    return readlinkSync(join(scopedAppDir(owner, slug), 'latest'))
+  } catch (cause) {
+    if (cause instanceof Error && 'code' in cause && cause.code === 'ENOENT') return null
+    throw cause
+  }
+}
+
+/** The parent calls this only after the response and successful child exit. */
+export const acknowledgePublishAttempt = (owner: string, slug: string, attemptId: string): void => {
+  rmSync(publishAttemptPath(owner, slug, attemptId))
+}
 
 const nextCandidate = (owner: string, slug: string): number => {
   const st = scopedScanApp(owner, slug)
@@ -160,7 +182,10 @@ const claimVersion = (
       try {
         writeFileSync(join(candidate, PUBLISHING_MARKER), '')
         if (attemptId !== undefined) {
-          writeFileSync(publishAttemptPath(owner, slug, attemptId), String(v))
+          writeFileSync(
+            publishAttemptPath(owner, slug, attemptId),
+            Schema.encodeSync(PublishAttemptJson)({ version: v }),
+          )
         }
       } catch (cause) {
         rmSync(candidate, { recursive: true, force: true })
@@ -198,8 +223,20 @@ export const rollbackPublishAttempt = async (
     if (cause instanceof Error && 'code' in cause && cause.code === 'ENOENT') return
     throw cause
   }
-  const version = Schema.decodeSync(Schema.fromJsonString(NonNegativeInt))(encoded)
+  const { version, previousLatest } = Schema.decodeSync(PublishAttemptJson)(encoded)
   await providers.closeVersion({ owner, slug, version })
+  // A cancelled worker may have already swapped latest before hanging during
+  // resource cleanup. Do not expose that unacknowledged transaction.
+  if (readLatestTarget(owner, slug) === `v${version}` && previousLatest !== undefined) {
+    const latest = join(scopedAppDir(owner, slug), 'latest')
+    if (previousLatest === null) {
+      rmSync(latest)
+    } else {
+      const temporary = join(scopedAppDir(owner, slug), `.latest.rollback.${attemptId}`)
+      symlinkSync(previousLatest, temporary)
+      renameSync(temporary, latest)
+    }
+  }
   rmSync(scopedVersionDir(owner, slug, version), { recursive: true, force: true })
   rmSync(scopedPublicationTrustRoot(owner, slug, version), { force: true })
   rmSync(record)
@@ -1322,11 +1359,19 @@ export const publish = async (
     }
 
     rmSync(join(claimed, PUBLISHING_MARKER))
+    if (attemptId !== undefined) {
+      writeFileSync(
+        publishAttemptPath(owner, slug, attemptId),
+        Schema.encodeSync(PublishAttemptJson)({
+          version: v,
+          previousLatest: readLatestTarget(owner, slug),
+        }),
+      )
+    }
     swapLatest(owner, slug, v)
     await providers.retainVersion({ owner, slug, version: v })
     invalidateVerifiedPublications(owner, slug)
     const result = buildPublishResult(owner, slug, v, meta, publishedBindings)
-    if (attemptId !== undefined) rmSync(publishAttemptPath(owner, slug, attemptId))
     return result
   } catch (error) {
     if (versionRegistry !== undefined) {
