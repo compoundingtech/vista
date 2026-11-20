@@ -109,10 +109,14 @@ it.skipIf(process.platform !== 'linux')(
     const scratchRoot = join(HERE, '..', 'tmp')
     mkdirSync(scratchRoot, { recursive: true })
     const directory = mkdtempSync(join(scratchRoot, 'vista-packaged-publish-memory-'))
-    const environment: NodeJS.ProcessEnv = { ...process.env }
-    for (const key of Object.keys(environment)) {
-      if (key.startsWith('VISTA_') || key === 'BUN_OPTIONS' || key === 'NODE_OPTIONS')
-        delete environment[key]
+    // The wrapper must see a production-like environment, not devenv's Node
+    // flags (NODE_PRESERVE_SYMLINKS changes pnpm transitive resolution in Bun).
+    const workspace = join(resolve(packagePath), 'libexec', 'workspace')
+    const environment: NodeJS.ProcessEnv = {
+      PATH: process.env.PATH,
+      VISTA_ROOT: workspace,
+      VISTA_BLOCKS: join(workspace, 'flakes', 'vista', 'blocks'),
+      VISTA_DEPS: join(workspace, 'node_modules'),
     }
     for (const [key, tail] of Object.entries({
       VISTA_APPS: 'apps',
