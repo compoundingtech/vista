@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto'
 import { join } from 'node:path'
 
 import { NodeServices } from '@effect/platform-node'
@@ -5,19 +6,32 @@ import { Effect, Schema, Stream } from 'effect'
 import { ChildProcess } from 'effect/process'
 
 import { PublishFailed, type PublishInput } from './control.ts'
+import type { ProviderRegistryManager } from './data/mount.ts'
 import { root } from './paths.ts'
 import { PublishWorkerRequestJson, PublishWorkerResponseJson } from './publish-worker-protocol.ts'
+import { rollbackPublishAttempt } from './publish.ts'
 
 /** Includes startup, the complete transaction, cleanup, and process exit. */
 export const PUBLISH_WORKER_TIMEOUT_MS = 10 * 60 * 1_000
 
-export const publishInWorker = (input: PublishInput, renderBaseUrl?: string) =>
+export const publishInWorker = (
+  input: PublishInput,
+  providers: ProviderRegistryManager,
+  renderBaseUrl?: string,
+) =>
   Effect.scoped(
     Effect.gen(function* () {
+      const attemptId = randomUUID()
+      // Registered before spawn: Scope kills/reaps the child FIRST, then rolls
+      // back its owned claim and any provider registry loaded by parent-side smoke.
+      yield* Effect.addFinalizer(() =>
+        Effect.promise(() => rollbackPublishAttempt(input.owner, input.slug, attemptId, providers)),
+      )
       const parentSpan = yield* Effect.currentSpan
       const request = yield* Schema.encodeEffect(PublishWorkerRequestJson)({
         version: 1,
         input,
+        attemptId,
         ...(renderBaseUrl === undefined ? {} : { renderBaseUrl }),
         parentSpan: {
           traceId: parentSpan.traceId,

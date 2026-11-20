@@ -435,7 +435,11 @@ export const createVistaControlHandler = (options: VistaControlOptions) => {
             const refusal = publishOwnerRefusal(input.owner, input.slug)
             if (refusal !== undefined) return yield* refusal
             yield* resolveControlAppSource(input.owner, input.slug)
-            const outcome = yield* publishInWorker(input, options.renderBaseUrl).pipe(
+            const outcome = yield* publishInWorker(
+              input,
+              options.providers,
+              options.renderBaseUrl,
+            ).pipe(
               Effect.withSpan('vista.control.publish', {
                 attributes: {
                   'span.label': 'publish',

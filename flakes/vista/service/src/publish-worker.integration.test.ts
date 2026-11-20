@@ -1,8 +1,16 @@
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { Effect, Layer } from 'effect'
+import { Effect, Fiber, Layer } from 'effect'
 import { FetchHttpClient } from 'effect/http'
 import * as RpcClient from 'effect/rpc/RpcClient'
 import { layerJson } from 'effect/rpc/RpcSerialization'
@@ -63,6 +71,9 @@ const workerChildren = (): MemorySample['workerChildren'] =>
       if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return []
       throw error
     }
+    // Zombies have an empty cmdline. Count them too: exit without reaping is
+    // not sufficient, and argv matching alone would silently miss that leak.
+    if (argv.length === 0) return [{ pid, argv }]
     // Source tests launch the dedicated entry; packaged services dispatch the
     // same executable with the publish-worker subcommand. Ignore unrelated
     // persistent helpers (for example, the standing Vite runtime's esbuild).
@@ -183,6 +194,75 @@ export default function PublishedApp() {
       const diagnostics = JSON.stringify({ samples, peakFootprintGrowth, peakExternalGrowth })
       expect(peakFootprintGrowth, diagnostics).toBeLessThan(MAX_FOOTPRINT_GROWTH)
       expect(peakExternalGrowth, diagnostics).toBeLessThan(MAX_EXTERNAL_GROWTH)
+      expect(workerChildren()).toEqual([])
+
+      // Hold a real capture open after claiming. Interrupt the parent fiber and
+      // verify cleanup also evicts a registry loaded in the standing process
+      // (the same ownership split as browser render smoke).
+      const providerDirectory = join(source, 'providers')
+      mkdirSync(providerDirectory)
+      writeFileSync(
+        join(providerDirectory, 'held.query.ts'),
+        `import { contract } from '@vista/blocks/query'
+import { Schema } from 'effect'
+import { Rpc, RpcGroup } from 'effect/rpc'
+export const held = contract({
+  id: 'held-capture',
+  group: RpcGroup.make(Rpc.make('read', { payload: {}, success: Schema.String })),
+})
+`,
+      )
+      writeFileSync(
+        join(providerDirectory, 'held.provider.ts'),
+        `import { implement, mountProvider } from '@vista/data/provider'
+import { Effect, Layer } from 'effect'
+import { held } from './held.query.ts'
+export default mountProvider(implement(held, {
+  purity: 'pure',
+  handlers: { read: () => Effect.never },
+}), Layer.empty)
+`,
+      )
+      writeFileSync(
+        join(source, 'app.tsx'),
+        `import { AppRoot, Decision } from '@vista/blocks'
+import { bind, useBinding } from '@vista/blocks/query'
+import { held } from './providers/held.query.ts'
+const binding = bind(held.ops.read, {}, { mode: 'frozen' })
+const Held = () => { useBinding(binding); return <p>Held</p> }
+export default function PublishedApp() {
+  return <AppRoot title="Interrupted publish" template="architecture-review" scope="scope">
+    <Decision id="decision" status="locked" provenance="test/Decision"><Held /></Decision>
+  </AppRoot>
+}
+`,
+      )
+      const { publishInWorker } = await import('./publish-worker-client.ts')
+      const { versionDir } = await import('./registry.ts')
+      const identity = { owner: OWNER, slug: SLUG, version: PUBLICATIONS + 1 }
+      const claimed = versionDir(OWNER, SLUG, identity.version)
+      const publishing = Effect.runFork(
+        publishInWorker(
+          {
+            owner: OWNER,
+            slug: SLUG,
+            author: 'publish-memory-regression',
+            changeSummary: 'Interrupted capture',
+          },
+          started.state.providers,
+        ).pipe(Effect.withSpan('test.publish.interrupted')),
+      )
+      try {
+        await vi.waitFor(() => expect(existsSync(join(claimed, '.publishing'))).toBe(true), {
+          timeout: 60_000,
+        })
+        await started.state.providers.ensureVersion(identity, join(claimed, 'providers'))
+        expect(started.state.providers.getVersion(identity)).toBeDefined()
+      } finally {
+        await Effect.runPromise(Fiber.interrupt(publishing))
+      }
+      expect(existsSync(claimed)).toBe(false)
+      expect(started.state.providers.getVersion(identity)).toBeUndefined()
       expect(workerChildren()).toEqual([])
     } finally {
       try {

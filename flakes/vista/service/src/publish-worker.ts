@@ -54,6 +54,7 @@ const program = Effect.gen(function* () {
             ? undefined
             : makeBrowserMountSmoke(request.renderBaseUrl),
           { runtime, parentSpan },
+          request.attemptId,
         ),
       catch: (cause) =>
         new PublishFailed({
@@ -74,8 +75,8 @@ const program = Effect.gen(function* () {
     })
   }).pipe(
     Effect.scoped,
-    Effect.withParentSpan(Tracer.externalSpan(request.parentSpan)),
     Effect.withSpan('vista.publish.worker'),
+    Effect.withParentSpan(Tracer.externalSpan(request.parentSpan)),
     Effect.provide(telemetry),
   )
   const response = yield* transaction.pipe(
