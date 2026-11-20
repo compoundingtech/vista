@@ -6,6 +6,15 @@ let
     name = product.name;
     value = product.artifactUrl;
   }) effectProducts);
+  # Reuse the workspace's locked parser archive; the native TypeScript compiler has no JS API.
+  serviceManifest = builtins.fromJSON (builtins.readFile (root + "/flakes/vista/service/package.json"));
+  parserArchive = pnpmArchives.archivesByIdentity."@babel/parser@${serviceManifest.dependencies."@babel/parser"}";
+  importParser = pkgs.runCommand "vista-archive-import-parser" {
+    nativeBuildInputs = [ pkgs.gnutar pkgs.gzip ];
+  } ''
+    mkdir "$out"
+    tar -xzf ${parserArchive} --strip-components=1 -C "$out"
+  '';
   archiveUrl = archive:
     "${cacheUrl}/serve/${builtins.head (pkgs.lib.splitString "-" (builtins.baseNameOf archive))}/${archive.archiveName}";
   mkArchive = { name, packagePath, archiveName, dependencies ? [ ] }:
@@ -27,7 +36,7 @@ let
         value = archiveUrl archive;
       }) dependencies);
     in pkgs.runCommand "${archiveName}-consumer" {
-      nativeBuildInputs = [ pkgs.jq pkgs.gnutar pkgs.gzip pkgs.nodejs pkgs.typescript ];
+      nativeBuildInputs = [ pkgs.jq pkgs.gnutar pkgs.gzip pkgs.nodejs ];
       passthru = {
         inherit archiveName;
         packageName = name;
@@ -62,7 +71,7 @@ let
       ' stage/package/package.json > manifest.json
       mv manifest.json stage/package/package.json
       node ${./check-archive-imports.mjs} stage/package \
-        ${pkgs.typescript}/lib/node_modules/typescript/lib/typescript.js
+        ${importParser}/lib/index.js
       tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner \
         -C stage -cf - package | gzip -n > "$out/${archiveName}"
     '';
