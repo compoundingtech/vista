@@ -1,5 +1,4 @@
 import { randomUUID } from 'node:crypto'
-import { join } from 'node:path'
 
 import { NodeServices } from '@effect/platform-node'
 import { Effect, Schema, Semaphore, Stream } from 'effect'
@@ -7,7 +6,7 @@ import { ChildProcess } from 'effect/process'
 
 import { PublishFailed, type PublishInput } from './control.ts'
 import type { ProviderRegistryManager } from './data/mount.ts'
-import { root } from './paths.ts'
+import { PublishWorkerLauncher, publishWorkerLauncherLayer } from './publish-worker-launcher.ts'
 import { PublishWorkerRequestJson, PublishWorkerResponseJson } from './publish-worker-protocol.ts'
 import { acknowledgePublishAttempt, rollbackPublishAttempt } from './publish.ts'
 
@@ -67,9 +66,8 @@ export const publishInWorker = (
               sampled: parentSpan.sampled,
             },
           })
-          // The bundle ships its source workspace beside the dependency closure.
-          const worker = join(root(), 'flakes', 'vista', 'service', 'src', 'publish-worker.ts')
-          const handle = yield* ChildProcess.make(process.execPath, [...process.execArgv, worker], {
+          const launcher = yield* PublishWorkerLauncher
+          const handle = yield* ChildProcess.make(launcher.command, [...launcher.args], {
             env: process.env,
             stdin: Stream.make(new TextEncoder().encode(request)),
             stdout: 'inherit',
@@ -122,4 +120,5 @@ export const publishInWorker = (
           }),
     ),
     Effect.provide(NodeServices.layer),
+    Effect.provide(publishWorkerLauncherLayer()),
   )

@@ -4,6 +4,7 @@ import { withConsumerJavaScriptProducts } from '../../../genie/buck2/javascript-
 import { rootWorkspacePackages } from '../../../package.json.genie.ts'
 import type { Buck2TypeScriptPackageProjection } from '../../../repos/effect-utils/genie/buck2/typescript-package-projection.ts'
 import { createGenieOutput } from '../../../repos/effect-utils/packages/@overeng/genie/src/runtime/core.ts'
+import { serviceBundleExternal } from './src/bundle-config.ts'
 
 const admission = {
   dependencyImporter: dependencyImporterFor('flakes/vista/service'),
@@ -38,37 +39,21 @@ export default withConsumerJavaScriptProducts({
   products: [
     {
       entrypoint: 'src/main.ts',
-      // Vite loads authored TSX and resolves review dependencies from the installed workspace.
-      external: [
-        // Runtime Vite evaluates provider modules from the installed closure.
-        // Their Effect schemas and Vista contracts must be the same instances
-        // used by this service, not a second copy inlined into its Bun bundle.
-        'effect',
-        '@vista/blocks',
-        // Bun's wildcard catches subpackages; the product verifier also needs
-        // each actual bare import explicitly declared.
-        '@effect/*',
-        '@effect/atom-react',
-        '@effect/opentelemetry',
-        '@effect/platform-node',
-        '@effect/vitest',
-        '@vitejs/plugin-react',
-        '@playwright/test',
-        'vite',
-        // External declarations name packages; retain the async API's native compiler and libraries.
-        'typescript',
-        'lightningcss',
-        '@vista/telemetry-island',
-        '@vista/interview/component',
-        '@vista/interview',
-        '@xterm/xterm',
-        '@xterm/xterm/css/xterm.css?inline',
-      ],
+      external: serviceBundleExternal,
       kind: 'cli',
       output: 'vista-service.mjs',
       productName: 'vista-service',
       runtime: 'bun',
       targetName: 'vista-service-bundle',
+    },
+    {
+      entrypoint: 'src/publish-worker.ts',
+      external: serviceBundleExternal,
+      kind: 'module',
+      output: 'publish-worker.mjs',
+      productName: 'vista-publish-worker',
+      runtime: 'bun',
+      targetName: 'vista-publish-worker-bundle',
     },
   ],
 })

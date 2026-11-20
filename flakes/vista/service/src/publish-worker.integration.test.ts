@@ -22,28 +22,9 @@ import { freePort, installTestChangelog } from './test-support.ts'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const OWNER = 'agent/compoundingtech/publish-memory-test'
 const SLUG = 'publish-worker-memory'
-const PUBLICATIONS = 10
-const WARMUP_PUBLICATIONS = 3
-const MIB = 1024 * 1024
+const PUBLICATIONS = 1
 
-// Initial conservative ceilings, not a measured steady-state claim. Three full
-// publishes absorb lazy imports/JIT and cache initialization. Across the remaining
-// seven, allow 256 MiB RSS+swap and 64 MiB external growth. Keep RSS+swap together:
-// swapping retained native allocations out must not make a leak look fixed.
-// Calibrate from repeated cold-process runs on CI and the affected Linux host:
-// compare each post-warmup peak against publication 3, retain >=2x the largest
-// fixed-run delta, and verify the pre-fix implementation still exceeds the cap.
-const MAX_FOOTPRINT_GROWTH = 256 * MIB
-const MAX_EXTERNAL_GROWTH = 64 * MIB
-
-type MemorySample = {
-  publication: number
-  pid: number
-  rssBytes: number
-  swapBytes: number
-  externalBytes: number
-  workerChildren: { pid: number; argv: string[] }[]
-}
+type WorkerChild = { pid: number; argv: string[] }
 
 // Children can belong to the libuv task that spawned them, rather than the
 // process leader. Inspect every task so a worker cannot evade the exit assertion.
@@ -63,7 +44,7 @@ const childPids = (): number[] => {
   return [...children].sort((left, right) => left - right)
 }
 
-const workerChildren = (): MemorySample['workerChildren'] =>
+const workerChildren = (): WorkerChild[] =>
   childPids().flatMap((pid) => {
     let argv: string[]
     try {
@@ -75,36 +56,14 @@ const workerChildren = (): MemorySample['workerChildren'] =>
     // Zombies have an empty cmdline. Count them too: exit without reaping is
     // not sufficient, and argv matching alone would silently miss that leak.
     if (argv.length === 0) return [{ pid, argv }]
-    // Source tests launch the dedicated entry; packaged services dispatch the
-    // same executable with the publish-worker subcommand. Ignore unrelated
-    // persistent helpers (for example, the standing Vite runtime's esbuild).
-    return argv.some(
-      (argument) =>
-        argument === 'publish-worker' || /(?:^|\/)publish-worker\.(?:ts|js)$/.test(argument),
-    )
+    // Ignore persistent helpers such as the standing runtime's esbuild.
+    return argv.some((argument) => /(?:^|\/)publish-worker\.(?:ts|m?js)$/.test(argument))
       ? [{ pid, argv }]
       : []
   })
 
-const sampleMemory = (publication: number): MemorySample => {
-  const status = readFileSync('/proc/self/status', 'utf8')
-  const statusBytes = (field: string): number => {
-    const match = new RegExp(`^${field}:\\s+(\\d+)\\s+kB$`, 'm').exec(status)
-    if (match === null) throw new Error(`Missing ${field} in /proc/self/status`)
-    return Number(match[1]) * 1024
-  }
-  return {
-    publication,
-    pid: process.pid,
-    rssBytes: statusBytes('VmRSS'),
-    swapBytes: statusBytes('VmSwap'),
-    externalBytes: process.memoryUsage().external,
-    workerChildren: workerChildren(),
-  }
-}
-
 it.skipIf(process.platform !== 'linux')(
-  'bounds standing-service memory across ten real publications and reaps every publish worker',
+  'reaps workers, rolls back interrupted claims, and scopes per-app queue ownership',
   async () => {
     // The suite uses isolated Vitest forks. Install all mutable roots before
     // importing service modules; no publication or trust state touches user data.
@@ -117,7 +76,6 @@ it.skipIf(process.platform !== 'linux')(
     vi.stubEnv('ROLLDOWN_WORKER_THREADS', '4')
     let close: (() => Promise<void>) | undefined
     let restoreChangelog: (() => void) | undefined
-    const samples: MemorySample[] = []
     try {
       restoreChangelog = await installTestChangelog(directory)
       // Static imports would initialize module-scoped paths before the private
@@ -169,13 +127,6 @@ export default function PublishedApp() {
           }).pipe(Effect.scoped, Effect.provide(protocol)),
         )
         expect(result.version).toBe(publication)
-        const sample = sampleMemory(publication)
-        samples.push(sample)
-        console.info('Publication parent memory:', JSON.stringify(sample))
-        expect(
-          sample.workerChildren,
-          `publication ${publication} replied before its worker exited`,
-        ).toEqual([])
 
         // Exercise the actual served artifact, not just an RPC success envelope.
         const response = await fetch(
@@ -185,16 +136,6 @@ export default function PublishedApp() {
         expect(await response.text()).toContain('<html')
       }
 
-      const warmup = samples[WARMUP_PUBLICATIONS - 1]!
-      const steady = samples.slice(WARMUP_PUBLICATIONS)
-      const peakFootprintGrowth =
-        Math.max(...steady.map((sample) => sample.rssBytes + sample.swapBytes)) -
-        (warmup.rssBytes + warmup.swapBytes)
-      const peakExternalGrowth =
-        Math.max(...steady.map((sample) => sample.externalBytes)) - warmup.externalBytes
-      const diagnostics = JSON.stringify({ samples, peakFootprintGrowth, peakExternalGrowth })
-      expect(peakFootprintGrowth, diagnostics).toBeLessThan(MAX_FOOTPRINT_GROWTH)
-      expect(peakExternalGrowth, diagnostics).toBeLessThan(MAX_EXTERNAL_GROWTH)
       expect(workerChildren()).toEqual([])
 
       // Hold a real capture open after claiming. Interrupt the parent fiber and

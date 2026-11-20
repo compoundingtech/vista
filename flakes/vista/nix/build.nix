@@ -6,6 +6,7 @@
   runtimeProduct,
   preflightProduct,
   serviceProduct,
+  publishWorkerProduct,
   effectUtilsSrc,
   playwrightWebFlake,
   gitRev ? "unknown",
@@ -105,11 +106,14 @@ let
     ];
   };
 in
-assert lib.assertMsg (
-  toString buckSource == toString runtimeProduct.passthru.source
-  && toString buckSource == toString preflightProduct.passthru.source
-  && toString buckSource == toString serviceProduct.passthru.source
-) "Vista bootstrap, runtime, preflight, and service products must use one Buck source";
+assert lib.assertMsg
+  (
+    toString buckSource == toString runtimeProduct.passthru.source
+    && toString buckSource == toString preflightProduct.passthru.source
+    && toString buckSource == toString serviceProduct.passthru.source
+    && toString buckSource == toString publishWorkerProduct.passthru.source
+  )
+  "Vista bootstrap, runtime, preflight, service, and publish worker products must use one Buck source";
 pkgs.stdenv.mkDerivation {
   pname = "vista";
   version = "0.1.0";
@@ -127,6 +131,7 @@ pkgs.stdenv.mkDerivation {
     buck2RuntimeProduct = runtimeProduct;
     buck2PreflightProduct = preflightProduct;
     buck2ServiceProduct = serviceProduct;
+    buck2PublishWorkerProduct = publishWorkerProduct;
     inherit telemetryIslandDist;
   };
   buildPhase = ''
@@ -147,10 +152,10 @@ pkgs.stdenv.mkDerivation {
         "island"
       ]
     }
-    # Publish runs in a one-shot interpreter process, not in the bundled service.
-    # Keep its source entry and protocol beside the service's dependency tree.
-    test -s runtime/flakes/vista/service/src/publish-worker.ts
-    test -s runtime/flakes/vista/service/src/publish-worker-protocol.ts
+    # Publish runs the Buck-built JavaScript in a one-shot interpreter process.
+    # Keep it beside the service bundle so both resolve the same runtime closure.
+    cp ${publishWorkerProduct}/publish-worker.mjs runtime/flakes/vista/service/publish-worker.mjs
+    test -s runtime/flakes/vista/service/publish-worker.mjs
     # Vite follows the staged members' tsconfig references into the canonical
     # and legacy UI workspaces; keep both authored source/config trees beside them.
     mkdir -p runtime/packages

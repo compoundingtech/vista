@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/service/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:68a9a78dadea3de25054eaad7fef816087e351fd60ba9d014e29bd56348a33b1
+# Semantic fingerprint: sha256:4ab06a0bae06d282afcf52c727eb5ca3a75700ca4280eaa090bf1760ea805d03
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -50,6 +50,7 @@ export_materialization_inputs([
     "src/api-version.test.ts",
     "src/api-version.ts",
     "src/build-info.ts",
+    "src/bundle-config.ts",
     "src/changelog-companion.integration.test.ts",
     "src/changelog-companion.ts",
     "src/changelog/compiler.ts",
@@ -141,6 +142,8 @@ export_materialization_inputs([
     "src/publish-http.test.ts",
     "src/publish-memory.integration.test.ts",
     "src/publish-worker-client.ts",
+    "src/publish-worker-launcher.ts",
+    "src/publish-worker-memory.packaged.test.ts",
     "src/publish-worker-protocol.ts",
     "src/publish-worker.integration.test.ts",
     "src/publish-worker.ts",
@@ -260,6 +263,7 @@ package_view(
         "src/api-version.test.ts": "src/api-version.test.ts",
         "src/api-version.ts": "src/api-version.ts",
         "src/build-info.ts": "src/build-info.ts",
+        "src/bundle-config.ts": "src/bundle-config.ts",
         "src/changelog-companion.integration.test.ts": "src/changelog-companion.integration.test.ts",
         "src/changelog-companion.ts": "src/changelog-companion.ts",
         "src/changelog/compiler.ts": "src/changelog/compiler.ts",
@@ -360,6 +364,8 @@ package_view(
         "src/publish-http.test.ts": "src/publish-http.test.ts",
         "src/publish-memory.integration.test.ts": "src/publish-memory.integration.test.ts",
         "src/publish-worker-client.ts": "src/publish-worker-client.ts",
+        "src/publish-worker-launcher.ts": "src/publish-worker-launcher.ts",
+        "src/publish-worker-memory.packaged.test.ts": "src/publish-worker-memory.packaged.test.ts",
         "src/publish-worker-protocol.ts": "src/publish-worker-protocol.ts",
         "src/publish-worker.integration.test.ts": "src/publish-worker.integration.test.ts",
         "src/publish-worker.ts": "src/publish-worker.ts",
@@ -741,6 +747,7 @@ package_view(
         "src/api-version.test.ts": "src/api-version.test.ts",
         "src/api-version.ts": "src/api-version.ts",
         "src/build-info.ts": "src/build-info.ts",
+        "src/bundle-config.ts": "src/bundle-config.ts",
         "src/changelog-companion.integration.test.ts": "src/changelog-companion.integration.test.ts",
         "src/changelog-companion.ts": "src/changelog-companion.ts",
         "src/changelog/compiler.ts": "src/changelog/compiler.ts",
@@ -841,6 +848,8 @@ package_view(
         "src/publish-http.test.ts": "src/publish-http.test.ts",
         "src/publish-memory.integration.test.ts": "src/publish-memory.integration.test.ts",
         "src/publish-worker-client.ts": "src/publish-worker-client.ts",
+        "src/publish-worker-launcher.ts": "src/publish-worker-launcher.ts",
+        "src/publish-worker-memory.packaged.test.ts": "src/publish-worker-memory.packaged.test.ts",
         "src/publish-worker-protocol.ts": "src/publish-worker-protocol.ts",
         "src/publish-worker.integration.test.ts": "src/publish-worker.integration.test.ts",
         "src/publish-worker.ts": "src/publish-worker.ts",
@@ -1259,5 +1268,25 @@ javascript_product(
     module = ":vista-service-bundle-module",
     product_kind = "cli",
     product_name = "vista-service",
+    visibility = ["PUBLIC"],
+)
+
+package_bin_artifact(
+    name = "vista-publish-worker-bundle-module",
+    entrypoint = "src/publish-worker.ts",
+    external = ["effect", "@vista/blocks", "@effect/*", "@effect/atom-react", "@effect/opentelemetry", "@effect/platform-node", "@effect/vitest", "@vitejs/plugin-react", "@playwright/test", "vite", "typescript", "lightningcss", "@vista/telemetry-island", "@vista/interview/component", "@vista/interview", "@xterm/xterm", "@xterm/xterm/css/xterm.css?inline"],
+    external_capabilities = [],
+    kind = "module",
+    output = "publish-worker.mjs",
+    package_tree = ":package_tree",
+    target = "bun",
+    visibility = ["PUBLIC"],
+)
+
+javascript_product(
+    name = "vista-publish-worker-bundle",
+    module = ":vista-publish-worker-bundle-module",
+    product_kind = "module",
+    product_name = "vista-publish-worker",
     visibility = ["PUBLIC"],
 )

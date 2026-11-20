@@ -373,12 +373,14 @@ overrides must take precedence over wrapper-provided defaults; wrappers may supp
 fallbacks for the compiled binary, but those fallbacks must not make `VISTA_ROOT`
 non-overridable.
 
-The packaged runtime retains `service/src/publish-worker.ts` and its protocol in
-the immutable workspace beside the service dependency tree. Workers use the
-parent's `process.execPath` and `process.execArgv`, so the Nix wrapper's Bun runtime
-and development interpreter flags remain consistent across the process boundary.
-The entry path addresses that source workspace, not a sibling of the bundled
-`vista-service.mjs`.
+The packaged runtime installs a Buck-built `service/publish-worker.mjs` alongside
+`vista-service.mjs`, using the same Bun bundling policy and dependency closure.
+Workers use the parent's `process.execPath` and `process.execArgv`, preserving the
+Nix wrapper's runtime. Service logic tests build a real standalone Node worker
+entry and supply its command through the launcher Layer, without Vitest transforms
+or Node TypeScript loaders in the child. `test:vista-publish-memory` targets the
+real packaged wrapper via `VISTA_TEST_PACKAGE`, records ten publishes, and checks
+the standing process's RSS+swap, external memory, and worker reaping.
 
 Dependencies: apps `import` React/Vite/kit/mermaid/etc. from the service-owned
 runtime composition, not from per-app installs. Bare external packages resolve
