@@ -60,7 +60,7 @@
     "@overeng/effect-rpc-explorer": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer",
     "@overeng/effect-rpc-explorer-react": "link:../../../repos/effect-utils/packages/@overeng/effect-rpc-explorer-react",
     "@overeng/geist-design-system": "workspace:^",
-    "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/pk9lac4sbmg0p83xcayi9xy8pax51zdm/overeng-meters.tgz",
+    "@overeng/meters": "https://overeng-effect-utils.cachix.org/serve/cbixijwc0ifi5bywghb0h5mjvp5imgfp/overeng-meters.tgz",
     "@pierre/diffs": "1.6.4",
     "@pierre/highlights": "0.4.0",
     "@pierre/theme": "1.1.0",

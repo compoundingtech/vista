@@ -3,10 +3,10 @@
   "members": {
     "effect-utils": {
       "url": "https://github.com/overengineeringstudio/effect-utils",
-      "ref": "fb314b7a46169ac73e953b0b410b53dbda5d07f9",
-      "commit": "fb314b7a46169ac73e953b0b410b53dbda5d07f9",
+      "ref": "f2b187c4ee4bed202c6f67ffdc19d4fdb742311d",
+      "commit": "f2b187c4ee4bed202c6f67ffdc19d4fdb742311d",
       "pinned": true,
-      "lockedAt": "2026-11-19T02:00:46.695Z"
+      "lockedAt": "2026-11-20T08:38:24.000Z"
     }
   }
 }
