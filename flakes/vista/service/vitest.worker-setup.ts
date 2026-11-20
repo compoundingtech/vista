@@ -9,11 +9,10 @@ vi.mock('./src/publish-worker-launcher.ts', async (importOriginal) => {
   const { Layer } = await import('effect')
   return {
     ...original,
-    publishWorkerLauncherLayer: () =>
-      Layer.succeed(original.PublishWorkerLauncher, {
-        command: process.execPath,
-        args: [inject('publishWorkerEntry')],
-      }),
+    PublishWorkerLauncherLive: Layer.sync(original.PublishWorkerLauncher, () => ({
+      command: process.execPath,
+      args: [inject('publishWorkerEntry')],
+    })),
   }
 })
 

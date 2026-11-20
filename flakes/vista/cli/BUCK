@@ -7,7 +7,7 @@ load("@rules//buck2/products:defs.bzl", "javascript_product")
 # Projection source: flakes/vista/cli/BUCK.genie.ts
 # Projection schema version: 13
 # Projection generator: effect-utils/genie/buck2-typescript-package-projection
-# Semantic fingerprint: sha256:4452b03cfce10988c7a0e3ef87c98007442edcc53bda7abc00d026dcf4826df0
+# Semantic fingerprint: sha256:952448ac36617e64b9a5d60750c8643761f764d16bffe5bb9097d58293346740
 # Regenerate: devenv tasks run genie:run
 
 load("@rules//buck2:materialization.bzl", "export_materialization_inputs", "package_view")
@@ -193,6 +193,7 @@ package_view(
         "node_modules/@vista/service/src/api-version.test.ts": "//flakes/vista/service:src/api-version.test.ts",
         "node_modules/@vista/service/src/api-version.ts": "//flakes/vista/service:src/api-version.ts",
         "node_modules/@vista/service/src/build-info.ts": "//flakes/vista/service:src/build-info.ts",
+        "node_modules/@vista/service/src/bundle-config.ts": "//flakes/vista/service:src/bundle-config.ts",
         "node_modules/@vista/service/src/changelog-companion.integration.test.ts": "//flakes/vista/service:src/changelog-companion.integration.test.ts",
         "node_modules/@vista/service/src/changelog-companion.ts": "//flakes/vista/service:src/changelog-companion.ts",
         "node_modules/@vista/service/src/changelog/compiler.ts": "//flakes/vista/service:src/changelog/compiler.ts",
@@ -284,6 +285,8 @@ package_view(
         "node_modules/@vista/service/src/publish-http.test.ts": "//flakes/vista/service:src/publish-http.test.ts",
         "node_modules/@vista/service/src/publish-memory.integration.test.ts": "//flakes/vista/service:src/publish-memory.integration.test.ts",
         "node_modules/@vista/service/src/publish-worker-client.ts": "//flakes/vista/service:src/publish-worker-client.ts",
+        "node_modules/@vista/service/src/publish-worker-launcher.ts": "//flakes/vista/service:src/publish-worker-launcher.ts",
+        "node_modules/@vista/service/src/publish-worker-memory.packaged.test.ts": "//flakes/vista/service:src/publish-worker-memory.packaged.test.ts",
         "node_modules/@vista/service/src/publish-worker-protocol.ts": "//flakes/vista/service:src/publish-worker-protocol.ts",
         "node_modules/@vista/service/src/publish-worker.integration.test.ts": "//flakes/vista/service:src/publish-worker.integration.test.ts",
         "node_modules/@vista/service/src/publish-worker.ts": "//flakes/vista/service:src/publish-worker.ts",
@@ -421,6 +424,7 @@ package_view(
         "node_modules/@vista/service/src/api-version.test.ts": "//flakes/vista/service:src/api-version.test.ts",
         "node_modules/@vista/service/src/api-version.ts": "//flakes/vista/service:src/api-version.ts",
         "node_modules/@vista/service/src/build-info.ts": "//flakes/vista/service:src/build-info.ts",
+        "node_modules/@vista/service/src/bundle-config.ts": "//flakes/vista/service:src/bundle-config.ts",
         "node_modules/@vista/service/src/changelog-companion.integration.test.ts": "//flakes/vista/service:src/changelog-companion.integration.test.ts",
         "node_modules/@vista/service/src/changelog-companion.ts": "//flakes/vista/service:src/changelog-companion.ts",
         "node_modules/@vista/service/src/changelog/compiler.ts": "//flakes/vista/service:src/changelog/compiler.ts",
@@ -512,6 +516,8 @@ package_view(
         "node_modules/@vista/service/src/publish-http.test.ts": "//flakes/vista/service:src/publish-http.test.ts",
         "node_modules/@vista/service/src/publish-memory.integration.test.ts": "//flakes/vista/service:src/publish-memory.integration.test.ts",
         "node_modules/@vista/service/src/publish-worker-client.ts": "//flakes/vista/service:src/publish-worker-client.ts",
+        "node_modules/@vista/service/src/publish-worker-launcher.ts": "//flakes/vista/service:src/publish-worker-launcher.ts",
+        "node_modules/@vista/service/src/publish-worker-memory.packaged.test.ts": "//flakes/vista/service:src/publish-worker-memory.packaged.test.ts",
         "node_modules/@vista/service/src/publish-worker-protocol.ts": "//flakes/vista/service:src/publish-worker-protocol.ts",
         "node_modules/@vista/service/src/publish-worker.integration.test.ts": "//flakes/vista/service:src/publish-worker.integration.test.ts",
         "node_modules/@vista/service/src/publish-worker.ts": "//flakes/vista/service:src/publish-worker.ts",

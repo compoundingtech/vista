@@ -15,8 +15,7 @@ export class PublishWorkerLauncher extends Context.Service<
   PublishWorkerCommand
 >()('Vista/PublishWorkerLauncher') {}
 
-export const publishWorkerLauncherLayer = () =>
-  Layer.succeed(PublishWorkerLauncher, {
-    command: process.execPath,
-    args: [...process.execArgv, join(root(), 'flakes', 'vista', 'service', 'publish-worker.mjs')],
-  })
+export const PublishWorkerLauncherLive = Layer.sync(PublishWorkerLauncher, () => ({
+  command: process.execPath,
+  args: [...process.execArgv, join(root(), 'flakes', 'vista', 'service', 'publish-worker.mjs')],
+}))

@@ -1,12 +1,12 @@
 import { randomUUID } from 'node:crypto'
 
 import { NodeServices } from '@effect/platform-node'
-import { Effect, Schema, Semaphore, Stream } from 'effect'
+import { Effect, Layer, Schema, Semaphore, Stream } from 'effect'
 import { ChildProcess } from 'effect/process'
 
 import { PublishFailed, type PublishInput } from './control.ts'
 import type { ProviderRegistryManager } from './data/mount.ts'
-import { PublishWorkerLauncher, publishWorkerLauncherLayer } from './publish-worker-launcher.ts'
+import { PublishWorkerLauncher, PublishWorkerLauncherLive } from './publish-worker-launcher.ts'
 import { PublishWorkerRequestJson, PublishWorkerResponseJson } from './publish-worker-protocol.ts'
 import { acknowledgePublishAttempt, rollbackPublishAttempt } from './publish.ts'
 
@@ -119,6 +119,5 @@ export const publishInWorker = (
             cause: String(cause),
           }),
     ),
-    Effect.provide(NodeServices.layer),
-    Effect.provide(publishWorkerLauncherLayer()),
+    Effect.provide(Layer.mergeAll(NodeServices.layer, PublishWorkerLauncherLive)),
   )
